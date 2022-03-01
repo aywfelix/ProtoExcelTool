@@ -19,6 +19,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from qt_ui.uipy.proto_tool_ui import *
 from qt_ui.logic.create_proto_dir import *
+from qt_ui.logic.modify_proto_dir import *
+from qt_ui.logic.create_proto import *
+from qt_ui.logic.modify_proto import *
+
 
 class ProtoMainUI(QMainWindow):
     def __init__(self, parent=None):
@@ -31,6 +35,7 @@ class ProtoMainUI(QMainWindow):
         # treeView 设置
         self.ui.tRvProtocol.setStyle(QStyleFactory.create('windows'))
         self.ui.tRvProtocol.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.ui.tRvProtocol.clicked.connect(self.treeViewClicked)
         # 右键treeView显示菜单
         self.ui.tRvProtocol.setContextMenuPolicy(Qt.CustomContextMenu)
         self.ui.tRvProtocol.customContextMenuRequested.connect(self.showTreeViewMenu)
@@ -47,8 +52,12 @@ class ProtoMainUI(QMainWindow):
         self.actionD.triggered.connect(lambda: self.treeViewActionHandler("create_dir"))
         self.actionE.triggered.connect(lambda: self.treeViewActionHandler("modify_dir"))
         self.actionF.triggered.connect(lambda: self.treeViewActionHandler("delete_dir"))
+        self.actionA.setEnabled(False)
         self.actionB.setEnabled(False)
         self.actionC.setEnabled(False)
+
+        #treeView item
+        self.tRvItem = None
         
 
     def showTreeViewMenu(self, pos):
@@ -56,8 +65,15 @@ class ProtoMainUI(QMainWindow):
     
     def treeViewActionHandler(self, op):
         if op == "create_proto":
+            # 弹出创建协议窗口
+            self.createProtoUI = CreateProtoUI()
+            self.createProtoUI.show()
+            self.createProtoUI.dialogSinal.connect(self.createProto_emit)
             pass
         if op == "modify_proto":
+            self.modifyProtoUI = ModifyProtoUI()
+            self.modifyProtoUI.show()
+            self.modifyProtoUI.dialogSinal.connect(self.modifyProto_emit)
             pass
         if op == "delete_proto":
             pass
@@ -65,16 +81,12 @@ class ProtoMainUI(QMainWindow):
             # 弹出添加目录名称窗口
             self.createDirUI = CreateProtoDirUI()
             self.createDirUI.show()
-            # root=QTreeWidgetItem(self.ui.tRvProtocol)
-            # root.setText(0,'Root')
-            # root.setIcon(0,QIcon('../../qt_ui/icons/folder.ico'))
-            # self.ui.tRvProtocol.addTopLevelItem(root)
-
-            # child=QTreeWidgetItem()
-            # child.setText(0,'Child')
-            # root.addChild(child)
+            self.createDirUI.dialogSinal.connect(self.createDir_emit)
             pass
         if op == "modify_dir":
+            self.modifyDirUI = ModifyProtoDirUI()
+            self.modifyDirUI.show()
+            self.modifyDirUI.dialogSinal.connect(self.modifyDir_emit)            
             pass
         if op == "delete_dir":
             # 提示删除协议目录
@@ -88,7 +100,61 @@ class ProtoMainUI(QMainWindow):
                 print("bbbbbbbbbbbb")
             pass
         pass
-        
+
+    def createDir_emit(self, str):
+        root=QTreeWidgetItem(self.ui.tRvProtocol)
+        root.setText(0,str)
+        root.setIcon(0,QIcon('../../qt_ui/icons/folder.ico'))
+        self.ui.tRvProtocol.addTopLevelItem(root)
+        # TODO: 将目录写入xml文件
+
+    def modifyDir_emit(self, str):
+        # 遍历目录修改节点text
+        self.tRvItem.setText(0,str)
+        # TODO: 更新xml文件     
+        pass 
+
+    def createProto_emit(self, protoNum, protoName, protoDesc, protoContent):
+        #print(protoNum, protoName, protoDesc, protoContent)
+
+        if self.tRvItem != None:
+            # 添加子节点
+            item = QTreeWidgetItem()
+            item.setText(0, str(protoNum)+" "+protoName)
+            item.setIcon(0,QIcon('../../qt_ui/icons/TextFile.ico'))
+            self.tRvItem.addChild(item)
+            pass
+        pass
+
+    def modifyProto_emit(self, protoNum, protoName, protoDesc, protoContent):
+        if self.tRvItem != None:
+            self.tRvItem.setText(0, str(protoNum)+" "+protoName)
+            # TODO: 修改xml文件内容
+            pass
+        pass
+
+    def treeViewClicked(self, modelIndex):
+        #print(modelIndex.data(), modelIndex.row(), modelIndex.column())
+        self.tRvItem = self.ui.tRvProtocol.currentItem()
+        parent = self.tRvItem.parent()
+        if parent == None:
+            # 选中根节点
+            self.actionA.setEnabled(True)
+            self.actionB.setEnabled(False)
+            self.actionC.setEnabled(False)
+
+            self.actionD.setEnabled(True)
+            self.actionE.setEnabled(True)
+            self.actionF.setEnabled(True)              
+        else:
+            # 选中子节点
+            self.actionB.setEnabled(True)
+            self.actionC.setEnabled(True)
+
+            self.actionD.setEnabled(False)
+            self.actionE.setEnabled(False)
+            self.actionF.setEnabled(False)
+        pass  
         
 def ShowWindow():
     app = QApplication(sys.argv)

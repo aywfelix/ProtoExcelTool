@@ -23,6 +23,7 @@ def ConvertUI():
     os.system("pyuic5 -o add_tmpl_ui.py ../ui/add_tmpl.ui")
     os.system("pyuic5 -o modify_enum_ui.py ../ui/modify_enum.ui")
     os.system("pyuic5 -o modify_proto_ui.py ../ui/modify_proto.ui")
+    os.system("pyuic5 -o create_proto_ui.py ../ui/create_proto.ui")
     os.system("pyuic5 -o modify_tmpl_ui.py ../ui/modify_tmpl.ui")
     os.system("pyuic5 -o proto_tool_ui.py ../ui/proto_tool.ui")
     os.system("pyuic5 -o setting_ui.py ../ui/setting.ui")

@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_CreateDirForm(object):
     def setupUi(self, CreateDirForm):
         CreateDirForm.setObjectName("CreateDirForm")
+        CreateDirForm.setWindowModality(QtCore.Qt.ApplicationModal)
         CreateDirForm.resize(349, 76)
         CreateDirForm.setAutoFillBackground(True)
         self.label = QtWidgets.QLabel(CreateDirForm)

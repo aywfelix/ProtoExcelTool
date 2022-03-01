@@ -14,10 +14,12 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.proto_tool_ui import *
 from qt_ui.uipy.create_proto_dir import *
 
 class CreateProtoDirUI(QMainWindow):
+    # 窗体间通信
+    dialogSinal = pyqtSignal(str)
+
     def __init__(self, parent=None):
         super(CreateProtoDirUI, self).__init__()
         self.ui = Ui_CreateDirForm()
@@ -26,9 +28,11 @@ class CreateProtoDirUI(QMainWindow):
         self.setFixedSize(self.width(), self.height())
 
         self.ui.bTnCreateDir.clicked.connect(self.inputDirName)
+
         pass
 
     def inputDirName(self):
-        self.createDirName = self.ui.lEtProtoDirName.text()
+        dirname = self.ui.lEtProtoDirName.text()
+        self.dialogSinal.emit(dirname)
         self.close()
         
