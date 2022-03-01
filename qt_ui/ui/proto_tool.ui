@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProtoWindow</class>
+ <widget class="QMainWindow" name="ProtoWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>904</width>
+    <height>797</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>游戏协议工具</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>881</width>
+      <height>741</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>协议管理器</string>
+     </attribute>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>搜索：</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lEtProtoSearch">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>10</y>
+        <width>261</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>40</y>
+        <width>541</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>详细信息</string>
+      </property>
+      <widget class="QLineEdit" name="lEtProtoNum">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>30</y>
+         <width>431</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>协议编号：</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lEtProtoName">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>70</y>
+         <width>431</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>协议名称：</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>协议说明：</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>160</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>协议内容：</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="tEtProtoContent">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>170</y>
+         <width>431</width>
+         <height>431</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="bTnProtoUpdate">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>630</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>修改</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="tEtProtoDesc">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>110</y>
+         <width>431</width>
+         <height>41</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="cBxProtocol">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>630</y>
+         <width>121</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>仅导出服务器</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QTreeWidget" name="tRvProtocol">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>301</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="rootIsDecorated">
+       <bool>true</bool>
+      </property>
+      <property name="headerHidden">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>枚举管理器</string>
+     </attribute>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>搜索：</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lEtEnumSearch">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>10</y>
+        <width>261</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTreeView" name="tRvEnum">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>301</width>
+        <height>671</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>40</y>
+        <width>541</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>详细信息</string>
+      </property>
+      <widget class="QLineEdit" name="lEtEnumName">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>30</y>
+         <width>431</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>枚举名称：</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lEtEnumDesc">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>70</y>
+         <width>431</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>枚举说明：</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>枚举字段：</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="bTnEnumUpdate">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>630</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>修改</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="cBxEnum">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>630</y>
+         <width>121</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>仅导出服务器</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="tBvEnum">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>110</y>
+         <width>431</width>
+         <height>491</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>904</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="menuSave"/>
+    <addaction name="menuExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>设置</string>
+    </property>
+    <addaction name="menuOpenSetting"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>导出</string>
+    </property>
+    <addaction name="menu_excel"/>
+    <addaction name="separator"/>
+    <addaction name="menuServerPb"/>
+    <addaction name="menuClientPb"/>
+    <addaction name="separator"/>
+    <addaction name="menuProto"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="menu_excel">
+   <property name="text">
+    <string>导出配置表[excel]</string>
+   </property>
+  </action>
+  <action name="menuServerPb">
+   <property name="text">
+    <string>导出服务器[pb]</string>
+   </property>
+  </action>
+  <action name="menuClientPb">
+   <property name="text">
+    <string>导出客户端[pb]</string>
+   </property>
+  </action>
+  <action name="menuSave">
+   <property name="text">
+    <string>保存</string>
+   </property>
+  </action>
+  <action name="menuExit">
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </action>
+  <action name="menuOpenSetting">
+   <property name="text">
+    <string>打开设置</string>
+   </property>
+  </action>
+  <action name="menuProto">
+   <property name="text">
+    <string>导出proto</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
