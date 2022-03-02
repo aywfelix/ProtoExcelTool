@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>修改协议</string>
+   <string>创建协议</string>
   </property>
   <widget class="QTextEdit" name="tEtProtoDesc">
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>90</y>
+     <y>120</y>
      <width>411</width>
      <height>41</height>
     </rect>
@@ -27,9 +27,9 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>150</y>
+     <y>180</y>
      <width>411</width>
-     <height>351</height>
+     <height>321</height>
     </rect>
    </property>
   </widget>
@@ -37,7 +37,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>10</y>
+     <y>40</y>
      <width>411</width>
      <height>20</height>
     </rect>
@@ -47,7 +47,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>90</y>
+     <y>120</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -73,7 +73,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>40</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -86,7 +86,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>50</y>
+     <y>80</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -99,7 +99,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>170</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -112,7 +112,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>50</y>
+     <y>80</y>
      <width>411</width>
      <height>20</height>
     </rect>
@@ -129,6 +129,45 @@
    </property>
    <property name="text">
     <string>仅导出服务器</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请求消息</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton_2">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>广播消息</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>54</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>协议类型：</string>
    </property>
   </widget>
  </widget>

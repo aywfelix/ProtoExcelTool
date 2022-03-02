@@ -7,12 +7,90 @@
     <x>0</x>
     <y>0</y>
     <width>352</width>
-    <height>78</height>
+    <height>258</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>修改目录</string>
   </property>
+  <widget class="QPushButton" name="bTnAdd">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>加入引入包</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bTnModifyDir">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>230</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>修改</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>包名【proto package】</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lEtProtoPackage">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>50</y>
+     <width>181</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*可以不填写*</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>191</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>引入其他模块包【proto import】</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bTnClear">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>100</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>清除文本</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -26,17 +104,32 @@
     <string>目录名称：</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="bTnModifyDir">
+  <widget class="QComboBox" name="cBbxPackage">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>50</y>
-     <width>75</width>
-     <height>23</height>
+     <x>20</x>
+     <y>100</y>
+     <width>111</width>
+     <height>22</height>
     </rect>
    </property>
-   <property name="text">
-    <string>修改</string>
+   <item>
+    <property name="text">
+     <string>game.common</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QTextEdit" name="tEtPackage">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>311</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLineEdit" name="lEtProtoDirName">
