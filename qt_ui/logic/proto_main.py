@@ -69,16 +69,16 @@ class ProtoMainUI(QMainWindow):
         # 当前选中item
         self.currentItem = None
 
-        # 初始化ToolXml对象(TODO: 优化)
-        self.toolXml = ToolXml()
-        self.toolXml.setProtoConfig("../../config/protocols.config")
-        self.toolXml.exportProtoPath("../../proto_tool/protos")
+        # 初始化ToolProtoXml对象(TODO: 优化)
+        self.protoXml = ToolProtoXml()
+        self.protoXml.setProtoConfig("../../config/protocols.config")
+        self.protoXml.exportProtoPath("../../proto_tool/protos")
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
     
     def loadProtocols(self):
-        protocolDict = self.toolXml.readProtocolXml()
+        protocolDict = self.protoXml.readProtocolXml()
         if protocolDict is None:
             print("load protocol xml file err")
             return
@@ -243,7 +243,7 @@ class ProtoMainUI(QMainWindow):
 
             protocolsDict[topItem.text(0)] = protocolList
 
-        self.toolXml.writeProtocolXml(protocolsDict)
+        self.protoXml.writeProtocolXml(protocolsDict)
         # 保存enum信息
         # 保存配置信息
         pass
@@ -273,11 +273,11 @@ class ProtoMainUI(QMainWindow):
 
     def menuExportProtoClicked(self):
         # 根据xml文件导出proto文件
-        self.toolXml.exportProtoFile()
+        self.protoXml.exportProtoFile()
         pass
 
     def menuExportServerPbClicked(self):
-        self.toolXml.exportProtoPb()
+        self.protoXml.exportProtoPb()
         pass
         
 def ShowWindow():

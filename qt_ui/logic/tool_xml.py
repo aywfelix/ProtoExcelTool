@@ -43,7 +43,7 @@ message %(protoName)s{
 #############################################################################
 
 
-class ToolXml(object):
+class ToolProtoXml(object):
     def __init__(self):
         pass
 
@@ -152,6 +152,9 @@ class ToolXml(object):
         except Exception as e:
             print(e)
 
+    def exportProtoPb(self):
+        # 根据不同配置模板导出pb文件
+        pass
 
 
 
