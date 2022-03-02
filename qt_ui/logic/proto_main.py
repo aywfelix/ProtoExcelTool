@@ -64,12 +64,15 @@ class ProtoMainUI(QMainWindow):
         self.ui.menuSave.triggered.connect(self.menuSaveClicked)
         self.ui.menuExit.triggered.connect(self.menuExitClicked)
         self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
+        self.ui.menuExportServerPb.triggered.connect(self.menuExportServerPbClicked)
 
         # 当前选中item
         self.currentItem = None
 
         # 初始化ToolXml对象(TODO: 优化)
-        self.toolXml = ToolXml("protocols.config")
+        self.toolXml = ToolXml()
+        self.toolXml.setProtoConfig("../../config/protocols.config")
+        self.toolXml.exportProtoPath("../../proto_tool/protos")
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
@@ -203,10 +206,11 @@ class ProtoMainUI(QMainWindow):
 
         if self.currentItem.type() == TVItemType.ItemProto:
             # 选中子节点
+            self.actionA.setEnabled(False)
             self.actionB.setEnabled(True)
             self.actionC.setEnabled(True)
 
-            self.actionD.setEnabled(False)
+            self.actionD.setEnabled(True)
             self.actionE.setEnabled(False)
             self.actionF.setEnabled(False)
 
@@ -269,7 +273,11 @@ class ProtoMainUI(QMainWindow):
 
     def menuExportProtoClicked(self):
         # 根据xml文件导出proto文件
-        
+        self.toolXml.exportProtoFile()
+        pass
+
+    def menuExportServerPbClicked(self):
+        self.toolXml.exportProtoPb()
         pass
         
 def ShowWindow():

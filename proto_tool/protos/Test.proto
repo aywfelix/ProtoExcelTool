@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message C2SLoginMsg{
+    string name = 1;	
+    string password = 2;
+}
+
