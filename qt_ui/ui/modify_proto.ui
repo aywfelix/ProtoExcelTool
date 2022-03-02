@@ -33,7 +33,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lEtProtoNum">
+  <widget class="QLineEdit" name="lEtProtoId">
    <property name="geometry">
     <rect>
      <x>80</x>
