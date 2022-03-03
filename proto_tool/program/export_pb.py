@@ -11,7 +11,7 @@
 '''
 
 # here put the import lib
-from subprocess import *
+import subprocess
 import os
 
 
@@ -38,9 +38,9 @@ class ExportPb(object):
             if not proto.endswith(".proto"):
                 continue
 
-            exportStr = ""
+            cmdStr = ""
             if exportType == ExportPbType.CPP:
-                exportStr = 'D:\work\ProtocolEditor\ProtoExcelTool\proto_tool\program\protoc.exe --proto_path='+ self.inputPath + ' --cpp_out='+self.exportPath + " "+proto
+                cmdStr = './proto_tool/program/protoc.exe --proto_path='+ self.inputPath + ' --cpp_out='+self.exportPath + " "+proto
                 pass
             if exportType == ExportPbType.CSHARP:
                 pass
@@ -49,19 +49,18 @@ class ExportPb(object):
             if exportType == ExportPbType.LUA:
                 pass
             if exportType == ExportPbType.GO:
-                #exportStr = 'D:\work\ProtocolEditor\ProtoExcelTool\proto_tool\program\protoc.exe --proto_path='+ self.inputPath + ' --go_out='+self.exportPath + " "+proto
+                #cmdStr = 'D:\work\ProtocolEditor\ProtoExcelTool\proto_tool\program\protoc.exe --proto_path='+ self.inputPath + ' --go_out='+self.exportPath + " "+proto
                 pass
 
-            run(exportStr, shell=True)
-            print(exportStr)
-        #os.system(exportStr)
+            subprocess.Popen(cmdStr)        
+            print(cmdStr)
 
 
 if __name__ == "__main__":
     print(os.getcwd())
     export = ExportPb()
-    export.setInputPath("proto_tool/protos/")
-    export.setExportPath("./proto_tool/pb/go/")
-    export.exportPb(ExportPbType.GO)
-    pass
+    export.setInputPath("./proto_tool/protos/")
+    export.setExportPath("./proto_tool/pb/c++/")
+    export.exportPb(ExportPbType.CPP)
+    # pass
 

@@ -27,12 +27,16 @@ class CreateProtoDirUI(QMainWindow):
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
 
+        # 添加关联事件
         self.ui.bTnCreateDir.clicked.connect(self.inputDirName)
-
+        #self.ui.lEtProtoPackage.clicked.connect(self.clearEditText)
         pass
 
     def inputDirName(self):
         dirname = self.ui.lEtProtoDirName.text()
         self.dialogSinal.emit(dirname)
         self.close()
+
+    def clearEditText(self):
+        self.ui.lEtProtoPackage.setText("")
         
