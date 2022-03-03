@@ -70,6 +70,9 @@ class ProtoMainUI(QMainWindow):
         self.protoXml = ToolProtoXml()
         self.protoXml.setProtoConfig("../../config/protocols.config")
         self.protoXml.exportProtoPath("../../proto_tool/protos")
+
+        # 缓存协议编号
+        self.protoIdSet = set()
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
@@ -91,6 +94,7 @@ class ProtoMainUI(QMainWindow):
             for protoData in protoDataList:
                 protoNode = self.createProto(protoData.id, protoData.name, protoData.desc, protoData.content, protoData.onlyServer)
                 dirItem.addChild(protoNode)
+                self.protoIdSet.add(protoData.id)
         pass
         
 
@@ -181,8 +185,22 @@ class ProtoMainUI(QMainWindow):
     def createProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
             return
+        # 检测协议编号是否已经存在，如果存在弹出警告
+        if protoId in self.protoIdSet:
+            QMessageBox.critical(self, "错误", "协议编号已经被使用!!!")
+            return
+
+        self.protoIdSet.add(protoId)
         item = self.createProto(protoId, protoName, protoDesc, protoContent, onlyServer)
         self.currentItem.addChild(item)
+        # 如果是创建请求类型协议，则自动生成返回协议
+        if 'Req' in protoName:
+            protoId = str(int(protoId)+1)
+            self.protoIdSet.add(protoId)
+            protoName = protoName[0:-3]+"Resp"
+            item = self.createProto(protoId, protoName, "", "", False)
+            self.currentItem.addChild(item)
+            pass
 
     def modifyProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
