@@ -30,20 +30,6 @@ from qt_ui.logic.tool_define import *
 #     def __str__(self):
 #         return self.id+" "+self.name+" "+self.desc+" "+self.content
 
-#############################################################################
-proto_header = '''
-syntax = "proto3";
-
-'''
-proto_message= '''
-// %(protoDesc)s
-message %(protoName)s{
-    %(protoContent)s
-}
-'''
-#############################################################################
-
-
 class ToolProtoXml(object):
     def __init__(self):
         pass
@@ -66,7 +52,8 @@ class ToolProtoXml(object):
                 protoDataList = moduleDict["protocol"]
                 moduleNode = domTree.createElement("module")
                 moduleNode.setAttribute("name", dirData.dirName)
-                moduleNode.setAttribute("package", dirData.package)
+                dirPackage = dirData.package.replace("\r", "&#xD;").replace("\n", "&#xA;")
+                moduleNode.setAttribute("package", dirPackage)
                 protocolsNode.appendChild(moduleNode)
                 for protoData in protoDataList:
                     protocolNode = domTree.createElement("protocol")
@@ -109,6 +96,7 @@ class ToolProtoXml(object):
                 moduleDict = {}
                 dirName = moduleNode.getAttribute("name")
                 package = moduleNode.getAttribute("package")
+                package = package.replace("&#xD;", "\r").replace("&#xA;", "\n")
                 dirData = TVItemDirData(dirName, package)
                 moduleDict["module"] = dirData
                 # 获取protocol data list
@@ -136,24 +124,38 @@ class ToolProtoXml(object):
     def exportProtoFile(self):
         # 根据配置文件生成proto file 文件
         try:
-            protocolDict = self.readProtocolXml()
-            if not protocolDict:
+            protocols = self.readProtocolXml()
+            if not protocols:
                 return
+            # 根据xml信息生产proto文件
+            protoMsgs = proto_header+"\n"
+            for module in protocols:
+                dirData = module["module"]
+                protoDataList = module["protocol"]
+                # 添加引用
+                protoMsgs += dirData.package +"\n\n"
+                for protoData in protoDataList:
+                    # 注释
+                    protoDesc = ""
+                    descList = protoData.desc.split("\n")
+                    for desc in descList:
+                        protoDesc += "// "+desc+"\n"
+                    protoMsgs += protoDesc
+                    # 添加消息
+                    protoMsgs += "message " + protoData.name + "{\n"
 
-            for dirName, protocolList in protocolDict.items():
-                # 创建proto文件
-                dirName = dirName.split(' ')[1]
-                protoMsgs = proto_header
-                for protocol in protocolList:
-                    protoMessage = proto_message % {
-                        "protoName": protocol.name,
-                        "protoDesc": protocol.desc,
-                        "protoContent": protocol.content
-                    }
-                    protoMsgs += "\n" + protoMessage
+                    protoContent = ""
+                    contentList = protoData.content.split("\n")
+                    for content in contentList:
+                        protoContent += "   " + content+"\n"
+                    protoContent +="}\n\n"
+
+                    protoMsgs += protoContent   
                     pass
                 
-                protoFilePath = self.protoPath+"/"+dirName+".proto"
+                # 导出命名
+                moduleName = dirData.dirName.split(" ")[1]
+                protoFilePath = self.protoPath+"/"+moduleName+".proto"
                 with codecs.open(protoFilePath, "w", 'utf-8') as f:
                     f.write(protoMsgs)
                     f.flush()
