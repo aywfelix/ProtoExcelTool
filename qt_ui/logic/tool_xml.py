@@ -30,6 +30,11 @@ from qt_ui.logic.tool_define import *
 #     def __str__(self):
 #         return self.id+" "+self.name+" "+self.desc+" "+self.content
 
+#############################################################################
+proto_header = 'syntax = "proto3";'
+#############################################################################
+
+
 class ToolProtoXml(object):
     def __init__(self):
         pass
