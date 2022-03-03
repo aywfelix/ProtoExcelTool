@@ -131,7 +131,7 @@
     <string>仅导出服务器</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton">
+  <widget class="QRadioButton" name="rBtnReq">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -144,7 +144,7 @@
     <string>请求消息</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_2">
+  <widget class="QRadioButton" name="rBtnNotify">
    <property name="geometry">
     <rect>
      <x>220</x>

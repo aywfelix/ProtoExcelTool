@@ -28,7 +28,10 @@ class CreateProtoUI(QMainWindow):
         self.setFixedSize(self.width(), self.height())
 
         self.ui.bTnProtoCreate.clicked.connect(self.createProto)
-
+        self.ui.rBtnReq.setChecked(True)
+        self.ui.lEtProtoId.editingFinished.connect(self.checkProtoId)
+        self.ui.lEtProtoName.editingFinished.connect(self.changeProtoName)
+        self.ui.rBtnReq.toggled.connect(self.changeRadioButton)
         pass
 
     def createProto(self):
@@ -39,4 +42,33 @@ class CreateProtoUI(QMainWindow):
 
         self.dialogSinal.emit(protoId, protoName, protoDesc, protoContent, False)
         self.close()
+
+    def checkProtoId(self):
+        protoId = self.ui.lEtProtoId.text()
+        if not protoId.isdigit():
+            # 弹出警告
+            QMessageBox.critical(self, "错误", "协议编号默认为整数数字!!!")
+            pass
+        pass
+
+    def changeProtoName(self):
+        protoName = self.ui.lEtProtoName.text()
+        if self.ui.rBtnReq.isChecked():
+            protoName += "Req"
+        elif self.ui.rBtnNotify.isChecked():
+            protoName += "Notify"
+        self.ui.lEtProtoName.setText(protoName)
+        pass
+
+    def changeRadioButton(self):
+        protoName = self.ui.lEtProtoName.text()
+        if self.ui.rBtnReq.isChecked():
+            protoName = protoName[0:-6]
+            protoName += "Req"
+        else:
+            protoName = protoName[0:-3]
+            protoName += "Notify"
+        
+        self.ui.lEtProtoName.setText(protoName)        
+        pass
         

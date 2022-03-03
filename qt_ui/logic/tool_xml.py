@@ -16,6 +16,7 @@ import os
 import sys
 import codecs
 import xml.dom.minidom as xmlDom
+# from xml.sax.saxutils import escape, unescape
 from qt_ui.logic.tool_define import *
 
 # class TVItemProtoData:
@@ -55,8 +56,6 @@ class ToolProtoXml(object):
         pass
 
     def writeProtocolXml(self, protocols): #protocols=[{["module"]=data, ["protocol"]=[protoData,]},...]
-        if protocols is None or not protocols:
-            return
         try:
             # 根元素
             domTree = xmlDom.Document()
@@ -73,8 +72,10 @@ class ToolProtoXml(object):
                     protocolNode = domTree.createElement("protocol")
                     protocolNode.setAttribute("id", protoData.id)
                     protocolNode.setAttribute("name", protoData.name)
-                    protocolNode.setAttribute("desc", protoData.desc)
-                    protocolNode.setAttribute("content", protoData.content)
+                    protoDesc = protoData.desc.replace("\r", "&#xD;").replace("\n", "&#xA;")
+                    protocolNode.setAttribute("desc", protoDesc)
+                    protoContent = protoData.content.replace("\r", "&#xD;").replace("\n", "&#xA;")
+                    protocolNode.setAttribute("content", protoContent)
                     protocolNode.setAttribute("onlyServer", str(protoData.onlyServer)) 
                     moduleNode.appendChild(protocolNode)                     
                     pass
@@ -82,7 +83,7 @@ class ToolProtoXml(object):
 
             domTree.appendChild(protocolsNode)
             # 写入protocol配置文件
-            with open(self.xmlProtoPath, "w") as f:
+            with open(self.xmlProtoPath, "w", encoding="gbk") as f:
                 domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")
                 
         except Exception as e:
@@ -117,14 +118,16 @@ class ToolProtoXml(object):
                     id = protocolNode.getAttribute("id")
                     name = protocolNode.getAttribute("name")
                     desc = protocolNode.getAttribute("desc")
+                    desc = desc.replace("&#xD;", "\r").replace("&#xA;", "\n")
                     content = protocolNode.getAttribute("content")
+                    content = content.replace("&#xD;", "\r").replace("&#xA;", "\n")              
                     onlyServer = protocolNode.getAttribute("onlyServer")
                     protoData = TVItemProtoData(id, name, desc, content, bool(onlyServer))
                     protoDataList.append(protoData)
 
                 moduleDict["protocol"] = protoDataList
                 protocols.append(moduleDict)
-                
+
         except Exception as e:
             print(e)
 

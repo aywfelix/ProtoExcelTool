@@ -28,7 +28,15 @@ class ModifyProtoUI(QMainWindow):
         self.setFixedSize(self.width(), self.height())
 
         self.ui.bTnProtoModify.clicked.connect(self.modifyProto)
+        self.ui.lEtProtoId.editingFinished.connect(self.checkProtoId)
+        pass
 
+    def checkProtoId(self):
+        protoId = self.ui.lEtProtoId.text()
+        if not protoId.isdigit():
+            # 弹出警告
+            QMessageBox.critical(self, "错误", "协议编号默认为整数数字!!!")
+            pass
         pass
 
     def modifyProto(self):

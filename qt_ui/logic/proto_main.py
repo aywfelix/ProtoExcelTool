@@ -77,7 +77,7 @@ class ProtoMainUI(QMainWindow):
     def loadProtocols(self):
         protocols = self.protoXml.readProtocolXml()
         if protocols is None or not protocols:
-            print("load protocol xml file err")
+            print("warn:load protocol xml file, protocol==None")
             return
 
         self.ui.tRvProtocol.clear()
@@ -146,6 +146,7 @@ class ProtoMainUI(QMainWindow):
                 index = self.ui.tRvProtocol.indexOfTopLevelItem(self.currentItem)
                 self.ui.tRvProtocol.takeTopLevelItem(index)
                 self.currentItem = None
+                self.saveToXml()
             pass
         pass
 
@@ -234,8 +235,6 @@ class ProtoMainUI(QMainWindow):
         # 获取treeview 所有节点data
         protocols = []
         topItemCount = self.ui.tRvProtocol.topLevelItemCount()
-        if topItemCount == 0:
-            return
         for i in range(0, topItemCount):
             moduleDict = {}
             topItem = self.ui.tRvProtocol.topLevelItem(i)
@@ -250,8 +249,8 @@ class ProtoMainUI(QMainWindow):
                 protocolList.append(protoData)
 
             moduleDict["protocol"] = protocolList
+            protocols.append(moduleDict)
 
-        protocols.append(moduleDict)
         self.protoXml.writeProtocolXml(protocols)
         # 保存enum信息
         # 保存配置信息
