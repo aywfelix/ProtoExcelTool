@@ -54,32 +54,33 @@ class ToolProtoXml(object):
         self.protoPath = exportPath
         pass
 
-    def writeProtocolXml(self, protocolDict): #protocolDict={目录名：list[]}
-        if protocolDict is None or not protocolDict:
+    def writeProtocolXml(self, protocols): #protocols=[{["module"]=data, ["protocol"]=[protoData,]},...]
+        if protocols is None or not protocols:
             return
         try:
             # 根元素
             domTree = xmlDom.Document()
             # 创建protocols 节点
             protocolsNode = domTree.createElement("protocols")
-            # 根据protocolDict 创建package 节点
-            # 遍历protocolDict
-            for dirName, protocolList in protocolDict.items():
-                packageNode = domTree.createElement("package")
-                packageNode.setAttribute("name", dirName)
-                protocolsNode.appendChild(packageNode)
-                for protocol in protocolList:
-                    protoNode = domTree.createElement("protocol")
-                    protoNode.setAttribute("id", protocol.id)
-                    protoNode.setAttribute("name", protocol.name)
-                    protoNode.setAttribute("desc", protocol.desc)
-                    protoNode.setAttribute("content", protocol.content)
-                    protoNode.setAttribute("onlyServer", str(protocol.onlyServer))
-                    packageNode.appendChild(protoNode)
+            for moduleDict in protocols:
+                dirData = moduleDict["module"]
+                protoDataList = moduleDict["protocol"]
+                moduleNode = domTree.createElement("module")
+                moduleNode.setAttribute("name", dirData.dirName)
+                moduleNode.setAttribute("package", dirData.package)
+                protocolsNode.appendChild(moduleNode)
+                for protoData in protoDataList:
+                    protocolNode = domTree.createElement("protocol")
+                    protocolNode.setAttribute("id", protoData.id)
+                    protocolNode.setAttribute("name", protoData.name)
+                    protocolNode.setAttribute("desc", protoData.desc)
+                    protocolNode.setAttribute("content", protoData.content)
+                    protocolNode.setAttribute("onlyServer", str(protoData.onlyServer)) 
+                    moduleNode.appendChild(protocolNode)                     
                     pass
                 pass
-            domTree.appendChild(protocolsNode)
 
+            domTree.appendChild(protocolsNode)
             # 写入protocol配置文件
             with open(self.xmlProtoPath, "w") as f:
                 domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")
@@ -88,7 +89,7 @@ class ToolProtoXml(object):
             print(e)
 
     def readProtocolXml(self):
-        protocolDict = {}
+        protocols = []
         try:
             dataResource = ""
             with open(self.xmlProtoPath, "r", encoding="gbk") as f:
@@ -102,27 +103,32 @@ class ToolProtoXml(object):
                 return
             # 根元素
             domTree = dom.documentElement
-            packages = domTree.getElementsByTagName("package")
-            for package in packages:
-                protocolList = []
-                dirName = package.getAttribute("name")
-                protocols = package.getElementsByTagName("protocol")
+            moduleNodes = domTree.getElementsByTagName("module")
+            for moduleNode in moduleNodes:
+                moduleDict = {}
+                dirName = moduleNode.getAttribute("name")
+                package = moduleNode.getAttribute("package")
+                dirData = TVItemDirData(dirName, package)
+                moduleDict["module"] = dirData
+                # 获取protocol data list
+                protoDataList = []
+                protocolNodes = moduleNode.getElementsByTagName("protocol")
+                for protocolNode in protocolNodes:
+                    id = protocolNode.getAttribute("id")
+                    name = protocolNode.getAttribute("name")
+                    desc = protocolNode.getAttribute("desc")
+                    content = protocolNode.getAttribute("content")
+                    onlyServer = protocolNode.getAttribute("onlyServer")
+                    protoData = TVItemProtoData(id, name, desc, content, bool(onlyServer))
+                    protoDataList.append(protoData)
+
+                moduleDict["protocol"] = protoDataList
+                protocols.append(moduleDict)
                 
-                for protocol in protocols:
-                    id = protocol.getAttribute("id")
-                    name = protocol.getAttribute("name")
-                    desc = protocol.getAttribute("desc")
-                    content = protocol.getAttribute("content")
-                    onlyServer = protocol.getAttribute("onlyServer")
-
-                    protoData = TVItemProtoData(id, name, desc, content, onlyServer)
-                    protocolList.append(protoData)
-
-                protocolDict[dirName] = protocolList
         except Exception as e:
             print(e)
 
-        return protocolDict
+        return protocols
 
     def exportProtoFile(self):
         # 根据配置文件生成proto file 文件

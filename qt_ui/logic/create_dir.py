@@ -14,11 +14,12 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.create_proto_dir import *
+from qt_ui.uipy.create_dir import *
 
 class CreateProtoDirUI(QMainWindow):
     # 窗体间通信
-    dialogSinal = pyqtSignal(str)
+    dialogSinal = pyqtSignal(str, str)
+    # clicked = pyqtSignal()
 
     def __init__(self, parent=None):
         super(CreateProtoDirUI, self).__init__()
@@ -29,14 +30,26 @@ class CreateProtoDirUI(QMainWindow):
 
         # 添加关联事件
         self.ui.bTnCreateDir.clicked.connect(self.inputDirName)
-        #self.ui.lEtProtoPackage.clicked.connect(self.clearEditText)
+        # 清空输入框信息
+        self.ui.tEtImport.installEventFilter(self)
+        self.ui.bTnClearImport.clicked.connect(self.clearEditText)
+        # self.clicked.connect(self.clearEditText)
         pass
+
+    # def eventFilter(self, widget, event):
+    #     if widget == self.ui.tEtImport:
+    #         if event.type() == QEvent.MouseButtonPress:
+    #             self.clicked.emit()
+    #             pass
+
+    #     return False
 
     def inputDirName(self):
         dirname = self.ui.lEtProtoDirName.text()
-        self.dialogSinal.emit(dirname)
+        imports = self.ui.tEtImport.toPlainText()
+        self.dialogSinal.emit(dirname, imports)
         self.close()
 
     def clearEditText(self):
-        self.ui.lEtProtoPackage.setText("")
+        self.ui.tEtImport.setText("")
         

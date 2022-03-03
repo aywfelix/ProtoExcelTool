@@ -15,11 +15,11 @@ from posixpath import dirname
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.modify_proto_dir import *
+from qt_ui.uipy.modify_dir import *
 
 class ModifyProtoDirUI(QMainWindow):
     # 窗体间通信
-    dialogSinal = pyqtSignal(str)
+    dialogSinal = pyqtSignal(str, str)
 
     def __init__(self, parent=None):
         super(ModifyProtoDirUI, self).__init__()
@@ -29,10 +29,22 @@ class ModifyProtoDirUI(QMainWindow):
         self.setFixedSize(self.width(), self.height())
 
         self.ui.bTnModifyDir.clicked.connect(self.inputDirName)
+        # 清空输入框信息
+        self.ui.tEtImport.installEventFilter(self)
+        self.ui.bTnClearImport.clicked.connect(self.clearEditText)
+        pass
+
+    def fillDirData(self, dirData):
+        self.ui.lEtProtoDirName.setText(dirData.dirName)
+        self.ui.tEtImport.setText(dirData.package)
         pass
 
     def inputDirName(self):
         dirname = self.ui.lEtProtoDirName.text()
-        self.dialogSinal.emit(dirname)
+        package = self.ui.tEtImport.toPlainText()
+        self.dialogSinal.emit(dirname, package)
         self.close()
         
+    def clearEditText(self):
+        self.ui.tEtImport.setText("")
+            

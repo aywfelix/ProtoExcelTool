@@ -27,8 +27,8 @@ def ConvertUI():
     os.system("pyuic5 -o modify_tmpl_ui.py ../ui/modify_tmpl.ui")
     os.system("pyuic5 -o proto_tool_ui.py ../ui/proto_tool.ui")
     os.system("pyuic5 -o setting_ui.py ../ui/setting.ui")
-    os.system("pyuic5 -o create_proto_dir.py ../ui/create_proto_dir.ui")
-    os.system("pyuic5 -o modify_proto_dir.py ../ui/modify_proto_dir.ui")
+    os.system("pyuic5 -o create_dir.py ../ui/create_dir.ui")
+    os.system("pyuic5 -o modify_dir.py ../ui/modify_dir.ui")
     
 
     # os.system("pyrcc5 -o res_rc.py icons/res.qrc")

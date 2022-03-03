@@ -202,7 +202,7 @@ class Ui_ProtoWindow(object):
         self.menubar.addAction(self.menuSetting.menuAction())
 
         self.retranslateUi(ProtoWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(ProtoWindow)
 
     def retranslateUi(self, ProtoWindow):

@@ -26,3 +26,12 @@ class TVItemProtoData:
 
     def __str__(self):
         return self.id+" "+self.name+" "+self.desc+" "+self.content
+
+class TVItemDirData:
+    def __init__(self, dirName="", package=""):
+        self.dirName = dirName
+        self.package = package
+        pass
+
+    def __str__(self):
+        return self.dirName+" "+self.package

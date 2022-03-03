@@ -18,8 +18,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from qt_ui.uipy.proto_tool_ui import *
-from qt_ui.logic.create_proto_dir import *
-from qt_ui.logic.modify_proto_dir import *
+from qt_ui.logic.create_dir import *
+from qt_ui.logic.modify_dir import *
 from qt_ui.logic.create_proto import *
 from qt_ui.logic.modify_proto import *
 from qt_ui.logic.tool_define import *
@@ -54,10 +54,7 @@ class ProtoMainUI(QMainWindow):
         self.actionD.triggered.connect(lambda: self.treeViewActionHandler("create_dir"))
         self.actionE.triggered.connect(lambda: self.treeViewActionHandler("modify_dir"))
         self.actionF.triggered.connect(lambda: self.treeViewActionHandler("delete_dir"))
-        self.actionA.setEnabled(False)
-        self.actionB.setEnabled(False)
-        self.actionC.setEnabled(False)
-
+        self.setTVMenuUnEnabled()
         # 修改按钮绑定事件
         self.ui.bTnProtoModify.clicked.connect(self.modifyProtoClicked)
         # 菜单事件处理逻辑
@@ -78,23 +75,27 @@ class ProtoMainUI(QMainWindow):
 
     
     def loadProtocols(self):
-        protocolDict = self.protoXml.readProtocolXml()
-        if protocolDict is None:
+        protocols = self.protoXml.readProtocolXml()
+        if protocols is None or not protocols:
             print("load protocol xml file err")
             return
 
         self.ui.tRvProtocol.clear()
         # 根据配置信息创建item 节点
-        for dirName, protocolList in protocolDict.items():
-            dirNode = self.createDir(dirName)
-            for protocol in protocolList:
-                protoNode = self.createProto(protocol.id, protocol.name, protocol.desc, protocol.content, protocol.onlyServer)
-                dirNode.addChild(protoNode)
-            self.ui.tRvProtocol.addTopLevelItem(dirNode)
+        for module in protocols:
+            dirData = module["module"]
+            protoDataList = module["protocol"]
+            dirItem = self.createDirItem(dirData)
+
+            self.ui.tRvProtocol.addTopLevelItem(dirItem)
+            for protoData in protoDataList:
+                protoNode = self.createProto(protoData.id, protoData.name, protoData.desc, protoData.content, protoData.onlyServer)
+                dirItem.addChild(protoNode)
         pass
         
 
     def showTreeViewMenu(self, pos):
+            self.actionD.setEnabled(True)
             self.contextMenu.exec_(QCursor.pos())
     
     def treeViewActionHandler(self, op):
@@ -129,6 +130,8 @@ class ProtoMainUI(QMainWindow):
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
                 return
             self.modifyDirUI = ModifyProtoDirUI()
+            dirData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
+            self.modifyDirUI.fillDirData(dirData)
             self.modifyDirUI.show()
             self.modifyDirUI.dialogSinal.connect(self.modifyDir_emit)            
             pass
@@ -146,27 +149,29 @@ class ProtoMainUI(QMainWindow):
             pass
         pass
 
-    def createDir(self, dirName):
+    def createDirItem(self, dirData):
         root=QTreeWidgetItem(TVItemType.ItemDir)
-        root.setText(0,dirName)
+        root.setText(0,dirData.dirName)
         root.setIcon(0,QIcon('../../qt_ui/icons/folder.ico'))
+        root.setData(0, Qt.ItemDataRole.UserRole, dirData)
         return root
         
 
-    def createDir_emit(self, dirName):
-        root = self.createDir(dirName)
+    def createDir_emit(self, dirName, package):
+        dirData = TVItemDirData(dirName, package)
+        root = self.createDirItem(dirData)
         self.ui.tRvProtocol.addTopLevelItem(root)
 
-    def modifyDir_emit(self, str):
-        # 遍历目录修改节点text
-        self.currentItem.setText(0,str)
-        # TODO: 更新xml文件     
+    def modifyDir_emit(self, dirName, package):
+        self.currentItem.setText(0, dirName)
+        dirData = TVItemDirData(dirName, package)
+        self.currentItem.setData(0, Qt.ItemDataRole.UserRole, dirData)
         pass
 
     def createProto(self, protoId, protoName, protoDesc, protoContent, onlyServer=False):
         # 添加子节点
         item = QTreeWidgetItem(TVItemType.ItemProto)
-        item.setText(0, protoId+" "+protoName)
+        item.setText(0, "["+protoId+"] "+protoName)
         item.setIcon(0, QIcon('../../qt_ui/icons/TextFile.ico'))
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         item.setData(0, Qt.ItemDataRole.UserRole, protoData)
@@ -181,24 +186,30 @@ class ProtoMainUI(QMainWindow):
     def modifyProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
             return
-        self.currentItem.setText(0, protoId+" "+protoName)
+        self.currentItem.setText(0, "["+protoId+"] "+protoName)
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         self.currentItem.setData(0, Qt.ItemDataRole.UserRole, protoData)
         newData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
         print(newData)
 
+    def setTVMenuUnEnabled(self):
+        self.actionA.setEnabled(False)
+        self.actionB.setEnabled(False)
+        self.actionC.setEnabled(False)
+        self.actionD.setEnabled(False)
+        self.actionE.setEnabled(False)
+        self.actionF.setEnabled(False)
+
     def treeViewClicked(self):
+        self.setTVMenuUnEnabled()
         self.currentItem = self.ui.tRvProtocol.currentItem()
         if self.currentItem == None:
-            self.actionA.setEnabled(False)
             self.actionD.setEnabled(True)
             return
 
         if self.currentItem.type() == TVItemType.ItemDir:
             # 选中根节点
             self.actionA.setEnabled(True)
-            self.actionB.setEnabled(False)
-            self.actionC.setEnabled(False)
 
             self.actionD.setEnabled(True)
             self.actionE.setEnabled(True)
@@ -206,13 +217,8 @@ class ProtoMainUI(QMainWindow):
 
         if self.currentItem.type() == TVItemType.ItemProto:
             # 选中子节点
-            self.actionA.setEnabled(False)
             self.actionB.setEnabled(True)
             self.actionC.setEnabled(True)
-
-            self.actionD.setEnabled(True)
-            self.actionE.setEnabled(False)
-            self.actionF.setEnabled(False)
 
             # 进行界面赋值
             protoData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
@@ -221,29 +227,32 @@ class ProtoMainUI(QMainWindow):
             self.ui.tEtProtoDesc.setText(protoData.desc)
             self.ui.tEtProtoContent.setText(protoData.content)
             self.ui.cBxProtocol.setChecked(bool(protoData))
-                 
         pass  
 
     def saveToXml(self):
         # 保存proto信息
         # 获取treeview 所有节点data
-        protocolsDict = {}
+        protocols = []
         topItemCount = self.ui.tRvProtocol.topLevelItemCount()
+        if topItemCount == 0:
+            return
         for i in range(0, topItemCount):
+            moduleDict = {}
             topItem = self.ui.tRvProtocol.topLevelItem(i)
+            dirData = topItem.data(0, Qt.ItemDataRole.UserRole)
+            moduleDict["module"] = dirData
             protocolList = []
-            print(topItem.text(0))
             # 遍历topItem 下所有子节点
             childItemCount = topItem.childCount()
             for j in range(0, childItemCount):
                 childItem = topItem.child(j)
                 protoData = childItem.data(0, Qt.ItemDataRole.UserRole)
                 protocolList.append(protoData)
-                print(protoData)
 
-            protocolsDict[topItem.text(0)] = protocolList
+            moduleDict["protocol"] = protocolList
 
-        self.protoXml.writeProtocolXml(protocolsDict)
+        protocols.append(moduleDict)
+        self.protoXml.writeProtocolXml(protocols)
         # 保存enum信息
         # 保存配置信息
         pass
