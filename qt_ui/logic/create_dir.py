@@ -11,6 +11,7 @@
 '''
 
 # here put the import lib
+import re
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -19,7 +20,6 @@ from qt_ui.uipy.create_dir import *
 class CreateProtoDirUI(QMainWindow):
     # 窗体间通信
     dialogSinal = pyqtSignal(str, str)
-    # clicked = pyqtSignal()
 
     def __init__(self, parent=None):
         super(CreateProtoDirUI, self).__init__()
@@ -30,24 +30,25 @@ class CreateProtoDirUI(QMainWindow):
 
         # 添加关联事件
         self.ui.bTnCreateDir.clicked.connect(self.inputDirName)
-        # 清空输入框信息
-        self.ui.tEtImport.installEventFilter(self)
+        self.ui.lEtProtoDirName.editingFinished.connect(self.checkDirName)
         self.ui.bTnClearImport.clicked.connect(self.clearEditText)
-        # self.clicked.connect(self.clearEditText)
         pass
 
-    # def eventFilter(self, widget, event):
-    #     if widget == self.ui.tEtImport:
-    #         if event.type() == QEvent.MouseButtonPress:
-    #             self.clicked.emit()
-    #             pass
-
-    #     return False
-
+    def checkDirName(self):
+        dirName = self.ui.lEtProtoDirName.text()
+        if len(dirName) == 0 or len(dirName)>20:
+            QMessageBox.critical(self, "错误", "目录名不能为空且长度不能超过20!!!")
+            self.ui.lEtProtoDirName.setText("")
+            pass
+        if not re.search(r'\d{1,4}\s+[a-z]+', str):
+            QMessageBox.critical(self, "错误", "目录名格为1-4数字+空格+字母名!!!")
+            self.ui.lEtProtoDirName.setText("")
+        pass
+    
     def inputDirName(self):
-        dirname = self.ui.lEtProtoDirName.text()
+        dirName = self.ui.lEtProtoDirName.text()
         imports = self.ui.tEtImport.toPlainText()
-        self.dialogSinal.emit(dirname, imports)
+        self.dialogSinal.emit(dirName, imports)
         self.close()
 
     def clearEditText(self):

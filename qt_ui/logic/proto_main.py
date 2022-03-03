@@ -76,6 +76,9 @@ class ProtoMainUI(QMainWindow):
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
+    def refreshProtoIdSet(self):
+        
+        pass
     
     def loadProtocols(self):
         protocols = self.protoXml.readProtocolXml()

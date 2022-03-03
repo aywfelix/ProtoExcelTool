@@ -12,23 +12,9 @@
 
 # here put the import lib
 
-import os
-import sys
 import codecs
 import xml.dom.minidom as xmlDom
-# from xml.sax.saxutils import escape, unescape
 from qt_ui.logic.tool_define import *
-
-# class TVItemProtoData:
-#     def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", onlyServer=False):
-#         self.id = protoId
-#         self.name = protoName
-#         self.desc = protoDesc
-#         self.content = protoContent
-#         self.onlyServer = onlyServer
-
-#     def __str__(self):
-#         return self.id+" "+self.name+" "+self.desc+" "+self.content
 
 #############################################################################
 proto_header = 'syntax = "proto3";'
@@ -37,7 +23,11 @@ proto_header = 'syntax = "proto3";'
 
 class ToolProtoXml(object):
     def __init__(self):
+        self.protocols = []
         pass
+    
+    def getProtocols(self):
+        return self.protocols
 
     def setProtoConfig(self, protoConfig):
         self.xmlProtoPath = protoConfig
@@ -47,6 +37,7 @@ class ToolProtoXml(object):
         pass
 
     def writeProtocolXml(self, protocols): #protocols=[{["module"]=data, ["protocol"]=[protoData,]},...]
+        self.protocols = protocols
         try:
             # 根元素
             domTree = xmlDom.Document()
@@ -82,7 +73,7 @@ class ToolProtoXml(object):
             print(e)
 
     def readProtocolXml(self):
-        protocols = []
+        self.protocols = []
         try:
             dataResource = ""
             with open(self.xmlProtoPath, "r", encoding="gbk") as f:
@@ -119,22 +110,24 @@ class ToolProtoXml(object):
                     protoDataList.append(protoData)
 
                 moduleDict["protocol"] = protoDataList
-                protocols.append(moduleDict)
+                self.protocols.append(moduleDict)
 
         except Exception as e:
             print(e)
 
-        return protocols
+        return self.protocols
 
     def exportProtoFile(self):
         # 根据配置文件生成proto file 文件
         try:
-            protocols = self.readProtocolXml()
-            if not protocols:
+            # protocols = self.readProtocolXml()
+            # if not protocols:
+            #     return
+            if not self.protocols:
                 return
             # 根据xml信息生产proto文件
             protoMsgs = proto_header+"\n"
-            for module in protocols:
+            for module in self.protocols:
                 dirData = module["module"]
                 protoDataList = module["protocol"]
                 # 添加引用
