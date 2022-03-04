@@ -78,7 +78,6 @@ class ProtoMainUI(QMainWindow):
         # 初始化ToolProtoXml对象(TODO: 优化)
         self.protoXml = ToolProtoXml()
         self.protoXml.setProtoConfig("../../config/protocols.config")
-        self.protoXml.exportProtoPath("../../proto_tool/protos")
 
         # TODO:缓存协议编号
         # load protocol xml 初始化treeViewItems

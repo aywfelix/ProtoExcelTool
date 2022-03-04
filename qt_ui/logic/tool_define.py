@@ -35,3 +35,14 @@ class TVItemDirData:
 
     def __str__(self):
         return self.dirName+" "+self.package
+
+
+def Singleton(cls):
+    _instance = {}
+
+    def _Singleton(*args, **kwargs):
+        if cls not in _instance:
+            _instance[cls] = cls(*args, **kwargs)
+        return _instance[cls]
+
+    return _Singleton

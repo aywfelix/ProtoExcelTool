@@ -18,6 +18,7 @@ import xml.dom.minidom as xmlDom
 from sympy import root
 from qt_ui.logic.tool_define import *
 
+@Singleton
 class ToolSettingXml(object):
     def __init__(self):
         self.xmlSettingPath = "./setting.config"
@@ -29,7 +30,6 @@ class ToolSettingXml(object):
         # 初始化配置文件
         try:
             if os.path.exists(self.xmlSettingPath):
-                print("文件已存在")
                 return
             # 创建默认配置文件
             with open(self.xmlSettingPath, "w+", encoding="gbk") as f:

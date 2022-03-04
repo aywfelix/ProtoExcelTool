@@ -15,12 +15,12 @@
 import codecs
 import xml.dom.minidom as xmlDom
 from qt_ui.logic.tool_define import *
-
+from qt_ui.logic.setting_xml import *
 #############################################################################
 proto_header = 'syntax = "proto3";'
 #############################################################################
 
-
+@Singleton
 class ToolProtoXml(object):
     def __init__(self):
         self.protocols = []
@@ -31,10 +31,6 @@ class ToolProtoXml(object):
 
     def setProtoConfig(self, protoConfig):
         self.xmlProtoPath = protoConfig
-
-    def exportProtoPath(self, exportPath):
-        self.protoPath = exportPath
-        pass
 
     def writeProtocolXml(self, protocols): #protocols=[{["module"]=data, ["protocol"]=[protoData,]},...]
         self.protocols = protocols
@@ -153,7 +149,10 @@ class ToolProtoXml(object):
                 
                 # 导出命名
                 moduleName = dirData.dirName.split(" ")[1]
-                protoFilePath = self.protoPath+"/"+moduleName+".proto"
+                # 获取导出proto路径
+                settingXml = ToolSettingXml()
+                _, protoPath, _ = settingXml.readToolConfig()
+                protoFilePath = protoPath +"/"+moduleName+".proto"
                 with codecs.open(protoFilePath, "w", 'utf-8') as f:
                     f.write(protoMsgs)
                     f.flush()
@@ -170,7 +169,6 @@ class ToolProtoXml(object):
 # if __name__ == "__main__":
 #     xml = ToolXml()
 #     xml.setProtoConfig("./protocols.config")
-#     xml.exportProtoPath("./")
 
 #     protoList = []
     
