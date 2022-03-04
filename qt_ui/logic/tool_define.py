@@ -7,7 +7,7 @@
 @Version :   1.0
 @Contact :   laijia2008@126.com
 @License :   (C)Copyright 2021-2025, Felix&Lai
-@Desc    :   None
+@Desc    :   定义辅助结构
 '''
 
 # here put the import lib

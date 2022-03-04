@@ -7,7 +7,7 @@
 @Version :   1.0
 @Contact :   laijia2008@126.com
 @License :   (C)Copyright 2021-2025, felix&lai
-@Desc    :   None
+@Desc    :   显示文件主界面
 '''
 
 # here put the import lib
@@ -23,7 +23,8 @@ from qt_ui.logic.modify_dir import *
 from qt_ui.logic.create_proto import *
 from qt_ui.logic.modify_proto import *
 from qt_ui.logic.tool_define import *
-from qt_ui.logic.tool_xml import *
+from qt_ui.logic.proto_xml import *
+from qt_ui.logic.tool_setting import *
 
 
 class ProtoMainUI(QMainWindow):
@@ -62,7 +63,7 @@ class ProtoMainUI(QMainWindow):
         self.ui.menuExit.triggered.connect(self.menuExitClicked)
         self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
         self.ui.menuExportServerPb.triggered.connect(self.menuExportServerPbClicked)
-
+        self.ui.menuOpenSetting.triggered.connect(self.menuOpenSettingClicked)
         # 当前选中item
         self.currentItem = None
 
@@ -71,14 +72,10 @@ class ProtoMainUI(QMainWindow):
         self.protoXml.setProtoConfig("../../config/protocols.config")
         self.protoXml.exportProtoPath("../../proto_tool/protos")
 
-        # 缓存协议编号
-        self.protoIdSet = set()
+        # TODO:缓存协议编号
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
-    def refreshProtoIdSet(self):
-        
-        pass
     
     def loadProtocols(self):
         protocols = self.protoXml.readProtocolXml()
@@ -97,7 +94,6 @@ class ProtoMainUI(QMainWindow):
             for protoData in protoDataList:
                 protoNode = self.createProto(protoData.id, protoData.name, protoData.desc, protoData.content, protoData.onlyServer)
                 dirItem.addChild(protoNode)
-                self.protoIdSet.add(protoData.id)
         pass
         
 
@@ -164,8 +160,19 @@ class ProtoMainUI(QMainWindow):
         root.setData(0, Qt.ItemDataRole.UserRole, dirData)
         return root
         
+    def checkCreateDir(self, dirName):
+        topItemCount = self.ui.tRvProtocol.topLevelItemCount()
+        for i in range(0, topItemCount):
+            topItem = self.ui.tRvProtocol.topLevelItem(i)
+            if topItem.text() == dirName:
+                return False
+
+        return True
 
     def createDir_emit(self, dirName, package):
+        if not self.checkCreateDir(dirName):
+            return
+
         dirData = TVItemDirData(dirName, package)
         root = self.createDirItem(dirData)
         self.ui.tRvProtocol.addTopLevelItem(root)
@@ -176,10 +183,25 @@ class ProtoMainUI(QMainWindow):
         self.currentItem.setData(0, Qt.ItemDataRole.UserRole, dirData)
         pass
 
+    # TODO:临时解决方案
+    def checkCreateProto(self, protoId, protoName):
+        topItemCount = self.ui.tRvProtocol.topLevelItemCount()
+        for i in range(0, topItemCount):
+            topItem = self.ui.tRvProtocol.topLevelItem(i)
+            # 遍历topItem 下所有子节点
+            childItemCount = topItem.childCount()
+            for j in range(0, childItemCount):
+                childItem = topItem.child(j)
+                protoData = childItem.data(0, Qt.ItemDataRole.UserRole)
+                if protoData.id == protoId or protoName == protoData.name:
+                    return False
+
+        return True
+
     def createProto(self, protoId, protoName, protoDesc, protoContent, onlyServer=False):
         # 添加子节点
         item = QTreeWidgetItem(TVItemType.ItemProto)
-        item.setText(0, "["+protoId+"] "+protoName)
+        item.setText(0, "【"+protoId+"】 "+protoName)
         item.setIcon(0, QIcon('../../qt_ui/icons/TextFile.ico'))
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         item.setData(0, Qt.ItemDataRole.UserRole, protoData)
@@ -189,17 +211,15 @@ class ProtoMainUI(QMainWindow):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
             return
         # 检测协议编号是否已经存在，如果存在弹出警告
-        if protoId in self.protoIdSet:
+        if not self.checkCreateProto(protoId, protoName):
             QMessageBox.critical(self, "错误", "协议编号已经被使用!!!")
             return
 
-        self.protoIdSet.add(protoId)
         item = self.createProto(protoId, protoName, protoDesc, protoContent, onlyServer)
         self.currentItem.addChild(item)
         # 如果是创建请求类型协议，则自动生成返回协议
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
-            self.protoIdSet.add(protoId)
             protoName = protoName[0:-3]+"Resp"
             item = self.createProto(protoId, protoName, "", "", False)
             self.currentItem.addChild(item)
@@ -208,7 +228,7 @@ class ProtoMainUI(QMainWindow):
     def modifyProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
             return
-        self.currentItem.setText(0, "["+protoId+"] "+protoName)
+        self.currentItem.setText(0, "【"+protoId+"】 "+protoName)
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         self.currentItem.setData(0, Qt.ItemDataRole.UserRole, protoData)
         newData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
@@ -307,6 +327,15 @@ class ProtoMainUI(QMainWindow):
 
     def menuExportServerPbClicked(self):
         self.protoXml.exportProtoPb()
+        pass
+
+    def menuExportServerProtoClicked(self):
+
+        pass
+
+    def menuOpenSettingClicked(self):
+        self.toolSettingUI = ToolSettingUI()
+        self.toolSettingUI.show()          
         pass
         
 def ShowWindow():
