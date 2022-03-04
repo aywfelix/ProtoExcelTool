@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
@@ -151,7 +151,7 @@
     <attribute name="title">
      <string>协议管理器</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="bTnProtoAddTmpl">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -164,7 +164,7 @@
       <string>添加模板</string>
      </property>
     </widget>
-    <widget class="QListView" name="listView">
+    <widget class="QListWidget" name="lWProto">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -179,7 +179,7 @@
     <attribute name="title">
      <string>枚举管理器</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="bTnEnumAddTmpl">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -192,7 +192,7 @@
       <string>添加模板</string>
      </property>
     </widget>
-    <widget class="QListView" name="listView_2">
+    <widget class="QListWidget" name="lWEnum">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -207,7 +207,7 @@
     <attribute name="title">
      <string>配置表管理器</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="bTnTableAddTmpl">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -220,7 +220,7 @@
       <string>添加模板</string>
      </property>
     </widget>
-    <widget class="QListView" name="listView_3">
+    <widget class="QListWidget" name="lWTable">
      <property name="geometry">
       <rect>
        <x>10</x>
