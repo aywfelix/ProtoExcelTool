@@ -17,3 +17,9 @@ ProtoAndExcelTool\proto_tool\protopy：保存工具处理proto代码
 ProtocolAndExcelTool\config: 保存工具设置 及配置文件
 
 ProtocolAndExcelTool\proto_tool\program: 程序启动代码
+
+TODO: 主界面加上状态栏
+TODO: 是否需要优化协议保存, 数据直接保存到缓存处理方案
+TODO: 作为客户端进行处理连接--协议测试工具
+TODO: 集成导表功能
+

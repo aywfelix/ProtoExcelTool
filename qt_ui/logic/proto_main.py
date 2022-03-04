@@ -26,6 +26,14 @@ from qt_ui.logic.tool_define import *
 from qt_ui.logic.proto_xml import *
 from qt_ui.logic.tool_setting import *
 
+# treeview右键菜单操作
+class TVMenuOpType(object):
+    DirCreate = 1
+    DirModify = 2
+    DirDelete = 3
+    ProtoCreate = 4
+    ProtoModify = 5
+    ProtoDelete = 6
 
 class ProtoMainUI(QMainWindow):
     def __init__(self, parent=None):
@@ -49,12 +57,12 @@ class ProtoMainUI(QMainWindow):
         self.actionD = self.contextMenu.addAction(u'创建目录')
         self.actionE = self.contextMenu.addAction(u'修改目录')
         self.actionF = self.contextMenu.addAction(u'删除目录')
-        self.actionA.triggered.connect(lambda: self.treeViewActionHandler("create_proto"))
-        self.actionB.triggered.connect(lambda: self.treeViewActionHandler("modify_proto"))
-        self.actionC.triggered.connect(lambda: self.treeViewActionHandler("delete_proto"))
-        self.actionD.triggered.connect(lambda: self.treeViewActionHandler("create_dir"))
-        self.actionE.triggered.connect(lambda: self.treeViewActionHandler("modify_dir"))
-        self.actionF.triggered.connect(lambda: self.treeViewActionHandler("delete_dir"))
+        self.actionA.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoCreate))
+        self.actionB.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoModify))
+        self.actionC.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoDelete))
+        self.actionD.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.DirCreate))
+        self.actionE.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.DirModify))
+        self.actionF.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.DirDelete))
         self.setTVMenuUnEnabled()
         # 修改按钮绑定事件
         self.ui.bTnProtoModify.clicked.connect(self.modifyProtoClicked)
@@ -102,16 +110,15 @@ class ProtoMainUI(QMainWindow):
             self.contextMenu.exec_(QCursor.pos())
     
     def treeViewActionHandler(self, op):
-        if op == "create_proto":
-            # 弹出创建协议窗口
+        if op == TVMenuOpType.ProtoCreate:
             self.createProtoUI = CreateProtoUI()
             self.createProtoUI.show()
             self.createProtoUI.dialogSinal.connect(self.createProto_emit)
             pass
-        if op == "modify_proto":
+        if op == TVMenuOpType.ProtoModify:
             self.showModifyProtoWindow()
             pass
-        if op == "delete_proto":
+        if op == TVMenuOpType.ProtoDelete:
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
                 return 
             msgBox = QMessageBox(QMessageBox.Warning, u'提示', u'确认删除协议?')
@@ -123,13 +130,12 @@ class ProtoMainUI(QMainWindow):
                 parent.removeChild(self.currentItem)
                 self.currentItem = None
             pass
-        if op == "create_dir":
-            # 弹出添加目录名称窗口
+        if op == TVMenuOpType.DirCreate:
             self.createDirUI = CreateProtoDirUI()
             self.createDirUI.show()
             self.createDirUI.dialogSinal.connect(self.createDir_emit)
             pass
-        if op == "modify_dir":
+        if op == TVMenuOpType.DirModify:
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
                 return
             self.modifyDirUI = ModifyProtoDirUI()
@@ -138,7 +144,7 @@ class ProtoMainUI(QMainWindow):
             self.modifyDirUI.show()
             self.modifyDirUI.dialogSinal.connect(self.modifyDir_emit)            
             pass
-        if op == "delete_dir":
+        if op == TVMenuOpType.DirDelete:
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
                 return
             msgBox = QMessageBox(QMessageBox.Warning, u'提示', u'确认删除协议目录? (此操作会删除目录下所有协议)')
@@ -335,8 +341,14 @@ class ProtoMainUI(QMainWindow):
 
     def menuOpenSettingClicked(self):
         self.toolSettingUI = ToolSettingUI()
-        self.toolSettingUI.show()          
+        self.toolSettingUI.show()    
         pass
+
+    def closeEvent(self, event):
+        # 程序退出保存信息
+        self.saveToXml()
+        print("program exit")
+
         
 def ShowWindow():
     app = QApplication(sys.argv)

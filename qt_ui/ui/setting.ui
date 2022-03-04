@@ -29,7 +29,7 @@
     <attribute name="title">
      <string>工具配置管理器</string>
     </attribute>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="lEtProtocPath">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -37,6 +37,9 @@
        <width>341</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label">
@@ -52,7 +55,7 @@
       <string>protoc文件路径：</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="bTnProtoc">
      <property name="geometry">
       <rect>
        <x>370</x>
@@ -65,7 +68,7 @@
       <string>选择</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="lEtProtoPath">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -73,6 +76,9 @@
        <width>341</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -88,7 +94,7 @@
       <string>生成proto文件路径：</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="bTnProto">
      <property name="geometry">
       <rect>
        <x>370</x>
@@ -101,7 +107,7 @@
       <string>选择</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_6">
+    <widget class="QPushButton" name="bTnTable">
      <property name="geometry">
       <rect>
        <x>370</x>
@@ -127,7 +133,7 @@
       <string>配置表文件路径：</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="lEtTablePath">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -135,6 +141,9 @@
        <width>341</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
