@@ -23,11 +23,11 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
-     <string>工具配置管理器</string>
+     <string>工具配置</string>
     </attribute>
     <widget class="QLineEdit" name="lEtProtocPath">
      <property name="geometry">
@@ -149,7 +149,7 @@
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>协议管理器</string>
+     <string>协议配置</string>
     </attribute>
     <widget class="QPushButton" name="bTnProtoAddTmpl">
      <property name="geometry">
@@ -177,7 +177,7 @@
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>枚举管理器</string>
+     <string>枚举配置</string>
     </attribute>
     <widget class="QPushButton" name="bTnEnumAddTmpl">
      <property name="geometry">
@@ -205,7 +205,7 @@
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
-     <string>配置表管理器</string>
+     <string>配置表配置</string>
     </attribute>
     <widget class="QPushButton" name="bTnTableAddTmpl">
      <property name="geometry">

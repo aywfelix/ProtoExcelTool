@@ -88,7 +88,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="cBxLanguage">
+  <widget class="QComboBox" name="cBbxLang">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -99,7 +99,7 @@
    </property>
    <item>
     <property name="text">
-     <string>c++</string>
+     <string>cpp</string>
     </property>
    </item>
    <item>
@@ -128,7 +128,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="bTnPublishDirChoose">
+  <widget class="QPushButton" name="bTnPublishDir">
    <property name="geometry">
     <rect>
      <x>370</x>
