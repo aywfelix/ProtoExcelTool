@@ -112,7 +112,7 @@ class ProtoMainUI(QMainWindow):
         if op == TVMenuOpType.ProtoCreate:
             self.createProtoUI = CreateProtoUI()
             self.createProtoUI.show()
-            self.createProtoUI.dialogSinal.connect(self.createProto_emit)
+            self.createProtoUI.dialogSignal.connect(self.createProto_emit)
             pass
         if op == TVMenuOpType.ProtoModify:
             self.showModifyProtoWindow()
@@ -132,16 +132,16 @@ class ProtoMainUI(QMainWindow):
         if op == TVMenuOpType.DirCreate:
             self.createDirUI = CreateProtoDirUI()
             self.createDirUI.show()
-            self.createDirUI.dialogSinal.connect(self.createDir_emit)
+            self.createDirUI.dialogSignal.connect(self.createDir_emit)
             pass
         if op == TVMenuOpType.DirModify:
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
                 return
             self.modifyDirUI = ModifyProtoDirUI()
-            dirData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
+            dirData = self.currentItem.data(0, Qt.UserRole)
             self.modifyDirUI.fillDirData(dirData)
             self.modifyDirUI.show()
-            self.modifyDirUI.dialogSinal.connect(self.modifyDir_emit)            
+            self.modifyDirUI.dialogSignal.connect(self.modifyDir_emit)            
             pass
         if op == TVMenuOpType.DirDelete:
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
@@ -162,7 +162,7 @@ class ProtoMainUI(QMainWindow):
         root=QTreeWidgetItem(TVItemType.ItemDir)
         root.setText(0,dirData.dirName)
         root.setIcon(0,QIcon('../../qt_ui/icons/folder.ico'))
-        root.setData(0, Qt.ItemDataRole.UserRole, dirData)
+        root.setData(0, Qt.UserRole, dirData)
         return root
         
     def checkCreateDir(self, dirName):
@@ -185,7 +185,7 @@ class ProtoMainUI(QMainWindow):
     def modifyDir_emit(self, dirName, package):
         self.currentItem.setText(0, dirName)
         dirData = TVItemDirData(dirName, package)
-        self.currentItem.setData(0, Qt.ItemDataRole.UserRole, dirData)
+        self.currentItem.setData(0, Qt.UserRole, dirData)
         pass
 
     # TODO:临时解决方案
@@ -197,7 +197,7 @@ class ProtoMainUI(QMainWindow):
             childItemCount = topItem.childCount()
             for j in range(0, childItemCount):
                 childItem = topItem.child(j)
-                protoData = childItem.data(0, Qt.ItemDataRole.UserRole)
+                protoData = childItem.data(0, Qt.UserRole)
                 if protoData.id == protoId or protoName == protoData.name:
                     return False
 
@@ -209,7 +209,7 @@ class ProtoMainUI(QMainWindow):
         item.setText(0, "【"+protoId+"】 "+protoName)
         item.setIcon(0, QIcon('../../qt_ui/icons/TextFile.ico'))
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
-        item.setData(0, Qt.ItemDataRole.UserRole, protoData)
+        item.setData(0, Qt.UserRole, protoData)
         return item
 
     def createProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
@@ -235,8 +235,8 @@ class ProtoMainUI(QMainWindow):
             return
         self.currentItem.setText(0, "【"+protoId+"】 "+protoName)
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
-        self.currentItem.setData(0, Qt.ItemDataRole.UserRole, protoData)
-        newData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
+        self.currentItem.setData(0, Qt.UserRole, protoData)
+        newData = self.currentItem.data(0, Qt.UserRole)
         print(newData)
 
     def setTVMenuUnEnabled(self):
@@ -268,7 +268,7 @@ class ProtoMainUI(QMainWindow):
             self.actionC.setEnabled(True)
 
             # 进行界面赋值
-            protoData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
+            protoData = self.currentItem.data(0, Qt.UserRole)
             self.ui.lEtProtoId.setText(protoData.id)
             self.ui.lEtProtoName.setText(protoData.name)
             self.ui.tEtProtoDesc.setText(protoData.desc)
@@ -284,14 +284,14 @@ class ProtoMainUI(QMainWindow):
         for i in range(0, topItemCount):
             moduleDict = {}
             topItem = self.ui.tRvProtocol.topLevelItem(i)
-            dirData = topItem.data(0, Qt.ItemDataRole.UserRole)
+            dirData = topItem.data(0, Qt.UserRole)
             moduleDict["module"] = dirData
             protocolList = []
             # 遍历topItem 下所有子节点
             childItemCount = topItem.childCount()
             for j in range(0, childItemCount):
                 childItem = topItem.child(j)
-                protoData = childItem.data(0, Qt.ItemDataRole.UserRole)
+                protoData = childItem.data(0, Qt.UserRole)
                 protocolList.append(protoData)
 
             moduleDict["protocol"] = protocolList
@@ -306,10 +306,10 @@ class ProtoMainUI(QMainWindow):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
             return          
         self.modifyProtoUI = ModifyProtoUI()
-        protoData = self.currentItem.data(0, Qt.ItemDataRole.UserRole)
+        protoData = self.currentItem.data(0, Qt.UserRole)
         self.modifyProtoUI.fillProtoData(protoData)
         self.modifyProtoUI.show()
-        self.modifyProtoUI.dialogSinal.connect(self.modifyProto_emit)
+        self.modifyProtoUI.dialogSignal.connect(self.modifyProto_emit)
 
     # 菜单点击触发功能
     def modifyProtoClicked(self):

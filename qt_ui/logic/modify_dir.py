@@ -18,7 +18,7 @@ from qt_ui.uipy.modify_dir import *
 
 class ModifyProtoDirUI(QMainWindow):
     # 窗体间通信
-    dialogSinal = pyqtSignal(str, str)
+    dialogSignal = pyqtSignal(str, str)
 
     def __init__(self, parent=None):
         super(ModifyProtoDirUI, self).__init__()
@@ -41,9 +41,9 @@ class ModifyProtoDirUI(QMainWindow):
     def inputDirName(self):
         dirname = self.ui.lEtProtoDirName.text()
         package = self.ui.tEtImport.toPlainText()
-        self.dialogSinal.emit(dirname, package)
+        self.dialogSignal.emit(dirname, package)
         self.close()
         
     def clearEditText(self):
         self.ui.tEtImport.setText("")
-            
+

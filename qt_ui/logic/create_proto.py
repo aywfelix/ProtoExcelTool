@@ -18,7 +18,7 @@ from qt_ui.uipy.create_proto_ui import *
 
 class CreateProtoUI(QMainWindow):
     # 窗体间通信
-    dialogSinal = pyqtSignal(str, str, str, str, bool)
+    dialogSignal = pyqtSignal(str, str, str, str, bool)
 
     def __init__(self, parent=None):
         super(CreateProtoUI, self).__init__()
@@ -40,7 +40,7 @@ class CreateProtoUI(QMainWindow):
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
 
-        self.dialogSinal.emit(protoId, protoName, protoDesc, protoContent, False)
+        self.dialogSignal.emit(protoId, protoName, protoDesc, protoContent, False)
         self.close()
 
     def checkProtoId(self):

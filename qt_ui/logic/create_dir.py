@@ -19,7 +19,7 @@ from qt_ui.uipy.create_dir import *
 
 class CreateProtoDirUI(QMainWindow):
     # 窗体间通信
-    dialogSinal = pyqtSignal(str, str)
+    dialogSignal = pyqtSignal(str, str)
 
     def __init__(self, parent=None):
         super(CreateProtoDirUI, self).__init__()
@@ -48,7 +48,7 @@ class CreateProtoDirUI(QMainWindow):
     def inputDirName(self):
         dirName = self.ui.lEtProtoDirName.text()
         imports = self.ui.tEtImport.toPlainText()
-        self.dialogSinal.emit(dirName, imports)
+        self.dialogSignal.emit(dirName, imports)
         self.close()
 
     def clearEditText(self):

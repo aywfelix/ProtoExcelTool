@@ -17,6 +17,7 @@ from PyQt5.QtWidgets import *
 from qt_ui.logic.setting_xml import *
 from qt_ui.uipy.setting_ui import *
 from qt_ui.logic.add_tmpl import *
+from qt_ui.logic.modify_tmpl import *
 
 class SetPathType:
     PROTOC = 1
@@ -49,7 +50,11 @@ class ToolSettingUI(QMainWindow):
         self.ui.bTnTableAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.TABLE))
         # 处理配置文件
         self.settingXml = ToolSettingXml()
-
+        # 布局
+        self.protoFormLayout = QtWidgets.QFormLayout()
+        self.enumFormLayout = QtWidgets.QFormLayout()
+        self.tableFormLayout = QtWidgets.QFormLayout()
+        
         # 临时保存模板操作页
         self.tmplType = 1
         # 打开窗口初始化配置信息
@@ -94,7 +99,7 @@ class ToolSettingUI(QMainWindow):
         self.tmplType = tmplType
         self.addTmplUI = AddTmplUI()
         self.addTmplUI.show()
-        self.addTmplUI.dialogSinal.connect(self.appendTmplInfo)
+        self.addTmplUI.dialogSignal.connect(self.appendTmplInfo)
         pass
 
     # 列出所有模板配置
@@ -103,10 +108,63 @@ class ToolSettingUI(QMainWindow):
         pass
 
     # 追加模板信息
-    def appendTmplInfo(self, tmplName, tmplLang, tmplPublish, tmplIsServer):
-        #print(tmplName, tmplLang, tmplPublish, tmplIsServer)
+    def appendTmplInfo(self, tmplName, tmplLang):
         # 生成界面显示组件-QListWidget
+        hBoxLayout = QtWidgets.QHBoxLayout()
+        if self.tmplType == TmplType.PROTO:
+            self.protoFormLayout.addRow(hBoxLayout)
+            self.ui.lWProto.setLayout(self.protoFormLayout)
+        if self.tmplType == TmplType.ENUM:
+            self.enumFormLayout.addRow(hBoxLayout)
+            self.ui.lWEnum.setLayout(self.enumFormLayout)
+        if self.tmplType == TmplType.TABLE:
+            self.tableFormLayout.addRow(hBoxLayout)
+            self.ui.lWTable.setLayout(self.tableFormLayout)
+        # 根据传值生成控件
+        lEtTemplName = QLineEdit()
+        lEtTemplName.setText(tmplName)
+        lEtTemplName.setReadOnly(True)
+        lEtTemplName.setFixedWidth(150)
+        lEtTmplLang = QLineEdit()
+        lEtTmplLang.setText(tmplLang)
+        lEtTmplLang.setReadOnly(True)
+        lEtTmplLang.setFixedWidth(60)
 
+        bTnModify = QPushButton()
+        bTnModify.setText("修改")
+        bTnModify.clicked.connect(self.showModifyTmpl)
+        bTnModify.setFixedWidth(80)
+        bTnDelete = QPushButton()
+        bTnDelete.setText("删除")
+        bTnDelete.clicked.connect(lambda: self.deleteTmpl(hBoxLayout))
+        bTnDelete.setFixedWidth(80)
+        
+        hBoxLayout.addWidget(lEtTemplName)
+        hBoxLayout.addStretch(1)
+        hBoxLayout.addWidget(lEtTmplLang)
+        hBoxLayout.addStretch(2)
+        hBoxLayout.addWidget(bTnModify)
+        hBoxLayout.addStretch(1)
+        hBoxLayout.addWidget(bTnDelete)
         pass
+    
+    def showModifyTmpl(self):
+        # 弹出更改窗口
+        self.modifyTmplUI = ModifyTmplUI()
+        self.modifyTmplUI.show()
+        self.modifyTmplUI.dialogSignal.connect(self.modifyTmpl)
+        pass
+    
+    def deleteTmpl(self, layout):
+        if self.tmplType == TmplType.PROTO:
+            self.protoFormLayout.removeRow(layout)
+        if self.tmplType == TmplType.ENUM:
+            self.enumFormLayout.removeRow(layout)
+        if self.tmplType == TmplType.TABLE:
+            self.tableFormLayout.removeRow(layout)
+        pass
+    
+    def modifyTmpl(self, tmplName, tmplLang, tmplPublish):
+        print(tmplName, tmplLang, tmplPublish)
 
 

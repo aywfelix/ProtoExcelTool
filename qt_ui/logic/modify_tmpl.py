@@ -1,35 +1,36 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 '''
-@File    :   add_tmpl.py
-@Time    :   2022/03/04 16:55:32
-@Author  :   Felix 
+@File    :   modify_tmpl.py
+@Time    :   2022/03/05 12:39:44
+@Author  :   felix 
 @Version :   1.0
 @Contact :   laijia2008@126.com
-@License :   (C)Copyright 2021-2025, Felix&Lai
-@Desc    :   显示添加模板窗口
+@License :   (C)Copyright 2021-2025, felix&lai
+@Desc    :   显示修改配置模板窗口
 '''
 
 # here put the import lib
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.add_tmpl_ui import *
+from qt_ui.uipy.modify_tmpl_ui import *
 
-class AddTmplUI(QMainWindow):
+
+class ModifyTmplUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str)   
+    dialogSignal = pyqtSignal(str, str, str)
 
     def __init__(self, parent=None):
-        super(AddTmplUI, self).__init__()
-        self.ui = Ui_AddTmplForm()
+        super(ModifyTmplUI, self).__init__()
+        self.ui = Ui_ModifyTmplForm()
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
 
         # 添加关联事件
         self.ui.bTnPublishDir.clicked.connect(self.setPublishPath)
-        self.ui.bTnOk.clicked.connect(self.addTmplInfo)
+        self.ui.bTnModify.clicked.connect(self.modifyTmplInfo)
         pass
 
     def setPublishPath(self):
@@ -41,12 +42,9 @@ class AddTmplUI(QMainWindow):
 
         pass
 
-    def addTmplInfo(self):
+    def modifyTmplInfo(self):
         tmplName = self.ui.lEtTmplName.text()
         lang = self.ui.cBbxLang.currentText()
         publishDir = self.ui.lEtPublishDir.text()
-        self.dialogSignal.emit(tmplName, lang)
-        #TODO: 保存配置信息
-        #TODO：读取信息
-        self.close()        
-
+        self.dialogSignal.emit(tmplName, lang, publishDir)
+        self.close()

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>453</width>
-    <height>152</height>
+    <height>136</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,24 +52,11 @@
     <string>发布目录：</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="cBxTmpl">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>120</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>仅导出服务器</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="bTnModify">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>120</y>
+     <x>170</x>
+     <y>100</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -78,7 +65,7 @@
     <string>修改</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lEtTmpName">
+  <widget class="QLineEdit" name="lEtTmplName">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -88,18 +75,23 @@
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="cBxLanguage">
+  <widget class="QComboBox" name="cBbxLang">
    <property name="geometry">
     <rect>
      <x>80</x>
      <y>40</y>
-     <width>281</width>
+     <width>111</width>
      <height>22</height>
     </rect>
    </property>
    <item>
     <property name="text">
-     <string>c++</string>
+     <string>cpp</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>lua</string>
     </property>
    </item>
    <item>
@@ -112,11 +104,6 @@
      <string>csharp</string>
     </property>
    </item>
-   <item>
-    <property name="text">
-     <string>lua</string>
-    </property>
-   </item>
   </widget>
   <widget class="QLineEdit" name="lEtPublishDir">
    <property name="geometry">
@@ -127,8 +114,11 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QPushButton" name="bTnPublishDirChoose">
+  <widget class="QPushButton" name="bTnPublishDir">
    <property name="geometry">
     <rect>
      <x>370</x>
