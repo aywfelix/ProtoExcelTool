@@ -94,7 +94,6 @@ class ToolSettingUI(QMainWindow):
         self.settingXml.saveToolSetting(protocPath, protoPath, tablePath)
 
     def setDirPath(self, openType):
-        print("type===", openType)
         # 打开文件对话框
         dirPath = QFileDialog.getExistingDirectory(
             self, '选择目录', './')
@@ -155,7 +154,6 @@ class ToolSettingUI(QMainWindow):
 
     # 追加模板信息
     def appendTmplInfo(self, name, lang, publish):
-        print("lang==", lang)
         self.addTmplInfo(name, lang, publish)
         if self.tmplType == TmplType.PROTO:
             # 添加缓存信息
@@ -168,8 +166,10 @@ class ToolSettingUI(QMainWindow):
             tmplList = self.tmplsDict[TmplType.TABLE]
             tmplList.append(TmplItemData(name, lang, publish))
             
-        # 保存更新配置    
+        # 保存更新配置 
+        print("=================================")  
         self.settingXml.saveTmplsConfig(self.tmplsDict)
+        print("=================================")
     
     def showModifyTmpl(self, name, lang, publish):
         # 弹出更改窗口

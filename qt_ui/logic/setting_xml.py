@@ -14,8 +14,6 @@
 import codecs
 import os
 import xml.dom.minidom as xmlDom
-
-from sympy import root
 from qt_ui.logic.tool_define import *
 
 @Singleton
@@ -39,24 +37,24 @@ class ToolSettingXml(object):
                 # 创建tool 节点
                 toolNode = domTree.createElement("tool")
                 settingNode.appendChild(toolNode)
-                # 创建protocpath 节点
-                protocPathNode = domTree.createElement("protocPath")
-                toolNode.appendChild(protocPathNode)
-                protocTextNode = domTree.createTextNode("./")
-                protocPathNode.appendChild(protocTextNode)
-                # 创建protopath 节点
-                protoPathNode = domTree.createElement("protoPath")
-                toolNode.appendChild(protoPathNode)
-                protoTextNode = domTree.createTextNode("./")
-                protoPathNode.appendChild(protoTextNode)
-                # 创建tablepath 节点
-                tablePathNode = domTree.createElement("tablePath")
-                toolNode.appendChild(tablePathNode)
-                tableTextNode = domTree.createTextNode("./")
-                tablePathNode.appendChild(tableTextNode)            
+                # 创建protoc path 节点
+                protocNode = domTree.createElement("protoc")
+                toolNode.appendChild(protocNode)
+                protocNode.setAttribute("path", "")
+                # 创建proto path 节点
+                protoNode = domTree.createElement("proto")
+                toolNode.appendChild(protoNode)
+                protoNode.setAttribute("path", "")
+                # 创建table path 节点
+                tableNode = domTree.createElement("table")
+                toolNode.appendChild(tableNode)
+                tableNode.setAttribute("path", "")          
 
                 domTree.appendChild(settingNode)
-                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")   
+                # domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk") 
+                with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
+                    # f.write(domTree.toprettyxml(indent=" "))
+                    f.write(self.toPrettyXml(domTree.toxml()))
         except Exception as e:
                 print(e)
 
@@ -114,8 +112,7 @@ class ToolSettingXml(object):
                    tmplData = TmplItemData(name, int(lang), publish)
                    tableList.append(tmplData)
                    
-            # 返回配置信息   
-            print("tmplsDict===", tmplsDict)
+            # 返回配置信息
             return tmplsDict
         except Exception as e:
             print(e)
@@ -180,8 +177,11 @@ class ToolSettingXml(object):
                 tmplNode.setAttribute("publish", tmplData.publish)
                 tableNode.appendChild(tmplNode)            
                                         
-            with open(self.xmlSettingPath, "w", encoding="gbk") as f:
-                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")
+            # with open(self.xmlSettingPath, "w", encoding="gbk") as f:
+            #     domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")
+            with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
+                # f.write(domTree.toprettyxml(indent=" "))
+                f.write(self.toPrettyXml(domTree.toxml()))
         except Exception as e:
             print(e)
         pass
@@ -198,17 +198,15 @@ class ToolSettingXml(object):
                 print("parse xml err")
                 return 
             rootNode = domTree.documentElement
-            toolNode = rootNode.getElementsByTagName("tool")[0]
-            protocNode = toolNode.getElementsByTagName("protocPath")[0]
-            protoNode = toolNode.getElementsByTagName("protoPath")[0]
-            tableNode = toolNode.getElementsByTagName("tablePath")[0]
-            protocPath, protoPath, tablePath = "", "", ""
-            if protocNode.childNodes:
-                protocPath = protocNode.childNodes[0].data
-            if protoNode.childNodes:
-                protoPath = protoNode.childNodes[0].data
-            if tableNode.childNodes:
-                tablePath = tableNode.childNodes[0].data      
+            protocNode = rootNode.getElementsByTagName("protoc")[0]
+            protoNode = rootNode.getElementsByTagName("proto")[0]
+            tableNode = rootNode.getElementsByTagName("table")[0]
+
+            protocPath = protocNode.getAttribute("path")
+            protoPath = protoNode.getAttribute("path")
+            tablePath = tableNode.getAttribute("path")
+            
+            print(protocPath, protoPath, tablePath)
             return protocPath, protoPath, tablePath
         except Exception as e:
             print(e)        
@@ -223,25 +221,38 @@ class ToolSettingXml(object):
             domTree = xmlDom.parseString(dataResource)
             if domTree == None:
                 print("parse xml err")
-                return            
+                return 
 
             rootNode = domTree.documentElement
             # 更新节点值
-            protocNode = rootNode.getElementsByTagName("protocPath")[0]
-            protocNode.childNodes[0].data = protocPath
+            protocNode = rootNode.getElementsByTagName("protoc")[0]
+            protocNode.setAttribute("path", protocPath)
 
-            protocNode = rootNode.getElementsByTagName("protoPath")[0]
-            protocNode.childNodes[0].data = protoPath
+            protoNode = rootNode.getElementsByTagName("proto")[0]
+            protoNode.setAttribute("path", protoPath)
 
-            protocNode = rootNode.getElementsByTagName("tablePath")[0]
-            protocNode.childNodes[0].data = tablePath            
-
+            tableNode = rootNode.getElementsByTagName("table")[0]
+            tableNode.setAttribute("path", tablePath)
+            
             # 写入protocol配置文件
-            with open(self.xmlSettingPath, "w", encoding="gbk") as f:
-                domTree.writexml(f, indent=' ', encoding="gbk")
+            # with open(self.xmlSettingPath, "w", encoding="gbk") as f:
+            #     domTree.writexml(f, indent=' ', addindent='\t',
+            #                      newl='\n', encoding="gbk")
+            with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
+                f.write(self.toPrettyXml(domTree.toxml()))
+                # f.write(domTree.toprettyxml(indent=" "))
                 
         except Exception as e:
             print(e)
         
         pass
     
+    def toPrettyXml(self, data):
+        return '\n'.join([line for line in xmlDom.parseString(
+    data).toprettyxml(indent=' '*2).split('\n') if line.strip()])
+    
+    
+# def pretty_print(data): return '\n'.join([line for line in xmlDom.parseString(
+#     data).toprettyxml(indent=' '*2).split('\n') if line.strip()])
+    
+
