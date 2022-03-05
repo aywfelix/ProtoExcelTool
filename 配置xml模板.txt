@@ -5,33 +5,15 @@
 	 <tablepath></tablepath>
  	</tool>
 	<protocol>
-	 <class>
-	 	<name></name>
-		<type>语言分类</type>
-		<publish>../project/</publish>
-		<isserver>true></isserver>
-	 </class>
-	 <class>
-	 	<name></name>
-		<type>语言分类</type>
-		<publish>../project/</publish>
-		<isserver>true></isserver>	 
-	 </class>	
+	 <tmpl name="", lang="", publish="" />
+	 <tmpl name="", lang="", publish="" />	
 	</protocol>
 	<enum>
-	 <class>
-	 	<name></name>
-		<type>语言分类</type>
-		<publish>../project/</publish>
-		<isserver>true></isserver>	 
-	 </class>	
+	 <tmpl name="", lang="", publish="" />
+	 <tmpl name="", lang="", publish="" />	
 	</enum>
 	<table>
-	 <class>
-	 	<name></name>
-		<type>语言分类</type>
-		<publish>../project/</publish>
-		<isserver>true></isserver>	 
-	 </class		
+	 <tmpl name="", lang="", publish="" />
+	 <tmpl name="", lang="", publish="" />			
 	</table>
  </setting>

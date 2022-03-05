@@ -19,7 +19,7 @@ from qt_ui.uipy.modify_tmpl_ui import *
 
 class ModifyTmplUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str, str)
+    dialogSignal = pyqtSignal(str, str, int, str)
 
     def __init__(self, parent=None):
         super(ModifyTmplUI, self).__init__()
@@ -31,6 +31,9 @@ class ModifyTmplUI(QMainWindow):
         # 添加关联事件
         self.ui.bTnPublishDir.clicked.connect(self.setPublishPath)
         self.ui.bTnModify.clicked.connect(self.modifyTmplInfo)
+        
+        # 缓存之前的名字
+        self.oldTmplName = None
         pass
 
     def setPublishPath(self):
@@ -43,8 +46,14 @@ class ModifyTmplUI(QMainWindow):
         pass
 
     def modifyTmplInfo(self):
-        tmplName = self.ui.lEtTmplName.text()
-        lang = self.ui.cBbxLang.currentText()
-        publishDir = self.ui.lEtPublishDir.text()
-        self.dialogSignal.emit(tmplName, lang, publishDir)
+        name = self.ui.lEtTmplName.text()
+        lang = self.ui.cBbxLang.currentIndex()
+        publish = self.ui.lEtPublishDir.text()
+        self.dialogSignal.emit(self.oldTmplName, name, lang, publish)
         self.close()
+        
+    def fillTmplData(self, name, lang, publish):
+        self.oldTmplName = name
+        self.ui.lEtTmplName.setText(name)
+        self.ui.cBbxLang.setCurrentIndex(lang)
+        self.ui.lEtPublishDir.setText(publish)

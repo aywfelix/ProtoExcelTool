@@ -11,6 +11,7 @@
 '''
 
 # here put the import lib
+from turtle import pu
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -22,11 +23,6 @@ from qt_ui.logic.modify_tmpl import *
 class SetPathType:
     PROTOC = 1
     PROTO = 2
-    TABLE = 3
-
-class TmplType:
-    PROTO = 1
-    ENUM = 2
     TABLE = 3
 
 class ToolSettingUI(QMainWindow):
@@ -50,27 +46,44 @@ class ToolSettingUI(QMainWindow):
         self.ui.bTnTableAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.TABLE))
         # 处理配置文件
         self.settingXml = ToolSettingXml()
+        # 用于语言索引转换
+        self.tmplLang = TmplLang()
         # 布局
         self.protoFormLayout = QtWidgets.QFormLayout()
         self.enumFormLayout = QtWidgets.QFormLayout()
         self.tableFormLayout = QtWidgets.QFormLayout()
-        
+        self.ui.lWProto.setLayout(self.protoFormLayout)
+        self.ui.lWEnum.setLayout(self.enumFormLayout)
+        self.ui.lWTable.setLayout(self.tableFormLayout)
         # 临时保存模板操作页
         self.tmplType = 1
+        # 缓存模板配置信息
+        self.tmplsDict = None
         # 打开窗口初始化配置信息
-        self.openWindow()    
+        self.initToolSetting() 
         pass
 
-        
-    def openWindow(self):
+    def initToolSetting(self):
         # tab1--工具常用配置
         protocPath, protoPath, tablePath = self.settingXml.readToolConfig()
         self.ui.lEtProtocPath.setText(protocPath)
         self.ui.lEtProtoPath.setText(protoPath)
         self.ui.lEtTablePath.setText(tablePath)
-        # tab2--协议配置
-        # tab3--枚举配置
-        # tab4--配置表配置
+        
+        # 读取配置显示所有配置模板信息
+        self.tmplsDict = self.settingXml.readTmplsConfig()
+        if self.tmplsDict is None or not self.tmplsDict:
+            return
+        protoList = self.tmplsDict[TmplType.PROTO]
+        enumList = self.tmplsDict[TmplType.ENUM]
+        tableList = self.tmplsDict[TmplType.TABLE]
+        if protoList: self.initTmplInfo(protoList)
+        if enumList: self.initTmplInfo(enumList)
+        if tableList: self.initTmplInfo(tableList)
+
+    def initTmplInfo(self, tmplList):
+        for tmpl in tmplList:
+            self.addTmplInfo(tmpl.name, tmpl.lang, tmpl.publish)
         pass
 
     def closeEvent(self, event):
@@ -102,43 +115,29 @@ class ToolSettingUI(QMainWindow):
         self.addTmplUI.dialogSignal.connect(self.appendTmplInfo)
         pass
 
-    # 列出所有模板配置
-    def showTmplList(self):
-        # 读取配置显示所有配置模板信息
-        pass
-
-    # 追加模板信息
-    def appendTmplInfo(self, tmplName, tmplLang):
+    def addTmplInfo(self, name, lang, publish):
         # 生成界面显示组件-QListWidget
         hBoxLayout = QtWidgets.QHBoxLayout()
-        if self.tmplType == TmplType.PROTO:
-            self.protoFormLayout.addRow(hBoxLayout)
-            self.ui.lWProto.setLayout(self.protoFormLayout)
-        if self.tmplType == TmplType.ENUM:
-            self.enumFormLayout.addRow(hBoxLayout)
-            self.ui.lWEnum.setLayout(self.enumFormLayout)
-        if self.tmplType == TmplType.TABLE:
-            self.tableFormLayout.addRow(hBoxLayout)
-            self.ui.lWTable.setLayout(self.tableFormLayout)
         # 根据传值生成控件
         lEtTemplName = QLineEdit()
-        lEtTemplName.setText(tmplName)
+        lEtTemplName.setText(name)
         lEtTemplName.setReadOnly(True)
         lEtTemplName.setFixedWidth(150)
         lEtTmplLang = QLineEdit()
-        lEtTmplLang.setText(tmplLang)
+        lEtTmplLang.setText(self.tmplLang.getLang(lang))
         lEtTmplLang.setReadOnly(True)
         lEtTmplLang.setFixedWidth(60)
 
         bTnModify = QPushButton()
         bTnModify.setText("修改")
-        bTnModify.clicked.connect(self.showModifyTmpl)
+        bTnModify.clicked.connect(
+            lambda: self.showModifyTmpl(name, lang, publish))
         bTnModify.setFixedWidth(80)
         bTnDelete = QPushButton()
         bTnDelete.setText("删除")
-        bTnDelete.clicked.connect(lambda: self.deleteTmpl(hBoxLayout))
+        bTnDelete.clicked.connect(lambda: self.deleteTmpl(name, hBoxLayout))
         bTnDelete.setFixedWidth(80)
-        
+
         hBoxLayout.addWidget(lEtTemplName)
         hBoxLayout.addStretch(1)
         hBoxLayout.addWidget(lEtTmplLang)
@@ -146,25 +145,82 @@ class ToolSettingUI(QMainWindow):
         hBoxLayout.addWidget(bTnModify)
         hBoxLayout.addStretch(1)
         hBoxLayout.addWidget(bTnDelete)
-        pass
+        
+        if self.tmplType == TmplType.PROTO:
+            self.protoFormLayout.addRow(hBoxLayout)
+        if self.tmplType == TmplType.ENUM:
+            self.enumFormLayout.addRow(hBoxLayout)
+        if self.tmplType == TmplType.TABLE:
+            self.tableFormLayout.addRow(hBoxLayout)
+
+    # 追加模板信息
+    def appendTmplInfo(self, name, lang, publish):
+        print("lang==", lang)
+        self.addTmplInfo(name, lang, publish)
+        if self.tmplType == TmplType.PROTO:
+            # 添加缓存信息
+            tmplList = self.tmplsDict[TmplType.PROTO]
+            tmplList.append(TmplItemData(name, lang, publish))
+        if self.tmplType == TmplType.ENUM:
+            tmplList = self.tmplsDict[TmplType.ENUM]
+            tmplList.append(TmplItemData(name, lang, publish))
+        if self.tmplType == TmplType.TABLE:
+            tmplList = self.tmplsDict[TmplType.TABLE]
+            tmplList.append(TmplItemData(name, lang, publish))
+            
+        # 保存更新配置    
+        self.settingXml.saveTmplsConfig(self.tmplsDict)
     
-    def showModifyTmpl(self):
+    def showModifyTmpl(self, name, lang, publish):
         # 弹出更改窗口
         self.modifyTmplUI = ModifyTmplUI()
         self.modifyTmplUI.show()
+        print("showModifyTmpl====>", name, lang, publish)
+        self.modifyTmplUI.fillTmplData(name, lang, publish)
         self.modifyTmplUI.dialogSignal.connect(self.modifyTmpl)
         pass
     
-    def deleteTmpl(self, layout):
+    def deleteTmpl(self, name, layout):
         if self.tmplType == TmplType.PROTO:
             self.protoFormLayout.removeRow(layout)
+            tmplList = self.tmplsDict[TmplType.PROTO]
+            
         if self.tmplType == TmplType.ENUM:
             self.enumFormLayout.removeRow(layout)
+            tmplList = self.tmplsDict[TmplType.ENUM]
         if self.tmplType == TmplType.TABLE:
             self.tableFormLayout.removeRow(layout)
+            tmplList = self.tmplsDict[TmplType.TABLE]
+        
+        for index, tmpl in enumerate(tmplList):
+            if tmpl.name == name:
+                tmplList.pop(index)
+            pass    
+        # 保存更新配置
+        self.settingXml.saveTmplsConfig(self.tmplsDict)            
         pass
     
-    def modifyTmpl(self, tmplName, tmplLang, tmplPublish):
-        print(tmplName, tmplLang, tmplPublish)
+    def modifyTmpl(self, oldName, name, lang, publish):
+        if self.tmplType == TmplType.PROTO:
+            tmplList = self.tmplsDict[TmplType.PROTO]
+        if self.tmplType == TmplType.ENUM:
+            tmplList = self.tmplsDict[TmplType.ENUM]
+        if self.tmplType == TmplType.TABLE:
+            tmplList = self.tmplsDict[TmplType.TABLE]
+        
+        for tmpl in tmplList:
+            if tmpl.name == oldName:
+                tmpl.name = name
+                tmpl.lang = lang
+                tmpl.publish = publish
+        print("======================")        
+        print(self.tmplsDict)
+        print("======================")
+        # TODO：更新界面显示
+        
+        # 保存更新配置
+        self.settingXml.saveTmplsConfig(self.tmplsDict)
+        pass
+    
 
 

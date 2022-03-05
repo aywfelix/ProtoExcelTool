@@ -18,7 +18,7 @@ from qt_ui.uipy.add_tmpl_ui import *
 
 class AddTmplUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str)   
+    dialogSignal = pyqtSignal(str, int, str)   
 
     def __init__(self, parent=None):
         super(AddTmplUI, self).__init__()
@@ -43,10 +43,8 @@ class AddTmplUI(QMainWindow):
 
     def addTmplInfo(self):
         tmplName = self.ui.lEtTmplName.text()
-        lang = self.ui.cBbxLang.currentText()
-        publishDir = self.ui.lEtPublishDir.text()
-        self.dialogSignal.emit(tmplName, lang)
-        #TODO: 保存配置信息
-        #TODO：读取信息
+        lang = self.ui.cBbxLang.currentIndex()
+        publish = self.ui.lEtPublishDir.text()
+        self.dialogSignal.emit(tmplName, lang, publish)
         self.close()        
 

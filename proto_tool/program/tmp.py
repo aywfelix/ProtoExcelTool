@@ -26,4 +26,13 @@ if __name__ == "__main__":
     t1 = Tmp1()
     t2 = Tmp1()
     print(id(t1)==id(t2))
-    pass
+    
+    k = {}
+    k[1] = []
+    k[2] = []
+    print(k)
+    k["aa"] = []
+    print(k)
+    
+    kk = k["bb"] = "bb"
+    print(kk)

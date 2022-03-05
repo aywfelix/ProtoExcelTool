@@ -163,22 +163,3 @@ class ToolProtoXml(object):
     def exportProtoPb(self):
         # 根据不同配置模板导出pb文件
         pass
-
-
-
-# if __name__ == "__main__":
-#     xml = ToolXml()
-#     xml.setProtoConfig("./protocols.config")
-
-#     protoList = []
-    
-#     data = TVItemProtoData("1101", "sds", "sdgsa", "sdrga", True)
-#     protoList.append(data)
-#     data = TVItemProtoData("1102", "aa", "bb", "cc", True)
-#     protoList.append(data)
-
-#     protocolsDict = {}
-#     protocolsDict["10 Test"] = protoList
-#     xml.writeProtocolXml(protocolsDict)
-#     xml.exportProtoFile()
-
