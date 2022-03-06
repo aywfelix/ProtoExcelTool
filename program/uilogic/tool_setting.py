@@ -125,7 +125,7 @@ class ToolSettingUI(QMainWindow):
         bTnModify = QPushButton()
         bTnModify.setText("修改")
         bTnModify.clicked.connect(
-            lambda: self.showModifyTmpl(name, lang, publish))
+            lambda: self.showModifyTmpl(name, lang, publish, hBoxLayout))
         bTnModify.setFixedWidth(80)
         bTnDelete = QPushButton()
         bTnDelete.setText("删除")
@@ -164,8 +164,9 @@ class ToolSettingUI(QMainWindow):
         # 保存更新配置 
         self.settingXml.saveTmplsConfig(self.tmplsDict)
     
-    def showModifyTmpl(self, name, lang, publish):
+    def showModifyTmpl(self, name, lang, publish, hBoxLayout):
         # 弹出更改窗口
+        self.hBoxLayout = hBoxLayout
         self.modifyTmplUI = ModifyTmplUI()
         self.modifyTmplUI.show()
         self.modifyTmplUI.fillTmplData(name, lang, publish)
@@ -176,7 +177,6 @@ class ToolSettingUI(QMainWindow):
         if self.tmplType == TmplType.PROTO:
             self.protoFormLayout.removeRow(layout)
             tmplList = self.tmplsDict[TmplType.PROTO]
-            
         if self.tmplType == TmplType.ENUM:
             self.enumFormLayout.removeRow(layout)
             tmplList = self.tmplsDict[TmplType.ENUM]
@@ -206,9 +206,11 @@ class ToolSettingUI(QMainWindow):
                 tmpl.lang = lang
                 tmpl.publish = publish
       
-        print(self.tmplsDict)
-        # TODO：更新界面显示
-        
+        # 刷新界面控件
+        qLetName = self.hBoxLayout.itemAt(0).widget()
+        qLetName.setText(name)
+        qLetLang = self.hBoxLayout.itemAt(2).widget()
+        qLetLang.setText(self.tmplLang.getLang(lang))
         # 保存更新配置
         self.settingXml.saveTmplsConfig(self.tmplsDict)
         pass
