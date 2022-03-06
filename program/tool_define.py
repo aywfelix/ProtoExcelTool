@@ -49,6 +49,10 @@ class TmplItemData:
         pass
 
 
+class SetPathType:
+    PROTOC = 1
+    PROTO = 2
+    TABLE = 3
 
 def Singleton(cls):
     _instance = {}

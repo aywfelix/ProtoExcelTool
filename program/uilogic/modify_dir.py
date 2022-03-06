@@ -14,7 +14,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.modify_dir import *
+from uipy.modify_dir_ui import *
 
 class ModifyProtoDirUI(QMainWindow):
     # 窗体间通信

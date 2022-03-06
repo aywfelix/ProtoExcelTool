@@ -17,14 +17,14 @@ import multiprocessing
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.proto_tool_ui import *
-from qt_ui.logic.create_dir import *
-from qt_ui.logic.modify_dir import *
-from qt_ui.logic.create_proto import *
-from qt_ui.logic.modify_proto import *
-from qt_ui.logic.tool_define import *
-from qt_ui.logic.proto_xml import *
-from qt_ui.logic.tool_setting import *
+from uipy.proto_tool_ui import *
+from uilogic.create_dir import *
+from uilogic.modify_dir import *
+from uilogic.create_proto import *
+from uilogic.modify_proto import *
+from tool_define import *
+from proto_xml import *
+from uilogic.tool_setting import *
 
 # treeview右键菜单操作
 class TVMenuOpType(object):
@@ -357,6 +357,6 @@ def ShowWindow():
     app.setStyle(QStyleFactory.create("Fusion"))
     app.setAttribute(QtCore.Qt.AA_NativeWindows)
     app.setAttribute(QtCore.Qt.AA_MSWindowsUseDirect3DByDefault)
-    
+
     multiprocessing.freeze_support()
     sys.exit(app.exec_())

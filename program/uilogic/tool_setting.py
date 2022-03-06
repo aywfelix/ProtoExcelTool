@@ -11,19 +11,14 @@
 '''
 
 # here put the import lib
-from turtle import pu
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.logic.setting_xml import *
-from qt_ui.uipy.setting_ui import *
-from qt_ui.logic.add_tmpl import *
-from qt_ui.logic.modify_tmpl import *
-
-class SetPathType:
-    PROTOC = 1
-    PROTO = 2
-    TABLE = 3
+from setting_xml import *
+from uipy.setting_ui import *
+from uilogic.add_tmpl import *
+from uilogic.modify_tmpl import *
+from tool_define import *
 
 class ToolSettingUI(QMainWindow):
     def __init__(self, parent=None):

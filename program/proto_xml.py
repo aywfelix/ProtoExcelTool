@@ -14,8 +14,8 @@
 
 import codecs
 import xml.dom.minidom as xmlDom
-from qt_ui.logic.tool_define import *
-from qt_ui.logic.setting_xml import *
+from tool_define import *
+from setting_xml import *
 #############################################################################
 proto_header = 'syntax = "proto3";'
 #############################################################################

@@ -14,7 +14,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.create_proto_ui import *
+from uipy.create_proto_ui import *
 
 class CreateProtoUI(QMainWindow):
     # 窗体间通信

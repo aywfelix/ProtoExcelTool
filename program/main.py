@@ -7,13 +7,15 @@
 @Version :   1.0
 @Contact :   laijia2008@126.com
 @License :   (C)Copyright 2021-2025, felix&lai
-@Desc    :   None
+@Desc    :   启动程序入口
 '''
 
 # here put the import lib
+import os
 import sys
-sys.path.append("../../")
-from qt_ui.logic.proto_main import *
+
+from uilogic.tool_main import *
+
 
 if __name__ == '__main__':
     ShowWindow()

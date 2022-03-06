@@ -14,7 +14,7 @@
 import codecs
 import os
 import xml.dom.minidom as xmlDom
-from qt_ui.logic.tool_define import *
+from tool_define import *
 
 @Singleton
 class ToolSettingXml(object):

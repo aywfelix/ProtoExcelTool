@@ -14,7 +14,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.modify_tmpl_ui import *
+from uipy.modify_tmpl_ui import *
 
 
 class ModifyTmplUI(QMainWindow):

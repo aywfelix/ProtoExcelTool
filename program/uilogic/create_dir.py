@@ -15,7 +15,7 @@ import re
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from qt_ui.uipy.create_dir import *
+from uipy.create_dir_ui import *
 
 class CreateProtoDirUI(QMainWindow):
     # 窗体间通信
