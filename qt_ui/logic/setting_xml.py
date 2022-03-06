@@ -51,9 +51,7 @@ class ToolSettingXml(object):
                 tableNode.setAttribute("path", "")          
 
                 domTree.appendChild(settingNode)
-                # domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk") 
                 with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
-                    # f.write(domTree.toprettyxml(indent=" "))
                     f.write(self.toPrettyXml(domTree.toxml()))
         except Exception as e:
                 print(e)
@@ -177,10 +175,7 @@ class ToolSettingXml(object):
                 tmplNode.setAttribute("publish", tmplData.publish)
                 tableNode.appendChild(tmplNode)            
                                         
-            # with open(self.xmlSettingPath, "w", encoding="gbk") as f:
-            #     domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")
             with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
-                # f.write(domTree.toprettyxml(indent=" "))
                 f.write(self.toPrettyXml(domTree.toxml()))
         except Exception as e:
             print(e)
@@ -234,13 +229,8 @@ class ToolSettingXml(object):
             tableNode = rootNode.getElementsByTagName("table")[0]
             tableNode.setAttribute("path", tablePath)
             
-            # 写入protocol配置文件
-            # with open(self.xmlSettingPath, "w", encoding="gbk") as f:
-            #     domTree.writexml(f, indent=' ', addindent='\t',
-            #                      newl='\n', encoding="gbk")
             with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
                 f.write(self.toPrettyXml(domTree.toxml()))
-                # f.write(domTree.toprettyxml(indent=" "))
                 
         except Exception as e:
             print(e)
@@ -250,9 +240,6 @@ class ToolSettingXml(object):
     def toPrettyXml(self, data):
         return '\n'.join([line for line in xmlDom.parseString(
     data).toprettyxml(indent=' '*2).split('\n') if line.strip()])
-    
-    
-# def pretty_print(data): return '\n'.join([line for line in xmlDom.parseString(
-#     data).toprettyxml(indent=' '*2).split('\n') if line.strip()])
+
     
 

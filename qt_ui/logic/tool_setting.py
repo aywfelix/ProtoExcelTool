@@ -167,15 +167,12 @@ class ToolSettingUI(QMainWindow):
             tmplList.append(TmplItemData(name, lang, publish))
             
         # 保存更新配置 
-        print("=================================")  
         self.settingXml.saveTmplsConfig(self.tmplsDict)
-        print("=================================")
     
     def showModifyTmpl(self, name, lang, publish):
         # 弹出更改窗口
         self.modifyTmplUI = ModifyTmplUI()
         self.modifyTmplUI.show()
-        print("showModifyTmpl====>", name, lang, publish)
         self.modifyTmplUI.fillTmplData(name, lang, publish)
         self.modifyTmplUI.dialogSignal.connect(self.modifyTmpl)
         pass
@@ -213,9 +210,8 @@ class ToolSettingUI(QMainWindow):
                 tmpl.name = name
                 tmpl.lang = lang
                 tmpl.publish = publish
-        print("======================")        
+      
         print(self.tmplsDict)
-        print("======================")
         # TODO：更新界面显示
         
         # 保存更新配置
