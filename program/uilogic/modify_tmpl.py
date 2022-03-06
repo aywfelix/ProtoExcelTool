@@ -21,14 +21,16 @@ class ModifyTmplUI(QMainWindow):
     # 窗体间通信
     dialogSignal = pyqtSignal(str, str, int, str)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent):
         super(ModifyTmplUI, self).__init__()
         self.ui = Ui_ModifyTmplForm()
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
 
+        self.parent = parent
         # 添加关联事件
+        self.ui.lEtTmplName.editingFinished.connect(self.checkTmplName)
         self.ui.bTnPublishDir.clicked.connect(self.setPublishPath)
         self.ui.bTnModify.clicked.connect(self.modifyTmplInfo)
         
@@ -57,3 +59,9 @@ class ModifyTmplUI(QMainWindow):
         self.ui.lEtTmplName.setText(name)
         self.ui.cBbxLang.setCurrentIndex(lang)
         self.ui.lEtPublishDir.setText(publish)
+        
+    def checkTmplName(self):
+        tmplList = self.parent.tmplsDict[self.parent.tmplType]
+        for tmpl in tmplList:
+            if tmpl.name == self.ui.lEtTmplName.text():
+                QMessageBox.critical(self, "错误", "模板名字有重复!!!")

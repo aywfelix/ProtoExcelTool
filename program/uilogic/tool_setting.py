@@ -104,7 +104,7 @@ class ToolSettingUI(QMainWindow):
 
     def showAddTmpl(self, tmplType):
         self.tmplType = tmplType
-        self.addTmplUI = AddTmplUI()
+        self.addTmplUI = AddTmplUI(self)
         self.addTmplUI.show()
         self.addTmplUI.dialogSignal.connect(self.appendTmplInfo)
         pass
@@ -167,7 +167,7 @@ class ToolSettingUI(QMainWindow):
     def showModifyTmpl(self, name, lang, publish, hBoxLayout):
         # 弹出更改窗口
         self.hBoxLayout = hBoxLayout
-        self.modifyTmplUI = ModifyTmplUI()
+        self.modifyTmplUI = ModifyTmplUI(self)
         self.modifyTmplUI.show()
         self.modifyTmplUI.fillTmplData(name, lang, publish)
         self.modifyTmplUI.dialogSignal.connect(self.modifyTmpl)
