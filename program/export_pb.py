@@ -13,54 +13,41 @@
 # here put the import lib
 import subprocess
 import os
+from tool_define import *
+from setting_xml import *
 
-
-class ExportPbType:
-    CPP = 1
-    CSHARP = 2
-    PYTHON = 3
-    LUA = 4
-    GO = 5
-
+@Singleton
 class ExportPb(object):
     def __init__(self):
+        self.settingXml = ToolSettingXml()
         pass
 
-    def setExportPath(self, path):
-        self.exportPath = path
+    def exportPb(self):
+        # 根据配置选项导出不同pb
+        tmplsDict = self.settingXml.readTmplsConfig()
+        protoList = tmplsDict[TmplType.PROTO]
+        if not protoList:
+            return
+        protocPath, protoPath, _ = self.settingXml.readToolConfig()
+        for config in protoList:
+            for proto in os.listdir(protoPath):
+                if not proto.endswith(".proto"):
+                    continue
 
-    def setInputPath(self, path):
-        self.inputPath = path
+                cmdStr = ""
+                if config.lang == 0: # cpp
+                    cmdStr = protocPath + '/protoc.exe --proto_path=' + \
+                        protoPath + ' --cpp_out='+config.publish + " "+proto
+                    pass
+                if config.lang == 1: # lua
+                    pass
+                if config.lang == 2: # go
+                    pass
+                if config.lang == 3: # csharp
+                    pass
 
-    def exportPb(self, exportType):
-        # 获取导出文件列表
-        for proto in os.listdir(self.inputPath):
-            if not proto.endswith(".proto"):
-                continue
-
-            cmdStr = ""
-            if exportType == ExportPbType.CPP:
-                cmdStr = './proto_tool/program/protoc.exe --proto_path='+ self.inputPath + ' --cpp_out='+self.exportPath + " "+proto
-                pass
-            if exportType == ExportPbType.CSHARP:
-                pass
-            if exportType == ExportPbType.PYTHON:
-                pass
-            if exportType == ExportPbType.LUA:
-                pass
-            if exportType == ExportPbType.GO:
-                #cmdStr = 'D:\work\ProtocolEditor\ProtoExcelTool\proto_tool\program\protoc.exe --proto_path='+ self.inputPath + ' --go_out='+self.exportPath + " "+proto
-                pass
-
-            subprocess.Popen(cmdStr)        
-            print(cmdStr)
+                subprocess.Popen(cmdStr)        
+                print(cmdStr)
 
 
-if __name__ == "__main__":
-    print(os.getcwd())
-    export = ExportPb()
-    export.setInputPath("./proto_tool/protos/")
-    export.setExportPath("./proto_tool/pb/c++/")
-    export.exportPb(ExportPbType.CPP)
-    # pass
 

@@ -11,8 +11,8 @@
 '''
 
 # here put the import lib
-
 import codecs
+
 import xml.dom.minidom as xmlDom
 from tool_define import *
 from setting_xml import *
@@ -69,8 +69,8 @@ class ToolProtoXml(object):
             print(e)
 
     def readProtocolXml(self):
-        self.protocols = []
         try:
+            self.protocols = []
             dataResource = ""
             with open(self.xmlProtoPath, "r", encoding="gbk") as f:
                 dataResource = f.read()
@@ -107,19 +107,18 @@ class ToolProtoXml(object):
 
                 moduleDict["protocol"] = protoDataList
                 self.protocols.append(moduleDict)
-
+                
+            return self.protocols
         except Exception as e:
             print(e)
 
-        return self.protocols
+        
 
     def exportProtoFile(self):
         # 根据配置文件生成proto file 文件
         try:
-            # protocols = self.readProtocolXml()
-            # if not protocols:
-            #     return
             if not self.protocols:
+                self.protocols = self.readProtocolXml()
                 return
             # 根据xml信息生产proto文件
             protoMsgs = proto_header+"\n"
@@ -160,6 +159,3 @@ class ToolProtoXml(object):
         except Exception as e:
             print(e)
 
-    def exportProtoPb(self):
-        # 根据不同配置模板导出pb文件
-        pass

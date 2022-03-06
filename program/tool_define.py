@@ -64,6 +64,11 @@ def Singleton(cls):
 
     return _Singleton
 
+class ExportPbType:
+    CPP = 0
+    LUA = 1
+    GO = 2
+    CSHARP = 3
 
 @Singleton
 class TmplLang:
@@ -84,11 +89,11 @@ class TmplLang:
             return self.csharp
         
     def getIndex(self, lang):
-        if lang == "cpp":
+        if lang == self.cpp:
             return 0
-        if lang == "lua":
+        if lang == self.lua:
             return 1
-        if lang == "golang":
+        if lang == self.golang:
             return 2
-        if lang == "csharp":
+        if lang == self.csharp:
             return 3

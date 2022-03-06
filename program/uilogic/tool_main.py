@@ -26,6 +26,7 @@ from uilogic.modify_proto import *
 from tool_define import *
 from proto_xml import *
 from uilogic.tool_setting import *
+from export_pb import *
 from client_socket import *
 
 # treeview右键菜单操作
@@ -91,6 +92,8 @@ class ProtoMainUI(QMainWindow):
         self.protoXml = ToolProtoXml()
         self.protoXml.setProtoConfig("./config/protocols.config")
 
+        # 初始化settingXml 对象
+        self.exportPb = ExportPb()
         # TODO:缓存协议编号
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
@@ -338,14 +341,13 @@ class ProtoMainUI(QMainWindow):
         pass
 
     def menuExportProtoClicked(self):
-        # 根据xml文件导出proto文件
         self.protoXml.exportProtoFile()
         pass
 
+    # 导出serverPb
     def menuExportServerPbClicked(self):
-        self.protoXml.exportProtoPb()
-        pass
-
+        self.exportPb.exportPb()
+        
     def menuExportServerProtoClicked(self):
 
         pass
