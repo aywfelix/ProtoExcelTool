@@ -20,6 +20,7 @@ from setting_xml import *
 class ExportPb(object):
     def __init__(self):
         self.settingXml = ToolSettingXml()
+        self.pythonPbPath = "../extra/pb/python"
         pass
 
     def exportPb(self):
@@ -29,6 +30,11 @@ class ExportPb(object):
         if not protoList:
             return
         protocPath, protoPath, _ = self.settingXml.readToolConfig()
+        if protocPath.endswith("/"):
+            protocPath = protocPath+"protoc.exe"
+        else:
+            protocPath = protocPath+"/protoc.exe"
+            
         for config in protoList:
             for proto in os.listdir(protoPath):
                 if not proto.endswith(".proto"):
@@ -36,7 +42,7 @@ class ExportPb(object):
 
                 cmdStr = ""
                 if config.lang == 0: # cpp
-                    cmdStr = protocPath + '/protoc.exe --proto_path=' + \
+                    cmdStr = protocPath + ' --proto_path=' + \
                         protoPath + ' --cpp_out='+config.publish + " "+proto
                     pass
                 if config.lang == 1: # lua
@@ -46,8 +52,14 @@ class ExportPb(object):
                 if config.lang == 3: # csharp
                     pass
 
-                subprocess.Popen(cmdStr)        
+                subprocess.Popen(cmdStr)
+                # 默认导出 python pb，用于网络测试
+                
                 print(cmdStr)
 
 
+# if __name__ == '__main__':
+#     print(os.getcwd())
+#     with open("../extra/pb/python/haha", "w") as f:
+#         f.write("xxxxxxxxxxxxxxxxxxx")      
 
