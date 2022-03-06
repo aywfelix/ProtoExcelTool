@@ -19,12 +19,12 @@ from tool_define import *
 @Singleton
 class ToolSettingXml(object):
     def __init__(self):
-        self.xmlSettingPath = "./setting.config"
+        self.xmlSettingPath = "./config/setting.config"
  
-        self.initSettingXml()      
+        self.initSettingConfig()      
         pass
 
-    def initSettingXml(self):
+    def initSettingConfig(self):
         # 初始化配置文件
         try:
             if os.path.exists(self.xmlSettingPath):
@@ -46,7 +46,7 @@ class ToolSettingXml(object):
                 toolNode.appendChild(protoNode)
                 protoNode.setAttribute("path", "")
                 # 创建table path 节点
-                tableNode = domTree.createElement("table")
+                tableNode = domTree.createElement("excel")
                 toolNode.appendChild(tableNode)
                 tableNode.setAttribute("path", "")          
 
@@ -146,6 +146,7 @@ class ToolSettingXml(object):
             if tableNodes:
                 for tableNode in tableNodes:
                     rootNode.removeChild(tableNode)
+                    
             # 重新创建配置节点
             protocolNode = domTree.createElement("protocol")
             rootNode.appendChild(protocolNode)
@@ -195,13 +196,13 @@ class ToolSettingXml(object):
             rootNode = domTree.documentElement
             protocNode = rootNode.getElementsByTagName("protoc")[0]
             protoNode = rootNode.getElementsByTagName("proto")[0]
-            tableNode = rootNode.getElementsByTagName("table")[0]
+            tableNode = rootNode.getElementsByTagName("excel")[0]
 
             protocPath = protocNode.getAttribute("path")
             protoPath = protoNode.getAttribute("path")
             tablePath = tableNode.getAttribute("path")
             
-            print(protocPath, protoPath, tablePath)
+            # print(protocPath, protoPath, tablePath)
             return protocPath, protoPath, tablePath
         except Exception as e:
             print(e)        
@@ -226,7 +227,7 @@ class ToolSettingXml(object):
             protoNode = rootNode.getElementsByTagName("proto")[0]
             protoNode.setAttribute("path", protoPath)
 
-            tableNode = rootNode.getElementsByTagName("table")[0]
+            tableNode = rootNode.getElementsByTagName("excel")[0]
             tableNode.setAttribute("path", tablePath)
             
             with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
