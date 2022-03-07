@@ -11,6 +11,7 @@
 '''
 
 # here put the import lib
+from email.charset import QP
 import os
 import sys
 import multiprocessing
@@ -25,6 +26,7 @@ from uilogic.modify_proto import *
 from tool_define import *
 from proto_xml import *
 from uilogic.tool_setting import *
+from client_socket import *
 
 # treeview右键菜单操作
 class TVMenuOpType(object):
@@ -43,6 +45,8 @@ class ProtoMainUI(QMainWindow):
         self.setWindowOpacity(0.96)
         self.setWindowIcon(QtGui.QIcon('../../qt_ui/icons/Icon_.ico'))
         self.setFixedSize(self.width(), self.height())
+
+        self.ui.tabWidget.setCurrentIndex(0)
         # treeView 设置
         self.ui.tRvProtocol.setStyle(QStyleFactory.create('windows'))
         self.ui.tRvProtocol.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -73,14 +77,16 @@ class ProtoMainUI(QMainWindow):
         self.ui.menuExportServerPb.triggered.connect(self.menuExportServerPbClicked)
         self.ui.menuOpenSetting.triggered.connect(self.menuOpenSettingClicked)
         # 协议测试
-        self.ui.tBtnConn.clicked.connect(self.connServer)
-        self.ui.tBtnDisconn.clicked.connect(self.disConnect)
+        self.ui.bTnConn.clicked.connect(self.connServer)
+        self.ui.bTnDisconn.clicked.connect(self.disConnect)
         self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
-        self.ui.tBtnClearMsg.clicked.connect(self.clearRespTextEdit)
+        self.ui.bTnClearResp.clicked.connect(self.clearRespTextEdit)
         
         # 当前选中item
         self.currentItem = None
 
+        # 客户端测试协议
+        self.client = ClientSocket()
         # 初始化ToolProtoXml对象(TODO: 优化)
         self.protoXml = ToolProtoXml()
         self.protoXml.setProtoConfig("./config/protocols.config")
@@ -357,15 +363,36 @@ class ProtoMainUI(QMainWindow):
 
     # 协议测试处理逻辑
     def connServer(self):
+        ip = self.ui.cBbxServAddr.currentText()
+        port = self.ui.sBxPort.value()
+        result = self.client.connServer(ip, port)
+        if not result:
+            QMessageBox.information(self, "信息", "连接服务器失败")
+            return
+
+        palette = self.ui.bTnConn.palette()
+        palette.setColor(QtGui.QPalette.ButtonText , QtCore.Qt.green)
+        self.ui.bTnConn.setPalette(palette)
+        self.ui.bTnConn.setAutoFillBackground(True)
         pass
 
     def disConnect(self):
+        self.client.disConnect()
+
+        palette = self.ui.bTnConn.palette()
+        palette.setColor(QtGui.QPalette.ButtonText , QtCore.Qt.black)
+        self.ui.bTnConn.setPalette(palette)
+        self.ui.bTnConn.setAutoFillBackground(True)        
         pass
 
     def sendReqMsg(self):
+        # 获取填写请求数据 json
+        # 将json转换成pb
+        # 将消息发送给服务器
         pass
 
     def clearRespTextEdit(self):
+        self.ui.tEtResp.setText("")
         pass
         
 def ShowWindow():

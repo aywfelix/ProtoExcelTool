@@ -377,45 +377,6 @@
      <attribute name="title">
       <string>协议测试</string>
      </attribute>
-     <widget class="QToolButton" name="tBtnConn">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>151</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>连接到服务器</string>
-      </property>
-     </widget>
-     <widget class="QToolButton" name="tBtnDisconn">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>10</y>
-        <width>151</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>断开连接</string>
-      </property>
-     </widget>
-     <widget class="QToolButton" name="tBtnClearMsg">
-      <property name="geometry">
-       <rect>
-        <x>670</x>
-        <y>10</y>
-        <width>151</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>清空文本框</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
@@ -469,19 +430,6 @@
         <width>641</width>
         <height>231</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="tEtResp">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>360</y>
-        <width>861</width>
-        <height>351</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="bTnSendMsg">
@@ -543,6 +491,58 @@
       </property>
       <property name="text">
        <string>选择发送协议号：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bTnConn">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>连接到服务器</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bTnDisconn">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>10</y>
+        <width>211</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>断开服务器连接</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bTnClearResp">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>10</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>清空消息框</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="tEtResp">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>370</y>
+        <width>851</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
