@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -377,7 +377,7 @@
      <attribute name="title">
       <string>协议测试</string>
      </attribute>
-     <widget class="QToolButton" name="toolButton">
+     <widget class="QToolButton" name="tBtnConn">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -390,7 +390,7 @@
        <string>连接到服务器</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_2">
+     <widget class="QToolButton" name="tBtnDisconn">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -403,11 +403,11 @@
        <string>断开连接</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_3">
+     <widget class="QToolButton" name="tBtnClearMsg">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>20</y>
+        <x>670</x>
+        <y>10</y>
         <width>151</width>
         <height>51</height>
        </rect>
@@ -442,7 +442,7 @@
        <string>端口：</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="sBxPort">
       <property name="geometry">
        <rect>
         <x>490</x>
@@ -461,7 +461,7 @@
        <number>65535</number>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="tEtReq">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -471,7 +471,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
+     <widget class="QPlainTextEdit" name="tEtResp">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -484,7 +484,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="bTnSendMsg">
       <property name="geometry">
        <rect>
         <x>700</x>
@@ -497,7 +497,7 @@
        <string>发送消息</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="cBbxServAddr">
       <property name="geometry">
        <rect>
         <x>90</x>
@@ -512,7 +512,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="cBbxProto">
       <property name="geometry">
        <rect>
         <x>680</x>

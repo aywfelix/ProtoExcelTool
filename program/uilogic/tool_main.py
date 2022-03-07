@@ -72,6 +72,12 @@ class ProtoMainUI(QMainWindow):
         self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
         self.ui.menuExportServerPb.triggered.connect(self.menuExportServerPbClicked)
         self.ui.menuOpenSetting.triggered.connect(self.menuOpenSettingClicked)
+        # 协议测试
+        self.ui.tBtnConn.clicked.connect(self.connServer)
+        self.ui.tBtnDisconn.clicked.connect(self.disConnect)
+        self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
+        self.ui.tBtnClearMsg.clicked.connect(self.clearRespTextEdit)
+        
         # 当前选中item
         self.currentItem = None
 
@@ -343,11 +349,24 @@ class ProtoMainUI(QMainWindow):
         self.toolSettingUI.show()    
         pass
 
+    # 程序界面退出    
     def closeEvent(self, event):
         # 程序退出保存信息
         self.saveToXml()
         print("program exit")
 
+    # 协议测试处理逻辑
+    def connServer(self):
+        pass
+
+    def disConnect(self):
+        pass
+
+    def sendReqMsg(self):
+        pass
+
+    def clearRespTextEdit(self):
+        pass
         
 def ShowWindow():
     app = QApplication(sys.argv)
