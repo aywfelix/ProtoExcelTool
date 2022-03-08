@@ -40,7 +40,7 @@ class CreateProtoDirUI(QMainWindow):
             QMessageBox.critical(self, "错误", "目录名不能为空且长度不能超过20!!!")
             self.ui.lEtProtoDirName.setText("")
             pass
-        if not re.search(r'\d{1,4}\s+[a-z]+', str):
+        if not re.search(r'\d{1,4}\s+[a-z]+', dirName):
             QMessageBox.critical(self, "错误", "目录名格为1-4数字+空格+字母名!!!")
             self.ui.lEtProtoDirName.setText("")
         pass

@@ -44,7 +44,7 @@ class ProtoMainUI(QMainWindow):
         self.ui = Ui_ProtoWindow()
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
-        self.setWindowIcon(QtGui.QIcon('../../qt_ui/icons/Icon_.ico'))
+        self.setWindowIcon(QtGui.QIcon('../designer/icons/Icon_.ico'))
         self.setFixedSize(self.width(), self.height())
 
         self.ui.tabWidget.setCurrentIndex(0)
@@ -176,7 +176,7 @@ class ProtoMainUI(QMainWindow):
     def createDirItem(self, dirData):
         root=QTreeWidgetItem(TVItemType.ItemDir)
         root.setText(0,dirData.dirName)
-        root.setIcon(0,QIcon('../../qt_ui/icons/folder.ico'))
+        root.setIcon(0,QIcon('../designer/icons/folder.ico'))
         root.setData(0, Qt.UserRole, dirData)
         return root
         
@@ -221,8 +221,8 @@ class ProtoMainUI(QMainWindow):
     def createProto(self, protoId, protoName, protoDesc, protoContent, onlyServer=False):
         # 添加子节点
         item = QTreeWidgetItem(TVItemType.ItemProto)
-        item.setText(0, "【"+protoId+"】 "+protoName)
-        item.setIcon(0, QIcon('../../qt_ui/icons/TextFile.ico'))
+        item.setText(0, protoId+"#"+protoName)
+        item.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         item.setData(0, Qt.UserRole, protoData)
         return item
@@ -248,7 +248,7 @@ class ProtoMainUI(QMainWindow):
     def modifyProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
             return
-        self.currentItem.setText(0, "【"+protoId+"】 "+protoName)
+        self.currentItem.setText(0, protoId+"#"+protoName)
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         self.currentItem.setData(0, Qt.UserRole, protoData)
         newData = self.currentItem.data(0, Qt.UserRole)

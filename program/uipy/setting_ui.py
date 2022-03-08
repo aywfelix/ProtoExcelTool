@@ -50,6 +50,12 @@ class Ui_SettingForm(object):
         self.lEtTablePath.setGeometry(QtCore.QRect(20, 180, 341, 20))
         self.lEtTablePath.setReadOnly(True)
         self.lEtTablePath.setObjectName("lEtTablePath")
+        self.label_4 = QtWidgets.QLabel(self.tab_4)
+        self.label_4.setGeometry(QtCore.QRect(20, 220, 101, 16))
+        self.label_4.setObjectName("label_4")
+        self.tEtIPList = QtWidgets.QTextEdit(self.tab_4)
+        self.tEtIPList.setGeometry(QtCore.QRect(20, 240, 341, 71))
+        self.tEtIPList.setObjectName("tEtIPList")
         self.tabWidget.addTab(self.tab_4, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -80,7 +86,7 @@ class Ui_SettingForm(object):
         self.tabWidget.addTab(self.tab_3, "")
 
         self.retranslateUi(SettingForm)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(SettingForm)
 
     def retranslateUi(self, SettingForm):
@@ -92,6 +98,7 @@ class Ui_SettingForm(object):
         self.bTnProto.setText(_translate("SettingForm", "选择"))
         self.bTnTable.setText(_translate("SettingForm", "选择"))
         self.label_3.setText(_translate("SettingForm", "配置表文件路径："))
+        self.label_4.setText(_translate("SettingForm", "添加服务器地址："))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("SettingForm", "工具配置"))
         self.bTnProtoAddTmpl.setText(_translate("SettingForm", "添加模板"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("SettingForm", "协议配置"))
