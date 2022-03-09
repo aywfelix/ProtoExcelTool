@@ -27,7 +27,7 @@ from tool_define import *
 from proto_xml import *
 from uilogic.tool_setting import *
 from export_pb import *
-from client_socket import *
+from client.client_socket import *
 
 # treeview右键菜单操作
 class TVMenuOpType(object):
