@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+
+// 登录请求
+message loginReq{
+   string name = 1; // 名字
+   string passwd = 2; // 密码
+}
+
+// 登录信息返回
+message loginResp{
+   int32 ret = 1;
+}
+

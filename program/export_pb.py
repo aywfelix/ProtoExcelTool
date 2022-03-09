@@ -15,6 +15,7 @@ import subprocess
 import os
 from tool_define import *
 from setting_xml import *
+from proto_xml import *
 
 @Singleton
 class ExportPb(object):
@@ -24,42 +25,47 @@ class ExportPb(object):
         pass
 
     def exportPb(self):
-        # 根据配置选项导出不同pb
-        tmplsDict = self.settingXml.readTmplsConfig()
-        protoList = tmplsDict[TmplType.PROTO]
-        if not protoList:
-            return
-        protocPath, protoPath, _ = self.settingXml.readToolConfig()
-        if protocPath.endswith("/"):
-            protocPath = protocPath+"protoc.exe"
-        else:
-            protocPath = protocPath+"/protoc.exe"
+        try:
+            # 导出最新proto文件
+            protoXml = ToolProtoXml()
+            protoXml.exportProtoFile()
             
-        for config in protoList:
-            for proto in os.listdir(protoPath):
-                if not proto.endswith(".proto"):
-                    continue
-
-                cmdStr = ""
-                if config.lang == 0: # cpp
-                    cmdStr = protocPath + ' --proto_path=' + \
-                        protoPath + ' --cpp_out='+config.publish + " "+proto
-                    pass
-                if config.lang == 1: # lua
-                    pass
-                if config.lang == 2: # go
-                    pass
-                if config.lang == 3: # csharp
-                    pass
-
-                subprocess.Popen(cmdStr)
-                # 默认导出 python pb，用于网络测试
+            # 根据配置选项导出不同pb
+            tmplsDict = self.settingXml.readTmplsConfig()
+            protoList = tmplsDict[TmplType.PROTO]
+            if not protoList:
+                return
+            protocPath, protoPath, _ = self.settingXml.readToolConfig()
+            if protocPath.endswith("/"):
+                protocPath = protocPath+"protoc.exe"
+            else:
+                protocPath = protocPath+"/protoc.exe"
                 
-                print(cmdStr)
+            for config in protoList:
+                for proto in os.listdir(protoPath):
+                    if not proto.endswith(".proto"):
+                        continue
 
+                    cmdStr = ""
+                    if config.lang == 0: # cpp
+                        cmdStr = protocPath + ' --proto_path=' + \
+                            protoPath + ' --cpp_out='+config.publish + " "+proto
+                        pass
+                    if config.lang == 1: # lua
+                        pass
+                    if config.lang == 2: # go
+                        pass
+                    if config.lang == 3: # csharp
+                        pass
+                    print(cmdStr)
+                    subprocess.Popen(cmdStr)
+                    # 默认导出 python pb，用于网络测试
+                    cmdStr = protocPath + ' --proto_path=' + \
+                        protoPath + ' --python_out=../extra/pb/python' + " "+proto                    
+                    print(cmdStr)
+                    subprocess.Popen(cmdStr)
+        except Exception as e:
+            print("export pb err, ", e)
 
-# if __name__ == '__main__':
-#     print(os.getcwd())
-#     with open("../extra/pb/python/haha", "w") as f:
-#         f.write("xxxxxxxxxxxxxxxxxxx")      
+   
 

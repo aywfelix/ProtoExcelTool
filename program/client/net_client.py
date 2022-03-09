@@ -12,9 +12,9 @@
 
 # here put the import lib
 import selectors
-from session import *
+from client.session import *
 
-class Client(object):
+class NetClient(object):
     def __init__(self, parent=None):
         self.reactor = selectors.DefaultSelector()
         self.session = Session()
@@ -26,6 +26,13 @@ class Client(object):
         self.reactor.register(
             self.session.sock, selectors.EVENT_READ, self.session.readData)
     
-    
+    def jsonToPb(self, msg):
+    # json_obj='{"a1":1,"a2":2}'
+    # # json to pb
+    # request = json_format.Parse(json_obj,test_pb2.test())
+    # #pb to json  
+    # json_result = json_format.MessageToJson(request)
+        pass
+
     
 

@@ -27,7 +27,7 @@ from tool_define import *
 from proto_xml import *
 from uilogic.tool_setting import *
 from export_pb import *
-from client.client_socket import *
+from client.net_client import *
 
 # treeview右键菜单操作
 class TVMenuOpType(object):
@@ -87,7 +87,7 @@ class ProtoMainUI(QMainWindow):
         self.currentItem = None
 
         # 客户端测试协议
-        self.client = ClientSocket()
+        self.client = NetClient()
         # 初始化ToolProtoXml对象(TODO: 优化)
         self.protoXml = ToolProtoXml()
         self.protoXml.setProtoConfig("./config/protocols.config")
@@ -184,7 +184,7 @@ class ProtoMainUI(QMainWindow):
         topItemCount = self.ui.tRvProtocol.topLevelItemCount()
         for i in range(0, topItemCount):
             topItem = self.ui.tRvProtocol.topLevelItem(i)
-            if topItem.text() == dirName:
+            if topItem.text(0) == dirName:
                 return False
 
         return True
@@ -252,6 +252,13 @@ class ProtoMainUI(QMainWindow):
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         self.currentItem.setData(0, Qt.UserRole, protoData)
         newData = self.currentItem.data(0, Qt.UserRole)
+        # 更新界面显示
+        self.ui.lEtProtoId.setText(protoId)
+        self.ui.lEtProtoName.setText(protoName)
+        self.ui.tEtProtoDesc.setText(protoDesc)
+        self.ui.tEtProtoContent.setText(protoContent)
+        # 保存更新信息
+        self.saveToXml()
         print(newData)
 
     def setTVMenuUnEnabled(self):
