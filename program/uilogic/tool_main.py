@@ -28,15 +28,9 @@ from proto_xml import *
 from uilogic.tool_setting import *
 from export_pb import *
 from client.net_client import *
+from uilogic.create_enum import *
+from uilogic.modify_enum import *
 
-# treeview右键菜单操作
-class TVMenuOpType(object):
-    DirCreate = 1
-    DirModify = 2
-    DirDelete = 3
-    ProtoCreate = 4
-    ProtoModify = 5
-    ProtoDelete = 6
 
 class ProtoMainUI(QMainWindow):
     def __init__(self, parent=None):
@@ -54,14 +48,14 @@ class ProtoMainUI(QMainWindow):
         self.ui.tRvProtocol.clicked.connect(self.treeViewClicked)
         # 右键treeView显示菜单
         self.ui.tRvProtocol.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.ui.tRvProtocol.customContextMenuRequested.connect(self.showTreeViewMenu)
-        self.contextMenu = QMenu(self.ui.tRvProtocol)
-        self.actionA = self.contextMenu.addAction(u'创建协议')
-        self.actionB = self.contextMenu.addAction(u'修改协议')
-        self.actionC = self.contextMenu.addAction(u'删除协议')
-        self.actionD = self.contextMenu.addAction(u'创建目录')
-        self.actionE = self.contextMenu.addAction(u'修改目录')
-        self.actionF = self.contextMenu.addAction(u'删除目录')
+        self.ui.tRvProtocol.customContextMenuRequested.connect(self.showProtoMenu)
+        self.protoMenu = QMenu(self.ui.tRvProtocol)
+        self.actionA = self.protoMenu.addAction(u'创建协议')
+        self.actionB = self.protoMenu.addAction(u'修改协议')
+        self.actionC = self.protoMenu.addAction(u'删除协议')
+        self.actionD = self.protoMenu.addAction(u'创建目录')
+        self.actionE = self.protoMenu.addAction(u'修改目录')
+        self.actionF = self.protoMenu.addAction(u'删除目录')
         self.actionA.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoCreate))
         self.actionB.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoModify))
         self.actionC.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoDelete))
@@ -90,6 +84,16 @@ class ProtoMainUI(QMainWindow):
         self.ui.tBvEnum.horizontalHeader().resizeSection(1, 173)
         self.ui.tBvEnum.horizontalHeader().resizeSection(2, 175)
         self.ui.tBvEnum.setShowGrid(True)
+        # 枚举右键菜单
+        self.ui.tRvEnum.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.tRvEnum.customContextMenuRequested.connect(self.showEnumMenu)        
+        self.enumMenu = QMenu(self.ui.tRvEnum)
+        self.actionAA = self.enumMenu.addAction(u'创建枚举')
+        self.actionBB = self.enumMenu.addAction(u'修改枚举')
+        self.actionCC = self.enumMenu.addAction(u'删除枚举')
+        self.actionAA.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumCreate))
+        self.actionBB.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumModify))
+        self.actionCC.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumDelete))
 
         # 当前选中item
         self.currentItem = None
@@ -127,10 +131,13 @@ class ProtoMainUI(QMainWindow):
         pass
         
 
-    def showTreeViewMenu(self, pos):
+    def showProtoMenu(self, pos):
             self.actionD.setEnabled(True)
-            self.contextMenu.exec_(QCursor.pos())
-    
+            self.protoMenu.exec_(QCursor.pos())
+
+    def showEnumMenu(self, pos):
+            self.enumMenu.exec_(QCursor.pos())
+
     def treeViewActionHandler(self, op):
         if op == TVMenuOpType.ProtoCreate:
             self.createProtoUI = CreateProtoUI()
@@ -178,6 +185,17 @@ class ProtoMainUI(QMainWindow):
                 self.ui.tRvProtocol.takeTopLevelItem(index)
                 self.currentItem = None
                 self.saveToXml()
+            pass
+
+        if op == TVMenuOpType.EnumCreate:
+            self.createEnumUI = CreateEnumUI()
+            self.createEnumUI.show()   
+            pass
+        if op == TVMenuOpType.EnumModify:
+            self.modifyEnumUI = ModifyEnumUI()
+            self.modifyEnumUI.show() 
+            pass
+        if op == TVMenuOpType.EnumDelete:
             pass
         pass
 

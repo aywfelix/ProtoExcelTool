@@ -31,8 +31,8 @@ def ConvertUI():
     os.system("pyuic5 -o ./uipy/setting_ui.py ../designer/ui/setting.ui")
     os.system("pyuic5 -o ./uipy/create_dir_ui.py ../designer/ui/create_dir.ui")
     os.system("pyuic5 -o ./uipy/modify_dir_ui.py ../designer/ui/modify_dir.ui")
-    
-
+    os.system("pyuic5 -o ./uipy/create_enum_ui.py ../designer/ui/create_enum.ui")
+    os.system("pyuic5 -o ./uipy/modify_enum_ui.py ../designer/ui/modify_enum.ui")
     # os.system("pyrcc5 -o res_rc.py icons/res.qrc")
 
     print("transport ui to py ok...")

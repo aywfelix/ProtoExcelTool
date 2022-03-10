@@ -12,6 +12,18 @@
 
 # here put the import lib
 
+# treeview右键菜单操作
+class TVMenuOpType(object):
+    DirCreate = 1
+    DirModify = 2
+    DirDelete = 3
+    ProtoCreate = 4
+    ProtoModify = 5
+    ProtoDelete = 6
+    EnumCreate = 7
+    EnumModify = 8
+    EnumDelete = 9
+
 class TVItemType:
     ItemDir = 1
     ItemProto = 2
