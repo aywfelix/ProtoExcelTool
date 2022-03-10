@@ -82,7 +82,15 @@ class ProtoMainUI(QMainWindow):
         self.ui.bTnDisconn.clicked.connect(self.disConnect)
         self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
         self.ui.bTnClearResp.clicked.connect(self.clearRespTextEdit)
-        
+        # 枚举tableWidget设置
+        self.ui.tBvEnum.setColumnCount(3)
+        self.ui.tBvEnum.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)    
+        self.ui.tBvEnum.horizontalHeader().setSectionsClickable(False)
+        self.ui.tBvEnum.horizontalHeader().resizeSection(0, 80)
+        self.ui.tBvEnum.horizontalHeader().resizeSection(1, 173)
+        self.ui.tBvEnum.horizontalHeader().resizeSection(2, 175)
+        self.ui.tBvEnum.setShowGrid(True)
+
         # 当前选中item
         self.currentItem = None
 

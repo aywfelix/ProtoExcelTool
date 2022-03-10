@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -361,7 +361,7 @@
         <string>仅导出服务器</string>
        </property>
       </widget>
-      <widget class="QTableView" name="tBvEnum">
+      <widget class="QTableWidget" name="tBvEnum">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -370,6 +370,42 @@
          <height>491</height>
         </rect>
        </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustIgnored</enum>
+       </property>
+       <property name="columnCount">
+        <number>3</number>
+       </property>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>35</number>
+       </attribute>
+       <attribute name="verticalHeaderMinimumSectionSize">
+        <number>30</number>
+       </attribute>
+       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderStretchLastSection">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>索引</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>名称</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>说明</string>
+        </property>
+       </column>
       </widget>
      </widget>
     </widget>

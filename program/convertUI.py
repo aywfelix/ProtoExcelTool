@@ -19,7 +19,7 @@ def ConvertUI():
     print(os.path.abspath(sys.argv[0]))
     path = os.path.split(os.path.abspath(sys.argv[0]))[0]
     os.system("cd "+path)
-    print("----------------")
+    print("-------------------------------------------------------")
     print(os.getcwd())
 
     os.system("pyuic5 -o ./uipy/add_tmpl_ui.py ../designer/ui/add_tmpl.ui")
@@ -36,7 +36,7 @@ def ConvertUI():
     # os.system("pyrcc5 -o res_rc.py icons/res.qrc")
 
     print("transport ui to py ok...")
-
+    print("-------------------------------------------------------")
 
 if __name__ == "__main__":
     ConvertUI()
