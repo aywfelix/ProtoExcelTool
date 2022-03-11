@@ -109,3 +109,17 @@ class TmplLang:
             return 2
         if lang == self.csharp:
             return 3
+
+class EnumField:
+    def __init__(self, index, name, desc):
+        self.index = index
+        self.name = name
+        self.desc = desc
+        pass
+
+class EnumItemData:
+    def __init__(self, name, desc):
+        self.name = name
+        self.desc = desc
+        self.fields = []
+        pass

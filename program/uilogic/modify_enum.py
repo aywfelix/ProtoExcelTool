@@ -27,6 +27,7 @@ class ModifyEnumUI(QMainWindow):
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
 
+        self.parent = parent
         # 添加关联事件
 
         pass

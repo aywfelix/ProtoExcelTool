@@ -190,11 +190,11 @@ class ProtoMainUI(QMainWindow):
             pass
 
         if op == TVMenuOpType.EnumCreate:
-            self.createEnumUI = CreateEnumUI()
+            self.createEnumUI = CreateEnumUI(self)
             self.createEnumUI.show()   
             pass
         if op == TVMenuOpType.EnumModify:
-            self.modifyEnumUI = ModifyEnumUI()
+            self.modifyEnumUI = ModifyEnumUI(self)
             self.modifyEnumUI.show() 
             pass
         if op == TVMenuOpType.EnumDelete:
