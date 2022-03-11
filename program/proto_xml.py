@@ -12,8 +12,10 @@
 
 # here put the import lib
 import codecs
-
+from xml.dom import Node
 import xml.dom.minidom as xmlDom
+
+from sympy import N
 from tool_define import *
 from setting_xml import *
 #############################################################################
@@ -23,56 +25,100 @@ proto_header = 'syntax = "proto3";'
 @Singleton
 class ToolProtoXml(object):
     def __init__(self):
-        self.protocols = []
         # self.modules = {['dirname']=data, ...}
         # self.protocols = {['dirname']={['protoId']=data, ...}, ...}
+        self.xmlProtoPath = "./config/protocols.config"
+        self.modules = {}
+        self.protocols = {}
         pass
     
     def getProtocols(self):
         return self.protocols
 
-    def setProtoConfig(self, protoConfig):
-        self.xmlProtoPath = protoConfig
+    def getModules(self):
+        return self.modules
+    
+    def getDirData(self, dirName):
+        if not self.modules:
+            return None
+        if dirName not in self.modules.keys():
+            return None
+        return self.modules[dirName]
 
-    def writeProtocolXml(self, protocols): #protocols=[{["module"]=data, ["protocol"]=[protoData,]},...]
-        self.protocols = protocols
+    def getProtoData(self, dirName, protoId):
+        if dirName not in self.protocols.keys():
+            return None
+        if protoId not in self.protocols[dirName].keys():
+            return None
+        return self.protocols[dirName][protoId] 
+
+    def addProtocol(self, dirName, protoData):
+        if dirName not in self.protocols.keys():
+            self.protocols[dirName] = {}
+        
+        self.protocols[dirName][protoData.id] = protoData
+        pass
+
+    def delProtocol(self, dirName, protoId):
+        if dirName not in self.protocols.keys():
+            return
+        self.protocols[dirName].pop(protoId)
+    
+    def addDir(self, dirData):
+        if dirData.dirName in self.modules.keys():
+            return
+        self.modules[dirData.dirName] = dirData
+        self.protocols[dirData.dirName] = {}
+        pass
+
+    def delDir(self, dirName):
+        if dirName not in self.modules.keys():
+            return
+        self.modules.pop(dirName)
+        self.protocols.pop(dirName)
+
+    def writeProtocolXml(self):
         try:
             # 根元素
             domTree = xmlDom.Document()
             # 创建protocols 节点
             protocolsNode = domTree.createElement("protocols")
-            for moduleDict in protocols:
-                dirData = moduleDict["module"]
-                protoDataList = moduleDict["protocol"]
+            domTree.appendChild(protocolsNode)
+            for dirName, dirData in self.modules.items():
+                # 创建module节点
                 moduleNode = domTree.createElement("module")
+                protocolsNode.appendChild(moduleNode)
+                # 设置属性
                 moduleNode.setAttribute("name", dirData.dirName)
                 dirPackage = dirData.package.replace("\r", "&#xD;").replace("\n", "&#xA;")
                 moduleNode.setAttribute("package", dirPackage)
-                protocolsNode.appendChild(moduleNode)
-                for protoData in protoDataList:
+                # 创建module子节点 protocol节点
+                protoDict = self.protocols[dirName]
+                for _, protoData in protoDict.items():
+                    # 创建protocol 节点
                     protocolNode = domTree.createElement("protocol")
+                    moduleNode.appendChild(protocolNode)
+                    # 设置属性
                     protocolNode.setAttribute("id", protoData.id)
                     protocolNode.setAttribute("name", protoData.name)
                     protoDesc = protoData.desc.replace("\r", "&#xD;").replace("\n", "&#xA;")
                     protocolNode.setAttribute("desc", protoDesc)
                     protoContent = protoData.content.replace("\r", "&#xD;").replace("\n", "&#xA;")
                     protocolNode.setAttribute("content", protoContent)
-                    protocolNode.setAttribute("onlyServer", str(protoData.onlyServer)) 
-                    moduleNode.appendChild(protocolNode)                     
+                    protocolNode.setAttribute("onlyServer", str(protoData.onlyServer))                     
                     pass
                 pass
-
-            domTree.appendChild(protocolsNode)
             # 写入protocol配置文件
             with open(self.xmlProtoPath, "w", encoding="gbk") as f:
-                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")
-                
+                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")            
         except Exception as e:
             print(e)
 
+
     def readProtocolXml(self):
         try:
-            self.protocols = []
+            self.modules = {}
+            self.protocols = {}            
             dataResource = ""
             with open(self.xmlProtoPath, "r", encoding="gbk") as f:
                 dataResource = f.read()
@@ -85,18 +131,20 @@ class ToolProtoXml(object):
                 return
             # 根元素
             domTree = dom.documentElement
+
             moduleNodes = domTree.getElementsByTagName("module")
             for moduleNode in moduleNodes:
-                moduleDict = {}
                 dirName = moduleNode.getAttribute("name")
                 package = moduleNode.getAttribute("package")
                 package = package.replace("&#xD;", "\r").replace("&#xA;", "\n")
                 dirData = TVItemDirData(dirName, package)
-                moduleDict["module"] = dirData
-                # 获取protocol data list
-                protoDataList = []
-                protocolNodes = moduleNode.getElementsByTagName("protocol")
-                for protocolNode in protocolNodes:
+                self.modules[dirName] = dirData
+
+                protocolDict = {}
+                # 获取protocol
+                for protocolNode in moduleNode.childNodes:
+                    if protocolNode.nodeType == Node.TEXT_NODE:
+                        continue
                     id = protocolNode.getAttribute("id")
                     name = protocolNode.getAttribute("name")
                     desc = protocolNode.getAttribute("desc")
@@ -105,31 +153,27 @@ class ToolProtoXml(object):
                     content = content.replace("&#xD;", "\r").replace("&#xA;", "\n")              
                     onlyServer = protocolNode.getAttribute("onlyServer")
                     protoData = TVItemProtoData(id, name, desc, content, bool(onlyServer))
-                    protoDataList.append(protoData)
-
-                moduleDict["protocol"] = protoDataList
-                self.protocols.append(moduleDict)
+                    protocolDict[id] = protoData
+                    pass
+                self.protocols[dirName] = protocolDict
                 
-            return self.protocols
         except Exception as e:
             print(e)
-
         
 
     def exportProtoFile(self):
-        # 根据配置文件生成proto file 文件
         try:
-            if not self.protocols:
-                self.protocols = self.readProtocolXml()
-                return
+            if not self.modules:
+                self.readProtocolXml()
+                
             # 根据xml信息生产proto文件
             protoMsgs = proto_header+"\n"
-            for module in self.protocols:
-                dirData = module["module"]
-                protoDataList = module["protocol"]
+
+            for dirName, dirData in self.modules.items():
                 # 添加引用
                 protoMsgs += dirData.package +"\n\n"
-                for protoData in protoDataList:
+                protocolDict = self.protocols[dirName]
+                for _, protoData in protocolDict.items():
                     # 注释
                     protoDesc = ""
                     descList = protoData.desc.split("\n")
@@ -157,7 +201,7 @@ class ToolProtoXml(object):
                 with codecs.open(protoFilePath, "w", 'utf-8') as f:
                     f.write(protoMsgs)
                     f.flush()
-            pass            
+                    pass                
+                pass
         except Exception as e:
             print(e)
-

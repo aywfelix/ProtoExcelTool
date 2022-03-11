@@ -15,10 +15,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from uipy.create_proto_ui import *
+from proto_xml import *
 
 class CreateProtoUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str, str, str, bool)
+    dialogSignal = pyqtSignal(TVItemProtoData)
 
     def __init__(self, parent=None):
         super(CreateProtoUI, self).__init__()
@@ -26,6 +27,8 @@ class CreateProtoUI(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
+        self.parent = parent
+        self.protoXml = ToolProtoXml()
 
         self.ui.bTnProtoCreate.clicked.connect(self.createProto)
         self.ui.rBtnReq.setChecked(True)
@@ -35,19 +38,33 @@ class CreateProtoUI(QMainWindow):
         pass
 
     def createProto(self):
-        protoId = self.ui.lEtProtoId.text()
-        protoName = self.ui.lEtProtoName.text()
+        protoId = self.ui.lEtProtoId.text().strip()
+        protoName = self.ui.lEtProtoName.text().strip()
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
+        onlyServer = self.ui.cBxProtocol.isChecked()
 
-        self.dialogSignal.emit(protoId, protoName, protoDesc, protoContent, False)
+        protocols = self.protoXml.protocols
+        for _, protocolDict in protocols.items():
+            for _, protoData in protocolDict.items():
+                if protoData.id == protoId:
+                    QMessageBox.warning(self, "警告", "此协议编号已经存在")
+                    return
+                if protoData.name == protoName:
+                    QMessageBox.warning(self, "警告", "此协议名称已经存在")
+                    return
+            pass        
+
+        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
+
+        self.dialogSignal.emit(protoData)
         self.close()
 
     def checkProtoId(self):
-        protoId = self.ui.lEtProtoId.text()
+        protoId = self.ui.lEtProtoId.text().strip()
         if not protoId.isdigit():
             # 弹出警告
-            QMessageBox.critical(self, "错误", "协议编号默认为整数数字!!!")
+            QMessageBox.critical(self, "错误", "协议编号默认为整数数字")
             pass
         pass
 
@@ -61,7 +78,7 @@ class CreateProtoUI(QMainWindow):
         pass
 
     def changeRadioButton(self):
-        protoName = self.ui.lEtProtoName.text()
+        protoName = self.ui.lEtProtoName.text().strip()
         if self.ui.rBtnReq.isChecked():
             protoName = protoName[0:-6]
             protoName += "Req"

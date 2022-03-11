@@ -11,7 +11,6 @@
 '''
 
 # here put the import lib
-from email.charset import QP
 import os
 import sys
 import multiprocessing
@@ -102,32 +101,30 @@ class ProtoMainUI(QMainWindow):
         self.client = NetClient()
         # 初始化ToolProtoXml对象(TODO: 优化)
         self.protoXml = ToolProtoXml()
-        self.protoXml.setProtoConfig("./config/protocols.config")
 
         # 初始化settingXml 对象
         self.exportPb = ExportPb()
-        # TODO:缓存协议编号
+
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
     
     def loadProtocols(self):
-        protocols = self.protoXml.readProtocolXml()
-        if protocols is None or not protocols:
+        self.protoXml.readProtocolXml()
+        modules = self.protoXml.getModules()
+        protocols = self.protoXml.getProtocols()
+        if not modules:
             print("warn:load protocol xml file, protocol==None")
             return
 
         self.ui.tRvProtocol.clear()
         # 根据配置信息创建item 节点
-        for module in protocols:
-            dirData = module["module"]
-            protoDataList = module["protocol"]
+        for dirName, dirData in modules.items():
             dirItem = self.createDirItem(dirData)
-
-            self.ui.tRvProtocol.addTopLevelItem(dirItem)
-            for protoData in protoDataList:
-                protoNode = self.createProto(protoData.id, protoData.name, protoData.desc, protoData.content, protoData.onlyServer)
+            for _, protoData in protocols[dirName].items():
+                protoNode = self.createProto(protoData)
                 dirItem.addChild(protoNode)
+
         pass
         
 
@@ -140,7 +137,7 @@ class ProtoMainUI(QMainWindow):
 
     def treeViewActionHandler(self, op):
         if op == TVMenuOpType.ProtoCreate:
-            self.createProtoUI = CreateProtoUI()
+            self.createProtoUI = CreateProtoUI(self)
             self.createProtoUI.show()
             self.createProtoUI.dialogSignal.connect(self.createProto_emit)
             pass
@@ -156,18 +153,21 @@ class ProtoMainUI(QMainWindow):
             msgBox.exec_()
             if msgBox.clickedButton() == yes:
                 parent = self.currentItem.parent()
+                protoData = self.currentItem.data(0, Qt.UserRole)
                 parent.removeChild(self.currentItem)
                 self.currentItem = None
+                self.protoXml.delProtocol(parent.text(0), protoData.id)
+                self.saveProtoXml()
             pass
         if op == TVMenuOpType.DirCreate:
-            self.createDirUI = CreateProtoDirUI()
+            self.createDirUI = CreateProtoDirUI(self)
             self.createDirUI.show()
             self.createDirUI.dialogSignal.connect(self.createDir_emit)
             pass
         if op == TVMenuOpType.DirModify:
             if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
                 return
-            self.modifyDirUI = ModifyProtoDirUI()
+            self.modifyDirUI = ModifyProtoDirUI(self)
             dirData = self.currentItem.data(0, Qt.UserRole)
             self.modifyDirUI.fillDirData(dirData)
             self.modifyDirUI.show()
@@ -183,8 +183,10 @@ class ProtoMainUI(QMainWindow):
             if msgBox.clickedButton() == yes:
                 index = self.ui.tRvProtocol.indexOfTopLevelItem(self.currentItem)
                 self.ui.tRvProtocol.takeTopLevelItem(index)
+                dirName = self.currentItem.text(0)
                 self.currentItem = None
-                self.saveToXml()
+                self.protoXml.delDir(dirName)
+                self.saveProtoXml()
             pass
 
         if op == TVMenuOpType.EnumCreate:
@@ -201,91 +203,81 @@ class ProtoMainUI(QMainWindow):
 
     def createDirItem(self, dirData):
         root=QTreeWidgetItem(TVItemType.ItemDir)
-        root.setText(0,dirData.dirName)
-        root.setIcon(0,QIcon('../designer/icons/folder.ico'))
+        root.setText(0, dirData.dirName)
+        root.setIcon(0, QIcon('../designer/icons/folder.ico'))
         root.setData(0, Qt.UserRole, dirData)
-        return root
-        
-    def checkCreateDir(self, dirName):
-        topItemCount = self.ui.tRvProtocol.topLevelItemCount()
-        for i in range(0, topItemCount):
-            topItem = self.ui.tRvProtocol.topLevelItem(i)
-            if topItem.text(0) == dirName:
-                return False
 
-        return True
-
-    def createDir_emit(self, dirName, package):
-        if not self.checkCreateDir(dirName):
-            return
-
-        dirData = TVItemDirData(dirName, package)
-        root = self.createDirItem(dirData)
         self.ui.tRvProtocol.addTopLevelItem(root)
+        return root
 
-    def modifyDir_emit(self, dirName, package):
-        self.currentItem.setText(0, dirName)
-        dirData = TVItemDirData(dirName, package)
+    def createDir_emit(self, dirData):
+        if not dirData:
+            return
+        self.createDirItem(dirData)
+        self.protoXml.addDir(dirData)
+        self.saveToXml()
+
+    def modifyDir_emit(self, dirData):
+        self.currentItem.setText(0, dirData.dirName)
         self.currentItem.setData(0, Qt.UserRole, dirData)
+        self.saveToXml()
         pass
 
-    # TODO:临时解决方案
-    def checkCreateProto(self, protoId, protoName):
-        topItemCount = self.ui.tRvProtocol.topLevelItemCount()
-        for i in range(0, topItemCount):
-            topItem = self.ui.tRvProtocol.topLevelItem(i)
-            # 遍历topItem 下所有子节点
-            childItemCount = topItem.childCount()
-            for j in range(0, childItemCount):
-                childItem = topItem.child(j)
-                protoData = childItem.data(0, Qt.UserRole)
-                if protoData.id == protoId or protoName == protoData.name:
-                    return False
 
-        return True
-
-    def createProto(self, protoId, protoName, protoDesc, protoContent, onlyServer=False):
-        # 添加子节点
+    def createProto(self, protoData, dirName = None):
         item = QTreeWidgetItem(TVItemType.ItemProto)
-        item.setText(0, protoId+"#"+protoName)
+        item.setText(0, protoData.id+"#"+protoData.name)
         item.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
-        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
         item.setData(0, Qt.UserRole, protoData)
-        return item
+        return item    
+        pass
 
-    def createProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
+    def createProto_emit(self, protoData):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
             return
-        # 检测协议编号是否已经存在，如果存在弹出警告
-        if not self.checkCreateProto(protoId, protoName):
-            QMessageBox.critical(self, "错误", "协议编号已经被使用!!!")
-            return
-
-        item = self.createProto(protoId, protoName, protoDesc, protoContent, onlyServer)
+        dirName = self.currentItem.text(0)
+        item = self.createProto(protoData, dirName)
         self.currentItem.addChild(item)
+
+        self.protoXml.addProtocol(self.currentItem.text(0), protoData)
         # 如果是创建请求类型协议，则自动生成返回协议
+        protoName = protoData.name
+        protoId = protoData.id
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
-            protoName = protoName[0:-3]+"Resp"
-            item = self.createProto(protoId, protoName, "", "", False)
+            protoName = protoName[0:-3]+"Ack"
+            protoData = TVItemProtoData(protoId, protoName, "", "", protoData.onlyServer)
+            item = self.createProto(protoData, dirName)
             self.currentItem.addChild(item)
-            pass
 
-    def modifyProto_emit(self, protoId, protoName, protoDesc, protoContent, onlyServer):
+            self.protoXml.addProtocol(self.currentItem.text(0), protoData)
+            pass
+        if protoData.onlyServer:
+            self.ui.cBxProtocol.setChecked(True)
+        else:
+            self.ui.cBxProtocol.setChecked(False)
+        # 保存更新信息
+        self.saveProtoXml()           
+
+    def modifyProto_emit(self, protoData):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
             return
-        self.currentItem.setText(0, protoId+"#"+protoName)
-        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
+        self.currentItem.setText(0, protoData.id+"#"+protoData.name)
         self.currentItem.setData(0, Qt.UserRole, protoData)
-        newData = self.currentItem.data(0, Qt.UserRole)
         # 更新界面显示
-        self.ui.lEtProtoId.setText(protoId)
-        self.ui.lEtProtoName.setText(protoName)
-        self.ui.tEtProtoDesc.setText(protoDesc)
-        self.ui.tEtProtoContent.setText(protoContent)
+        self.ui.lEtProtoId.setText(protoData.id)
+        self.ui.lEtProtoName.setText(protoData.name)
+        self.ui.tEtProtoDesc.setText(protoData.desc)
+        self.ui.tEtProtoContent.setText(protoData.content)
+        if protoData.onlyServer:
+            self.ui.cBxProtocol.setChecked(True)
+        else:
+            self.ui.cBxProtocol.setChecked(False)
+        parent = self.currentItem.parent()
+
+        self.protoXml.addProtocol(parent.text(0), protoData)
         # 保存更新信息
-        self.saveToXml()
-        print(newData)
+        self.saveProtoXml()
 
     def setTVMenuUnEnabled(self):
         self.actionA.setEnabled(False)
@@ -324,36 +316,20 @@ class ProtoMainUI(QMainWindow):
             self.ui.cBxProtocol.setChecked(bool(protoData))
         pass  
 
+    def saveProtoXml(self):
+        self.protoXml.writeProtocolXml()
+
     def saveToXml(self):
-        # 保存proto信息
-        # 获取treeview 所有节点data
-        protocols = []
-        topItemCount = self.ui.tRvProtocol.topLevelItemCount()
-        for i in range(0, topItemCount):
-            moduleDict = {}
-            topItem = self.ui.tRvProtocol.topLevelItem(i)
-            dirData = topItem.data(0, Qt.UserRole)
-            moduleDict["module"] = dirData
-            protocolList = []
-            # 遍历topItem 下所有子节点
-            childItemCount = topItem.childCount()
-            for j in range(0, childItemCount):
-                childItem = topItem.child(j)
-                protoData = childItem.data(0, Qt.UserRole)
-                protocolList.append(protoData)
-
-            moduleDict["protocol"] = protocolList
-            protocols.append(moduleDict)
-
-        self.protoXml.writeProtocolXml(protocols)
+        # 保存protocol信息
+        self.saveProtoXml()
         # 保存enum信息
-        # 保存配置信息
+        # 保存配置信息        
         pass
 
     def showModifyProtoWindow(self):
         if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
             return          
-        self.modifyProtoUI = ModifyProtoUI()
+        self.modifyProtoUI = ModifyProtoUI(self)
         protoData = self.currentItem.data(0, Qt.UserRole)
         self.modifyProtoUI.fillProtoData(protoData)
         self.modifyProtoUI.show()

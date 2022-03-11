@@ -15,10 +15,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from uipy.modify_proto_ui import *
+from proto_xml import *
 
 class ModifyProtoUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str, str, str, bool)
+    dialogSignal = pyqtSignal(TVItemProtoData)
 
     def __init__(self, parent=None):
         super(ModifyProtoUI, self).__init__()
@@ -26,18 +27,12 @@ class ModifyProtoUI(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
+        self.parent = parent
+        self.protoXml = ToolProtoXml()
 
         self.ui.bTnProtoModify.clicked.connect(self.modifyProto)
-        self.ui.lEtProtoId.editingFinished.connect(self.checkProtoId)
         pass
 
-    def checkProtoId(self):
-        protoId = self.ui.lEtProtoId.text()
-        if not protoId.isdigit():
-            # 弹出警告
-            QMessageBox.critical(self, "错误", "协议编号默认为整数数字!!!")
-            pass
-        pass
 
     def modifyProto(self):
         protoId = self.ui.lEtProtoId.text()
@@ -46,8 +41,16 @@ class ModifyProtoUI(QMainWindow):
         protoContent = self.ui.tEtProtoContent.toPlainText()
         onlyServer = self.ui.cBxProtocol.isChecked()
 
-        self.dialogSignal.emit(
-            protoId, protoName, protoDesc, protoContent, onlyServer)
+        protocols = self.protoXml.protocols
+        for _, protocolDict in protocols.items():
+            for _, protoData in protocolDict.items():
+                if protoData.name == protoName:
+                    QMessageBox.warning(self, "警告", "此协议名称已经存在")
+                    return
+            pass
+
+        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
+        self.dialogSignal.emit(protoData)
         self.close()
 
     def fillProtoData(self, data):

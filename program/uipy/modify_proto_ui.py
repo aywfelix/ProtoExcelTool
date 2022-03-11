@@ -23,6 +23,7 @@ class Ui_ModifyProtoForm(object):
         self.tEtProtoContent.setObjectName("tEtProtoContent")
         self.lEtProtoId = QtWidgets.QLineEdit(ModifyProtoForm)
         self.lEtProtoId.setGeometry(QtCore.QRect(80, 10, 411, 20))
+        self.lEtProtoId.setReadOnly(True)
         self.lEtProtoId.setObjectName("lEtProtoId")
         self.label_5 = QtWidgets.QLabel(ModifyProtoForm)
         self.label_5.setGeometry(QtCore.QRect(10, 90, 71, 21))
