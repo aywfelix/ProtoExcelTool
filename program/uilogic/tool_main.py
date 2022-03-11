@@ -94,6 +94,10 @@ class ProtoMainUI(QMainWindow):
         self.actionBB.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumModify))
         self.actionCC.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumDelete))
 
+        # 协议搜索框
+        self.ui.lEtProtoSearch.textChanged.connect(self.showSearchProtoItem)
+        # 枚举搜索框
+        self.ui.lEtEnumSearch.textChanged.connect(self.showSearchEnumItem)
         # 当前选中item
         self.currentItem = None
 
@@ -405,7 +409,66 @@ class ProtoMainUI(QMainWindow):
     def clearRespTextEdit(self):
         self.ui.tEtResp.setText("")
         pass
-        
+    
+    def showSearchProtoItem(self, filter):
+        filter = filter.lower()
+        if filter != "":
+            for i in range(self.ui.tRvProtocol.topLevelItemCount()):
+                topItem = self.ui.tRvProtocol.topLevelItem(i)
+                isHidden = True
+                if topItem.text(0).lower().find(filter) > 0:
+                    topItem.setExpanded(True)
+                    topItem.setHidden(False)
+                    isHidden = False
+                for j in range(topItem.childCount()):
+                    childItem = topItem.child(j)
+                    if childItem.text(0).lower().find(filter) > 0:
+                        childItem.setHidden(False)
+                        isHidden = False
+                    else:
+                        childItem.setHidden(True)
+                if isHidden:
+                    topItem.setHidden(isHidden)
+            pass            
+        else:
+            for i in range(self.ui.tRvProtocol.topLevelItemCount()):
+                topItem = self.ui.tRvProtocol.topLevelItem(i)
+                topItem.setHidden(False)
+                for j in range(topItem.childCount()):
+                    childItem = topItem.child(j)
+                    childItem.setHidden(False)
+            pass
+        pass
+
+    def showSearchEnumItem(self, filter):
+        filter = filter.lower()
+        if filter != "":
+            iter = QTreeWidgetItemIterator(self.ui.tRvProtocol)
+            while iter.value():
+                item = iter.value()
+                if item.text(0).lower().find(filter) > 0:
+                    item.setExpanded(True)
+                    item.setHidden(False)
+                    if item.parent():
+                        item.parent().setHidden(False)
+                        item.parent().setExpanded(True)
+                        item = item.parent()
+                        pass
+                    pass
+                else:
+                    item.setHidden(True)
+                iter.__iadd__(1)
+                pass
+            pass
+        else:
+            iter = QTreeWidgetItemIterator(self.ui.tRvProtocol)
+            while iter.value():
+                item = iter.value()
+                item.setHidden(False)
+                item.setExpanded(False)
+                iter.__iadd__(1)
+            pass
+
 def ShowWindow():
     app = QApplication(sys.argv)
     mainWindow = ProtoMainUI()
