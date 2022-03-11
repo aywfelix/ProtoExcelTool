@@ -24,6 +24,8 @@ proto_header = 'syntax = "proto3";'
 class ToolProtoXml(object):
     def __init__(self):
         self.protocols = []
+        # self.modules = {['dirname']=data, ...}
+        # self.protocols = {['dirname']={['protoId']=data, ...}, ...}
         pass
     
     def getProtocols(self):
