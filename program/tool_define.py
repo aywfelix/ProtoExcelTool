@@ -123,3 +123,10 @@ class EnumItemData:
         self.desc = desc
         self.fields = []
         pass
+
+# 转换表类型
+class TransType:
+    CPP = 0
+    LUA = 1
+    GO = 2
+    CSHARP = 3
