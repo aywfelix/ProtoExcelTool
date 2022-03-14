@@ -85,7 +85,7 @@
     <string>枚举字段：</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="bTnEnumUpdate">
+  <widget class="QPushButton" name="bTnEnumCreate">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -95,7 +95,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>修改</string>
+    <string>创建</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tBvEnum">
