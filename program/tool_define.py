@@ -118,10 +118,10 @@ class EnumField:
         pass
 
 class EnumItemData:
-    def __init__(self, name, desc):
+    def __init__(self, name, desc, fields=[]):
         self.name = name
         self.desc = desc
-        self.fields = []
+        self.fields = fields
         pass
 
 # 转换表类型

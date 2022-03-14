@@ -22,7 +22,12 @@ class ToolEnumXml(object):
         self.xmlEnumPath = "./config/enum.config"
         self.enumItemDatas = {}
         pass
-
+    
+    def isExistEnumName(self, name):
+        if name in self.enumItemDatas.keys():
+            return True
+        return False
+    
     def readEnumXml(self):
         pass
 
