@@ -11,6 +11,7 @@
 '''
 
 # here put the import lib
+import enum
 import os
 import sys
 import multiprocessing
@@ -44,10 +45,11 @@ class ProtoMainUI(QMainWindow):
         # treeView 设置
         self.ui.tRvProtocol.setStyle(QStyleFactory.create('windows'))
         self.ui.tRvProtocol.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.ui.tRvProtocol.clicked.connect(self.treeViewClicked)
+        self.ui.tRvProtocol.clicked.connect(self.protoTreeViewClicked)
         # 右键treeView显示菜单
         self.ui.tRvProtocol.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.ui.tRvProtocol.customContextMenuRequested.connect(self.showProtoMenu)
+        self.ui.tRvProtocol.customContextMenuRequested.connect(
+            self.showProtoMenu)
         self.protoMenu = QMenu(self.ui.tRvProtocol)
         self.actionA = self.protoMenu.addAction(u'创建协议')
         self.actionB = self.protoMenu.addAction(u'修改协议')
@@ -55,12 +57,18 @@ class ProtoMainUI(QMainWindow):
         self.actionD = self.protoMenu.addAction(u'创建目录')
         self.actionE = self.protoMenu.addAction(u'修改目录')
         self.actionF = self.protoMenu.addAction(u'删除目录')
-        self.actionA.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoCreate))
-        self.actionB.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoModify))
-        self.actionC.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.ProtoDelete))
-        self.actionD.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.DirCreate))
-        self.actionE.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.DirModify))
-        self.actionF.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.DirDelete))
+        self.actionA.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.ProtoCreate))
+        self.actionB.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.ProtoModify))
+        self.actionC.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.ProtoDelete))
+        self.actionD.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.DirCreate))
+        self.actionE.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.DirModify))
+        self.actionF.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.DirDelete))
         self.setTVMenuUnEnabled()
         # 修改按钮绑定事件
         self.ui.bTnProtoModify.clicked.connect(self.modifyProtoClicked)
@@ -68,16 +76,21 @@ class ProtoMainUI(QMainWindow):
         self.ui.menuSave.triggered.connect(self.menuSaveClicked)
         self.ui.menuExit.triggered.connect(self.menuExitClicked)
         self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
-        self.ui.menuExportServerPb.triggered.connect(self.menuExportServerPbClicked)
+        self.ui.menuExportServerPb.triggered.connect(
+            self.menuExportServerPbClicked)
         self.ui.menuOpenSetting.triggered.connect(self.menuOpenSettingClicked)
         # 协议测试
         self.ui.bTnConn.clicked.connect(self.connServer)
         self.ui.bTnDisconn.clicked.connect(self.disConnect)
         self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
         self.ui.bTnClearResp.clicked.connect(self.clearRespTextEdit)
+        # treeView 设置
+        self.ui.tRvEnum.setStyle(QStyleFactory.create('windows'))
+        self.ui.tRvEnum.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.ui.tRvEnum.clicked.connect(self.enumTreeViewClicked)
         # 枚举tableWidget设置
         self.ui.tBvEnum.setColumnCount(3)
-        self.ui.tBvEnum.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)    
+        self.ui.tBvEnum.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
         self.ui.tBvEnum.horizontalHeader().setSectionsClickable(False)
         self.ui.tBvEnum.horizontalHeader().resizeSection(0, 80)
         self.ui.tBvEnum.horizontalHeader().resizeSection(1, 173)
@@ -85,34 +98,40 @@ class ProtoMainUI(QMainWindow):
         self.ui.tBvEnum.setShowGrid(True)
         # 枚举右键菜单
         self.ui.tRvEnum.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.ui.tRvEnum.customContextMenuRequested.connect(self.showEnumMenu)        
+        self.ui.tRvEnum.customContextMenuRequested.connect(self.showEnumMenu)
         self.enumMenu = QMenu(self.ui.tRvEnum)
         self.actionAA = self.enumMenu.addAction(u'创建枚举')
         self.actionBB = self.enumMenu.addAction(u'修改枚举')
         self.actionCC = self.enumMenu.addAction(u'删除枚举')
-        self.actionAA.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumCreate))
-        self.actionBB.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumModify))
-        self.actionCC.triggered.connect(lambda: self.treeViewActionHandler(TVMenuOpType.EnumDelete))
+        self.actionAA.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.EnumCreate))
+        self.actionBB.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.EnumModify))
+        self.actionCC.triggered.connect(
+            lambda: self.treeViewActionHandler(TVMenuOpType.EnumDelete))
 
         # 协议搜索框
         self.ui.lEtProtoSearch.textChanged.connect(self.showSearchProtoItem)
         # 枚举搜索框
         self.ui.lEtEnumSearch.textChanged.connect(self.showSearchEnumItem)
-        # 当前选中item
-        self.currentItem = None
-
+        # proto当前选中item
+        self.protoCurItem = None
+        # enum当前选中item
+        self.enumCurItem = None        
+        # 发布按钮
+        self.ui.bTnExport.clicked.connect(self.exportAll)
         # 客户端测试协议
         self.client = NetClient()
         # 初始化ToolProtoXml对象(TODO: 优化)
         self.protoXml = ToolProtoXml()
-
+        # 
+        self.enumXml = ToolEnumXml()
         # 初始化settingXml 对象
         self.exportPb = ExportPb()
 
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
 
-    
     def loadProtocols(self):
         self.protoXml.readProtocolXml()
         modules = self.protoXml.getModules()
@@ -130,14 +149,13 @@ class ProtoMainUI(QMainWindow):
                 dirItem.addChild(protoNode)
 
         pass
-        
 
     def showProtoMenu(self, pos):
-            self.actionD.setEnabled(True)
-            self.protoMenu.exec_(QCursor.pos())
+        self.actionD.setEnabled(True)
+        self.protoMenu.exec_(QCursor.pos())
 
     def showEnumMenu(self, pos):
-            self.enumMenu.exec_(QCursor.pos())
+        self.enumMenu.exec_(QCursor.pos())
 
     def treeViewActionHandler(self, op):
         if op == TVMenuOpType.ProtoCreate:
@@ -149,17 +167,17 @@ class ProtoMainUI(QMainWindow):
             self.showModifyProtoWindow()
             pass
         if op == TVMenuOpType.ProtoDelete:
-            if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
-                return 
+            if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemProto:
+                return
             msgBox = QMessageBox(QMessageBox.Warning, u'提示', u'确认删除协议?')
             yes = msgBox.addButton(u'确定', QMessageBox.YesRole)
             no = msgBox.addButton(u'取消', QMessageBox.NoRole)
             msgBox.exec_()
             if msgBox.clickedButton() == yes:
-                parent = self.currentItem.parent()
-                protoData = self.currentItem.data(0, Qt.UserRole)
-                parent.removeChild(self.currentItem)
-                self.currentItem = None
+                parent = self.protoCurItem.parent()
+                protoData = self.protoCurItem.data(0, Qt.UserRole)
+                parent.removeChild(self.protoCurItem)
+                self.protoCurItem = None
                 self.protoXml.delProtocol(parent.text(0), protoData.id)
                 self.saveProtoXml()
             pass
@@ -169,50 +187,53 @@ class ProtoMainUI(QMainWindow):
             self.createDirUI.dialogSignal.connect(self.createDir_emit)
             pass
         if op == TVMenuOpType.DirModify:
-            if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
+            if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemDir:
                 return
             self.modifyDirUI = ModifyProtoDirUI(self)
-            dirData = self.currentItem.data(0, Qt.UserRole)
+            dirData = self.protoCurItem.data(0, Qt.UserRole)
             self.modifyDirUI.fillDirData(dirData)
             self.modifyDirUI.show()
-            self.modifyDirUI.dialogSignal.connect(self.modifyDir_emit)            
+            self.modifyDirUI.dialogSignal.connect(self.modifyDir_emit)
             pass
         if op == TVMenuOpType.DirDelete:
-            if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
+            if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemDir:
                 return
-            msgBox = QMessageBox(QMessageBox.Warning, u'提示', u'确认删除协议目录? (此操作会删除目录下所有协议)')
+            msgBox = QMessageBox(QMessageBox.Warning, u'提示',
+                                 u'确认删除协议目录? (此操作会删除目录下所有协议)')
             yes = msgBox.addButton(u'确定', QMessageBox.YesRole)
             no = msgBox.addButton(u'取消', QMessageBox.NoRole)
             msgBox.exec_()
             if msgBox.clickedButton() == yes:
-                index = self.ui.tRvProtocol.indexOfTopLevelItem(self.currentItem)
+                index = self.ui.tRvProtocol.indexOfTopLevelItem(
+                    self.protoCurItem)
                 self.ui.tRvProtocol.takeTopLevelItem(index)
-                dirName = self.currentItem.text(0)
-                self.currentItem = None
+                dirName = self.protoCurItem.text(0)
+                self.protoCurItem = None
                 self.protoXml.delDir(dirName)
                 self.saveProtoXml()
             pass
 
         if op == TVMenuOpType.EnumCreate:
             self.createEnumUI = CreateEnumUI(self)
-            self.createEnumUI.show()   
+            self.createEnumUI.show()
+            self.createEnumUI.dialogSignal.connect(self.createEnum_emit)
             pass
         if op == TVMenuOpType.EnumModify:
             self.modifyEnumUI = ModifyEnumUI(self)
-            self.modifyEnumUI.show() 
+            self.modifyEnumUI.show()
             pass
         if op == TVMenuOpType.EnumDelete:
             pass
         pass
 
     def createDirItem(self, dirData):
-        root=QTreeWidgetItem(TVItemType.ItemDir)
-        root.setText(0, dirData.dirName)
-        root.setIcon(0, QIcon('../designer/icons/folder.ico'))
-        root.setData(0, Qt.UserRole, dirData)
+        topItem = QTreeWidgetItem(TVItemType.ItemDir)
+        topItem.setText(0, dirData.dirName)
+        topItem.setIcon(0, QIcon('../designer/icons/folder.ico'))
+        topItem.setData(0, Qt.UserRole, dirData)
 
-        self.ui.tRvProtocol.addTopLevelItem(root)
-        return root
+        self.ui.tRvProtocol.addTopLevelItem(topItem)
+        return topItem
 
     def createDir_emit(self, dirData):
         if not dirData:
@@ -222,52 +243,52 @@ class ProtoMainUI(QMainWindow):
         self.saveToXml()
 
     def modifyDir_emit(self, dirData):
-        self.currentItem.setText(0, dirData.dirName)
-        self.currentItem.setData(0, Qt.UserRole, dirData)
+        self.protoCurItem.setText(0, dirData.dirName)
+        self.protoCurItem.setData(0, Qt.UserRole, dirData)
         self.saveToXml()
         pass
 
-
-    def createProto(self, protoData, dirName = None):
+    def createProto(self, protoData, dirName=None):
         item = QTreeWidgetItem(TVItemType.ItemProto)
         item.setText(0, protoData.id+"#"+protoData.name)
         item.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
         item.setData(0, Qt.UserRole, protoData)
-        return item    
+        return item
         pass
 
     def createProto_emit(self, protoData):
-        if self.currentItem == None or self.currentItem.type() != TVItemType.ItemDir:
+        if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemDir:
             return
-        dirName = self.currentItem.text(0)
+        dirName = self.protoCurItem.text(0)
         item = self.createProto(protoData, dirName)
-        self.currentItem.addChild(item)
+        self.protoCurItem.addChild(item)
 
-        self.protoXml.addProtocol(self.currentItem.text(0), protoData)
+        self.protoXml.addProtocol(self.protoCurItem.text(0), protoData)
         # 如果是创建请求类型协议，则自动生成返回协议
         protoName = protoData.name
         protoId = protoData.id
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
             protoName = protoName[0:-3]+"Ack"
-            protoData = TVItemProtoData(protoId, protoName, "", "", protoData.onlyServer)
+            protoData = TVItemProtoData(
+                protoId, protoName, "", "", protoData.onlyServer)
             item = self.createProto(protoData, dirName)
-            self.currentItem.addChild(item)
+            self.protoCurItem.addChild(item)
 
-            self.protoXml.addProtocol(self.currentItem.text(0), protoData)
+            self.protoXml.addProtocol(self.protoCurItem.text(0), protoData)
             pass
         if protoData.onlyServer:
             self.ui.cBxProtocol.setChecked(True)
         else:
             self.ui.cBxProtocol.setChecked(False)
         # 保存更新信息
-        self.saveProtoXml()           
+        self.saveProtoXml()
 
     def modifyProto_emit(self, protoData):
-        if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
+        if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemProto:
             return
-        self.currentItem.setText(0, protoData.id+"#"+protoData.name)
-        self.currentItem.setData(0, Qt.UserRole, protoData)
+        self.protoCurItem.setText(0, protoData.id+"#"+protoData.name)
+        self.protoCurItem.setData(0, Qt.UserRole, protoData)
         # 更新界面显示
         self.ui.lEtProtoId.setText(protoData.id)
         self.ui.lEtProtoName.setText(protoData.name)
@@ -277,7 +298,7 @@ class ProtoMainUI(QMainWindow):
             self.ui.cBxProtocol.setChecked(True)
         else:
             self.ui.cBxProtocol.setChecked(False)
-        parent = self.currentItem.parent()
+        parent = self.protoCurItem.parent()
 
         self.protoXml.addProtocol(parent.text(0), protoData)
         # 保存更新信息
@@ -291,14 +312,14 @@ class ProtoMainUI(QMainWindow):
         self.actionE.setEnabled(False)
         self.actionF.setEnabled(False)
 
-    def treeViewClicked(self):
+    def protoTreeViewClicked(self):
         self.setTVMenuUnEnabled()
-        self.currentItem = self.ui.tRvProtocol.currentItem()
-        if self.currentItem == None:
+        self.protoCurItem = self.ui.tRvProtocol.currentItem()
+        if self.protoCurItem == None:
             self.actionD.setEnabled(True)
             return
 
-        if self.currentItem.type() == TVItemType.ItemDir:
+        if self.protoCurItem.type() == TVItemType.ItemDir:
             # 选中根节点
             self.actionA.setEnabled(True)
 
@@ -306,19 +327,36 @@ class ProtoMainUI(QMainWindow):
             self.actionE.setEnabled(True)
             self.actionF.setEnabled(True)
 
-        if self.currentItem.type() == TVItemType.ItemProto:
+        if self.protoCurItem.type() == TVItemType.ItemProto:
             # 选中子节点
             self.actionB.setEnabled(True)
             self.actionC.setEnabled(True)
 
             # 进行界面赋值
-            protoData = self.currentItem.data(0, Qt.UserRole)
+            protoData = self.protoCurItem.data(0, Qt.UserRole)
             self.ui.lEtProtoId.setText(protoData.id)
             self.ui.lEtProtoName.setText(protoData.name)
             self.ui.tEtProtoDesc.setText(protoData.desc)
             self.ui.tEtProtoContent.setText(protoData.content)
             self.ui.cBxProtocol.setChecked(bool(protoData))
-        pass  
+        pass
+
+    def enumTreeViewClicked(self):
+        self.enumCurItem = self.ui.tRvEnum.currentItem()
+        if self.enumCurItem == None:
+            self.actionAA.setEnabled(True)
+            return
+        # 进行界面赋值
+        enumName = self.enumCurItem.text(0)
+        enumData = self.enumXml.getData(enumName)
+        if not enumData:
+            return
+        
+        self.ui.lEtEnumName.setText(enumData.name)
+        self.ui.lEtEnumDesc.setText(enumData.desc)
+        # TODO: tableWidget 进行赋值展示
+        self.ui.tBvEnum.clear()
+        pass
 
     def saveProtoXml(self):
         self.protoXml.writeProtocolXml()
@@ -327,21 +365,21 @@ class ProtoMainUI(QMainWindow):
         # 保存protocol信息
         self.saveProtoXml()
         # 保存enum信息
-        # 保存配置信息        
+        # 保存配置信息
         pass
 
     def showModifyProtoWindow(self):
-        if self.currentItem == None or self.currentItem.type() != TVItemType.ItemProto:
-            return          
+        if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemProto:
+            return
         self.modifyProtoUI = ModifyProtoUI(self)
-        protoData = self.currentItem.data(0, Qt.UserRole)
+        protoData = self.protoCurItem.data(0, Qt.UserRole)
         self.modifyProtoUI.fillProtoData(protoData)
         self.modifyProtoUI.show()
         self.modifyProtoUI.dialogSignal.connect(self.modifyProto_emit)
 
     # 菜单点击触发功能
     def modifyProtoClicked(self):
-        self.showModifyProtoWindow()  
+        self.showModifyProtoWindow()
         pass
 
     def menuSaveClicked(self):
@@ -360,17 +398,17 @@ class ProtoMainUI(QMainWindow):
     # 导出serverPb
     def menuExportServerPbClicked(self):
         self.exportPb.exportPb()
-        
+
     def menuExportServerProtoClicked(self):
 
         pass
 
     def menuOpenSettingClicked(self):
         self.toolSettingUI = ToolSettingUI()
-        self.toolSettingUI.show()    
+        self.toolSettingUI.show()
         pass
 
-    # 程序界面退出    
+    # 程序界面退出
     def closeEvent(self, event):
         # 程序退出保存信息
         self.saveToXml()
@@ -386,7 +424,7 @@ class ProtoMainUI(QMainWindow):
             return
 
         palette = self.ui.bTnConn.palette()
-        palette.setColor(QtGui.QPalette.ButtonText , QtCore.Qt.green)
+        palette.setColor(QtGui.QPalette.ButtonText, QtCore.Qt.green)
         self.ui.bTnConn.setPalette(palette)
         self.ui.bTnConn.setAutoFillBackground(True)
         pass
@@ -395,9 +433,9 @@ class ProtoMainUI(QMainWindow):
         self.client.disConnect()
 
         palette = self.ui.bTnConn.palette()
-        palette.setColor(QtGui.QPalette.ButtonText , QtCore.Qt.black)
+        palette.setColor(QtGui.QPalette.ButtonText, QtCore.Qt.black)
         self.ui.bTnConn.setPalette(palette)
-        self.ui.bTnConn.setAutoFillBackground(True)        
+        self.ui.bTnConn.setAutoFillBackground(True)
         pass
 
     def sendReqMsg(self):
@@ -409,7 +447,7 @@ class ProtoMainUI(QMainWindow):
     def clearRespTextEdit(self):
         self.ui.tEtResp.setText("")
         pass
-    
+
     def showSearchProtoItem(self, filter):
         filter = filter.lower()
         if filter != "":
@@ -429,7 +467,7 @@ class ProtoMainUI(QMainWindow):
                         childItem.setHidden(True)
                 if isHidden:
                     topItem.setHidden(isHidden)
-            pass            
+            pass
         else:
             for i in range(self.ui.tRvProtocol.topLevelItemCount()):
                 topItem = self.ui.tRvProtocol.topLevelItem(i)
@@ -443,7 +481,7 @@ class ProtoMainUI(QMainWindow):
     def showSearchEnumItem(self, filter):
         filter = filter.lower()
         if filter != "":
-            iter = QTreeWidgetItemIterator(self.ui.tRvProtocol)
+            iter = QTreeWidgetItemIterator(self.ui.tRvEnum)
             while iter.value():
                 item = iter.value()
                 if item.text(0).lower().find(filter) > 0:
@@ -461,13 +499,27 @@ class ProtoMainUI(QMainWindow):
                 pass
             pass
         else:
-            iter = QTreeWidgetItemIterator(self.ui.tRvProtocol)
+            iter = QTreeWidgetItemIterator(self.ui.tRvEnum)
             while iter.value():
                 item = iter.value()
                 item.setHidden(False)
                 item.setExpanded(False)
                 iter.__iadd__(1)
             pass
+
+    def createEnum_emit(self, enumData):
+        # 创建treewidget item
+        topItem = QTreeWidgetItem()
+        topItem.setText(0, enumData.name)
+        topItem.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
+        self.ui.tRvEnum.addTopLevelItem(topItem)
+        pass
+    
+    def exportAll(self):
+        pass
+
+########################################################################################
+
 
 def ShowWindow():
     app = QApplication(sys.argv)

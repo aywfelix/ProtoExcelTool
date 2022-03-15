@@ -20,11 +20,23 @@ from tool_define import *
 class ToolEnumXml(object):
     def __init__(self):
         self.xmlEnumPath = "./config/enum.config"
-        self.enumItemDatas = {}
+        self.enumDatas = {}
+        pass
+    
+    def addData(self, data):
+        if not self.enumDatas:
+            return
+        self.enumDatas[data.name] = data
+        pass
+    
+    def getData(self, name):
+        if name not in self.enumDatas.keys():
+            return None
+        return self.enumDatas[name]
         pass
     
     def isExistEnumName(self, name):
-        if name in self.enumItemDatas.keys():
+        if name in self.enumDatas.keys():
             return True
         return False
     

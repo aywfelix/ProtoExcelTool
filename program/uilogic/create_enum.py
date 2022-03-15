@@ -59,14 +59,17 @@ class CreateEnumUI(QMainWindow):
         enumData = EnumItemData(enumName, enumDesc)
         rows = self.ui.tBvEnum.rowCount()
         for row in range(0, rows):
-            index = self.ui.tBvEnum.item(row, 0).text()
-            name = self.ui.tBvEnum.item(row, 1).text().strip()
-            if not name:
+            index = self.ui.tBvEnum.item(row, 0)
+            name = self.ui.tBvEnum.item(row, 1)
+            desc = self.ui.tBvEnum.item(row, 2)
+            if not index or not name:
                 continue
-            desc = self.ui.tBvEnum.item(row, 2).text().strip()
-            enumField = EnumField(index, name, desc)
+            enumField = EnumField(index.text(), name.text(), desc.text())
             enumData.fields.append(enumField)
+        self.enumXml.addData(enumData)
         self.dialogSignal.emit(enumData)
+
+        self.close()
         pass
 
     # 删除某行记录
