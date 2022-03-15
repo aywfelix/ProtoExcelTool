@@ -138,7 +138,6 @@ class TransTable:
             # trans_csharp = TransCsharp(sheet, csharp_dir)
 
             # 生成cpp 文件及json文件
-            # trans_cpp.transport_json(table_name)
             # trans_cpp.gen_cpp(table_name, data_desc)
             # trans_csharp.gen_csharp(table_name, data_desc)
 

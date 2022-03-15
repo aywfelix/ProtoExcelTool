@@ -128,3 +128,7 @@ kk = "100|200|300"
 print(kk.split("|"))
 
 print(list(map(float, kk.split("|"))))
+try:
+    k = int("100")
+except ValueError as e:
+    print(e)

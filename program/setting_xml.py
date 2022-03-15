@@ -21,7 +21,9 @@ class ToolSettingXml(object):
     def __init__(self):
         self.xmlSettingPath = "./config/setting.config"
  
-        self.initSettingConfig()      
+        self.initSettingConfig()   
+        # 保存数据的数据结构
+        # 将数据结构写入文件   
         pass
 
     def initSettingConfig(self):
@@ -123,7 +125,7 @@ class ToolSettingXml(object):
             dataResource = ""
             with open(self.xmlSettingPath, "r", encoding="gbk") as f:
                 dataResource = f.read()
-                f.close()
+
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)
             if domTree == None:
@@ -186,8 +188,8 @@ class ToolSettingXml(object):
     def readToolConfig(self):
         try:
             dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="gbk") as f:
-                dataResource = f.read()
+            with codecs.open(self.xmlSettingPath, "r", "gbk") as f:
+                dataResource = f.read()         
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)
             if domTree == None:
@@ -241,6 +243,3 @@ class ToolSettingXml(object):
     def toPrettyXml(self, data):
         return '\n'.join([line for line in xmlDom.parseString(
     data).toprettyxml(indent=' '*2).split('\n') if line.strip()])
-
-    
-

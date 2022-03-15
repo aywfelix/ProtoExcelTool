@@ -64,63 +64,7 @@ class TransCpp:
                     "fields": x_tuple[1], "asType": data_type_trans[x_tuple[0]]}
         return json_logic
 
-    def fix_row_dict(self, row_values):
-        row_dict = {}
-        for i in range(len(self.data_row_type)):  # i 代表列
-            if row_values[i] is None:
-                row_values[i] = ""
-            data_type = self.data_row_type[i]
-            field_type = data_type[0]
-            field_id = data_type[1]
 
-            if "int" == field_type:
-                row_dict[field_id] = int(row_values[i])
-            if "float" == field_type:
-                row_dict[field_id] = float(row_values[i])
-            if "double" == field_type:
-                row_dict[field_id] = float(row_values[i])
-            if "std::string" == field_type:
-                row_dict[field_id] = str(row_values[i])
-            if "vector" in field_type and row_values[i] == "":
-                row_dict[field_id] = []
-                continue
-            if "vector" in field_type and row_values[i] != "":
-                if isinstance(row_values[i], float):
-                    row_dict[field_id] = [int(row_values[i])]
-                    continue
-            if "std::vector<int>" == field_type:
-                row_dict[field_id] = list(
-                    map(int, row_values[i].split('|')))
-            if "std::vector<double>" == field_type:
-                row_dict[field_id] = list(
-                    map(float, row_values[i].split('|')))
-            if "std::vector<float>" == field_type:
-                row_dict[field_id] = list(
-                    map(float, row_values[i].split('|')))
-            if "std::vector<std::string>" == field_type:
-                row_dict[field_id] = list(
-                    map(str, row_values[i].split('|')))
-        # print("=============", row_dict)
-        return row_dict
-
-
-    def transport_json(self, table_name):
-        rows = 5
-        rowe = self.sheet.nrows
-        if rowe <= rows:
-            return
-        all_rows = {}
-        while rows < rowe:
-            row_dict = self.fix_row_dict(self.sheet.row_values(rows))
-            all_rows[row_dict["id"]] = row_dict
-            rows = rows+1
-
-        # 写入json
-        json_file = os.path.join(self.json_dir, table_name+'.json')
-        with open(json_file, 'w+') as f:
-            jsonStr = json.dumps(
-                all_rows, indent=4, sort_keys=False, ensure_ascii=False)
-            f.write(jsonStr + '\n')
 
     def gen_cpp(self, table_name, data_desc):
         row_fields = self.gen_row_fields(data_desc)

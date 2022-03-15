@@ -7,7 +7,7 @@
 @Version :   1.0
 @Contact :   laijia2008@126.com
 @License :   (C)Copyright 2021-2025, Felix&Lai
-@Desc    :   枚举创建窗口处理
+@Desc    :   枚举修改窗口处理
 '''
 
 # here put the import lib
@@ -33,17 +33,18 @@ class CreateEnumUI(QMainWindow):
         self.ui.tBvEnum.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)    
         self.ui.tBvEnum.horizontalHeader().setSectionsClickable(False)
         self.ui.tBvEnum.horizontalHeader().resizeSection(0, 80)
-        self.ui.tBvEnum.horizontalHeader().resizeSection(1, 173)
-        self.ui.tBvEnum.horizontalHeader().resizeSection(2, 175)
+        self.ui.tBvEnum.horizontalHeader().resizeSection(1, 168)
+        self.ui.tBvEnum.horizontalHeader().resizeSection(2, 170)
         self.ui.tBvEnum.setShowGrid(True)
         
         self.parent = parent
         self.enumXml = ToolEnumXml()
         rows = self.ui.tBvEnum.rowCount()
         self.ui.tBvEnum.insertRow(rows)
+        self.addTableItem(0, 0, '0')
         # 添加关联事件
         self.ui.bTnEnumCreate.clicked.connect(self.createEnum)
-
+        self.ui.tBvEnum.cellChanged.connect(self.cellChanged)
         pass
     
     def createEnum(self):
@@ -67,17 +68,41 @@ class CreateEnumUI(QMainWindow):
             enumData.fields.append(enumField)
         self.dialogSignal.emit(enumData)
         pass
-    
+
+    # 删除某行记录
     def keyPressEvent(self, event):
         super().keyPressEvent(event)
-        row = self.ui.tBvEnum.currentRow()
-        col = self.ui.tBvEnum.currentColumn()
-        if event.key() == Qt.Key_Return and col == 2:
-            # self.ui.tBvEnum.setCurrentCell(row, col)
-            # self.ui.tBvEnum.edit(self.ui.tBvEnum.currentIndex())
-            rows = self.ui.tBvEnum.rowCount()
-            self.ui.tBvEnum.insertRow(rows)
+        if event.key() == Qt.Key_Delete:
+            selectRow = self.ui.tBvEnum.currentRow()
+            self.ui.tBvEnum.removeRow(selectRow)
+            pass
+        rows = self.ui.tBvEnum.rowCount()
+        if rows == 0:
+            self.ui.tBvEnum.insertRow(rows)              
         pass
+    
+    # 自动插入空行
+    def cellChanged(self, row, column):
+        index = self.ui.tBvEnum.item(row, 0)
+        try:
+            enumIndex = int(index.text())
+        except ValueError as e:
+            return
+        name = self.ui.tBvEnum.item(row, 1)
+        desc = self.ui.tBvEnum.item(row, 2)
+        if not index or not name or not desc:
+            return        
+        rows = self.ui.tBvEnum.rowCount()
+        self.ui.tBvEnum.insertRow(rows)
+        self.addTableItem(rows, 0, str(enumIndex+1))
+        pass
+
+    def addTableItem(self, row, column, content):
+        tableItem = QTableWidgetItem()
+        tableItem.setText(content)
+        self.ui.tBvEnum.setItem(row, column, tableItem)
+        pass
+
     
 
         
