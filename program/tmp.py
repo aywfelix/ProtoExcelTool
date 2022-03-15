@@ -123,3 +123,8 @@ if '10 login'.find("log") > 0:
     print("xxxxxxxxxxxxx")
 else:
     print("sssssssssssss")
+
+kk = "100|200|300"
+print(kk.split("|"))
+
+print(list(map(float, kk.split("|"))))

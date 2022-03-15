@@ -9,29 +9,7 @@ import codecs
 import datetime
 import traceback
 
-# 数据类型字典
-data_type_dic = {
-    "INT": "int",
-    "FLOAT": "float",
-    "DOUBLE": "double",
-    "STRING": "std::string",
-    "LI": "std::vector<int>",
-    "LD": "std::vector<double>",
-    "LF": "std::vector<float>",
-    "LS": "std::vector<std::string>"
-}
-
-data_type_trans = {
-    "int": "asInt()",
-    "float": "asFloat()",
-    "double": "asFloat()",
-    "std::string": "asString()",
-    "std::vector<int>": "asInt()",
-    "std::vector<float>": "asFloat()",
-    "std::vector<double>": "asFloat()",
-    "std::vector<std::string>": "asString()"
-}
-
+#############################################################################################
 single_tmpl = '                row.%(fields)s = r["%(fields)s"].%(asType)s;\n'
 
 vector_tmpl = '''
@@ -42,7 +20,7 @@ vector_tmpl = '''
 					row.%(fields)s.emplace_back(it->%(asType)s);
 				}
             '''
-
+#############################################################################################
 
 class TransCpp:
     def __init__(self, sheet, json_dir, cpp_dir):
