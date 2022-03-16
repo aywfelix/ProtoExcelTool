@@ -84,14 +84,13 @@ class ProtoMainUI(QMainWindow):
         self.ui.bTnDisconn.clicked.connect(self.disConnect)
         self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
         self.ui.bTnClearResp.clicked.connect(self.clearRespTextEdit)
-        # treeView 设置
-        self.ui.tRvEnum.setStyle(QStyleFactory.create('windows'))
-        self.ui.tRvEnum.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.ui.tRvEnum.clicked.connect(self.enumTreeViewClicked)
         # 枚举tableWidget设置
+        self.ui.tRvEnum.setStyle(QStyleFactory.create('windows'))
+        self.ui.tRvEnum.clicked.connect(self.enumTreeViewClicked)
         self.ui.tBvEnum.setColumnCount(3)
         self.ui.tBvEnum.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
         self.ui.tBvEnum.horizontalHeader().setSectionsClickable(False)
+        self.ui.tRvEnum.setSelectionMode(QAbstractItemView.SingleSelection)
         self.ui.tBvEnum.horizontalHeader().resizeSection(0, 80)
         self.ui.tBvEnum.horizontalHeader().resizeSection(1, 173)
         self.ui.tBvEnum.horizontalHeader().resizeSection(2, 175)
@@ -341,21 +340,42 @@ class ProtoMainUI(QMainWindow):
             self.ui.cBxProtocol.setChecked(bool(protoData))
         pass
 
+    # tableWidget显示数据
+    def fillEnumTableWidgetData(self, enumData):
+        fields = enumData.fields
+        row = 0
+        for field in fields:
+            self.ui.tBvEnum.insertRow(row)
+            # 索引
+            indexItem = QTableWidgetItem()
+            indexItem.setText(field.index)
+            self.ui.tBvEnum.setItem(row, 0, indexItem)    
+            nameItem = QTableWidgetItem()
+            nameItem.setText(field.name)
+            self.ui.tBvEnum.setItem(row, 1, nameItem)    
+            descItem = QTableWidgetItem()
+            descItem.setText(field.desc)
+            self.ui.tBvEnum.setItem(row, 2, descItem)    
+            row = row+1 
+            pass
+        pass
+
     def enumTreeViewClicked(self):
         self.enumCurItem = self.ui.tRvEnum.currentItem()
         if self.enumCurItem == None:
             self.actionAA.setEnabled(True)
             return
+        
         # 进行界面赋值
         enumName = self.enumCurItem.text(0)
         enumData = self.enumXml.getData(enumName)
         if not enumData:
             return
-        
+        if enumName == self.ui.lEtEnumName.text():
+            return
         self.ui.lEtEnumName.setText(enumData.name)
         self.ui.lEtEnumDesc.setText(enumData.desc)
-        # TODO: tableWidget 进行赋值展示
-        self.ui.tBvEnum.clear()
+        self.fillEnumTableWidgetData(enumData)
         pass
 
     def saveProtoXml(self):

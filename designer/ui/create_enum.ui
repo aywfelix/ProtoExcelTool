@@ -140,6 +140,9 @@
    <property name="columnCount">
     <number>3</number>
    </property>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
    <attribute name="verticalHeaderDefaultSectionSize">
     <number>35</number>
    </attribute>

@@ -24,8 +24,6 @@ class ToolEnumXml(object):
         pass
     
     def addData(self, data):
-        if not self.enumDatas:
-            return
         self.enumDatas[data.name] = data
         pass
     
