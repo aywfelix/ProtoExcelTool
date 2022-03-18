@@ -123,13 +123,15 @@ class ProtoMainUI(QMainWindow):
         self.client = NetClient()
         # 初始化ToolProtoXml对象(TODO: 优化)
         self.protoXml = ToolProtoXml()
-        # 
+        # 初始化ToolEnumXml对象
         self.enumXml = ToolEnumXml()
         # 初始化settingXml 对象
         self.exportPb = ExportPb()
 
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
+        # load enum xml
+        self.loadEnums()
 
     def loadProtocols(self):
         self.protoXml.readProtocolXml()
@@ -147,6 +149,17 @@ class ProtoMainUI(QMainWindow):
                 protoNode = self.createProto(protoData)
                 dirItem.addChild(protoNode)
 
+        pass
+
+    def loadEnums(self):
+        self.enumXml.readEnumXml()
+        enumDatas = self.enumXml.getDatas()
+        if not enumDatas:
+            return
+        self.ui.tRvEnum.clear()
+        for enumName, _ in enumDatas.items():
+
+            pass
         pass
 
     def showProtoMenu(self, pos):
@@ -527,6 +540,14 @@ class ProtoMainUI(QMainWindow):
                 iter.__iadd__(1)
             pass
 
+    def createEnumItem(self, enumName):
+        # 创建treewidget item
+        topItem = QTreeWidgetItem()
+        topItem.setText(0, enumName)
+        topItem.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
+        self.ui.tRvEnum.addTopLevelItem(topItem)
+        pass            
+
     def createEnum_emit(self, enumData):
         # 创建treewidget item
         topItem = QTreeWidgetItem()
@@ -535,7 +556,13 @@ class ProtoMainUI(QMainWindow):
         self.ui.tRvEnum.addTopLevelItem(topItem)
         pass
     
+    def saveEnumXml(self):
+        self.enumXml.writeEnumXml()
+        pass
+
     def exportAll(self):
+        self.saveProtoXml()
+        self.saveEnumXml()
         pass
 
 ########################################################################################

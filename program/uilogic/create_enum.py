@@ -68,7 +68,7 @@ class CreateEnumUI(QMainWindow):
             enumData.fields.append(enumField)
         self.enumXml.addData(enumData)
         self.dialogSignal.emit(enumData)
-
+        
         self.close()
         pass
 
