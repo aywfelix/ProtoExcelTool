@@ -30,35 +30,36 @@ class TransTable:
         print(excels, classes_name)
         return excels, classes_name
 
-    def get_all_rows(self, sheet, fields_type, fields_export, is_server):
+    def get_all_rows(self, sheet, field_types, field_exports, is_server):
         rows = 5
         rowe = sheet.nrows
         if rowe <= rows:
             return
         all_rows = {}
         while rows < rowe:
-            row_dict = self.fix_row_dict(sheet.row_values(rows), fields_type, fields_export, is_server)
+            row_dict = self.fix_row_dict(sheet.row_values(
+                rows), field_types, field_exports, is_server)
             all_rows[row_dict["id"]] = row_dict
             rows = rows+1  
 
         return all_rows      
         pass
 
-    def fix_row_dict(self, row_values, fields_type, fields_export, is_server):
+    def fix_row_dict(self, row_values, field_types, field_exports, is_server):
         row_dict = {}
-        for i in range(len(fields_type)):  # i 代表列
+        for i in range(len(field_types)):  # i 代表列
             # 过滤导出字段
-            if fields_export[i][1] == '':
+            if field_exports[i][1] == '':
                 continue
-            if is_server and fields_export[i][1].find('s') == 0:
+            if is_server and field_exports[i][1].find('s') == 0:
                 continue
-            if not is_server and fields_export[i][1].find('c') == 0:
+            if not is_server and field_exports[i][1].find('c') == 0:
                 continue
 
             if row_values[i] is None:
                 row_values[i] = ""
 
-            data_type = fields_type[i]
+            data_type = field_types[i]
             field_type = data_type[0]
             field_id = data_type[1]
             #print("row_values====", row_values[i], type(row_values[i]), field_id)
@@ -112,36 +113,38 @@ class TransTable:
                 return
 
             # 字段注释
-            data_desc1 = sheet.row_values(0)
-            data_desc2 = sheet.row_values(1)
-            data_desc = [a+" "+b for a, b in zip(data_desc1, data_desc2)]
+            field_desc1 = sheet.row_values(0)
+            field_desc2 = sheet.row_values(1)
+            field_desc = [a+" "+b for a, b in zip(field_desc1, field_desc2)]
 
             # 字段类型与字段名称--[(INT,id), (STRING,comment), ...)]
             data_type = []
             for x in sheet.row_values(3): # 字段类型
                 data_type.append(x)
-            fields_type = list(zip(data_type, sheet.row_values(2)))   # 字段名称
+            field_types = list(zip(data_type, sheet.row_values(2)))   # 字段名称
             # print(fields_type)
             # 字段导出与字段名称--[(id,cs), (comment,''), (name,s),..)]
             export_type = []
             for x in sheet.row_values(4):
                 export_type.append(x)
-            fields_export = list(zip(sheet.row_values(2),export_type))
+            field_exports = list(zip(sheet.row_values(2),export_type))
 
-            all_rows = self.get_all_rows(sheet, fields_type, fields_export, True)
+            all_rows = self.get_all_rows(
+                sheet, field_types, field_exports, True)
             # print(all_rows)
-            self.write_json(table_name, all_rows)
             # 导出json文件
-            # trans_json = TransJson(sheet, table_name, fields_type, fields_export, True)
-            # trans_json.convertJson()
-            # trans_cpp = TransCpp(sheet, json_dir, cpp_dir)
+            self.write_json(table_name, all_rows)
+            # 如果配置了导出cpp
+            trans_cpp = TransCpp(sheet, field_types, field_desc)
+            trans_cpp.gen(table_name)
+            # 如果配置了导出csharp
             # trans_csharp = TransCsharp(sheet, csharp_dir)
 
             # 生成cpp 文件及json文件
             # trans_cpp.gen_cpp(table_name, data_desc)
             # trans_csharp.gen_csharp(table_name, data_desc)
 
-            # print("transport table ok!", excel_name)
+            print("transport table ", excel_name, " succ")
         except Exception as e:
             print('str(Exception):\t', str(e))
             print('traceback.print_exc():', traceback.print_exc())

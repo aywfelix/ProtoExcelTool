@@ -21,7 +21,7 @@ from tool_define import *
 @Singleton
 class ToolEnumXml(object):
     def __init__(self):
-        self.xmlEnumPath = "./config/enum.config"
+        self.xmlEnumPath = "./config/enums.config"
         self.enumDatas = {}
         pass
     

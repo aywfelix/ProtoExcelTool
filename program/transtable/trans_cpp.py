@@ -8,6 +8,8 @@ import os
 import codecs
 import datetime
 import traceback
+from tool_define import *
+from trans_define import *
 
 #############################################################################################
 single_tmpl = '                row.%(fields)s = r["%(fields)s"].%(asType)s;\n'
@@ -22,52 +24,47 @@ vector_tmpl = '''
             '''
 #############################################################################################
 
+@Singleton
 class TransCpp:
-    def __init__(self, sheet, json_dir, cpp_dir):
+    def __init__(self, sheet, field_types, field_desc):
+        self.json_dir = "../extra/tablejson"
+        self.cpp_dir = "../extra/tables"
         self.sheet = sheet
-        self.json_dir = json_dir
-        self.cpp_dir = cpp_dir
+        self.field_types = field_types
+        self.field_desc = field_desc
 
-        self.data_row_type = self.join_field_type()
-
-    # 生成各自的类型核字段声明(int:id, string:comment...)
-    def join_field_type(self):
-        data_type = []
-        for x in self.sheet.row_values(0):
-            data_type.append(data_type_dic[x])
-        
-        return list(zip(data_type, self.sheet.row_values(2)))   
-
-
-    def gen_row_fields(self, data_desc):
+    def gen_row_fields(self):
         row_fields = "\t"
         tmp_field = ""
-        for i in range(len(self.data_row_type)):
-            x = self.data_row_type[i]
-            tmp_field = x[0]+" " + x[1] + ";"
+        for i in range(len(self.field_types)):
+            field_type = self.field_types[i]
+            tmp_field = data_type_dic[field_type[0]]+" " + field_type[1] + ";"
             strlen = 50
-            data_desc[i] = data_desc[i].replace("\n", " ")
+            self.field_desc[i] = self.field_desc[i].replace("\n", " ")
             row_fields += (tmp_field + " " *
-                                (strlen-len(tmp_field)) + "// "+data_desc[i])
+                                (strlen-len(tmp_field)) + "// "+self.field_desc[i])
             row_fields += "\n\t"
         return row_fields
 
     def gen_json_logic(self):
         json_logic = ''
-        for i in range(len(self.data_row_type)):
-            x_tuple = self.data_row_type[i]
-            if "vector" in x_tuple[0]:
-                json_logic += (vector_tmpl) % {
-                    "fields": x_tuple[1], "asType": data_type_trans[x_tuple[0]]}
-            elif x_tuple[0] in ["int", "std::string", "float", "double"]:
-                json_logic += (single_tmpl) % {
-                    "fields": x_tuple[1], "asType": data_type_trans[x_tuple[0]]}
+        for field_type in self.field_types:
+            real_type = data_type_dic[field_type[0]]
+            logic_tmpl = ""
+            if 'vector' in real_type:
+                logic_tmpl = vector_tmpl
+            else:
+                logic_tmpl = single_tmpl    
+
+            json_logic += logic_tmpl % {
+                "fields": field_type[1],
+                "asType": data_type_trans[field_type[0]]
+            }
         return json_logic
 
 
-
-    def gen_cpp(self, table_name, data_desc):
-        row_fields = self.gen_row_fields(data_desc)
+    def gen(self, table_name):
+        row_fields = self.gen_row_fields()
         json_logic = self.gen_json_logic()
         s = ""
         tmpl_file = "./transtable/table_cpp.tmpl"
