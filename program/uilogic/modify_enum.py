@@ -73,7 +73,7 @@ class ModifyEnumUI(QMainWindow):
         # 保存更新的枚举数据
         self.enumXml.addData(enumData)
         self.dialogSignal.emit(enumData)
-        self.ui.close()
+        self.close()
         pass
 
     # 删除某行记录

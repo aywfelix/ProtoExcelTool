@@ -374,6 +374,10 @@ class ProtoMainUI(QMainWindow):
 
     # tableWidget显示数据
     def fillEnumTableWidgetData(self, enumData):
+        # 删除所有的Items
+        rowCount = self.ui.tBvEnum.rowCount()
+        for row in range(0, rowCount)[::-1]:
+            self.ui.tBvEnum.removeRow(row)
         fields = enumData.fields
         row = 0
         for field in fields:
@@ -401,8 +405,7 @@ class ProtoMainUI(QMainWindow):
         # 进行界面赋值
         enumName = self.enumCurItem.text(0)
         if enumName == self.ui.lEtEnumName.text():
-            return
-                
+            return      
         enumData = self.enumXml.getData(enumName)
         self.rightShowEnumInfo(enumData)
         pass
