@@ -11,6 +11,7 @@ import traceback
 from tool_define import *
 from transtable.trans_cpp import *
 from transtable.trans_csharp import *
+from transtable.trans_lua import *
 
 @Singleton
 class TransTable:
@@ -140,7 +141,10 @@ class TransTable:
             # 如果配置了导出csharp
             trans_csharp = TransCsharp(field_types, field_descs)
             trans_csharp.gen(table_name)
-
+            # 如果配置了导出lua
+            trans_lua = TransLua()
+            trans_lua.gen(table_name)
+            
             print("transport table ", excel_name, " succ")
         except Exception as e:
             print('str(Exception):\t', str(e))

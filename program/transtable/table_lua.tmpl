@@ -1,0 +1,44 @@
+DataTable = DataTable or {}
+local DataTable = DataTable
+
+DataTable.%(class_name)s = DataTable.%(class_name)s or {}
+local %(class_name)s = DataTable.%(class_name)s
+
+%(class_name)s.Table = {}
+%(class_name)s.Keys = {}
+
+local cjson = require 'cjson'
+
+local TABLE_PATH = "../tablejson/"
+
+function %(class_name)s.LoadJson(jsonFile)
+    local file = io.open(TABLE_PATH .. jsonFile)
+    local content = file:read("*a")
+    %(class_name)s.Table = cjson.decode(content)
+    for key, _ in pairs(%(class_name)s.Table) do
+        %(class_name)s.Keys[key] = true
+    end
+end
+
+function %(class_name)s.Load()
+    %(class_name)s.LoadJson("%(class_name)s.json")
+end
+
+function %(class_name)s.GetTable()
+    return %(class_name)s.Table
+end
+
+function %(class_name)s.GetRow(key)
+    return %(class_name)s.Table[key]
+end
+
+function %(class_name)s.HasRow(key)
+    return %(class_name)s.Keys[key]
+end
+
+function %(class_name)s.Keys()
+    return %(class_name)s.Keys
+end
+
+--------------------------------------------------------------
+return %(class_name)s
