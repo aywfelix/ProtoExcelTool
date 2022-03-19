@@ -26,7 +26,7 @@ from uilogic.modify_proto import *
 from tool_define import *
 from proto_xml import *
 from uilogic.tool_setting import *
-from export_pb import *
+from export.export_pb import *
 from client.net_client import *
 from uilogic.create_enum import *
 from uilogic.modify_enum import *
