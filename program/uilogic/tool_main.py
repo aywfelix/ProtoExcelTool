@@ -70,7 +70,7 @@ class ProtoMainUI(QMainWindow):
         self.actionF.triggered.connect(
             lambda: self.treeViewActionHandler(TVMenuOpType.DirDelete))
         self.setTVMenuUnEnabled()
-        # 修改按钮绑定事件
+        # 协议修改按钮绑定事件
         self.ui.bTnProtoModify.clicked.connect(self.modifyProtoClicked)
         # 菜单事件处理逻辑
         self.ui.menuSave.triggered.connect(self.menuSaveClicked)
@@ -108,7 +108,8 @@ class ProtoMainUI(QMainWindow):
             lambda: self.treeViewActionHandler(TVMenuOpType.EnumModify))
         self.actionCC.triggered.connect(
             lambda: self.treeViewActionHandler(TVMenuOpType.EnumDelete))
-
+        # 枚举修改按钮绑定事件
+        self.ui.bTnEnumModify.clicked.connect(self.modifyEnumClicked)
         # 协议搜索框
         self.ui.lEtProtoSearch.textChanged.connect(self.showSearchProtoItem)
         # 枚举搜索框
@@ -158,7 +159,7 @@ class ProtoMainUI(QMainWindow):
             return
         self.ui.tRvEnum.clear()
         for enumName, _ in enumDatas.items():
-
+            self.createEnumItem(enumName)
             pass
         pass
 
@@ -222,7 +223,6 @@ class ProtoMainUI(QMainWindow):
                 dirName = self.protoCurItem.text(0)
                 self.protoCurItem = None
                 self.protoXml.delDir(dirName)
-                self.saveProtoXml()
             pass
 
         if op == TVMenuOpType.EnumCreate:
@@ -231,10 +231,21 @@ class ProtoMainUI(QMainWindow):
             self.createEnumUI.dialogSignal.connect(self.createEnum_emit)
             pass
         if op == TVMenuOpType.EnumModify:
-            self.modifyEnumUI = ModifyEnumUI(self)
-            self.modifyEnumUI.show()
+            self.showModifyEnumWindow()
             pass
         if op == TVMenuOpType.EnumDelete:
+            if self.enumCurItem == None:
+                return
+            msgBox = QMessageBox(QMessageBox.Warning, u'提示', u'确认删除枚举目录?')
+            yes = msgBox.addButton(u'确定', QMessageBox.YesRole)
+            no = msgBox.addButton(u'取消', QMessageBox.NoRole)
+            msgBox.exec_()
+            if msgBox.clickedButton() == yes:
+                index = self.ui.tRvEnum.indexOfTopLevelItem(self.protoCurItem)
+                self.ui.tRvEnum.takeTopLevelItem(index)
+                enumName = self.enumCurItem.text(0)
+                self.enumCurItem = None
+                self.enumXml.delEnum(enumName)
             pass
         pass
 
@@ -315,6 +326,12 @@ class ProtoMainUI(QMainWindow):
         self.protoXml.addProtocol(parent.text(0), protoData)
         # 保存更新信息
         self.saveProtoXml()
+        
+    def modifyEnum_emit(self, enumData):
+        self.enumCurItem.setText(0, enumData.name)
+        # 更新界面显示
+        self.rightShowEnumInfo(enumData)
+        pass
 
     def setTVMenuUnEnabled(self):
         self.actionA.setEnabled(False)
@@ -352,6 +369,8 @@ class ProtoMainUI(QMainWindow):
             self.ui.tEtProtoContent.setText(protoData.content)
             self.ui.cBxProtocol.setChecked(bool(protoData))
         pass
+    
+    
 
     # tableWidget显示数据
     def fillEnumTableWidgetData(self, enumData):
@@ -381,10 +400,16 @@ class ProtoMainUI(QMainWindow):
         
         # 进行界面赋值
         enumName = self.enumCurItem.text(0)
-        enumData = self.enumXml.getData(enumName)
-        if not enumData:
-            return
         if enumName == self.ui.lEtEnumName.text():
+            return
+                
+        enumData = self.enumXml.getData(enumName)
+        self.rightShowEnumInfo(enumData)
+        pass
+    
+    # 主界面右侧显示枚举信息
+    def rightShowEnumInfo(self, enumData):
+        if not enumData:
             return
         self.ui.lEtEnumName.setText(enumData.name)
         self.ui.lEtEnumDesc.setText(enumData.desc)
@@ -410,11 +435,26 @@ class ProtoMainUI(QMainWindow):
         self.modifyProtoUI.show()
         self.modifyProtoUI.dialogSignal.connect(self.modifyProto_emit)
 
-    # 菜单点击触发功能
+    # 点击协议修改按钮
     def modifyProtoClicked(self):
         self.showModifyProtoWindow()
         pass
 
+    def showModifyEnumWindow(self):
+        if self.enumCurItem == None:
+            return
+        self.modifyEnumUI = ModifyEnumUI(self)
+        enumName = self.enumCurItem.text(0)
+        self.modifyEnumUI.fillEnumData(enumName)
+        self.modifyEnumUI.show()
+        self.modifyEnumUI.dialogSignal.connect(self.modifyEnum_emit)
+            
+    # 点击枚举修改按钮
+    def modifyEnumClicked(self):
+        self.showModifyEnumWindow()
+        pass
+
+    # 菜单点击触发功能
     def menuSaveClicked(self):
         self.saveToXml()
         pass

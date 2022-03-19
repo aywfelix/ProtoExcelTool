@@ -39,6 +39,7 @@ class ModifyEnumUI(QMainWindow):
         
         self.parent = parent
         self.enumXml = ToolEnumXml()
+        self.enumName = None
         # 添加关联事件
         self.ui.bTnEnumModify.clicked.connect(self.modifyEnum)
         self.ui.tBvEnum.cellChanged.connect(self.cellChanged)
@@ -49,21 +50,30 @@ class ModifyEnumUI(QMainWindow):
         enumName = self.ui.lEtEnumName.text().strip()
         if not enumName:
             return
-        if self.enumXml.isExistEnumName(enumName):
-            QMessageBox.critical(self, "错误", "枚举名称已存在")
-            return
+        if enumName != self.enumName:
+            if self.enumXml.isExistEnumName(enumName):
+                QMessageBox.critical(self, "错误", "枚举名称已存在")
+                return
         enumDesc = self.ui.lEtEnumDesc.text().strip()
         enumData = EnumItemData(enumName, enumDesc)
         rows = self.ui.tBvEnum.rowCount()
         for row in range(0, rows):
-            index = self.ui.tBvEnum.item(row, 0).text()
-            name = self.ui.tBvEnum.item(row, 1).text().strip()
-            if not name:
+            indexItem = self.ui.tBvEnum.item(row, 0)
+            nameItem = self.ui.tBvEnum.item(row, 1)
+            descItem = self.ui.tBvEnum.item(row, 2)
+            if not indexItem or not nameItem or not descItem:
                 continue
-            desc = self.ui.tBvEnum.item(row, 2).text().strip()
+            index = indexItem.text().strip()            
+            name = nameItem.text().strip()
+            desc = descItem.text().strip()
+            if not index or not name or not desc:
+                continue
             enumField = EnumField(index, name, desc)
             enumData.fields.append(enumField)
+        # 保存更新的枚举数据
+        self.enumXml.addData(enumData)
         self.dialogSignal.emit(enumData)
+        self.ui.close()
         pass
 
     # 删除某行记录
@@ -80,15 +90,18 @@ class ModifyEnumUI(QMainWindow):
     
     # 自动插入空行
     def cellChanged(self, row, column):
-        index = self.ui.tBvEnum.item(row, 0)
+        indexItem = self.ui.tBvEnum.item(row, 0)
         try:
-            enumIndex = int(index.text())
+            enumIndex = int(indexItem.text())
         except ValueError as e:
             return
-        name = self.ui.tBvEnum.item(row, 1)
-        desc = self.ui.tBvEnum.item(row, 2)
-        if not index or not name or not desc:
-            return        
+        nameItem = self.ui.tBvEnum.item(row, 1)
+        descItem = self.ui.tBvEnum.item(row, 2)
+        if not indexItem or not nameItem or not descItem:
+            return   
+        name = nameItem.text().strip()
+        if not name:
+            return
         rows = self.ui.tBvEnum.rowCount()
         self.ui.tBvEnum.insertRow(rows)
         self.addTableItem(rows, 0, str(enumIndex+1))
@@ -98,4 +111,34 @@ class ModifyEnumUI(QMainWindow):
         tableItem = QTableWidgetItem()
         tableItem.setText(content)
         self.ui.tBvEnum.setItem(row, column, tableItem)
+        pass
+    
+    def fillEnumData(self, enumName):
+        enumData = self.enumXml.getData(enumName)
+        if not enumData:
+            return
+        self.enumName = enumName
+        
+        self.ui.lEtEnumName.setText(enumData.name)
+        self.ui.lEtEnumDesc.setText(enumData.desc)
+        self.fillEnumTableWidgetData(enumData)
+        pass
+    
+    def fillEnumTableWidgetData(self, enumData):
+        fields = enumData.fields
+        row = 0
+        for field in fields:
+            self.ui.tBvEnum.insertRow(row)
+            # 索引
+            indexItem = QTableWidgetItem()
+            indexItem.setText(field.index)
+            self.ui.tBvEnum.setItem(row, 0, indexItem)    
+            nameItem = QTableWidgetItem()
+            nameItem.setText(field.name)
+            self.ui.tBvEnum.setItem(row, 1, nameItem)    
+            descItem = QTableWidgetItem()
+            descItem.setText(field.desc)
+            self.ui.tBvEnum.setItem(row, 2, descItem)    
+            row = row+1 
+            pass
         pass

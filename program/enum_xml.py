@@ -30,9 +30,15 @@ class ToolEnumXml(object):
         pass
     
     def getData(self, name):
-        if name not in self.enumDatas.keys():
+        if not name or name not in self.enumDatas.keys():
             return None
         return self.enumDatas[name]
+        pass
+    
+    def delData(self, name):
+        if not name or name not in self.enumDatas.keys():
+            return
+        self.enumDatas.pop(name)
         pass
 
     def getDatas(self):

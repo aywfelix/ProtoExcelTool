@@ -109,8 +109,9 @@ class ToolProtoXml(object):
                     pass
                 pass
             # 写入protocol配置文件
-            with open(self.xmlProtoPath, "w", encoding="gbk") as f:
-                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")            
+            with open(self.xmlProtoPath, "w", encoding="GB2312") as f:
+                domTree.writexml(f, indent=' ', addindent='\t',
+                                 newl='\n', encoding="GB2312")
         except Exception as e:
             print(e)
 
@@ -120,7 +121,7 @@ class ToolProtoXml(object):
             self.modules = {}
             self.protocols = {}            
             dataResource = ""
-            with open(self.xmlProtoPath, "r", encoding="gbk") as f:
+            with open(self.xmlProtoPath, "r", encoding="GB2312", errors='ignore') as f:
                 dataResource = f.read()
             if not dataResource:
                 return
@@ -198,7 +199,7 @@ class ToolProtoXml(object):
                 settingXml = ToolSettingXml()
                 _, protoPath, _ = settingXml.readToolConfig()
                 protoFilePath = protoPath +"/"+moduleName+".proto"
-                with codecs.open(protoFilePath, "w", 'utf-8') as f:
+                with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
                     f.write(protoMsgs)
                     f.flush()
                     pass                

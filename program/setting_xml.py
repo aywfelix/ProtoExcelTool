@@ -32,7 +32,7 @@ class ToolSettingXml(object):
             if os.path.exists(self.xmlSettingPath):
                 return
             # 创建默认配置文件
-            with open(self.xmlSettingPath, "w+", encoding="gbk") as f:
+            with open(self.xmlSettingPath, "w+", encoding="utf-8") as f:
                 # 文件不存在创建节点
                 domTree = xmlDom.Document()
                 settingNode = domTree.createElement("setting")
@@ -53,7 +53,7 @@ class ToolSettingXml(object):
                 tableNode.setAttribute("path", "")          
 
                 domTree.appendChild(settingNode)
-                with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
+                with open(self.xmlSettingPath, 'w', encoding="utf-8") as f:
                     f.write(self.toPrettyXml(domTree.toxml()))
         except Exception as e:
                 print(e)
@@ -69,7 +69,7 @@ class ToolSettingXml(object):
             tmplsDict[TmplType.TABLE] = tableList
             
             dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="gbk") as f:
+            with open(self.xmlSettingPath, "r", encoding="utf-8") as f:
                 dataResource = f.read()
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)
@@ -123,7 +123,7 @@ class ToolSettingXml(object):
             if not tmplsDict:
                 return
             dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="gbk") as f:
+            with open(self.xmlSettingPath, "r", encoding="utf-8") as f:
                 dataResource = f.read()
 
             # 获取节点信息
@@ -178,7 +178,7 @@ class ToolSettingXml(object):
                 tmplNode.setAttribute("publish", tmplData.publish)
                 tableNode.appendChild(tmplNode)            
                                         
-            with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
+            with open(self.xmlSettingPath, 'w', encoding="utf-8") as f:
                 f.write(self.toPrettyXml(domTree.toxml()))
         except Exception as e:
             print(e)
@@ -188,7 +188,7 @@ class ToolSettingXml(object):
     def readToolConfig(self):
         try:
             dataResource = ""
-            with codecs.open(self.xmlSettingPath, "r", "gbk") as f:
+            with codecs.open(self.xmlSettingPath, "r", "utf-8") as f:
                 dataResource = f.read()         
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)
@@ -213,7 +213,7 @@ class ToolSettingXml(object):
     def saveToolSetting(self, protocPath, protoPath, tablePath):
         try:
             dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="gbk") as f:
+            with open(self.xmlSettingPath, "r", encoding="utf-8") as f:
                 dataResource = f.read()
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)
@@ -232,7 +232,7 @@ class ToolSettingXml(object):
             tableNode = rootNode.getElementsByTagName("excel")[0]
             tableNode.setAttribute("path", tablePath)
             
-            with open(self.xmlSettingPath, 'w', encoding="gbk") as f:
+            with open(self.xmlSettingPath, 'w', encoding="utf-8") as f:
                 f.write(self.toPrettyXml(domTree.toxml()))
                 
         except Exception as e:

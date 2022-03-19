@@ -331,7 +331,7 @@
         <string>枚举字段：</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="bTnEnumUpdate">
+      <widget class="QPushButton" name="bTnEnumModify">
        <property name="geometry">
         <rect>
          <x>290</x>
