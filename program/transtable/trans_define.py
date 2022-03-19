@@ -13,7 +13,7 @@
 # here put the import lib
 
 # 数据类型字典
-data_type_dic = {
+data_type_cpp = {
     "INT": "int",
     "FLOAT": "float",
     "DOUBLE": "double",
@@ -22,6 +22,17 @@ data_type_dic = {
     "LD": "std::vector<double>",
     "LF": "std::vector<float>",
     "LS": "std::vector<std::string>"
+}
+
+data_type_cs = {
+    "INT": "int",
+    "FLOAT": "float",
+    "DOUBLE": "double",
+    "STRING": "string",
+    "LI": "List<int>",
+    "LD": "List<double>",
+    "LF": "List<float>",
+    "LS": "List<string>"
 }
 
 data_type_trans = {

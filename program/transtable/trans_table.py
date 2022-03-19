@@ -99,7 +99,7 @@ class TransTable:
     def write_json(self, table_name, all_rows):
         # 写入json
         json_file = os.path.join(self.json_dir, table_name+'.json')
-        with open(json_file, 'w+') as f:
+        with codecs.open(json_file, 'w+', encoding='utf-8') as f:
             jsonStr = json.dumps(
                 all_rows, indent=4, sort_keys=False, ensure_ascii=False)
             f.write(jsonStr + '\n')        
@@ -115,7 +115,7 @@ class TransTable:
             # 字段注释
             field_desc1 = sheet.row_values(0)
             field_desc2 = sheet.row_values(1)
-            field_desc = [a+" "+b for a, b in zip(field_desc1, field_desc2)]
+            field_descs = [a+" "+b for a, b in zip(field_desc1, field_desc2)]
 
             # 字段类型与字段名称--[(INT,id), (STRING,comment), ...)]
             data_type = []
@@ -135,14 +135,11 @@ class TransTable:
             # 导出json文件
             self.write_json(table_name, all_rows)
             # 如果配置了导出cpp
-            trans_cpp = TransCpp(sheet, field_types, field_desc)
+            trans_cpp = TransCpp(field_types, field_descs)
             trans_cpp.gen(table_name)
             # 如果配置了导出csharp
-            # trans_csharp = TransCsharp(sheet, csharp_dir)
-
-            # 生成cpp 文件及json文件
-            # trans_cpp.gen_cpp(table_name, data_desc)
-            # trans_csharp.gen_csharp(table_name, data_desc)
+            trans_csharp = TransCsharp(field_types, field_descs)
+            trans_csharp.gen(table_name)
 
             print("transport table ", excel_name, " succ")
         except Exception as e:

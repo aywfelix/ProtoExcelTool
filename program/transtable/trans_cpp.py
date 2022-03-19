@@ -1,13 +1,6 @@
 # _*_coding:utf-8 _*_
-
-import xlrd
-from xlrd import xldate_as_tuple
-import multiprocessing
-import json
 import os
 import codecs
-import datetime
-import traceback
 from tool_define import *
 from trans_define import *
 
@@ -26,30 +19,29 @@ vector_tmpl = '''
 
 @Singleton
 class TransCpp:
-    def __init__(self, sheet, field_types, field_desc):
+    def __init__(self, field_types, field_descs):
         self.json_dir = "../extra/tablejson"
         self.cpp_dir = "../extra/tables"
-        self.sheet = sheet
         self.field_types = field_types
-        self.field_desc = field_desc
+        self.field_descs = field_descs
 
     def gen_row_fields(self):
         row_fields = "\t"
         tmp_field = ""
         for i in range(len(self.field_types)):
             field_type = self.field_types[i]
-            tmp_field = data_type_dic[field_type[0]]+" " + field_type[1] + ";"
+            tmp_field = data_type_cpp[field_type[0]]+" " + field_type[1] + ";"
             strlen = 50
-            self.field_desc[i] = self.field_desc[i].replace("\n", " ")
+            self.field_descs[i] = self.field_descs[i].replace("\n", " ")
             row_fields += (tmp_field + " " *
-                                (strlen-len(tmp_field)) + "// "+self.field_desc[i])
+                                (strlen-len(tmp_field)) + "// "+self.field_descs[i])
             row_fields += "\n\t"
         return row_fields
 
     def gen_json_logic(self):
         json_logic = ''
         for field_type in self.field_types:
-            real_type = data_type_dic[field_type[0]]
+            real_type = data_type_cpp[field_type[0]]
             logic_tmpl = ""
             if 'vector' in real_type:
                 logic_tmpl = vector_tmpl
