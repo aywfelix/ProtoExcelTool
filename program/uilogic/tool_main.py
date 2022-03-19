@@ -241,11 +241,11 @@ class ProtoMainUI(QMainWindow):
             no = msgBox.addButton(u'取消', QMessageBox.NoRole)
             msgBox.exec_()
             if msgBox.clickedButton() == yes:
-                index = self.ui.tRvEnum.indexOfTopLevelItem(self.protoCurItem)
+                index = self.ui.tRvEnum.indexOfTopLevelItem(self.enumCurItem)
                 self.ui.tRvEnum.takeTopLevelItem(index)
                 enumName = self.enumCurItem.text(0)
                 self.enumCurItem = None
-                self.enumXml.delEnum(enumName)
+                self.enumXml.delData(enumName)
             pass
         pass
 
@@ -369,8 +369,6 @@ class ProtoMainUI(QMainWindow):
             self.ui.tEtProtoContent.setText(protoData.content)
             self.ui.cBxProtocol.setChecked(bool(protoData))
         pass
-    
-    
 
     # tableWidget显示数据
     def fillEnumTableWidgetData(self, enumData):
@@ -378,9 +376,8 @@ class ProtoMainUI(QMainWindow):
         rowCount = self.ui.tBvEnum.rowCount()
         for row in range(0, rowCount)[::-1]:
             self.ui.tBvEnum.removeRow(row)
-        fields = enumData.fields
         row = 0
-        for field in fields:
+        for field in enumData.fields:
             self.ui.tBvEnum.insertRow(row)
             # 索引
             indexItem = QTableWidgetItem()

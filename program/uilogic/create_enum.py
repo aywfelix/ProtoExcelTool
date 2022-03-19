@@ -39,9 +39,8 @@ class CreateEnumUI(QMainWindow):
         
         self.parent = parent
         self.enumXml = ToolEnumXml()
-        rows = self.ui.tBvEnum.rowCount()
-        self.ui.tBvEnum.insertRow(rows)
-        self.addTableItem(0, 0, '0')
+        self.maxIndex = 0
+        self.insertEmptyRow()
         # 添加关联事件
         self.ui.bTnEnumCreate.clicked.connect(self.createEnum)
         self.ui.tBvEnum.cellChanged.connect(self.cellChanged)
@@ -81,30 +80,30 @@ class CreateEnumUI(QMainWindow):
             pass
         rows = self.ui.tBvEnum.rowCount()
         if rows == 0:
-            self.ui.tBvEnum.insertRow(rows)              
+            self.maxIndex = 0
+            self.insertEmptyRow()
         pass
     
-    # 自动插入空行
+    # 编辑单元格触发
     def cellChanged(self, row, column):
-        index = self.ui.tBvEnum.item(row, 0)
-        try:
-            enumIndex = int(index.text())
-        except ValueError as e:
+        nameItem = self.ui.tBvEnum.item(row, 1)
+        if not nameItem:
             return
-        name = self.ui.tBvEnum.item(row, 1)
-        desc = self.ui.tBvEnum.item(row, 2)
-        if not index or not name or not desc:
-            return        
+        if nameItem.text().strip() == "":
+            return
+        rows = self.ui.tBvEnum.rowCount()
+        if rows == row+1:
+            self.insertEmptyRow()
+        pass
+  
+    def insertEmptyRow(self):
         rows = self.ui.tBvEnum.rowCount()
         self.ui.tBvEnum.insertRow(rows)
-        self.addTableItem(rows, 0, str(enumIndex+1))
-        pass
-
-    def addTableItem(self, row, column, content):
-        tableItem = QTableWidgetItem()
-        tableItem.setText(content)
-        self.ui.tBvEnum.setItem(row, column, tableItem)
-        pass
+        indexItem = QTableWidgetItem()
+        indexItem.setText(str(self.maxIndex))
+        self.ui.tBvEnum.setItem(rows, 0, indexItem)
+        self.maxIndex = self.maxIndex + 1
+    pass
 
     
 
