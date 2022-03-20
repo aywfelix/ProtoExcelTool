@@ -72,18 +72,20 @@ class ProtoMainUI(QMainWindow):
         self.setTVMenuUnEnabled()
         # 协议修改按钮绑定事件
         self.ui.bTnProtoModify.clicked.connect(self.modifyProtoClicked)
+        # 枚举修改按钮绑定事件
+        self.ui.bTnEnumModify.clicked.connect(self.modifyEnumClicked)
+        # 发布按钮
+        self.ui.bTnExport.clicked.connect(self.exportAllClicked)
+        # 设置按钮
+        self.ui.bTnSetting.clicked.connect(self.openSettingClicked)
         # 菜单事件处理逻辑
-        self.ui.menuSave.triggered.connect(self.menuSaveClicked)
-        self.ui.menuExit.triggered.connect(self.menuExitClicked)
+        self.ui.menuExportPb.triggered.connect(self.menuExportPbClicked)
+        self.ui.menuExportExcel.triggered.connect(self.menuExportExcelClicked)
         self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
-        self.ui.menuExportServerPb.triggered.connect(
-            self.menuExportServerPbClicked)
-        self.ui.menuOpenSetting.triggered.connect(self.menuOpenSettingClicked)
         # 协议测试
         self.ui.bTnConn.clicked.connect(self.connServer)
         self.ui.bTnDisconn.clicked.connect(self.disConnect)
         self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
-        self.ui.bTnClearResp.clicked.connect(self.clearRespTextEdit)
         # 枚举tableWidget设置
         self.ui.tRvEnum.setStyle(QStyleFactory.create('windows'))
         self.ui.tRvEnum.clicked.connect(self.enumTreeViewClicked)
@@ -108,8 +110,7 @@ class ProtoMainUI(QMainWindow):
             lambda: self.treeViewActionHandler(TVMenuOpType.EnumModify))
         self.actionCC.triggered.connect(
             lambda: self.treeViewActionHandler(TVMenuOpType.EnumDelete))
-        # 枚举修改按钮绑定事件
-        self.ui.bTnEnumModify.clicked.connect(self.modifyEnumClicked)
+
         # 协议搜索框
         self.ui.lEtProtoSearch.textChanged.connect(self.showSearchProtoItem)
         # 枚举搜索框
@@ -118,8 +119,7 @@ class ProtoMainUI(QMainWindow):
         self.protoCurItem = None
         # enum当前选中item
         self.enumCurItem = None        
-        # 发布按钮
-        self.ui.bTnExport.clicked.connect(self.exportAll)
+
         # 客户端测试协议
         self.client = NetClient()
         # 初始化ToolProtoXml对象(TODO: 优化)
@@ -454,31 +454,17 @@ class ProtoMainUI(QMainWindow):
         self.showModifyEnumWindow()
         pass
 
-    # 菜单点击触发功能
-    def menuSaveClicked(self):
-        self.saveToXml()
+    # 导出pb文件    
+    def menuExportPbClicked(self):
+        pass
+    
+    # 导出配置表    
+    def menuExportExcelClicked(self):
         pass
 
-    def menuExitClicked(self):
-        self.saveToXml()
-        self.close()
-        pass
-
+    # 导出proto文件    
     def menuExportProtoClicked(self):
         self.protoXml.exportProtoFile()
-        pass
-
-    # 导出serverPb
-    def menuExportServerPbClicked(self):
-        self.exportPb.exportPb()
-
-    def menuExportServerProtoClicked(self):
-
-        pass
-
-    def menuOpenSettingClicked(self):
-        self.toolSettingUI = ToolSettingUI()
-        self.toolSettingUI.show()
         pass
 
     # 程序界面退出
@@ -515,10 +501,6 @@ class ProtoMainUI(QMainWindow):
         # 获取填写请求数据 json
         # 将json转换成pb
         # 将消息发送给服务器
-        pass
-
-    def clearRespTextEdit(self):
-        self.ui.tEtResp.setText("")
         pass
 
     def showSearchProtoItem(self, filter):
@@ -600,9 +582,14 @@ class ProtoMainUI(QMainWindow):
         self.enumXml.writeEnumXml()
         pass
 
-    def exportAll(self):
+    def exportAllClicked(self):
         self.saveProtoXml()
         self.saveEnumXml()
+        pass
+    
+    def openSettingClicked(self):
+        self.toolSettingUI = ToolSettingUI()
+        self.toolSettingUI.show()
         pass
 
 ########################################################################################
