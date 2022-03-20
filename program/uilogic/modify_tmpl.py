@@ -15,11 +15,12 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from uipy.modify_tmpl_ui import *
+from tool_define import *
 
 
 class ModifyTmplUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str, int, str)
+    dialogSignal = pyqtSignal(TmplItemData, TmplItemData)
 
     def __init__(self, parent):
         super(ModifyTmplUI, self).__init__()
@@ -30,12 +31,11 @@ class ModifyTmplUI(QMainWindow):
 
         self.parent = parent
         # 添加关联事件
-        self.ui.lEtTmplName.editingFinished.connect(self.checkTmplName)
         self.ui.bTnPublishDir.clicked.connect(self.setPublishPath)
         self.ui.bTnModify.clicked.connect(self.modifyTmplInfo)
         
         # 缓存之前的名字
-        self.oldTmplName = None
+        self.oldTmplData = None
         pass
 
     def setPublishPath(self):
@@ -51,17 +51,13 @@ class ModifyTmplUI(QMainWindow):
         name = self.ui.lEtTmplName.text()
         lang = self.ui.cBbxLang.currentIndex()
         publish = self.ui.lEtPublishDir.text()
-        self.dialogSignal.emit(self.oldTmplName, name, lang, publish)
+        tmplData = TmplItemData(name, lang, publish)
+        self.dialogSignal.emit(self.oldTmplData, tmplData)
         self.close()
         
-    def fillTmplData(self, name, lang, publish):
-        self.oldTmplName = name
-        self.ui.lEtTmplName.setText(name)
-        self.ui.cBbxLang.setCurrentIndex(lang)
-        self.ui.lEtPublishDir.setText(publish)
+    def fillTmplData(self, tmplData):
+        self.oldTmplData = tmplData
+        self.ui.lEtTmplName.setText(tmplData.name)
+        self.ui.cBbxLang.setCurrentIndex(tmplData.lang)
+        self.ui.lEtPublishDir.setText(tmplData.publish)
         
-    def checkTmplName(self):
-        tmplList = self.parent.tmplsDict[self.parent.tmplType]
-        for tmpl in tmplList:
-            if tmpl.name == self.ui.lEtTmplName.text():
-                QMessageBox.critical(self, "错误", "模板名字有重复!!!")

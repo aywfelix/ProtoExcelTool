@@ -20,64 +20,58 @@ from tool_define import *
 class ToolSettingXml(object):
     def __init__(self):
         self.xmlSettingPath = "./config/setting.config"
- 
-        self.initSettingConfig()   
-        # 保存数据的数据结构
-        # 将数据结构写入文件   
+
+        self.tools = {'protoc':'', 'proto':'', 'excel':''}
+        self.protocols = []  # TmplItemData
+        self.enums = []
+        self.tables = []
         pass
+    
+    def getTool(self):
+        return self.tools
+    
+    def getTmpls(self):
+        return self.protocols, self.enums, self.tables
+    
+    def getTmplsByType(self, tmplType):
+        if tmplType == TmplType.PROTO:
+            return self.protocols
+        if tmplType == TmplType.ENUM:
+            return self.enums
+        if tmplType == TmplType.TABLE:
+            return self.tables        
+        pass
+    
+    def addTmpls(self, tmplData, tmplType):
+        if tmplType == TmplType.PROTO:
+            self.protocols.append(tmplData)
+        if tmplType == TmplType.ENUM:
+            self.enums.append(tmplData)
+        if tmplType == TmplType.TABLE:
+            self.tables.append(tmplData)
 
-    def initSettingConfig(self):
-        # 初始化配置文件
+    # 读取全部配置信息    
+    def readSettingXml(self):
         try:
-            if os.path.exists(self.xmlSettingPath):
-                return
-            # 创建默认配置文件
-            with open(self.xmlSettingPath, "w+", encoding="utf-8") as f:
-                # 文件不存在创建节点
-                domTree = xmlDom.Document()
-                settingNode = domTree.createElement("setting")
-                # 创建tool 节点
-                toolNode = domTree.createElement("tool")
-                settingNode.appendChild(toolNode)
-                # 创建protoc path 节点
-                protocNode = domTree.createElement("protoc")
-                toolNode.appendChild(protocNode)
-                protocNode.setAttribute("path", "")
-                # 创建proto path 节点
-                protoNode = domTree.createElement("proto")
-                toolNode.appendChild(protoNode)
-                protoNode.setAttribute("path", "")
-                # 创建table path 节点
-                tableNode = domTree.createElement("excel")
-                toolNode.appendChild(tableNode)
-                tableNode.setAttribute("path", "")          
-
-                domTree.appendChild(settingNode)
-                with open(self.xmlSettingPath, 'w', encoding="utf-8") as f:
-                    f.write(self.toPrettyXml(domTree.toxml()))
-        except Exception as e:
-                print(e)
-
-    def readTmplsConfig(self):
-        try:
-            tmplsDict = {}
-            protoList = []
-            enumList = []
-            tableList = []
-            tmplsDict[TmplType.PROTO] = protoList
-            tmplsDict[TmplType.ENUM] = enumList
-            tmplsDict[TmplType.TABLE] = tableList
-            
             dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="utf-8") as f:
+            with codecs.open(self.xmlSettingPath, "r", "utf-8") as f:
                 dataResource = f.read()
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)
             if domTree == None:
                 print("parse xml err")
-                return None
-            
+                return
             rootNode = domTree.documentElement
+            # 工具常用配置
+            protocNode = rootNode.getElementsByTagName("protoc")[0]
+            protoNode = rootNode.getElementsByTagName("proto")[0]
+            excelNode = rootNode.getElementsByTagName("excel")[0]
+            self.tools['protoc'] = protocNode.getAttribute("path")
+            self.tools['proto'] = protoNode.getAttribute("path")
+            self.tools['excel'] = excelNode.getAttribute("path")
+            
+            # 协议模板配置
+            self.protocols = []
             protocolNodes = rootNode.getElementsByTagName("protocol")
             for protocolNode in protocolNodes:
                tmplNodes = protocolNode.getElementsByTagName("tmpl")
@@ -88,8 +82,10 @@ class ToolSettingXml(object):
                    lang = node.getAttribute("lang")
                    publish = node.getAttribute("publish")
                    tmplData = TmplItemData(name, int(lang), publish)
-                   protoList.append(tmplData)
-           
+                   self.protocols.append(tmplData)
+                   
+            # 枚举导出模板配置  
+            self.enums = []  
             enumNodes = rootNode.getElementsByTagName("enum")
             for enumNode in enumNodes:
                 tmplNodes = enumNode.getElementsByTagName("tmpl")
@@ -100,8 +96,10 @@ class ToolSettingXml(object):
                    lang = node.getAttribute("lang")
                    publish = node.getAttribute("publish")
                    tmplData = TmplItemData(name, int(lang), publish)
-                   enumList.append(tmplData)
-                
+                   self.enums.append(tmplData)
+                   
+            # 配置表导出模板配置
+            self.tables = []
             tableNodes = rootNode.getElementsByTagName("table")
             for tableNode in tableNodes:
                 tmplNodes = tableNode.getElementsByTagName("tmpl")
@@ -110,136 +108,74 @@ class ToolSettingXml(object):
                    lang = node.getAttribute("lang")
                    publish = node.getAttribute("publish")
                    tmplData = TmplItemData(name, int(lang), publish)
-                   tableList.append(tmplData)
-                   
-            # 返回配置信息
-            return tmplsDict
+                   self.tables.append(tmplData)
+            
         except Exception as e:
             print(e)
         pass
 
-    def saveTmplsConfig(self, tmplsDict):
+    # 保存全部配置信息
+    def writeSettingXml(self):
         try:
-            if not tmplsDict:
-                return
-            dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="utf-8") as f:
-                dataResource = f.read()
+            # 根元素
+            domTree = xmlDom.Document()
+            # 创建setting 节点
+            settingNode = domTree.createElement("setting")
+            domTree.appendChild(settingNode)            
+            # 创建tool节点
+            toolNode = domTree.createElement("tool")
+            settingNode.appendChild(toolNode)
 
-            # 获取节点信息
-            domTree = xmlDom.parseString(dataResource)
-            if domTree == None:
-                print("parse xml err")
-                return
-            
-            rootNode = domTree.documentElement
-            # 删除原来的节点
-            protocolNodes = rootNode.getElementsByTagName("protocol")
-            if protocolNodes:
-                for protocolNode in protocolNodes:
-                    rootNode.removeChild(protocolNode)
-
-            enumNodes = rootNode.getElementsByTagName("enum")
-            if enumNodes:
-                for enumNode in enumNodes:
-                    rootNode.removeChild(enumNode)
-                    
-            tableNodes = rootNode.getElementsByTagName("table")
-            if tableNodes:
-                for tableNode in tableNodes:
-                    rootNode.removeChild(tableNode)
-                    
-            # 重新创建配置节点
+            protocNode = domTree.createElement("protoc")
+            protoNode = domTree.createElement("proto")
+            excelNode = domTree.createElement("excel")
+            protocNode.setAttribute("path", self.tools['protoc'])
+            protoNode.setAttribute("path", self.tools['proto'])
+            excelNode.setAttribute("path", self.tools['excel'])
+            toolNode.appendChild(protocNode)
+            toolNode.appendChild(protoNode)
+            toolNode.appendChild(excelNode)
+            # 创建protocol节点
             protocolNode = domTree.createElement("protocol")
-            rootNode.appendChild(protocolNode)
-            enumNode = domTree.createElement("enum")
-            rootNode.appendChild(enumNode)
-            tableNode = domTree.createElement("table")
-            rootNode.appendChild(tableNode)
-            
-            for tmplData in tmplsDict[TmplType.PROTO]:
+            settingNode.appendChild(protocolNode) 
+
+            for tmplData in self.protocols:
                 tmplNode = domTree.createElement("tmpl")
                 tmplNode.setAttribute("name", tmplData.name)
                 tmplNode.setAttribute("lang", str(tmplData.lang))
                 tmplNode.setAttribute("publish", tmplData.publish)
-                protocolNode.appendChild(tmplNode)            
-
-            for tmplData in tmplsDict[TmplType.ENUM]:
+                protocolNode.appendChild(tmplNode)    
+                pass                       
+            # 创建enum节点
+            enumNode = domTree.createElement("enum")
+            settingNode.appendChild(enumNode)
+            for tmplData in self.enums:
                 tmplNode = domTree.createElement("tmpl")
                 tmplNode.setAttribute("name", tmplData.name)
                 tmplNode.setAttribute("lang", str(tmplData.lang))
                 tmplNode.setAttribute("publish", tmplData.publish)
                 enumNode.appendChild(tmplNode)
-            
-            for tmplData in tmplsDict[TmplType.TABLE]:
+                pass
+            # 创建table节点
+            tableNode = domTree.createElement("table")
+            settingNode.appendChild(tableNode)
+            for tmplData in self.tables:
                 tmplNode = domTree.createElement("tmpl")
                 tmplNode.setAttribute("name", tmplData.name)
                 tmplNode.setAttribute("lang", str(tmplData.lang))
                 tmplNode.setAttribute("publish", tmplData.publish)
-                tableNode.appendChild(tmplNode)            
-                                        
-            with open(self.xmlSettingPath, 'w', encoding="utf-8") as f:
+                tableNode.appendChild(tmplNode)
+                pass
+            
+            with open(self.xmlSettingPath, 'w+', encoding="GB2312") as f:
                 f.write(self.toPrettyXml(domTree.toxml()))
+
         except Exception as e:
             print(e)
         pass
     
-    # 读取工具配置
-    def readToolConfig(self):
-        try:
-            dataResource = ""
-            with codecs.open(self.xmlSettingPath, "r", "utf-8") as f:
-                dataResource = f.read()         
-            # 获取节点信息
-            domTree = xmlDom.parseString(dataResource)
-            if domTree == None:
-                print("parse xml err")
-                return 
-            rootNode = domTree.documentElement
-            protocNode = rootNode.getElementsByTagName("protoc")[0]
-            protoNode = rootNode.getElementsByTagName("proto")[0]
-            tableNode = rootNode.getElementsByTagName("excel")[0]
 
-            protocPath = protocNode.getAttribute("path")
-            protoPath = protoNode.getAttribute("path")
-            tablePath = tableNode.getAttribute("path")
-            
-            # print(protocPath, protoPath, tablePath)
-            return protocPath, protoPath, tablePath
-        except Exception as e:
-            print(e)        
-        pass
-
-    def saveToolSetting(self, protocPath, protoPath, tablePath):
-        try:
-            dataResource = ""
-            with open(self.xmlSettingPath, "r", encoding="utf-8") as f:
-                dataResource = f.read()
-            # 获取节点信息
-            domTree = xmlDom.parseString(dataResource)
-            if domTree == None:
-                print("parse xml err")
-                return 
-
-            rootNode = domTree.documentElement
-            # 更新节点值
-            protocNode = rootNode.getElementsByTagName("protoc")[0]
-            protocNode.setAttribute("path", protocPath)
-
-            protoNode = rootNode.getElementsByTagName("proto")[0]
-            protoNode.setAttribute("path", protoPath)
-
-            tableNode = rootNode.getElementsByTagName("excel")[0]
-            tableNode.setAttribute("path", tablePath)
-            
-            with open(self.xmlSettingPath, 'w', encoding="utf-8") as f:
-                f.write(self.toPrettyXml(domTree.toxml()))
-                
-        except Exception as e:
-            print(e)
-        
-        pass
-    
+    # 防止保存xml插入多余空行
     def toPrettyXml(self, data):
         return '\n'.join([line for line in xmlDom.parseString(
     data).toprettyxml(indent=' '*2).split('\n') if line.strip()])
