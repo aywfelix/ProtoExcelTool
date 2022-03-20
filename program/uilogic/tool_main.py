@@ -30,7 +30,7 @@ from export.export_pb import *
 from client.net_client import *
 from uilogic.create_enum import *
 from uilogic.modify_enum import *
-
+from transtable.trans_table import *
 
 class ProtoMainUI(QMainWindow):
     def __init__(self, parent=None):
@@ -590,7 +590,8 @@ class ProtoMainUI(QMainWindow):
         export_pb.exportPb()
         # 导出枚举
         # 导出配置表
-        
+        trans_table = TransTable()
+        trans_table.transTables()
         pass
     
     def openSettingClicked(self):

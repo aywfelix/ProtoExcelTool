@@ -64,11 +64,11 @@ class ToolSettingUI(QMainWindow):
         toolInfos = self.settingXml.getTool()
         if not toolInfos:
             return
-        if not toolInfos['protoc']:
+        if toolInfos['protoc']:
             self.ui.lEtProtocPath.setText(toolInfos['protoc'])
-        if not toolInfos['proto']:
+        if toolInfos['proto']:
             self.ui.lEtProtoPath.setText(toolInfos['proto'])
-        if not toolInfos['excel']:    
+        if toolInfos['excel']:    
             self.ui.lEtTablePath.setText(toolInfos['excel'])
         
         # 读取配置显示所有配置模板信息

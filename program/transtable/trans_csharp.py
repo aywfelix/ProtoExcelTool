@@ -1,7 +1,7 @@
 # _*_coding:utf-8 _*_
 import os
 import codecs
-from trans_define import *
+from transtable.trans_define import *
 
 
 class TransCsharp:

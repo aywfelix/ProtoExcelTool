@@ -2,7 +2,7 @@
 import os
 import codecs
 from tool_define import *
-from trans_define import *
+from transtable.trans_define import *
 
 #############################################################################################
 single_tmpl = '                row.%(fields)s = r["%(fields)s"].%(asType)s;\n'
