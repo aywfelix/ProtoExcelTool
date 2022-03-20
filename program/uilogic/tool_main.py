@@ -477,7 +477,7 @@ class ProtoMainUI(QMainWindow):
     def connServer(self):
         ip = self.ui.cBbxServAddr.currentText()
         port = self.ui.sBxPort.value()
-        result = self.client.connServer(ip, port)
+        result = self.client.connect(ip, port)
         if not result:
             QMessageBox.information(self, "信息", "连接服务器失败")
             return
@@ -489,7 +489,7 @@ class ProtoMainUI(QMainWindow):
         pass
 
     def disConnect(self):
-        self.client.disConnect()
+        self.client.disconnect()
 
         palette = self.ui.bTnConn.palette()
         palette.setColor(QtGui.QPalette.ButtonText, QtCore.Qt.black)

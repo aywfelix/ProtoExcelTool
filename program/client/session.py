@@ -67,5 +67,9 @@ class Session(object):
         self.sock.close()
         self.recv_data = None
         
+    def __repr__(self):
+        return self.socket.__repr__()
+        pass
+        
         
     

@@ -33,7 +33,7 @@ class DataPack(object):
     def dataUnpack(self, recv_data):
         msg_len = struct.unpack('i', recv_data[:4])[0]
         msg_id = struct.unpack('i', recv_data[4:8])[0]
-        msg_proto = self.getMsgProto()
+        msg_proto = self.getMsgProto(msg_id)
         msg_content = msg_proto.ParseFromString(recv_data[8:])
         return msg_id, msg_content
         pass
@@ -43,7 +43,7 @@ class DataPack(object):
         msg_len = struct.unpack('i', recv_data[:4])[0]
         return msg_len
         pass
-    
+
     def getMsgProto(self, msg_id):
         return None
         pass
