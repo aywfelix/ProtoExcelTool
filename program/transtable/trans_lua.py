@@ -6,10 +6,8 @@ from trans_define import *
 
 @Singleton
 class TransLua:
-    def __init__(self):
-        self.json_dir = "../extra/tablejson"
-        self.lua_dir = "../extra/tables"
-
+    def __init__(self, lua_dir):
+        self.lua_dir = lua_dir
 
     def gen(self, table_name):
         s = ""

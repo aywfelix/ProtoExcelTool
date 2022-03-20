@@ -130,3 +130,11 @@ class TransType:
     LUA = 1
     GO = 2
     CSHARP = 3
+    
+# 工具常用配置项
+class ToolConfigData:
+    def __init__(self, protocPath, protoPath, excelPath, serverHosts):
+        self.protocPath = protocPath
+        self.protoPath = protoPath
+        self.excelPath = excelPath
+        self.serverHosts = serverHosts

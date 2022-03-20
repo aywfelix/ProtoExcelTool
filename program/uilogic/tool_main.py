@@ -585,6 +585,12 @@ class ProtoMainUI(QMainWindow):
     def exportAllClicked(self):
         self.saveProtoXml()
         self.saveEnumXml()
+        # 导出协议
+        export_pb = ExportPb()
+        export_pb.exportPb()
+        # 导出枚举
+        # 导出配置表
+        
         pass
     
     def openSettingClicked(self):

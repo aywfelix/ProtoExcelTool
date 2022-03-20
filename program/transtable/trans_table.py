@@ -12,14 +12,20 @@ from tool_define import *
 from transtable.trans_cpp import *
 from transtable.trans_csharp import *
 from transtable.trans_lua import *
+from setting_xml import *
+
 
 @Singleton
 class TransTable:
     def __init__(self):
-        self.excel_dir = "../extra/excels/"
+        self.settingXml = ToolSettingXml()
+        toolConfig = self.settingXml.getTool()
+        self.excel_dir = toolConfig['excel']
+        if not self.excel_dir:
+            self.excel_dir = "../extra/excels/"
         self.json_dir = "../extra/tablejson/"
         pass
-
+    
     def loadExcels(self):
         files = os.listdir(self.excel_dir)
         excels = [file for file in files if os.path.splitext(file)[
@@ -136,15 +142,21 @@ class TransTable:
             # 导出json文件
             self.write_json(table_name, all_rows)
             # 如果配置了导出cpp
-            trans_cpp = TransCpp(field_types, field_descs)
-            trans_cpp.gen(table_name)
-            # 如果配置了导出csharp
-            trans_csharp = TransCsharp(field_types, field_descs)
-            trans_csharp.gen(table_name)
-            # 如果配置了导出lua
-            trans_lua = TransLua()
-            trans_lua.gen(table_name)
-            
+            exportTmpls = self.settingXml.getTmplsByType(TmplType.TABLE)
+            if not exportTmpls:
+                return
+            for tmpl in exportTmpls:
+                if tmpl.lang == TransType.CPP:
+                    trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
+                    trans_cpp.gen(table_name)
+                # 如果配置了导出csharp
+                if tmpl.lang == TransType.CSHARP:
+                    trans_csharp = TransCsharp(tmpl.publish, field_types, field_descs)
+                    trans_csharp.gen(table_name)
+                # 如果配置了导出lua
+                if tmpl.lang == TransType.LUA:
+                    trans_lua = TransLua(tmpl.publish)
+                    trans_lua.gen(table_name)
             print("transport table ", excel_name, " succ")
         except Exception as e:
             print('str(Exception):\t', str(e))

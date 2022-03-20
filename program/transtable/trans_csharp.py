@@ -5,8 +5,8 @@ from trans_define import *
 
 
 class TransCsharp:
-    def __init__(self, field_types, field_descs):
-        self.csharp_dir = "../extra/tables"
+    def __init__(self, csharp_dir, field_types, field_descs):
+        self.csharp_dir = csharp_dir
         self.field_types = field_types
         self.field_descs = field_descs
 

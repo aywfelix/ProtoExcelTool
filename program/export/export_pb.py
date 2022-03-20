@@ -31,17 +31,17 @@ class ExportPb(object):
             protoXml.exportProtoFile()
             
             # 根据配置选项导出不同pb
-            tmplsDict = self.settingXml.readTmplsConfig()
-            protoList = tmplsDict[TmplType.PROTO]
-            if not protoList:
+            tmpls = self.settingXml.getTmplsByType(TmplType.PROTO)
+            if not tmpls:
                 return
-            protocPath, protoPath, _ = self.settingXml.readToolConfig()
+            toolConfig = self.settingXml.getTool()
+            protocPath = toolConfig['protoc']
             if protocPath.endswith("/"):
                 protocPath = protocPath+"protoc.exe"
             else:
                 protocPath = protocPath+"/protoc.exe"
-                
-            for config in protoList:
+            protoPath = toolConfig['proto']    
+            for config in tmpls:
                 for proto in os.listdir(protoPath):
                     if not proto.endswith(".proto"):
                         continue

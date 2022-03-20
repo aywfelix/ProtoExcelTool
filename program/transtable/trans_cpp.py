@@ -19,9 +19,8 @@ vector_tmpl = '''
 
 @Singleton
 class TransCpp:
-    def __init__(self, field_types, field_descs):
-        self.json_dir = "../extra/tablejson"
-        self.cpp_dir = "../extra/tables"
+    def __init__(self, cpp_dir, field_types, field_descs):
+        self.cpp_dir = cpp_dir
         self.field_types = field_types
         self.field_descs = field_descs
 

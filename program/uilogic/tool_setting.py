@@ -84,6 +84,12 @@ class ToolSettingUI(QMainWindow):
 
     # 配置窗口关闭保存所有配置信息    
     def closeEvent(self, event):
+        protocPath = self.ui.lEtProtocPath.text().strip()
+        protoPath = self.ui.lEtProtoPath.text().strip()
+        excelPath = self.ui.lEtTablePath.text().strip()
+        serverHosts = self.ui.tEtIPList.toPlainText()
+        toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, serverHosts)
+        self.settingXml.updateTool(toolConfigData)
         self.settingXml.writeSettingXml()        
 
     def setDirPath(self, openType):
@@ -187,4 +193,4 @@ class ToolSettingUI(QMainWindow):
         qLetLang = self.hBoxLayout.itemAt(2).widget()
         qLetLang.setText(self.tmplLang.getLang(tmplData.lang))
         pass
-    
+

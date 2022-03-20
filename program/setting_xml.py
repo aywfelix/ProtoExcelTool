@@ -49,6 +49,13 @@ class ToolSettingXml(object):
             self.enums.append(tmplData)
         if tmplType == TmplType.TABLE:
             self.tables.append(tmplData)
+            
+    def updateTool(self, configData):
+        self.tools['protoc'] = configData.protocPath
+        self.tools['proto'] = configData.protoPath
+        self.tools['excel'] = configData.excelPath
+        
+        pass
 
     # 读取全部配置信息    
     def readSettingXml(self):
