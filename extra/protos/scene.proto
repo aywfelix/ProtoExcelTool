@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+enum sceneMsgId {
+   scneStart = 0;  
+   c2sRoleJump = 3101;
+   s2cRoleJumpAck = 3102;
+   s2cRoleReAlive = 1302;
+   c2sChannelChat = 8150;
+   s2cChannelChat = 8100;
+
+   s2cActivityReady = 8161;
+   s2cActivityStart = 8162;
+   c2sJoinActivity = 8163;
+   s2cJoinActivity = 8164;   
+
+   c2sMazeGetGem = 8200;
+
+   s2cAreaInit = 9100;
+   s2cAreaTrade = 9101;
+   c2sServerTimeReq = 9051;
+   s2cServerTimeAck = 9001;
+   c2sTransportReq = 1052;
+   c2sSwitchSceneReq = 8101;
+}
+
+message C2SRoleJump
+{
+	float			dir = 1;
+	int32			pos_x = 2;
+	int32			pos_y = 3;	
+	float			height = 4;
+}
+
+message S2CRoleJumpAck
+{	
+	int32			obj_id = 1;
+	float			dir = 2;
+	int32			pos_x = 3;
+	int32			pos_y = 4;	
+	float			height = 5;
+}
+
+message S2CRoleReAlive 
+{
+	int32			obj_id = 1;	
+	float			pos_x = 2;
+	float			pos_y = 3;	
+	float			pos_z = 4;		
+}
+
+message C2SServerTimeReq 
+{
+
+}
+
+message S2CServerTimeAck
+{
+	int32 server_time = 1;
+	int32 server_real_start_time = 2;
+	int32 open_days = 3;
+	int32 server_real_combine_time = 4;
+}
+
+
+message C2SChannelChat 
+{
+	int32 content_type = 1;   //CHAT_CONTENT_TYPE_TEXT, CHAT_CONTENT_TYPE_AUDIO,
+	int32 from_type = 2;	// 发送类型 
+	int32 channel_type = 3;				// 0：世界，1：阵营，2：场景，3：组队，4：仙盟	
+	string content = 4;  // 消息内容	
+}
+
+
+
+message S2CChannelChat 
+{
+	int32 from_uid = 1;	
+	string username = 2;	
+	int32 sex = 3;
+	int32 content_type = 4;		
+	int32 channel_type = 5;
+	int32 from_type = 6;	// 发送类型	
+	string content = 7;  // 消息内容
+	
+}
+
+
+
+message AreaItem
+{
+   string	area_id = 1;
+   int32	role_id = 2;         
+   string  	user_uuid = 3;
+}
+
+message S2CAreaInit 
+{
+   int32				errCode = 1;
+   int32				count = 2;   
+   repeated AreaItem areaItem= 3;
+	
+}
+
+message S2CAreaTrade 
+{   
+   string	area_id = 1;
+   int32	role_id = 2;    
+   string  	user_uuid = 3; 
+}
+
+message C2STransportReq
+{
+	int32 transport_index = 1;
+}
+
+message S2CActivityReady
+{
+	int32 activityId = 1;
+	int32 count_down = 2;
+	int32 switch_type = 3; // 场景切换类型1本地 2跳转远端根据ip,port连接 	
+}
+
+message S2CActivityStart
+{
+	int32	activityId = 1;
+	int32	switch_type = 2; // 场景切换类型1本地 2跳转远端根据ip,port连接 
+	string	Ip = 3;
+	int32	port = 4;
+	int32 	maze_seed = 5; // 迷宫种子
+	float   town_pos_x = 6; // 出生点x
+	float 	town_pos_y = 7; // 出生点y
+	float   town_pos_z = 8; // 出生点Z
+}
+
+message C2SJoinActivity
+{
+	int32	activityId = 1;
+	int32	join_status = 2;  // 1 --  参加   2---退出	
+}
+
+message S2CJoinActivity 
+{
+	int32	activityId = 1;
+	int32	errocode = 2;  // 0-- 成功   > 0 ---失败		
+}
+
+message C2SMazeGetGem
+{
+}
+
+message C2SSwitchSceneReq 
+{
+	int32 scene_id = 1;
+}

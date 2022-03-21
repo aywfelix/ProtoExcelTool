@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -483,7 +483,7 @@
       </property>
       <item>
        <property name="text">
-        <string>127.0.0.1</string>
+        <string>192.168.50.251:10300</string>
        </property>
       </item>
      </widget>
@@ -498,12 +498,37 @@
       </property>
       <item>
        <property name="text">
-        <string>1101</string>
+        <string>UserLogin:7056</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>1102</string>
+        <string>RoleLogin:7057</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CreateRole:7150</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>EnterScene:1050</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Move:1150</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MazeGetGem:8200</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SwitchScene:8101</string>
        </property>
       </item>
      </widget>
