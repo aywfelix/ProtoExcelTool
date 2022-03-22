@@ -60,7 +60,14 @@ class Session(object):
         pass
     
     def writeData(self, data):
-        self.sock.send(data)
+        try:
+            ret = self.sock.send(data)
+            if ret <= 0:
+                return False
+            return True
+        except Exception as e:
+            print(e)
+        return False
         pass
     
     def close(self):

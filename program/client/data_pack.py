@@ -13,13 +13,14 @@
 # here put the import lib
 import struct
 from tool_define import *
+from client.login_pb2 import *
 
 @Singleton
 class DataPack(object):
     def __init__(self, parent=None):
         pass
     
-    @staticmethod
+
     def dataPack(self, msg_id, msg_proto):
         msg_pack = None
         msg_content = msg_proto.SerializeToString()
@@ -27,9 +28,26 @@ class DataPack(object):
         msg_pack = struct.pack('i', msg_len)
         msg_pack = msg_pack + struct.pack('i', msg_id)
         msg_pack = msg_pack+msg_content
+        return msg_pack
         pass
+
+
+    def dataPack2(self, msg_id, msg_proto):
+        msg_pack = None
+        msg_content = msg_proto.SerializeToString()
+        print(len(msg_content))
+        msg_len = 4 + len(msg_content)
+        msg_pack = struct.pack('i', msg_len)
+        msg_pack = msg_pack + struct.pack('HH', msg_id, 0)
+        print(len(msg_pack))
+        msg_pack = msg_pack + msg_content
+        print(len(msg_pack))
+        new_proto = C2SLoginMsg()
+        msg = new_proto.ParseFromString(msg_content)
+        return msg_pack
+        pass    
     
-    @staticmethod
+
     def dataUnpack(self, recv_data):
         msg_len = struct.unpack('i', recv_data[:4])[0]
         msg_id = struct.unpack('i', recv_data[4:8])[0]
@@ -38,11 +56,12 @@ class DataPack(object):
         return msg_id, msg_content
         pass
     
-    @staticmethod
+
     def dataLen(self, recv_data):
         msg_len = struct.unpack('i', recv_data[:4])[0]
         return msg_len
         pass
+
 
     def getMsgProto(self, msg_id):
         return None

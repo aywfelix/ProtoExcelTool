@@ -12,25 +12,57 @@
 
 # here put the import lib
 import selectors
+
 from client.session import *
 from client.data_pack import *
+from client.login_pb2 import *
+from client.scene_pb2 import *
+from google.protobuf import json_format
+import codecs
+import json
 
 class NetClient(object):
     def __init__(self, parent=None):
         self.reactor = selectors.DefaultSelector()
         self.session = Session()
         self.dataPack = DataPack()
+        self.msgDefine = {}
+        self.iniMsgDefine()
+        self.recordReq = {}
+        self.reqHistoryPath = "../extra/tmp/request.json"
+        self.loadReqHistory()
         pass
+
+    def iniMsgDefine(self):
+        self.msgDefine[7056] = C2SLoginMsg()
+        self.msgDefine[7057] = C2SRoleLoginReq()
+        self.msgDefine[1050] = S2CEnterScene()
+        pass
+
+    def loadReqHistory(self):
+        try:
+            content = ""
+            with codecs.open(self.reqHistoryPath, 'r', encoding='GB2312') as f:
+                content = f.read()
+                pass
+
+            self.recordReq = json.loads(content)
+        except Exception as e:
+            print(e)
+        pass
+
+    def getReqHistory(self, msgID):
+        return self.recordReq[str(msgID)]
     
     def connect(self, ip, port):
-        self.session.close()
-        self.session.conn_server(ip, port)
-        self.reactor.register(
-            self.session.sock, selectors.EVENT_READ, self.session.readData)
+        if self.session.conn_server(ip, port):
+            self.reactor.register(
+                self.session.sock, selectors.EVENT_READ, self.session.readData)
+            return True
+        return False
         
     def disconnect(self):
         self.session.close()
-        print(self.session)
         pass
     
     def jsonToPb(self, msg):
@@ -41,14 +73,45 @@ class NetClient(object):
     # json_result = json_format.MessageToJson(request)
         pass
     
-    def sendMsg(self, data):
-        self.session.writeData(data)
+    def sendMsg(self, msgID, content):
+        nMsgID = int(msgID)
+        msgProto = self.msgDefine[nMsgID]
+        if not msgProto:
+            return
+        if not content:
+            content = self.recordReq[msgID]
+        
+        request = json_format.Parse(content, msgProto)
+
+        request = C2SLoginMsg()
+        request.name = 'yuanchenchuan'
+        request.token = 'token'
+        request.uuid = '1484870370150178818'
+        request.wallet = '0x928867E8505A99174DD7a84197edf2B279A62Fb3'
+        request.invitationstatus = 1
+        # 打包发送消息
+        msg = self.dataPack.dataPack2(nMsgID, request)
+        if self.session.writeData(msg):
+            print("send msg({0}) ok".format(msgID))
+        else:
+            print("send msg({0}) error".format(msgID))
+
+        # 记录发送消息
+        self.recordReq[nMsgID] = content
         pass
     
-    # 发送登录消息
-    def sendLoginReq(self, data):
-        
-        pass
+
+    # 记录发送历史
+    def saveSendHistory(self):
+        try:
+            with codecs.open(self.reqHistoryPath, 'w+', encoding='GB2312') as f:
+                jsonStr = json.dumps(
+                    self.recordReq, indent=4, sort_keys=False, ensure_ascii=False)
+                f.write(jsonStr + '\n')  
+            pass  
+        except Exception as e:
+            print(e)
+            pass
 
     
 

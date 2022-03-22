@@ -78,6 +78,8 @@ class ProtoMainUI(QMainWindow):
         self.ui.bTnExport.clicked.connect(self.exportAllClicked)
         # 设置按钮
         self.ui.bTnSetting.clicked.connect(self.openSettingClicked)
+        # 协议测试发送消息按钮
+        self.ui.bTnSendMsg.clicked.connect(self.sendProtoMsgClicked)
         # 菜单事件处理逻辑
         self.ui.menuExportPb.triggered.connect(self.menuExportPbClicked)
         self.ui.menuExportExcel.triggered.connect(self.menuExportExcelClicked)
@@ -119,7 +121,6 @@ class ProtoMainUI(QMainWindow):
         self.protoCurItem = None
         # enum当前选中item
         self.enumCurItem = None        
-
         # 客户端测试协议
         self.client = NetClient()
         # 初始化ToolProtoXml对象(TODO: 优化)
@@ -133,6 +134,24 @@ class ProtoMainUI(QMainWindow):
         self.loadProtocols()
         # load enum xml
         self.loadEnums()
+
+        # 设置协议测试界面
+        self.ui.cBbxProto.currentIndexChanged[str].connect(self.cBbxProtoChange)
+        self.showProtoTest()
+    
+    def setProtoTestReqData(self):
+        msgID = self.ui.cBbxProto.currentText().strip().split(':')[1]
+        reqData = self.client.getReqHistory(msgID)
+        self.ui.tEtReq.setText(reqData)
+        pass
+
+    def showProtoTest(self):
+        self.setProtoTestReqData()
+        pass
+
+    def cBbxProtoChange(self):
+        self.setProtoTestReqData()
+        pass
 
     def loadProtocols(self):
         self.protoXml.readProtocolXml()
@@ -471,13 +490,15 @@ class ProtoMainUI(QMainWindow):
     def closeEvent(self, event):
         # 程序退出保存信息
         self.saveToXml()
+        # 保存测试历史
+        self.client.saveSendHistory()
         print("program exit")
 
     # 协议测试处理逻辑
     def connServer(self):
-        ip = self.ui.cBbxServAddr.currentText()
-        port = self.ui.sBxPort.value()
-        result = self.client.connect(ip, port)
+        connHost = self.ui.cBbxServAddr.currentText()
+        addr = connHost.split(':')
+        result = self.client.connect(addr[0], int(addr[1]))
         if not result:
             QMessageBox.information(self, "信息", "连接服务器失败")
             return
@@ -597,6 +618,15 @@ class ProtoMainUI(QMainWindow):
     def openSettingClicked(self):
         self.toolSettingUI = ToolSettingUI()
         self.toolSettingUI.show()
+        pass
+
+    def sendProtoMsgClicked(self):
+        # 获取当前消息ID
+        msgID = self.ui.cBbxProto.currentText().strip().split(':')[1]
+        # 获取发送消息内容
+        sendContent = self.ui.tEtReq.toPlainText().strip()
+        # 调用client 发送消息
+        self.client.sendMsg(msgID, sendContent)
         pass
 
 ########################################################################################
