@@ -15,8 +15,9 @@ import selectors
 
 from client.session import *
 from client.data_pack import *
-from client.login_pb2 import *
-from client.scene_pb2 import *
+import client.login_pb2 as loginpb
+import client.scene_pb2 as scenepb
+from google.protobuf import reflection
 from google.protobuf import json_format
 import codecs
 import json
@@ -27,17 +28,17 @@ class NetClient(object):
         self.session = Session()
         self.dataPack = DataPack()
         self.msgDefine = {}
-        self.iniMsgDefine()
+        # self.iniMsgDefine()
         self.recordReq = {}
         self.reqHistoryPath = "../extra/tmp/request.json"
         self.loadReqHistory()
         pass
 
-    def iniMsgDefine(self):
-        self.msgDefine[7056] = C2SLoginMsg()
-        self.msgDefine[7057] = C2SRoleLoginReq()
-        self.msgDefine[1050] = S2CEnterScene()
-        pass
+    # def iniMsgDefine(self):
+    #     self.msgDefine[7056] = loginpb.C2SLoginMsg()
+    #     self.msgDefine[7057] = loginpb.C2SRoleLoginReq()
+    #     self.msgDefine[1050] = loginpb.S2CEnterScene()
+    #     pass
 
     def loadReqHistory(self):
         try:
@@ -75,7 +76,10 @@ class NetClient(object):
     
     def sendMsg(self, msgID, content):
         nMsgID = int(msgID)
-        msgProto = self.msgDefine[nMsgID]
+        descriptor = loginpb.DESCRIPTOR.message_types_by_name['C2SLoginMsg']
+        protoMsgType = reflection.MakeClass(descriptor)
+        msgProto = protoMsgType()
+
         if not msgProto:
             return
         if not content:
@@ -83,12 +87,6 @@ class NetClient(object):
         
         request = json_format.Parse(content, msgProto)
 
-        request = C2SLoginMsg()
-        request.name = 'yuanchenchuan'
-        request.token = 'token'
-        request.uuid = '1484870370150178818'
-        request.wallet = '0x928867E8505A99174DD7a84197edf2B279A62Fb3'
-        request.invitationstatus = 1
         # 打包发送消息
         msg = self.dataPack.dataPack2(nMsgID, request)
         if self.session.writeData(msg):

@@ -13,7 +13,7 @@
 # here put the import lib
 import struct
 from tool_define import *
-from client.login_pb2 import *
+
 
 @Singleton
 class DataPack(object):
@@ -35,15 +35,10 @@ class DataPack(object):
     def dataPack2(self, msg_id, msg_proto):
         msg_pack = None
         msg_content = msg_proto.SerializeToString()
-        print(len(msg_content))
         msg_len = 4 + len(msg_content)
         msg_pack = struct.pack('i', msg_len)
         msg_pack = msg_pack + struct.pack('HH', msg_id, 0)
-        print(len(msg_pack))
         msg_pack = msg_pack + msg_content
-        print(len(msg_pack))
-        new_proto = C2SLoginMsg()
-        msg = new_proto.ParseFromString(msg_content)
         return msg_pack
         pass    
     
