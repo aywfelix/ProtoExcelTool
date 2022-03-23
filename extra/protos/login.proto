@@ -1,247 +1,32 @@
 syntax = "proto3";
 
-enum loginMsgId {
-   loginStart = 0;
-   c2sLoginMsg = 7056; 
-   c2sRoleLoginReq = 7057;   
-   s2cRoleLoginAck = 7000;
-   c2sLHeartBeat = 7052;
-   s2cRoleList = 7001;
-   c2sCreateRole = 7150;
-   s2cCreateRoleAck = 7100;
-   c2sUserEnterGSReq = 1050;
-   s2cUserEnterGSAck = 1000;
-   s2cEnterScene = 1100;
-   s2cLeaveScene = 1101;
-   s2cObjMove = 1104;
-   c2sObjMove = 1150;
-   s2cVisibleObjEnterRole = 1102;
-   s2cVisibleObjLeave = 1103;
-	
-}
- 
-message C2SLoginMsg{
-	string name = 1;	
-	string token = 2;
-	string uuid = 3;
-	string wallet = 4;
-	int32 invitationstatus = 5;
+
+// µÇÂ¼µ½ÓÎÏ·²¢»ñÈ¡½ÇÉ«ÁĞ±í
+message LoginMsgReq{
+   string name = 1;
+   string token = 2;
+   string uuid = 3;
+   string wallet = 4;
+   int32 invitationstatus = 5;
 }
 
-
-message C2SRoleLoginReq{
-	string accout = 1;	
-	int32 role_id = 2;
-	string role_name = 3; 
-}
-
-message S2CRoleLoginAck{
-	string accout = 1;	
-	int32 role_id = 2;
-	string role_name = 3;
-	int32 scene_id = 4;
-	int32 last_scene_id = 5;
-	string gw_hostname = 6;
-	int32 gw_port = 7;
-	int32 gs_index = 8;
-	int64 server_time = 9;
-	string session_key = 10;
-	int32 result = 11;
-}
-
-message C2SLHeartBeat {
-	
-}
-
-
-message RoleItem
-{
-   int32	role_id = 1;   
-   string	role_name = 2;
-   int32	avatar = 3;
-   int32 	sex = 4;   
-   uint32	create_time = 5;
-   uint32	last_login_time  = 6;   
-}
-
-message S2CRoleList
-{
-   enum LoginAckCode
-	{
-		LOGIN_RESULT_SUC = 0;
-		LOGIN_NO_THREAD = 1100;
-		LOGIN_SERVER_ERROR = 1102;
-		LOGIN_RESULT_EXIST = 1103;
-		LOGIN_SCENE_NOT_EXIST = 1104;
-		LOGIN_RESULT_NO_GATEWAY = 1105;
-		LOGIN_RESULT_NO_ROLE = 1106;
-		LOGIN_THREAD_BUSY = 1107;
-		LOGIN_LOGIN_FORBID = 1108;
-		LOGIN_ANTI_WALLOW = 1109;
-	};
-
-   int32				errCode = 1;
-   int32				count = 2;
-   string			user_uuid = 3;
-   string			wallet = 4;
-   int32			invitationstatus = 5;
+// ¿Í»§¶Ë·¢ËÍµÇÂ¼ÏûÏ¢£¬·şÎñÆ÷·µ»Ø½ÇÉ«ÁĞ±í
+message RoleListAck{
+   int32 errCode = 1;
+   int32 count = 2;
+   string user_uuid = 3;
+   string wallet = 4;
+   int32 invitationstatus = 5;
    repeated RoleItem roleItem= 6;
-
 }
 
-
-message C2SCreateRole
-{   	
-   string			role_name = 1;
-   uint32		   login_time = 2;
-   string			login_str = 3;
-   uint32			server = 4;
-   uint32				anti_wallow = 5;
-   uint32				avatar = 6;
-   uint32				sex = 7;
-   string			plat_name = 8;
-   string			user_uuid = 9;
+// ½ÇÉ«ĞÅÏ¢
+message RoleItem{
+   int32 role_id = 1;   
+   string role_name = 2;
+   int32 avatar = 3;
+   int32  sex = 4;   
+   uint32 create_time = 5;
+   uint32 last_login_time  = 6;
 }
 
-message S2CCreateRoleAck
-{
-	enum RET_TYPE
-	{
-		RESULT_TYPE_SUCC = 0;					// æˆåŠŸ
-		RESULT_TYPE_NO_SPACE = 1;				// æ‹¥æœ‰è§’è‰²å¤ªå¤šï¼Œæ²¡æœ‰ç©ºé—´å†åˆ›è§’è‰²
-		RESULT_TYPE_EXIST_NAME = 2;			// é‡å
-		RESULT_TYPE_NAME_INVALID = 3;			// åå­—ä¸åˆæ³•
-		RESULT_TYPE_SERVER_LIMIT = 4;			// æœåŠ¡å™¨ç¦æ­¢åˆ›å»ºè§’è‰²
-	};
-
-	int32		errCode = 1;
-	uint32		role_id = 2;
-	string		role_name = 3;
-	uint32		avatar = 4;
-	uint32		sex = 5;
-	int32		create_time = 6;
-}
-
-
-message C2SUserEnterGSReq
-{
-	int32				scene_id = 1;
-	int32				scene_key = 2;
-	int32				last_scene_id = 3;
-	int32				role_id = 4;
-	string		role_name = 5;
-	int32				time = 6;
-	uint32			is_login = 7;			// ç™»é™†è¿˜æ˜¯åœºæ™¯åˆ‡æ¢
-	uint32			reserved1 = 8;
-	int32			server = 9;
-	string		  key = 10;	
-	string		  user_uuid = 11;	
-	int32		  invitationstatus = 12;
-}
-
-
-message S2CUserEnterGSAck
-{
-	int32		errCode = 1;
-}
-
-message S2CEnterScene
-{
-	int32			sceneid = 1;
-	int32			obj_id = 2;
-	int32			open_line = 3;
-	float			pos_x = 4;
-	float			pos_y = 5;		
-	int32			hp = 6;
-	int32			max_hp = 7;
-	int32			scene_key = 8;
-	float			height = 9;
-	float			pos_z = 10;	
-}
-
-message S2CLeaveScene
-{
-	int32			sceneid = 1;	
-}
-
-
-message C2SObjMove
-{
-	float			dir = 1;
-	float			speed_x = 2;
-	float			speed_y = 3;
-	float			speed_z = 4;
-	float			pos_x = 5;
-	float			pos_y = 6;
-	float			pos_z = 7;
-	float			rotation_x = 8;
-	float			rotation_y = 9;
-	float			rotation_z = 10;
-	float			distance = 11;
-	float			height = 12;	
-	float			acceleration_x = 13;
-	float			acceleration_y = 14;
-	float			acceleration_z = 15;
-	float			controlRotation_x = 16;
-	float			controlRotation_y = 17;
-	float			controlRotation_z = 18;
-}
-
-message S2CObjMove
-{
-	float			dir = 1;
-	float			speed_x = 2;
-	float			speed_y = 3;
-	float			speed_z = 4;
-	float			pos_x = 5;
-	float			pos_y = 6;
-	float			pos_z = 7;
-	float			rotation_x = 8;
-	float			rotation_y = 9;
-	float			rotation_z = 10;	
-	int32			reserved = 11;
-	int32			obj_id = 12;
-	float			distance = 13;
-	uint32			move_mode = 14;
-	uint32			reserve2 = 15;
-	float			height = 16;
-	float			acceleration_x = 17;
-	float			acceleration_y = 18;
-	float			acceleration_z = 19;
-	float			controlRotation_x = 20;
-	float			controlRotation_y = 21;
-	float			controlRotation_z = 22;
-}
-
-
-message S2CVisibleObjLeave
-{
-	uint32	obj_id = 1;
-	uint32	reserved = 2;
-}
-
-
-message S2CVisibleObjEnterRole		//1102
-{
-	float		 dir = 1;
-	uint32		 move_mode_param = 2;
-	uint32		 role_status = 3;
-	uint32		 obj_id = 4;
-	int32		  role_id = 5;
-	string		  role_name = 6;	
-	int32		   hp = 7;
-	int32		    max_hp = 8;
-	uint32			level = 9;
-	uint32			sex = 10;
-	uint32	    	speed = 11;
-	float			pos_x = 12;
-	float			pos_y = 13;
-	float			distance = 14;
-	uint32			name_color = 15;
-	uint32			move_mode = 16;
-	uint32			avatar = 17;
-	float			pos_z = 18;
-	float  		    rotation_x = 19;
-    float  			rotation_y = 20;
-    float   		rotation_z = 21;
-}

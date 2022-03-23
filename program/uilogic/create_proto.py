@@ -37,12 +37,21 @@ class CreateProtoUI(QMainWindow):
         self.ui.rBtnReq.toggled.connect(self.changeRadioButton)
         pass
 
+    def getProtoType(self):
+        if self.ui.rBtnReq.isChecked():
+            return "1"
+        if self.ui.rBtnNotify.isChecked():
+            return "2"
+        if self.ui.rBtnCom.isChecked():
+            return "3"
+
     def createProto(self):
         protoId = self.ui.lEtProtoId.text().strip()
         protoName = self.ui.lEtProtoName.text().strip()
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
         onlyServer = self.ui.cBxProtocol.isChecked()
+        protoType = self.getProtoType() 
 
         protocols = self.protoXml.protocols
         for _, protocolDict in protocols.items():
@@ -55,7 +64,7 @@ class CreateProtoUI(QMainWindow):
                     return
             pass        
 
-        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, onlyServer)
+        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType, onlyServer)
 
         self.dialogSignal.emit(protoData)
         self.close()
@@ -69,23 +78,23 @@ class CreateProtoUI(QMainWindow):
         pass
 
     def changeProtoName(self):
-        # protoName = self.ui.lEtProtoName.text()
-        # if self.ui.rBtnReq.isChecked():
-        #     protoName += "Req"
-        # elif self.ui.rBtnNotify.isChecked():
-        #     protoName += "Notify"
-        # self.ui.lEtProtoName.setText(protoName)
+        protoName = self.ui.lEtProtoName.text()
+        if self.ui.rBtnReq.isChecked():
+            protoName += "Req"
+        if self.ui.rBtnNotify.isChecked():
+            protoName += "Notify"
+        self.ui.lEtProtoName.setText(protoName)
         pass
 
     def changeRadioButton(self):
-        # protoName = self.ui.lEtProtoName.text().strip()
-        # if self.ui.rBtnReq.isChecked():
-        #     protoName = protoName[0:-6]
-        #     protoName += "Req"
-        # else:
-        #     protoName = protoName[0:-3]
-        #     protoName += "Notify"
+        protoName = self.ui.lEtProtoName.text().strip()
+        if self.ui.rBtnReq.isChecked():
+            protoName = protoName[0:-6]
+            protoName += "Req"
+        if self.ui.rBtnNotify.isChecked():
+            protoName = protoName[0:-3]
+            protoName += "Notify"
         
-        # self.ui.lEtProtoName.setText(protoName)        
+        self.ui.lEtProtoName.setText(protoName)        
         pass
         

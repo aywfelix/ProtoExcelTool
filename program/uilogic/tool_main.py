@@ -131,6 +131,9 @@ class ProtoMainUI(QMainWindow):
 
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
+        # 刷新协议测试
+        self.refreshProtoComboBox()
+        self.client.ShowMsgSignal.connect(self.showRespMsg_emit)
         # load enum xml
         self.loadEnums()
 
@@ -167,15 +170,16 @@ class ProtoMainUI(QMainWindow):
             for _, protoData in protocols[dirName].items():
                 protoNode = self.createProto(protoData)
                 dirItem.addChild(protoNode)
-
-        # 协议测试
-        self.ui.cBbxProto.clear()
-        for dirName, protoDatas in protocols.items():
-            for protoId, protoData in protoDatas.items():
-                self.ui.cBbxProto.addItem("{0}:{1}:{2}".format(dirName, protoData.name, protoId))
-                # self.ui.cBbxProto.addItem(dirName+":"++":"+str(protoId))
-            pass
         pass
+
+    def refreshProtoComboBox(self):
+        self.ui.cBbxProto.clear()
+        dynamicMsg = self.protoXml.getDynamicMsgs()
+        for protoId, msgData in dynamicMsg.items():
+            if msgData.msgType == '1':
+                self.ui.cBbxProto.addItem("{0}:{1}:{2}".format(msgData.msgClass, msgData.msgName, protoId))
+        pass
+
 
     def loadEnums(self):
         self.enumXml.readEnumXml()
@@ -315,11 +319,12 @@ class ProtoMainUI(QMainWindow):
         # 如果是创建请求类型协议，则自动生成返回协议
         protoName = protoData.name
         protoId = protoData.id
+        protoType = protoData.type
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
             protoName = protoName[0:-3]+"Ack"
             protoData = TVItemProtoData(
-                protoId, protoName, "", "", protoData.onlyServer)
+                protoId, protoName, "", "", protoType, protoData.onlyServer)
             item = self.createProto(protoData, dirName)
             self.protoCurItem.addChild(item)
 
@@ -613,6 +618,8 @@ class ProtoMainUI(QMainWindow):
         # 导出协议
         export_pb = ExportPb()
         export_pb.exportPb()
+
+        self.refreshProtoComboBox()
         # 导出枚举
         # 导出配置表
         trans_table = TransTable()
@@ -626,12 +633,22 @@ class ProtoMainUI(QMainWindow):
 
     def sendProtoMsgClicked(self):
         # 获取当前消息ID
-        msgClass, msgType, msgID = self.ui.cBbxProto.currentText().strip().split(':')
+        msgClass, msgName, msgID = self.ui.cBbxProto.currentText().strip().split(':')
         # 获取发送消息内容
         sendContent = self.ui.tEtReq.toPlainText().strip()
         # 调用client 发送消息
-        msgClass = msgClass.split(' ')[1]
-        self.client.sendMsg(msgID, msgClass, msgType, sendContent)
+        self.client.sendMsg(msgID, msgClass, msgName, sendContent)
+        pass
+
+    def showRespMsg_emit(self, msgID, msgContent):
+        msgText = self.ui.tEtResp.toPlainText()
+        if msgText == "":
+            msgText = "消息ID: " + msgID + "\n"
+            msgText = msgText + "消息内容:\n" + msgContent + "\n"
+        else:
+            msgText = msgText + "消息ID: " + msgID + "\n"
+            msgText = msgText + "消息内容:\n" + msgContent + "\n"
+        self.ui.tEtResp.setText(msgText)
         pass
 
 ########################################################################################

@@ -61,7 +61,7 @@ class ToolSettingXml(object):
     def readSettingXml(self):
         try:
             dataResource = ""
-            with codecs.open(self.xmlSettingPath, "r", "utf-8") as f:
+            with codecs.open(self.xmlSettingPath, "r", "GB2312") as f:
                 dataResource = f.read()
             # 获取节点信息
             domTree = xmlDom.parseString(dataResource)

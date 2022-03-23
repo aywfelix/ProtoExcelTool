@@ -46,44 +46,48 @@ struct TableStruct_login_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_login_2eproto;
-class loginReq;
-struct loginReqDefaultTypeInternal;
-extern loginReqDefaultTypeInternal _loginReq_default_instance_;
-class loginResp;
-struct loginRespDefaultTypeInternal;
-extern loginRespDefaultTypeInternal _loginResp_default_instance_;
+class LoginMsgReq;
+struct LoginMsgReqDefaultTypeInternal;
+extern LoginMsgReqDefaultTypeInternal _LoginMsgReq_default_instance_;
+class RoleItem;
+struct RoleItemDefaultTypeInternal;
+extern RoleItemDefaultTypeInternal _RoleItem_default_instance_;
+class RoleListAck;
+struct RoleListAckDefaultTypeInternal;
+extern RoleListAckDefaultTypeInternal _RoleListAck_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
-template<> ::loginReq* Arena::CreateMaybeMessage<::loginReq>(Arena*);
-template<> ::loginResp* Arena::CreateMaybeMessage<::loginResp>(Arena*);
+template<> ::LoginMsgReq* Arena::CreateMaybeMessage<::LoginMsgReq>(Arena*);
+template<> ::RoleItem* Arena::CreateMaybeMessage<::RoleItem>(Arena*);
+template<> ::RoleListAck* Arena::CreateMaybeMessage<::RoleListAck>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 // ===================================================================
 
-class loginReq final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:loginReq) */ {
+class LoginMsgReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:LoginMsgReq) */ {
  public:
-  inline loginReq() : loginReq(nullptr) {}
-  ~loginReq() override;
-  explicit constexpr loginReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline LoginMsgReq() : LoginMsgReq(nullptr) {}
+  ~LoginMsgReq() override;
+  explicit constexpr LoginMsgReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  loginReq(const loginReq& from);
-  loginReq(loginReq&& from) noexcept
-    : loginReq() {
+  LoginMsgReq(const LoginMsgReq& from);
+  LoginMsgReq(LoginMsgReq&& from) noexcept
+    : LoginMsgReq() {
     *this = ::std::move(from);
   }
 
-  inline loginReq& operator=(const loginReq& from) {
+  inline LoginMsgReq& operator=(const LoginMsgReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline loginReq& operator=(loginReq&& from) noexcept {
+  inline LoginMsgReq& operator=(LoginMsgReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -106,20 +110,20 @@ class loginReq final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const loginReq& default_instance() {
+  static const LoginMsgReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const loginReq* internal_default_instance() {
-    return reinterpret_cast<const loginReq*>(
-               &_loginReq_default_instance_);
+  static inline const LoginMsgReq* internal_default_instance() {
+    return reinterpret_cast<const LoginMsgReq*>(
+               &_LoginMsgReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(loginReq& a, loginReq& b) {
+  friend void swap(LoginMsgReq& a, LoginMsgReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(loginReq* other) {
+  inline void Swap(LoginMsgReq* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -127,7 +131,7 @@ class loginReq final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(loginReq* other) {
+  void UnsafeArenaSwap(LoginMsgReq* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -135,17 +139,17 @@ class loginReq final :
 
   // implements Message ----------------------------------------------
 
-  inline loginReq* New() const final {
-    return new loginReq();
+  inline LoginMsgReq* New() const final {
+    return new LoginMsgReq();
   }
 
-  loginReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<loginReq>(arena);
+  LoginMsgReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<LoginMsgReq>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const loginReq& from);
+  void CopyFrom(const LoginMsgReq& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const loginReq& from);
+  void MergeFrom(const LoginMsgReq& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -162,13 +166,13 @@ class loginReq final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(loginReq* other);
+  void InternalSwap(LoginMsgReq* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "loginReq";
+    return "LoginMsgReq";
   }
   protected:
-  explicit loginReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit LoginMsgReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -186,7 +190,10 @@ class loginReq final :
 
   enum : int {
     kNameFieldNumber = 1,
-    kPasswdFieldNumber = 2,
+    kTokenFieldNumber = 2,
+    kUuidFieldNumber = 3,
+    kWalletFieldNumber = 4,
+    kInvitationstatusFieldNumber = 5,
   };
   // string name = 1;
   void clear_name();
@@ -202,21 +209,58 @@ class loginReq final :
   std::string* _internal_mutable_name();
   public:
 
-  // string passwd = 2;
-  void clear_passwd();
-  const std::string& passwd() const;
+  // string token = 2;
+  void clear_token();
+  const std::string& token() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_passwd(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_passwd();
-  PROTOBUF_MUST_USE_RESULT std::string* release_passwd();
-  void set_allocated_passwd(std::string* passwd);
+  void set_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_token();
+  PROTOBUF_MUST_USE_RESULT std::string* release_token();
+  void set_allocated_token(std::string* token);
   private:
-  const std::string& _internal_passwd() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_passwd(const std::string& value);
-  std::string* _internal_mutable_passwd();
+  const std::string& _internal_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
   public:
 
-  // @@protoc_insertion_point(class_scope:loginReq)
+  // string uuid = 3;
+  void clear_uuid();
+  const std::string& uuid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_uuid();
+  PROTOBUF_MUST_USE_RESULT std::string* release_uuid();
+  void set_allocated_uuid(std::string* uuid);
+  private:
+  const std::string& _internal_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_uuid(const std::string& value);
+  std::string* _internal_mutable_uuid();
+  public:
+
+  // string wallet = 4;
+  void clear_wallet();
+  const std::string& wallet() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_wallet(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_wallet();
+  PROTOBUF_MUST_USE_RESULT std::string* release_wallet();
+  void set_allocated_wallet(std::string* wallet);
+  private:
+  const std::string& _internal_wallet() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_wallet(const std::string& value);
+  std::string* _internal_mutable_wallet();
+  public:
+
+  // int32 invitationstatus = 5;
+  void clear_invitationstatus();
+  ::PROTOBUF_NAMESPACE_ID::int32 invitationstatus() const;
+  void set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_invitationstatus() const;
+  void _internal_set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:LoginMsgReq)
  private:
   class _Internal;
 
@@ -224,30 +268,33 @@ class loginReq final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr passwd_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uuid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wallet_;
+  ::PROTOBUF_NAMESPACE_ID::int32 invitationstatus_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_login_2eproto;
 };
 // -------------------------------------------------------------------
 
-class loginResp final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:loginResp) */ {
+class RoleListAck final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:RoleListAck) */ {
  public:
-  inline loginResp() : loginResp(nullptr) {}
-  ~loginResp() override;
-  explicit constexpr loginResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline RoleListAck() : RoleListAck(nullptr) {}
+  ~RoleListAck() override;
+  explicit constexpr RoleListAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  loginResp(const loginResp& from);
-  loginResp(loginResp&& from) noexcept
-    : loginResp() {
+  RoleListAck(const RoleListAck& from);
+  RoleListAck(RoleListAck&& from) noexcept
+    : RoleListAck() {
     *this = ::std::move(from);
   }
 
-  inline loginResp& operator=(const loginResp& from) {
+  inline RoleListAck& operator=(const RoleListAck& from) {
     CopyFrom(from);
     return *this;
   }
-  inline loginResp& operator=(loginResp&& from) noexcept {
+  inline RoleListAck& operator=(RoleListAck&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -270,20 +317,20 @@ class loginResp final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const loginResp& default_instance() {
+  static const RoleListAck& default_instance() {
     return *internal_default_instance();
   }
-  static inline const loginResp* internal_default_instance() {
-    return reinterpret_cast<const loginResp*>(
-               &_loginResp_default_instance_);
+  static inline const RoleListAck* internal_default_instance() {
+    return reinterpret_cast<const RoleListAck*>(
+               &_RoleListAck_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(loginResp& a, loginResp& b) {
+  friend void swap(RoleListAck& a, RoleListAck& b) {
     a.Swap(&b);
   }
-  inline void Swap(loginResp* other) {
+  inline void Swap(RoleListAck* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -291,7 +338,7 @@ class loginResp final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(loginResp* other) {
+  void UnsafeArenaSwap(RoleListAck* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -299,17 +346,17 @@ class loginResp final :
 
   // implements Message ----------------------------------------------
 
-  inline loginResp* New() const final {
-    return new loginResp();
+  inline RoleListAck* New() const final {
+    return new RoleListAck();
   }
 
-  loginResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<loginResp>(arena);
+  RoleListAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RoleListAck>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const loginResp& from);
+  void CopyFrom(const RoleListAck& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const loginResp& from);
+  void MergeFrom(const RoleListAck& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -326,13 +373,13 @@ class loginResp final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(loginResp* other);
+  void InternalSwap(RoleListAck* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "loginResp";
+    return "RoleListAck";
   }
   protected:
-  explicit loginResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit RoleListAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -349,25 +396,302 @@ class loginResp final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRetFieldNumber = 1,
+    kRoleItemFieldNumber = 6,
+    kUserUuidFieldNumber = 3,
+    kWalletFieldNumber = 4,
+    kErrCodeFieldNumber = 1,
+    kCountFieldNumber = 2,
+    kInvitationstatusFieldNumber = 5,
   };
-  // int32 ret = 1;
-  void clear_ret();
-  ::PROTOBUF_NAMESPACE_ID::int32 ret() const;
-  void set_ret(::PROTOBUF_NAMESPACE_ID::int32 value);
+  // repeated .RoleItem roleItem = 6;
+  int roleitem_size() const;
   private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_ret() const;
-  void _internal_set_ret(::PROTOBUF_NAMESPACE_ID::int32 value);
+  int _internal_roleitem_size() const;
+  public:
+  void clear_roleitem();
+  ::RoleItem* mutable_roleitem(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::RoleItem >*
+      mutable_roleitem();
+  private:
+  const ::RoleItem& _internal_roleitem(int index) const;
+  ::RoleItem* _internal_add_roleitem();
+  public:
+  const ::RoleItem& roleitem(int index) const;
+  ::RoleItem* add_roleitem();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::RoleItem >&
+      roleitem() const;
+
+  // string user_uuid = 3;
+  void clear_user_uuid();
+  const std::string& user_uuid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user_uuid();
+  PROTOBUF_MUST_USE_RESULT std::string* release_user_uuid();
+  void set_allocated_user_uuid(std::string* user_uuid);
+  private:
+  const std::string& _internal_user_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_uuid(const std::string& value);
+  std::string* _internal_mutable_user_uuid();
   public:
 
-  // @@protoc_insertion_point(class_scope:loginResp)
+  // string wallet = 4;
+  void clear_wallet();
+  const std::string& wallet() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_wallet(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_wallet();
+  PROTOBUF_MUST_USE_RESULT std::string* release_wallet();
+  void set_allocated_wallet(std::string* wallet);
+  private:
+  const std::string& _internal_wallet() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_wallet(const std::string& value);
+  std::string* _internal_mutable_wallet();
+  public:
+
+  // int32 errCode = 1;
+  void clear_errcode();
+  ::PROTOBUF_NAMESPACE_ID::int32 errcode() const;
+  void set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_errcode() const;
+  void _internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 count = 2;
+  void clear_count();
+  ::PROTOBUF_NAMESPACE_ID::int32 count() const;
+  void set_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_count() const;
+  void _internal_set_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 invitationstatus = 5;
+  void clear_invitationstatus();
+  ::PROTOBUF_NAMESPACE_ID::int32 invitationstatus() const;
+  void set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_invitationstatus() const;
+  void _internal_set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:RoleListAck)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int32 ret_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::RoleItem > roleitem_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_uuid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wallet_;
+  ::PROTOBUF_NAMESPACE_ID::int32 errcode_;
+  ::PROTOBUF_NAMESPACE_ID::int32 count_;
+  ::PROTOBUF_NAMESPACE_ID::int32 invitationstatus_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_login_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RoleItem final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:RoleItem) */ {
+ public:
+  inline RoleItem() : RoleItem(nullptr) {}
+  ~RoleItem() override;
+  explicit constexpr RoleItem(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RoleItem(const RoleItem& from);
+  RoleItem(RoleItem&& from) noexcept
+    : RoleItem() {
+    *this = ::std::move(from);
+  }
+
+  inline RoleItem& operator=(const RoleItem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RoleItem& operator=(RoleItem&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RoleItem& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RoleItem* internal_default_instance() {
+    return reinterpret_cast<const RoleItem*>(
+               &_RoleItem_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(RoleItem& a, RoleItem& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RoleItem* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RoleItem* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RoleItem* New() const final {
+    return new RoleItem();
+  }
+
+  RoleItem* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RoleItem>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RoleItem& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RoleItem& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RoleItem* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "RoleItem";
+  }
+  protected:
+  explicit RoleItem(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRoleNameFieldNumber = 2,
+    kRoleIdFieldNumber = 1,
+    kAvatarFieldNumber = 3,
+    kSexFieldNumber = 4,
+    kCreateTimeFieldNumber = 5,
+    kLastLoginTimeFieldNumber = 6,
+  };
+  // string role_name = 2;
+  void clear_role_name();
+  const std::string& role_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_role_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_role_name();
+  PROTOBUF_MUST_USE_RESULT std::string* release_role_name();
+  void set_allocated_role_name(std::string* role_name);
+  private:
+  const std::string& _internal_role_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_role_name(const std::string& value);
+  std::string* _internal_mutable_role_name();
+  public:
+
+  // int32 role_id = 1;
+  void clear_role_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 role_id() const;
+  void set_role_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_role_id() const;
+  void _internal_set_role_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 avatar = 3;
+  void clear_avatar();
+  ::PROTOBUF_NAMESPACE_ID::int32 avatar() const;
+  void set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_avatar() const;
+  void _internal_set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 sex = 4;
+  void clear_sex();
+  ::PROTOBUF_NAMESPACE_ID::int32 sex() const;
+  void set_sex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_sex() const;
+  void _internal_set_sex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // uint32 create_time = 5;
+  void clear_create_time();
+  ::PROTOBUF_NAMESPACE_ID::uint32 create_time() const;
+  void set_create_time(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_create_time() const;
+  void _internal_set_create_time(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 last_login_time = 6;
+  void clear_last_login_time();
+  ::PROTOBUF_NAMESPACE_ID::uint32 last_login_time() const;
+  void set_last_login_time(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_last_login_time() const;
+  void _internal_set_last_login_time(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:RoleItem)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr role_name_;
+  ::PROTOBUF_NAMESPACE_ID::int32 role_id_;
+  ::PROTOBUF_NAMESPACE_ID::int32 avatar_;
+  ::PROTOBUF_NAMESPACE_ID::int32 sex_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 create_time_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 last_login_time_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_login_2eproto;
 };
@@ -380,44 +704,44 @@ class loginResp final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// loginReq
+// LoginMsgReq
 
 // string name = 1;
-inline void loginReq::clear_name() {
+inline void LoginMsgReq::clear_name() {
   name_.ClearToEmpty();
 }
-inline const std::string& loginReq::name() const {
-  // @@protoc_insertion_point(field_get:loginReq.name)
+inline const std::string& LoginMsgReq::name() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void loginReq::set_name(ArgT0&& arg0, ArgT... args) {
+void LoginMsgReq::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:loginReq.name)
+  // @@protoc_insertion_point(field_set:LoginMsgReq.name)
 }
-inline std::string* loginReq::mutable_name() {
+inline std::string* LoginMsgReq::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:loginReq.name)
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.name)
   return _s;
 }
-inline const std::string& loginReq::_internal_name() const {
+inline const std::string& LoginMsgReq::_internal_name() const {
   return name_.Get();
 }
-inline void loginReq::_internal_set_name(const std::string& value) {
+inline void LoginMsgReq::_internal_set_name(const std::string& value) {
   
   name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* loginReq::_internal_mutable_name() {
+inline std::string* LoginMsgReq::_internal_mutable_name() {
   
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* loginReq::release_name() {
-  // @@protoc_insertion_point(field_release:loginReq.name)
+inline std::string* LoginMsgReq::release_name() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void loginReq::set_allocated_name(std::string* name) {
+inline void LoginMsgReq::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
@@ -425,82 +749,518 @@ inline void loginReq::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:loginReq.name)
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.name)
 }
 
-// string passwd = 2;
-inline void loginReq::clear_passwd() {
-  passwd_.ClearToEmpty();
+// string token = 2;
+inline void LoginMsgReq::clear_token() {
+  token_.ClearToEmpty();
 }
-inline const std::string& loginReq::passwd() const {
-  // @@protoc_insertion_point(field_get:loginReq.passwd)
-  return _internal_passwd();
+inline const std::string& LoginMsgReq::token() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.token)
+  return _internal_token();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void loginReq::set_passwd(ArgT0&& arg0, ArgT... args) {
+void LoginMsgReq::set_token(ArgT0&& arg0, ArgT... args) {
  
- passwd_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:loginReq.passwd)
+ token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.token)
 }
-inline std::string* loginReq::mutable_passwd() {
-  std::string* _s = _internal_mutable_passwd();
-  // @@protoc_insertion_point(field_mutable:loginReq.passwd)
+inline std::string* LoginMsgReq::mutable_token() {
+  std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.token)
   return _s;
 }
-inline const std::string& loginReq::_internal_passwd() const {
-  return passwd_.Get();
+inline const std::string& LoginMsgReq::_internal_token() const {
+  return token_.Get();
 }
-inline void loginReq::_internal_set_passwd(const std::string& value) {
+inline void LoginMsgReq::_internal_set_token(const std::string& value) {
   
-  passwd_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* loginReq::_internal_mutable_passwd() {
+inline std::string* LoginMsgReq::_internal_mutable_token() {
   
-  return passwd_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return token_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* loginReq::release_passwd() {
-  // @@protoc_insertion_point(field_release:loginReq.passwd)
-  return passwd_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* LoginMsgReq::release_token() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.token)
+  return token_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void loginReq::set_allocated_passwd(std::string* passwd) {
-  if (passwd != nullptr) {
+inline void LoginMsgReq::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
     
   } else {
     
   }
-  passwd_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), passwd,
+  token_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:loginReq.passwd)
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.token)
+}
+
+// string uuid = 3;
+inline void LoginMsgReq::clear_uuid() {
+  uuid_.ClearToEmpty();
+}
+inline const std::string& LoginMsgReq::uuid() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.uuid)
+  return _internal_uuid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginMsgReq::set_uuid(ArgT0&& arg0, ArgT... args) {
+ 
+ uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.uuid)
+}
+inline std::string* LoginMsgReq::mutable_uuid() {
+  std::string* _s = _internal_mutable_uuid();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.uuid)
+  return _s;
+}
+inline const std::string& LoginMsgReq::_internal_uuid() const {
+  return uuid_.Get();
+}
+inline void LoginMsgReq::_internal_set_uuid(const std::string& value) {
+  
+  uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::_internal_mutable_uuid() {
+  
+  return uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::release_uuid() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.uuid)
+  return uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginMsgReq::set_allocated_uuid(std::string* uuid) {
+  if (uuid != nullptr) {
+    
+  } else {
+    
+  }
+  uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uuid,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.uuid)
+}
+
+// string wallet = 4;
+inline void LoginMsgReq::clear_wallet() {
+  wallet_.ClearToEmpty();
+}
+inline const std::string& LoginMsgReq::wallet() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.wallet)
+  return _internal_wallet();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginMsgReq::set_wallet(ArgT0&& arg0, ArgT... args) {
+ 
+ wallet_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.wallet)
+}
+inline std::string* LoginMsgReq::mutable_wallet() {
+  std::string* _s = _internal_mutable_wallet();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.wallet)
+  return _s;
+}
+inline const std::string& LoginMsgReq::_internal_wallet() const {
+  return wallet_.Get();
+}
+inline void LoginMsgReq::_internal_set_wallet(const std::string& value) {
+  
+  wallet_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::_internal_mutable_wallet() {
+  
+  return wallet_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::release_wallet() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.wallet)
+  return wallet_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginMsgReq::set_allocated_wallet(std::string* wallet) {
+  if (wallet != nullptr) {
+    
+  } else {
+    
+  }
+  wallet_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), wallet,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.wallet)
+}
+
+// int32 invitationstatus = 5;
+inline void LoginMsgReq::clear_invitationstatus() {
+  invitationstatus_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LoginMsgReq::_internal_invitationstatus() const {
+  return invitationstatus_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LoginMsgReq::invitationstatus() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.invitationstatus)
+  return _internal_invitationstatus();
+}
+inline void LoginMsgReq::_internal_set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  invitationstatus_ = value;
+}
+inline void LoginMsgReq::set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_invitationstatus(value);
+  // @@protoc_insertion_point(field_set:LoginMsgReq.invitationstatus)
 }
 
 // -------------------------------------------------------------------
 
-// loginResp
+// RoleListAck
 
-// int32 ret = 1;
-inline void loginResp::clear_ret() {
-  ret_ = 0;
+// int32 errCode = 1;
+inline void RoleListAck::clear_errcode() {
+  errcode_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 loginResp::_internal_ret() const {
-  return ret_;
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleListAck::_internal_errcode() const {
+  return errcode_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 loginResp::ret() const {
-  // @@protoc_insertion_point(field_get:loginResp.ret)
-  return _internal_ret();
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleListAck::errcode() const {
+  // @@protoc_insertion_point(field_get:RoleListAck.errCode)
+  return _internal_errcode();
 }
-inline void loginResp::_internal_set_ret(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void RoleListAck::_internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
-  ret_ = value;
+  errcode_ = value;
 }
-inline void loginResp::set_ret(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_ret(value);
-  // @@protoc_insertion_point(field_set:loginResp.ret)
+inline void RoleListAck::set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_errcode(value);
+  // @@protoc_insertion_point(field_set:RoleListAck.errCode)
+}
+
+// int32 count = 2;
+inline void RoleListAck::clear_count() {
+  count_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleListAck::_internal_count() const {
+  return count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleListAck::count() const {
+  // @@protoc_insertion_point(field_get:RoleListAck.count)
+  return _internal_count();
+}
+inline void RoleListAck::_internal_set_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  count_ = value;
+}
+inline void RoleListAck::set_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_count(value);
+  // @@protoc_insertion_point(field_set:RoleListAck.count)
+}
+
+// string user_uuid = 3;
+inline void RoleListAck::clear_user_uuid() {
+  user_uuid_.ClearToEmpty();
+}
+inline const std::string& RoleListAck::user_uuid() const {
+  // @@protoc_insertion_point(field_get:RoleListAck.user_uuid)
+  return _internal_user_uuid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RoleListAck::set_user_uuid(ArgT0&& arg0, ArgT... args) {
+ 
+ user_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:RoleListAck.user_uuid)
+}
+inline std::string* RoleListAck::mutable_user_uuid() {
+  std::string* _s = _internal_mutable_user_uuid();
+  // @@protoc_insertion_point(field_mutable:RoleListAck.user_uuid)
+  return _s;
+}
+inline const std::string& RoleListAck::_internal_user_uuid() const {
+  return user_uuid_.Get();
+}
+inline void RoleListAck::_internal_set_user_uuid(const std::string& value) {
+  
+  user_uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* RoleListAck::_internal_mutable_user_uuid() {
+  
+  return user_uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* RoleListAck::release_user_uuid() {
+  // @@protoc_insertion_point(field_release:RoleListAck.user_uuid)
+  return user_uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void RoleListAck::set_allocated_user_uuid(std::string* user_uuid) {
+  if (user_uuid != nullptr) {
+    
+  } else {
+    
+  }
+  user_uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), user_uuid,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:RoleListAck.user_uuid)
+}
+
+// string wallet = 4;
+inline void RoleListAck::clear_wallet() {
+  wallet_.ClearToEmpty();
+}
+inline const std::string& RoleListAck::wallet() const {
+  // @@protoc_insertion_point(field_get:RoleListAck.wallet)
+  return _internal_wallet();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RoleListAck::set_wallet(ArgT0&& arg0, ArgT... args) {
+ 
+ wallet_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:RoleListAck.wallet)
+}
+inline std::string* RoleListAck::mutable_wallet() {
+  std::string* _s = _internal_mutable_wallet();
+  // @@protoc_insertion_point(field_mutable:RoleListAck.wallet)
+  return _s;
+}
+inline const std::string& RoleListAck::_internal_wallet() const {
+  return wallet_.Get();
+}
+inline void RoleListAck::_internal_set_wallet(const std::string& value) {
+  
+  wallet_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* RoleListAck::_internal_mutable_wallet() {
+  
+  return wallet_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* RoleListAck::release_wallet() {
+  // @@protoc_insertion_point(field_release:RoleListAck.wallet)
+  return wallet_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void RoleListAck::set_allocated_wallet(std::string* wallet) {
+  if (wallet != nullptr) {
+    
+  } else {
+    
+  }
+  wallet_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), wallet,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:RoleListAck.wallet)
+}
+
+// int32 invitationstatus = 5;
+inline void RoleListAck::clear_invitationstatus() {
+  invitationstatus_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleListAck::_internal_invitationstatus() const {
+  return invitationstatus_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleListAck::invitationstatus() const {
+  // @@protoc_insertion_point(field_get:RoleListAck.invitationstatus)
+  return _internal_invitationstatus();
+}
+inline void RoleListAck::_internal_set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  invitationstatus_ = value;
+}
+inline void RoleListAck::set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_invitationstatus(value);
+  // @@protoc_insertion_point(field_set:RoleListAck.invitationstatus)
+}
+
+// repeated .RoleItem roleItem = 6;
+inline int RoleListAck::_internal_roleitem_size() const {
+  return roleitem_.size();
+}
+inline int RoleListAck::roleitem_size() const {
+  return _internal_roleitem_size();
+}
+inline void RoleListAck::clear_roleitem() {
+  roleitem_.Clear();
+}
+inline ::RoleItem* RoleListAck::mutable_roleitem(int index) {
+  // @@protoc_insertion_point(field_mutable:RoleListAck.roleItem)
+  return roleitem_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::RoleItem >*
+RoleListAck::mutable_roleitem() {
+  // @@protoc_insertion_point(field_mutable_list:RoleListAck.roleItem)
+  return &roleitem_;
+}
+inline const ::RoleItem& RoleListAck::_internal_roleitem(int index) const {
+  return roleitem_.Get(index);
+}
+inline const ::RoleItem& RoleListAck::roleitem(int index) const {
+  // @@protoc_insertion_point(field_get:RoleListAck.roleItem)
+  return _internal_roleitem(index);
+}
+inline ::RoleItem* RoleListAck::_internal_add_roleitem() {
+  return roleitem_.Add();
+}
+inline ::RoleItem* RoleListAck::add_roleitem() {
+  ::RoleItem* _add = _internal_add_roleitem();
+  // @@protoc_insertion_point(field_add:RoleListAck.roleItem)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::RoleItem >&
+RoleListAck::roleitem() const {
+  // @@protoc_insertion_point(field_list:RoleListAck.roleItem)
+  return roleitem_;
+}
+
+// -------------------------------------------------------------------
+
+// RoleItem
+
+// int32 role_id = 1;
+inline void RoleItem::clear_role_id() {
+  role_id_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleItem::_internal_role_id() const {
+  return role_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleItem::role_id() const {
+  // @@protoc_insertion_point(field_get:RoleItem.role_id)
+  return _internal_role_id();
+}
+inline void RoleItem::_internal_set_role_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  role_id_ = value;
+}
+inline void RoleItem::set_role_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_role_id(value);
+  // @@protoc_insertion_point(field_set:RoleItem.role_id)
+}
+
+// string role_name = 2;
+inline void RoleItem::clear_role_name() {
+  role_name_.ClearToEmpty();
+}
+inline const std::string& RoleItem::role_name() const {
+  // @@protoc_insertion_point(field_get:RoleItem.role_name)
+  return _internal_role_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RoleItem::set_role_name(ArgT0&& arg0, ArgT... args) {
+ 
+ role_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:RoleItem.role_name)
+}
+inline std::string* RoleItem::mutable_role_name() {
+  std::string* _s = _internal_mutable_role_name();
+  // @@protoc_insertion_point(field_mutable:RoleItem.role_name)
+  return _s;
+}
+inline const std::string& RoleItem::_internal_role_name() const {
+  return role_name_.Get();
+}
+inline void RoleItem::_internal_set_role_name(const std::string& value) {
+  
+  role_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* RoleItem::_internal_mutable_role_name() {
+  
+  return role_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* RoleItem::release_role_name() {
+  // @@protoc_insertion_point(field_release:RoleItem.role_name)
+  return role_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void RoleItem::set_allocated_role_name(std::string* role_name) {
+  if (role_name != nullptr) {
+    
+  } else {
+    
+  }
+  role_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), role_name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:RoleItem.role_name)
+}
+
+// int32 avatar = 3;
+inline void RoleItem::clear_avatar() {
+  avatar_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleItem::_internal_avatar() const {
+  return avatar_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleItem::avatar() const {
+  // @@protoc_insertion_point(field_get:RoleItem.avatar)
+  return _internal_avatar();
+}
+inline void RoleItem::_internal_set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  avatar_ = value;
+}
+inline void RoleItem::set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_avatar(value);
+  // @@protoc_insertion_point(field_set:RoleItem.avatar)
+}
+
+// int32 sex = 4;
+inline void RoleItem::clear_sex() {
+  sex_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleItem::_internal_sex() const {
+  return sex_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoleItem::sex() const {
+  // @@protoc_insertion_point(field_get:RoleItem.sex)
+  return _internal_sex();
+}
+inline void RoleItem::_internal_set_sex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  sex_ = value;
+}
+inline void RoleItem::set_sex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_sex(value);
+  // @@protoc_insertion_point(field_set:RoleItem.sex)
+}
+
+// uint32 create_time = 5;
+inline void RoleItem::clear_create_time() {
+  create_time_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 RoleItem::_internal_create_time() const {
+  return create_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 RoleItem::create_time() const {
+  // @@protoc_insertion_point(field_get:RoleItem.create_time)
+  return _internal_create_time();
+}
+inline void RoleItem::_internal_set_create_time(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  create_time_ = value;
+}
+inline void RoleItem::set_create_time(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_create_time(value);
+  // @@protoc_insertion_point(field_set:RoleItem.create_time)
+}
+
+// uint32 last_login_time = 6;
+inline void RoleItem::clear_last_login_time() {
+  last_login_time_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 RoleItem::_internal_last_login_time() const {
+  return last_login_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 RoleItem::last_login_time() const {
+  // @@protoc_insertion_point(field_get:RoleItem.last_login_time)
+  return _internal_last_login_time();
+}
+inline void RoleItem::_internal_set_last_login_time(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  last_login_time_ = value;
+}
+inline void RoleItem::set_last_login_time(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_last_login_time(value);
+  // @@protoc_insertion_point(field_set:RoleItem.last_login_time)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

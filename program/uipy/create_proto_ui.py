@@ -54,6 +54,9 @@ class Ui_CreateProtoForm(object):
         self.label = QtWidgets.QLabel(CreateProtoForm)
         self.label.setGeometry(QtCore.QRect(10, 10, 54, 12))
         self.label.setObjectName("label")
+        self.rBtnCom = QtWidgets.QRadioButton(CreateProtoForm)
+        self.rBtnCom.setGeometry(QtCore.QRect(340, 10, 89, 16))
+        self.rBtnCom.setObjectName("rBtnCom")
 
         self.retranslateUi(CreateProtoForm)
         QtCore.QMetaObject.connectSlotsByName(CreateProtoForm)
@@ -70,3 +73,4 @@ class Ui_CreateProtoForm(object):
         self.rBtnReq.setText(_translate("CreateProtoForm", "请求消息"))
         self.rBtnNotify.setText(_translate("CreateProtoForm", "广播消息"))
         self.label.setText(_translate("CreateProtoForm", "协议类型："))
+        self.rBtnCom.setText(_translate("CreateProtoForm", "共用消息"))

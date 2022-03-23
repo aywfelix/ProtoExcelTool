@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AddTmplForm(object):
     def setupUi(self, AddTmplForm):
         AddTmplForm.setObjectName("AddTmplForm")
-        AddTmplForm.resize(453, 141)
+        AddTmplForm.resize(453, 110)
         self.label = QtWidgets.QLabel(AddTmplForm)
         self.label.setGeometry(QtCore.QRect(10, 10, 61, 16))
         self.label.setObjectName("label")
@@ -39,7 +39,7 @@ class Ui_AddTmplForm(object):
         self.cBbxLang.addItem("")
         self.lEtPublishDir = QtWidgets.QLineEdit(AddTmplForm)
         self.lEtPublishDir.setGeometry(QtCore.QRect(80, 70, 281, 21))
-        self.lEtPublishDir.setReadOnly(True)
+        self.lEtPublishDir.setReadOnly(False)
         self.lEtPublishDir.setObjectName("lEtPublishDir")
         self.bTnPublishDir = QtWidgets.QPushButton(AddTmplForm)
         self.bTnPublishDir.setGeometry(QtCore.QRect(370, 70, 75, 23))

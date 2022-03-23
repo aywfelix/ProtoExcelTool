@@ -39,7 +39,7 @@ class Ui_ModifyTmplForm(object):
         self.cBbxLang.addItem("")
         self.lEtPublishDir = QtWidgets.QLineEdit(ModifyTmplForm)
         self.lEtPublishDir.setGeometry(QtCore.QRect(80, 70, 281, 20))
-        self.lEtPublishDir.setReadOnly(True)
+        self.lEtPublishDir.setReadOnly(False)
         self.lEtPublishDir.setObjectName("lEtPublishDir")
         self.bTnPublishDir = QtWidgets.QPushButton(ModifyTmplForm)
         self.bTnPublishDir.setGeometry(QtCore.QRect(370, 70, 75, 23))

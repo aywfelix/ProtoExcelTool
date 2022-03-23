@@ -29,12 +29,13 @@ class TVItemType:
     ItemProto = 2
 
 class TVItemProtoData:
-    def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", onlyServer=False):
+    def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", protoType=1, onlyServer=False):
         self.id = protoId
         self.name = protoName
         self.desc = protoDesc
         self.content = protoContent
         self.onlyServer = onlyServer
+        self.type = protoType # 1请求消息 2广播消息 3共用消息
 
     def __str__(self):
         return self.id+" "+self.name+" "+self.desc+" "+self.content
@@ -138,3 +139,12 @@ class ToolConfigData:
         self.protoPath = protoPath
         self.excelPath = excelPath
         self.serverHosts = serverHosts
+
+
+# 动态生成消息
+class DynamicMsgData:
+    def __init__(self, msgId, msgClass, msgName, msgType):
+        self.msgId = msgId
+        self.msgClass = msgClass
+        self.msgName = msgName
+        self.msgType = msgType

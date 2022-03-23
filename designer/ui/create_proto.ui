@@ -170,6 +170,19 @@
     <string>协议类型：</string>
    </property>
   </widget>
+  <widget class="QRadioButton" name="rBtnCom">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>共用消息</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

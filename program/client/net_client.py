@@ -11,28 +11,30 @@
 '''
 
 # here put the import lib
-import selectors
-
 from client.session import *
 from client.data_pack import *
 from client.user import *
 from proto_xml import *
-
 from google.protobuf import json_format
 import codecs
 import requests
 import json
 
-class NetClient(object):
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
+class NetClient(QMainWindow):
+    ShowMsgSignal = pyqtSignal(str, str)
+
     def __init__(self, parent=None):
+        super(NetClient, self).__init__()
         self.protoXml = ToolProtoXml()
 
         self.dev_login_url = 'http://192.168.50.78:9999/sys/login'
         self.pro_login_url = ''
 
         self.user = User()
-
-        self.reactor = selectors.DefaultSelector()
         self.session = Session()
         self.dataPack = DataPack()
         self.msgDefine = {}
@@ -40,6 +42,10 @@ class NetClient(object):
         self.recordReq = {}
         self.reqHistoryPath = "../extra/tmp/request.json"
         self.loadReqHistory()
+
+        # 开启一个线程用于显示服务器返回消息
+        self.showRespInfoThrd = threading.Thread(target=self.startRespShow)
+        self.showRespInfoThrd.start()        
         pass
 
     def loadReqHistory(self):
@@ -59,8 +65,7 @@ class NetClient(object):
     
     def connect(self, ip, port):
         if self.session.conn_server(ip, port):
-            self.reactor.register(
-                self.session.sock, selectors.EVENT_READ, self.session.readData)
+            print("conn server({0}:{1}) ok".format(ip, port))
             return True
         return False
         
@@ -68,16 +73,8 @@ class NetClient(object):
         self.session.close()
         pass
     
-    def jsonToPb(self, msg):
-    # json_obj='{"a1":1,"a2":2}'
-    # # json to pb
-    # request = json_format.Parse(json_obj,test_pb2.test())
-    # #pb to json  
-    # json_result = json_format.MessageToJson(request)
-        pass
-    
-    def sendMsg(self, msgID, msgClass, msgType, content):
-        msgProto = self.dataPack.getMsgProto(msgClass, msgType)
+    def sendMsg(self, msgID, msgClass, msgName, content):
+        msgProto = self.dataPack.getMsgProto(msgClass, msgName)
         if not msgProto:
             return
         if not content:
@@ -145,6 +142,17 @@ class NetClient(object):
             print(e)
 
         return False
+
+
+    def startRespShow(self):
+        # 从session的返回消息队列里拿出数据并显示到界面上
+        while True:
+            msg = self.session.queue.get()
+            if msg is not None:
+                print("recv msgid:{0}".format(msg[0]))
+                self.ShowMsgSignal.emit(str(msg[0]), msg[1])
+            pass
+        pass
 
 
 

@@ -15,11 +15,15 @@ import struct
 from tool_define import *
 from client.reload import *
 from google.protobuf import reflection
+from google.protobuf import json_format
+from proto_xml import *
+import threading
 
 @Singleton
 class DataPack(object):
     def __init__(self, parent=None):
         self.reload = ReLoadFiles()
+        self.protoXml = ToolProtoXml()
         pass
     
 
@@ -33,10 +37,9 @@ class DataPack(object):
         return msg_pack
         pass
 
-    def dataUnpack(self, recv_data):
+    def dataUnpack(self, recv_data, msg_proto):
         msg_len = struct.unpack('i', recv_data[:4])[0]
         msg_id = struct.unpack('i', recv_data[4:8])[0]
-        msg_proto = self.getMsgProto(msg_id)
         msg_content = msg_proto.ParseFromString(recv_data[8:])
         return msg_id, msg_content
         pass
@@ -55,9 +58,16 @@ class DataPack(object):
     def dataUnpack2(self, recv_data):
         msg_len = struct.unpack('i', recv_data[:4])[0]  # msg_len=len(msg_id)+len(msg_content)
         msg_id, _ = struct.unpack('HH', recv_data[4:8])
-        msg_proto = self.getMsgProto(msg_id)
-        msg_content = msg_proto.ParseFromString(recv_data[8:])
-        return msg_id, msg_content
+        dynamicData = self.protoXml.getDynamicMsg(str(msg_id))
+        if not dynamicData:
+            print('dynamicData is null, msgid==', msg_id)
+            return
+
+        msg_proto = self.getMsgProto(dynamicData.msgClass, dynamicData.msgName)
+        if not msg_proto:
+            return None, None
+        msg_proto.ParseFromString(recv_data[8:])
+        return msg_id, json_format.MessageToJson(msg_proto)
         pass 
     
 
@@ -67,11 +77,13 @@ class DataPack(object):
         pass
 
 
-    def getMsgProto(self, msgClass, msgType):
+    def getMsgProto(self, msgClass, msgName):  # msgClass=login msgName=C2SLoginMsg
         self.reload.readLoadModule()
         module = self.reload.getModule(msgClass+"_pb2")
         if not module: return None
-        descriptor = module.DESCRIPTOR.message_types_by_name[msgType]
+        if msgName not in module.DESCRIPTOR.message_types_by_name.keys():
+            return None
+        descriptor = module.DESCRIPTOR.message_types_by_name[msgName]
         protoMsgType = reflection.MakeClass(descriptor)
         msgProto = protoMsgType()
 

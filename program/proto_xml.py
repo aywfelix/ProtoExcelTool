@@ -30,6 +30,8 @@ class ToolProtoXml(object):
         self.xmlProtoPath = "./config/protocols.config"
         self.modules = {}
         self.protocols = {}
+        #用于动态生成消息
+        self.dynamicMsg = {}
         pass
     
     def getProtocols(self):
@@ -106,6 +108,7 @@ class ToolProtoXml(object):
                     protocolNode = domTree.createElement("protocol")
                     moduleNode.appendChild(protocolNode)
                     # 设置属性
+                    protocolNode.setAttribute("type", protoData.type)
                     protocolNode.setAttribute("id", protoData.id)
                     protocolNode.setAttribute("name", protoData.name)
                     protoDesc = protoData.desc.replace("\r", "&#xD;").replace("\n", "&#xA;")
@@ -153,6 +156,7 @@ class ToolProtoXml(object):
                 for protocolNode in moduleNode.childNodes:
                     if protocolNode.nodeType == Node.TEXT_NODE:
                         continue
+                    type =  protocolNode.getAttribute("type")
                     id = protocolNode.getAttribute("id")
                     name = protocolNode.getAttribute("name")
                     desc = protocolNode.getAttribute("desc")
@@ -160,19 +164,37 @@ class ToolProtoXml(object):
                     content = protocolNode.getAttribute("content")
                     content = content.replace("&#xD;", "\r").replace("&#xA;", "\n")              
                     onlyServer = protocolNode.getAttribute("onlyServer")
-                    protoData = TVItemProtoData(id, name, desc, content, bool(onlyServer))
+                    protoData = TVItemProtoData(id, name, desc, content, type, bool(onlyServer))
                     protocolDict[id] = protoData
+
+                    #print('-------', protoData.name)
                     pass
+                
                 self.protocols[dirName] = protocolDict
                 
+                # 动态消息生成
+                for dirName, protoDatas in self.protocols.items():
+                    msgClass = dirName.split(' ')[1]
+                    for protoId, protoData in protoDatas.items():
+                        msgName = protoData.name
+                        msgType = protoData.type
+                        self.dynamicMsg[protoId] = DynamicMsgData(protoId, msgClass, msgName, msgType)
+                    pass                
         except Exception as e:
             print(e)
-        
+
+    def getDynamicMsgs(self):
+        return self.dynamicMsg
+
+    def getDynamicMsg(self, protoId):
+        if protoId not in self.dynamicMsg.keys():
+            return None
+
+        return self.dynamicMsg[protoId]   
 
     def exportProtoFile(self):
         try:
-            if not self.modules:
-                self.readProtocolXml()
+            self.readProtocolXml()
                 
             # 根据xml信息生产proto文件
             protoMsgs = proto_header+"\n"
@@ -204,8 +226,8 @@ class ToolProtoXml(object):
                 moduleName = dirData.dirName.split(" ")[1]
                 # 获取导出proto路径
                 settingXml = ToolSettingXml()
-                _, protoPath, _ = settingXml.readToolConfig()
-                protoFilePath = protoPath +"/"+moduleName+".proto"
+                toolConfig = settingXml.getTool()
+                protoFilePath = toolConfig['proto'] +"/"+moduleName+".proto"
                 with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
                     f.write(protoMsgs)
                     f.flush()
