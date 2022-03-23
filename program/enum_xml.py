@@ -23,6 +23,8 @@ class ToolEnumXml(object):
     def __init__(self):
         self.xmlEnumPath = "./config/enums.config"
         self.enumDatas = {}
+
+        self.readEnumXml()
         pass
     
     def addData(self, data):

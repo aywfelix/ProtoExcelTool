@@ -140,9 +140,13 @@ class ProtoMainUI(QMainWindow):
         # 设置协议测试界面
         self.ui.cBbxProto.currentIndexChanged[str].connect(self.cBbxProtoChange)
         self.showProtoTest()
+
     
     def setProtoTestReqData(self):
-        _, _, msgID = self.ui.cBbxProto.currentText().strip().split(':')
+        curText = self.ui.cBbxProto.currentText()
+        if not curText:
+            return
+        _, _, msgID = curText.strip().split(':')
         reqData = self.client.getReqHistory(msgID)
         self.ui.tEtReq.setText(reqData)
         pass

@@ -25,6 +25,8 @@ class ToolSettingXml(object):
         self.protocols = []  # TmplItemData
         self.enums = []
         self.tables = []
+
+        self.readSettingXml()
         pass
     
     def getTool(self):

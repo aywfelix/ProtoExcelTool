@@ -173,6 +173,7 @@ class ToolProtoXml(object):
                 self.protocols[dirName] = protocolDict
                 
                 # 动态消息生成
+                self.dynamicMsg = {}
                 for dirName, protoDatas in self.protocols.items():
                     msgClass = dirName.split(' ')[1]
                     for protoId, protoData in protoDatas.items():
@@ -227,7 +228,9 @@ class ToolProtoXml(object):
                 # 获取导出proto路径
                 settingXml = ToolSettingXml()
                 toolConfig = settingXml.getTool()
+                print("save proto path=", toolConfig['proto'])
                 protoFilePath = toolConfig['proto'] +"/"+moduleName+".proto"
+                print("export proto file=", protoFilePath)
                 with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
                     f.write(protoMsgs)
                     f.flush()

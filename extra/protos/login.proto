@@ -10,16 +10,6 @@ message LoginMsgReq{
    int32 invitationstatus = 5;
 }
 
-// 客户端发送登录消息，服务器返回角色列表
-message RoleListAck{
-   int32 errCode = 1;
-   int32 count = 2;
-   string user_uuid = 3;
-   string wallet = 4;
-   int32 invitationstatus = 5;
-   repeated RoleItem roleItem= 6;
-}
-
 // 角色信息
 message RoleItem{
    int32 role_id = 1;   
@@ -28,5 +18,71 @@ message RoleItem{
    int32  sex = 4;   
    uint32 create_time = 5;
    uint32 last_login_time  = 6;
+}
+
+// 界面上选中某个角色进入游戏
+message RoleLoginReq{
+   string accout = 1; 
+   int32 role_id = 2;
+   string role_name = 3; 
+}
+
+// 角色进入游戏返回消息
+message RoleLoginAck{
+   string accout = 1; 
+   int32 role_id = 2;
+   string role_name = 3;
+   int32 scene_id = 4;
+   int32 last_scene_id = 5;
+   string gw_hostname = 6;
+   int32 gw_port = 7;
+   int32 gs_index = 8;
+   int64 server_time = 9;
+   string session_key = 10;
+   int32 result = 11;
+}
+
+// 请求创建某个角色
+message CreateRoleReq{
+   string role_name = 1;
+   uint32   login_time = 2;
+   string login_str = 3;
+   uint32 server = 4;
+   uint32 anti_wallow = 5;
+   uint32 avatar = 6;
+   uint32 sex = 7;
+   string plat_name = 8;
+   string user_uuid = 9;
+}
+
+// 创建角色返回
+message CreateRoleAck{
+   int32 errCode = 1;
+   uint32 role_id = 2;
+   string role_name = 3;
+   uint32 avatar = 4;
+   uint32 sex = 5;
+   int32 create_time = 6;
+}
+
+// 玩家进入场景
+message UserEnterSceneReq{
+   int32 scene_id = 1;
+   int32 scene_key = 2;
+   int32 last_scene_id = 3;
+   int32 role_id = 4;
+   string role_name = 5;
+   int32 time = 6;
+   uint32 is_login = 7;    // 登陆还是场景切换
+   uint32 reserved1 = 8;
+   int32 server = 9;
+   string key = 10; 
+   string user_uuid = 11; 
+   int32 invitationstatus = 12;
+}
+
+// 玩家进入场景返回消息
+message UserEnterSceneAck{
+   int32 errCode = 1;
 }
 
