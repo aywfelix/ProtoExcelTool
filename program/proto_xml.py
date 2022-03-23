@@ -44,6 +44,13 @@ class ToolProtoXml(object):
         if dirName not in self.modules.keys():
             return None
         return self.modules[dirName]
+    
+    def getProtoNameById(self, msgId):
+        for dirName, protoDatas in self.protocols:
+            for protoId, protoData in protoDatas:
+                if protoId == msgId:
+                    return protoData.name
+        pass
 
     def getProtoData(self, dirName, protoId):
         if dirName not in self.protocols.keys():

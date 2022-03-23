@@ -15,15 +15,23 @@ import selectors
 
 from client.session import *
 from client.data_pack import *
-import client.login_pb2 as loginpb
-import client.scene_pb2 as scenepb
-from google.protobuf import reflection
+from client.user import *
+from proto_xml import *
+
 from google.protobuf import json_format
 import codecs
+import requests
 import json
 
 class NetClient(object):
     def __init__(self, parent=None):
+        self.protoXml = ToolProtoXml()
+
+        self.dev_login_url = 'http://192.168.50.78:9999/sys/login'
+        self.pro_login_url = ''
+
+        self.user = User()
+
         self.reactor = selectors.DefaultSelector()
         self.session = Session()
         self.dataPack = DataPack()
@@ -33,12 +41,6 @@ class NetClient(object):
         self.reqHistoryPath = "../extra/tmp/request.json"
         self.loadReqHistory()
         pass
-
-    # def iniMsgDefine(self):
-    #     self.msgDefine[7056] = loginpb.C2SLoginMsg()
-    #     self.msgDefine[7057] = loginpb.C2SRoleLoginReq()
-    #     self.msgDefine[1050] = loginpb.S2CEnterScene()
-    #     pass
 
     def loadReqHistory(self):
         try:
@@ -74,12 +76,8 @@ class NetClient(object):
     # json_result = json_format.MessageToJson(request)
         pass
     
-    def sendMsg(self, msgID, content):
-        nMsgID = int(msgID)
-        descriptor = loginpb.DESCRIPTOR.message_types_by_name['C2SLoginMsg']
-        protoMsgType = reflection.MakeClass(descriptor)
-        msgProto = protoMsgType()
-
+    def sendMsg(self, msgID, msgClass, msgType, content):
+        msgProto = self.dataPack.getMsgProto(msgClass, msgType)
         if not msgProto:
             return
         if not content:
@@ -87,6 +85,10 @@ class NetClient(object):
         
         request = json_format.Parse(content, msgProto)
 
+        nMsgID = int(msgID)
+        # 登录验证消息特殊处理
+        if nMsgID == 7056:
+            request.token = self.user.token
         # 打包发送消息
         msg = self.dataPack.dataPack2(nMsgID, request)
         if self.session.writeData(msg):
@@ -111,5 +113,38 @@ class NetClient(object):
             print(e)
             pass
 
-    
+    # 请求web端进行登录验证
+    def webVerifyLogin(self):
+        try:
+            postdata = {
+                'username': self.user.username,
+                'password': self.user.password,
+                'type': 'game',
+            }
+
+            headers = {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'tenant-id':'d59de7b24a9f11eca01000163e144cbe,ff51a4b4f7f167fedb7e51f451270f99',
+            }   
+
+            resp = requests.post(self.dev_login_url, json=postdata, headers=headers)
+
+            if resp.status_code == 200:
+                respDict = resp.json()
+                result = respDict['result']
+                self.user.userInfo = result['userInfo']
+                self.user.token = result['token']
+                self.user.inviteCode = result['InvitationCodeStatus']
+                self.user.wallets = result['wallets']
+            else:
+                print("http post error, code=", resp.status_code)
+                return False
+
+            return True
+        except Exception as e:
+            print(e)
+
+        return False
+
+
 

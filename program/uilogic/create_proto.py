@@ -69,23 +69,23 @@ class CreateProtoUI(QMainWindow):
         pass
 
     def changeProtoName(self):
-        protoName = self.ui.lEtProtoName.text()
-        if self.ui.rBtnReq.isChecked():
-            protoName += "Req"
-        elif self.ui.rBtnNotify.isChecked():
-            protoName += "Notify"
-        self.ui.lEtProtoName.setText(protoName)
+        # protoName = self.ui.lEtProtoName.text()
+        # if self.ui.rBtnReq.isChecked():
+        #     protoName += "Req"
+        # elif self.ui.rBtnNotify.isChecked():
+        #     protoName += "Notify"
+        # self.ui.lEtProtoName.setText(protoName)
         pass
 
     def changeRadioButton(self):
-        protoName = self.ui.lEtProtoName.text().strip()
-        if self.ui.rBtnReq.isChecked():
-            protoName = protoName[0:-6]
-            protoName += "Req"
-        else:
-            protoName = protoName[0:-3]
-            protoName += "Notify"
+        # protoName = self.ui.lEtProtoName.text().strip()
+        # if self.ui.rBtnReq.isChecked():
+        #     protoName = protoName[0:-6]
+        #     protoName += "Req"
+        # else:
+        #     protoName = protoName[0:-3]
+        #     protoName += "Notify"
         
-        self.ui.lEtProtoName.setText(protoName)        
+        # self.ui.lEtProtoName.setText(protoName)        
         pass
         

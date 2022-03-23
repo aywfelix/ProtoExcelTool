@@ -17,12 +17,28 @@ class Role(object):
         self.roleId = 0
         pass
 
+class Wallet(object):
+    def __init__(self):
+        self.id = None
+        self.wallet = None
+        self.userId = None
+        pass
+
 class User(object):
     def __init__(self, parent=None):
-        self.name = None
-        self.passwd = None
-        self.sceneId = 0
-        self.lastSceneId = 0
-        self.account = None
+        self.id = None
+        self.username = "boge88"
+        self.password = "boge888"
+        self.realname = None
+        self.avatar = None
+        self.sex = None
+        self.email = None
+        self.createTime = None
+        self.updateTime = None
+        self.inviteCode = 0
+        self.wallets = []
+        self.token = None
         self.roleList = {}
+
+        self.userInfo = None
         pass

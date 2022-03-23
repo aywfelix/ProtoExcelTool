@@ -29,10 +29,17 @@ class ReLoadFiles(object):
                     continue
                 shortFile = os.path.splitext(pbfile)[0]
                 module = importlib.import_module(shortFile)
-                print(module)
+                print(shortFile, module)
                 self.moduleList[shortFile] = module
         except Exception as e:
             print(e)
+        pass
+
+
+    def getModule(self, name):
+        if name not in self.moduleList.keys():
+            return None
+        return self.moduleList[name]
         pass
 
 if __name__ == "__main__":

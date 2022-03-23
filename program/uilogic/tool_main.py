@@ -78,8 +78,6 @@ class ProtoMainUI(QMainWindow):
         self.ui.bTnExport.clicked.connect(self.exportAllClicked)
         # 设置按钮
         self.ui.bTnSetting.clicked.connect(self.openSettingClicked)
-        # 协议测试发送消息按钮
-        self.ui.bTnSendMsg.clicked.connect(self.sendProtoMsgClicked)
         # 菜单事件处理逻辑
         self.ui.menuExportPb.triggered.connect(self.menuExportPbClicked)
         self.ui.menuExportExcel.triggered.connect(self.menuExportExcelClicked)
@@ -87,7 +85,8 @@ class ProtoMainUI(QMainWindow):
         # 协议测试
         self.ui.bTnConn.clicked.connect(self.connServer)
         self.ui.bTnDisconn.clicked.connect(self.disConnect)
-        self.ui.bTnSendMsg.clicked.connect(self.sendReqMsg)
+        # 协议测试发送消息按钮
+        self.ui.bTnSendMsg.clicked.connect(self.sendProtoMsgClicked)
         # 枚举tableWidget设置
         self.ui.tRvEnum.setStyle(QStyleFactory.create('windows'))
         self.ui.tRvEnum.clicked.connect(self.enumTreeViewClicked)
@@ -140,7 +139,7 @@ class ProtoMainUI(QMainWindow):
         self.showProtoTest()
     
     def setProtoTestReqData(self):
-        msgID = self.ui.cBbxProto.currentText().strip().split(':')[1]
+        _, _, msgID = self.ui.cBbxProto.currentText().strip().split(':')
         reqData = self.client.getReqHistory(msgID)
         self.ui.tEtReq.setText(reqData)
         pass
@@ -169,6 +168,13 @@ class ProtoMainUI(QMainWindow):
                 protoNode = self.createProto(protoData)
                 dirItem.addChild(protoNode)
 
+        # 协议测试
+        self.ui.cBbxProto.clear()
+        for dirName, protoDatas in protocols.items():
+            for protoId, protoData in protoDatas.items():
+                self.ui.cBbxProto.addItem("{0}:{1}:{2}".format(dirName, protoData.name, protoId))
+                # self.ui.cBbxProto.addItem(dirName+":"++":"+str(protoId))
+            pass
         pass
 
     def loadEnums(self):
@@ -496,6 +502,10 @@ class ProtoMainUI(QMainWindow):
 
     # 协议测试处理逻辑
     def connServer(self):
+        if not self.client.webVerifyLogin():
+            print("login error")
+            return
+
         connHost = self.ui.cBbxServAddr.currentText()
         addr = connHost.split(':')
         result = self.client.connect(addr[0], int(addr[1]))
@@ -516,12 +526,6 @@ class ProtoMainUI(QMainWindow):
         palette.setColor(QtGui.QPalette.ButtonText, QtCore.Qt.black)
         self.ui.bTnConn.setPalette(palette)
         self.ui.bTnConn.setAutoFillBackground(True)
-        pass
-
-    def sendReqMsg(self):
-        # 获取填写请求数据 json
-        # 将json转换成pb
-        # 将消息发送给服务器
         pass
 
     def showSearchProtoItem(self, filter):
@@ -622,11 +626,12 @@ class ProtoMainUI(QMainWindow):
 
     def sendProtoMsgClicked(self):
         # 获取当前消息ID
-        msgID = self.ui.cBbxProto.currentText().strip().split(':')[1]
+        msgClass, msgType, msgID = self.ui.cBbxProto.currentText().strip().split(':')
         # 获取发送消息内容
         sendContent = self.ui.tEtReq.toPlainText().strip()
         # 调用client 发送消息
-        self.client.sendMsg(msgID, sendContent)
+        msgClass = msgClass.split(' ')[1]
+        self.client.sendMsg(msgID, msgClass, msgType, sendContent)
         pass
 
 ########################################################################################
