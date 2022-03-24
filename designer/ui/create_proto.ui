@@ -74,7 +74,7 @@
   <widget class="QPushButton" name="bTnProtoCreate">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>200</x>
      <y>510</y>
      <width>75</width>
      <height>23</height>
@@ -138,23 +138,10 @@
     </font>
    </property>
   </widget>
-  <widget class="QCheckBox" name="cBxProtocol">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>510</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>仅导出服务器</string>
-   </property>
-  </widget>
   <widget class="QRadioButton" name="rBtnReq">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>90</x>
      <y>10</y>
      <width>89</width>
      <height>16</height>
@@ -167,7 +154,7 @@
   <widget class="QRadioButton" name="rBtnNotify">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>310</x>
      <y>10</y>
      <width>89</width>
      <height>16</height>
@@ -193,7 +180,7 @@
   <widget class="QRadioButton" name="rBtnCom">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>410</x>
      <y>10</y>
      <width>89</width>
      <height>16</height>
@@ -201,6 +188,19 @@
    </property>
    <property name="text">
     <string>共用消息</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rBtnAck">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请求确认消息</string>
    </property>
   </widget>
  </widget>

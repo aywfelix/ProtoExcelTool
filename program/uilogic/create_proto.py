@@ -40,18 +40,18 @@ class CreateProtoUI(QMainWindow):
     def getProtoType(self):
         if self.ui.rBtnReq.isChecked():
             return "1"
-        if self.ui.rBtnNotify.isChecked():
+        if self.ui.rBtnAck.isChecked():
             return "2"
-        if self.ui.rBtnCom.isChecked():
+        if self.ui.rBtnNotify.isChecked():
             return "3"
+        if self.ui.rBtnCom.isChecked():
+            return "4"
 
     def createProto(self):
         protoId = self.ui.lEtProtoId.text().strip()
         protoName = self.ui.lEtProtoName.text().strip()
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
-        onlyServer = self.ui.cBxProtocol.isChecked()
-        protoType = self.getProtoType() 
 
         protocols = self.protoXml.protocols
         for _, protocolDict in protocols.items():
@@ -64,7 +64,8 @@ class CreateProtoUI(QMainWindow):
                     return
             pass        
 
-        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType, onlyServer)
+        protoType = self.getProtoType() 
+        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType)
 
         self.dialogSignal.emit(protoData)
         self.close()

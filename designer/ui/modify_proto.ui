@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>90</y>
+     <y>121</y>
      <width>411</width>
      <height>41</height>
     </rect>
@@ -32,9 +32,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>190</y>
      <width>481</width>
-     <height>331</height>
+     <height>311</height>
     </rect>
    </property>
    <property name="font">
@@ -47,7 +47,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>9</y>
+     <y>40</y>
      <width>411</width>
      <height>21</height>
     </rect>
@@ -65,7 +65,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>90</y>
+     <y>121</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -77,7 +77,7 @@
   <widget class="QPushButton" name="bTnProtoModify">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>200</x>
      <y>510</y>
      <width>75</width>
      <height>23</height>
@@ -91,7 +91,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>41</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -104,7 +104,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>50</y>
+     <y>81</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -117,7 +117,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>160</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -130,7 +130,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>49</y>
+     <y>80</y>
      <width>411</width>
      <height>21</height>
     </rect>
@@ -141,17 +141,69 @@
     </font>
    </property>
   </widget>
-  <widget class="QCheckBox" name="cBxProtocol">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>510</y>
-     <width>121</width>
+     <x>10</x>
+     <y>10</y>
+     <width>54</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>协议类型：</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rBtnReq">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>10</y>
+     <width>89</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>仅导出服务器</string>
+    <string>请求消息</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rBtnCom">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>共用消息</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rBtnNotify">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>广播消息</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rBtnAck">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>10</y>
+     <width>89</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请求确认消息</string>
    </property>
   </widget>
  </widget>

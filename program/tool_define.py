@@ -29,12 +29,11 @@ class TVItemType:
     ItemProto = 2
 
 class TVItemProtoData:
-    def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", protoType=1, onlyServer=False):
+    def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", protoType=1):
         self.id = protoId
         self.name = protoName
         self.desc = protoDesc
         self.content = protoContent
-        self.onlyServer = onlyServer
         self.type = protoType # 1请求消息 2广播消息 3共用消息
 
     def __str__(self):

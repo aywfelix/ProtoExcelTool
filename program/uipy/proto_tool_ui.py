@@ -66,7 +66,7 @@ class Ui_ProtoWindow(object):
         self.tEtProtoContent.setReadOnly(True)
         self.tEtProtoContent.setObjectName("tEtProtoContent")
         self.bTnProtoModify = QtWidgets.QPushButton(self.groupBox)
-        self.bTnProtoModify.setGeometry(QtCore.QRect(290, 630, 75, 23))
+        self.bTnProtoModify.setGeometry(QtCore.QRect(280, 630, 75, 23))
         self.bTnProtoModify.setObjectName("bTnProtoModify")
         self.tEtProtoDesc = QtWidgets.QTextEdit(self.groupBox)
         self.tEtProtoDesc.setGeometry(QtCore.QRect(90, 110, 431, 41))
@@ -75,11 +75,6 @@ class Ui_ProtoWindow(object):
         self.tEtProtoDesc.setFont(font)
         self.tEtProtoDesc.setReadOnly(True)
         self.tEtProtoDesc.setObjectName("tEtProtoDesc")
-        self.cBxProtocol = QtWidgets.QCheckBox(self.groupBox)
-        self.cBxProtocol.setGeometry(QtCore.QRect(90, 630, 121, 16))
-        self.cBxProtocol.setMouseTracking(True)
-        self.cBxProtocol.setCheckable(True)
-        self.cBxProtocol.setObjectName("cBxProtocol")
         self.tRvProtocol = QtWidgets.QTreeWidget(self.tab)
         self.tRvProtocol.setGeometry(QtCore.QRect(10, 40, 301, 671))
         self.tRvProtocol.setRootIsDecorated(True)
@@ -236,7 +231,7 @@ class Ui_ProtoWindow(object):
         self.menubar.addAction(self.menuExport.menuAction())
 
         self.retranslateUi(ProtoWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(ProtoWindow)
 
     def retranslateUi(self, ProtoWindow):
@@ -249,7 +244,6 @@ class Ui_ProtoWindow(object):
         self.label_5.setText(_translate("ProtoWindow", "协议说明："))
         self.label_6.setText(_translate("ProtoWindow", "协议内容："))
         self.bTnProtoModify.setText(_translate("ProtoWindow", "修改"))
-        self.cBxProtocol.setText(_translate("ProtoWindow", "仅导出服务器"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("ProtoWindow", "协议管理器"))
         self.label.setText(_translate("ProtoWindow", "搜索："))
         self.groupBox_2.setTitle(_translate("ProtoWindow", "详细信息"))

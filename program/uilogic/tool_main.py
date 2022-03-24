@@ -185,6 +185,7 @@ class ProtoMainUI(QMainWindow):
         dynamicMsg = self.protoXml.getDynamicMsgs()
         for protoId, msgData in dynamicMsg.items():
             if msgData.msgType == '1':
+                print('add comcheckbox {0} {1}'.format(protoId, msgData.msgName))
                 self.ui.cBbxProto.addItem("{0}:{1}:{2}".format(msgData.msgClass, msgData.msgName, protoId))
         pass
 
@@ -327,21 +328,16 @@ class ProtoMainUI(QMainWindow):
         # 如果是创建请求类型协议，则自动生成返回协议
         protoName = protoData.name
         protoId = protoData.id
-        protoType = protoData.type
+
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
             protoName = protoName[0:-3]+"Ack"
-            protoData = TVItemProtoData(
-                protoId, protoName, "", "", protoType, protoData.onlyServer)
+            protoData = TVItemProtoData(protoId, protoName, "", "", '2')
             item = self.createProto(protoData, dirName)
             self.protoCurItem.addChild(item)
 
             self.protoXml.addProtocol(self.protoCurItem.text(0), protoData)
             pass
-        if protoData.onlyServer:
-            self.ui.cBxProtocol.setChecked(True)
-        else:
-            self.ui.cBxProtocol.setChecked(False)
         # 保存更新信息
         self.saveProtoXml()
 
@@ -355,10 +351,7 @@ class ProtoMainUI(QMainWindow):
         self.ui.lEtProtoName.setText(protoData.name)
         self.ui.tEtProtoDesc.setText(protoData.desc)
         self.ui.tEtProtoContent.setText(protoData.content)
-        if protoData.onlyServer:
-            self.ui.cBxProtocol.setChecked(True)
-        else:
-            self.ui.cBxProtocol.setChecked(False)
+
         parent = self.protoCurItem.parent()
 
         self.protoXml.addProtocol(parent.text(0), protoData)
@@ -405,7 +398,6 @@ class ProtoMainUI(QMainWindow):
             self.ui.lEtProtoName.setText(protoData.name)
             self.ui.tEtProtoDesc.setText(protoData.desc)
             self.ui.tEtProtoContent.setText(protoData.content)
-            self.ui.cBxProtocol.setChecked(bool(protoData))
         pass
 
     # tableWidget显示数据

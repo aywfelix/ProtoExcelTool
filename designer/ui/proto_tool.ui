@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -177,7 +177,7 @@
       <widget class="QPushButton" name="bTnProtoModify">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>280</x>
          <y>630</y>
          <width>75</width>
          <height>23</height>
@@ -202,25 +202,6 @@
         </font>
        </property>
        <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="cBxProtocol">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>630</y>
-         <width>121</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>仅导出服务器</string>
-       </property>
-       <property name="checkable">
         <bool>true</bool>
        </property>
       </widget>

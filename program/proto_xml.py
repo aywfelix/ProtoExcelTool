@@ -113,7 +113,6 @@ class ToolProtoXml(object):
                     protocolNode.setAttribute("desc", protoDesc)
                     protoContent = protoData.content.replace("\r", "&#xD;").replace("\n", "&#xA;")
                     protocolNode.setAttribute("content", protoContent)
-                    protocolNode.setAttribute("onlyServer", str(protoData.onlyServer))                     
                     pass
                 pass
             # 写入protocol配置文件
@@ -161,8 +160,7 @@ class ToolProtoXml(object):
                     desc = desc.replace("&#xD;", "\r").replace("&#xA;", "\n")
                     content = protocolNode.getAttribute("content")
                     content = content.replace("&#xD;", "\r").replace("&#xA;", "\n")              
-                    onlyServer = protocolNode.getAttribute("onlyServer")
-                    protoData = TVItemProtoData(id, name, desc, content, type, bool(onlyServer))
+                    protoData = TVItemProtoData(id, name, desc, content, type)
                     protocolDict[id] = protoData
 
                     #print('-------', protoData.name)

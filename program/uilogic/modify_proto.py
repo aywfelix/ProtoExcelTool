@@ -36,13 +36,21 @@ class ModifyProtoUI(QMainWindow):
         pass
 
 
+    def getProtoType(self):
+        if self.ui.rBtnReq.isChecked():
+            return "1"
+        if self.ui.rBtnAck.isChecked():
+            return "2"
+        if self.ui.rBtnNotify.isChecked():
+            return "3"
+        if self.ui.rBtnCom.isChecked():
+            return "4"
+
     def modifyProto(self):
         protoId = self.ui.lEtProtoId.text()
         protoName = self.ui.lEtProtoName.text()
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
-        onlyServer = self.ui.cBxProtocol.isChecked()
-        protoType = self.oldData.type
 
         protocols = self.protoXml.protocols
         for _, protocolDict in protocols.items():
@@ -55,17 +63,25 @@ class ModifyProtoUI(QMainWindow):
                     return
             pass
 
-        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType, onlyServer)
+        protoType = self.getProtoType() 
+        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType)
         self.dialogSignal.emit(protoData)
         self.close()
 
     def fillProtoData(self, data):
         self.oldData = data
-
         self.ui.lEtProtoId.setText(data.id)
         self.ui.lEtProtoName.setText(data.name)
         self.ui.tEtProtoDesc.setText(data.desc)
         self.ui.tEtProtoContent.setText(data.content)
-        self.ui.cBxProtocol.setChecked(bool(data.onlyServer))
+
+        if data.type == '1':
+            self.ui.rBtnReq.setChecked(True)
+        if data.type == '2':
+            self.ui.rBtnAck.setChecked(True)
+        if data.type == '3':
+            self.ui.rBtnNotify.setChecked(True)
+        if data.type == '4':
+            self.ui.rBtnCom.setChecked(True)
         pass
         
