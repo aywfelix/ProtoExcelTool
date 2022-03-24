@@ -83,8 +83,8 @@ class ProtoMainUI(QMainWindow):
         self.ui.menuExportExcel.triggered.connect(self.menuExportExcelClicked)
         self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
         # 协议测试
-        self.ui.bTnConn.clicked.connect(self.connServer)
-        self.ui.bTnDisconn.clicked.connect(self.disConnect)
+        self.ui.bTnConn.clicked.connect(self.connServerClicked)
+        self.ui.bTnDisconn.clicked.connect(self.disConnectClicked)
         # 协议测试发送消息按钮
         self.ui.bTnSendMsg.clicked.connect(self.sendProtoMsgClicked)
         # 枚举tableWidget设置
@@ -134,6 +134,7 @@ class ProtoMainUI(QMainWindow):
         # 刷新协议测试
         self.refreshProtoComboBox()
         self.client.ShowMsgSignal.connect(self.showRespMsg_emit)
+        self.client.ConnServerSignal.connect(self.reConnectServer_emit)
         # load enum xml
         self.loadEnums()
 
@@ -513,10 +514,8 @@ class ProtoMainUI(QMainWindow):
         print("program exit")
 
     # 协议测试处理逻辑
-    def connServer(self):
-        connHost = self.ui.cBbxServAddr.currentText()
-        addr = connHost.split(':')
-        result = self.client.connect(addr[0], int(addr[1]))
+    def connServer(self, ip, port):
+        result = self.client.connect(ip, port)
         if not result:
             QMessageBox.information(self, "信息", "连接服务器失败")
             return
@@ -527,7 +526,12 @@ class ProtoMainUI(QMainWindow):
         self.ui.bTnConn.setAutoFillBackground(True)
         pass
 
-    def disConnect(self):
+    def connServerClicked(self):
+        connHost = self.ui.cBbxServAddr.currentText()
+        addr = connHost.split(':')
+        self.connServer(addr[0], int(addr[1]))
+
+    def disConnectClicked(self):
         self.client.disconnect()
 
         palette = self.ui.bTnConn.palette()
@@ -653,6 +657,12 @@ class ProtoMainUI(QMainWindow):
             msgText = msgText + "消息ID: " + msgID + "\n"
             msgText = msgText + "消息内容:\n" + msgContent + "\n"
         self.ui.tEtResp.setText(msgText)
+        pass
+
+    def reConnectServer_emit(self, ip, port):
+        self.disConnectClicked()
+        self.connServer(ip, port)
+        print("conn server={0}:{1}".format(ip, port))
         pass
 
 ########################################################################################

@@ -26,7 +26,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class NetClient(QMainWindow):
+    # 显示请求返回的消息
     ShowMsgSignal = pyqtSignal(str, str)
+    # 通知界面重新连接其他服务器
+    ConnServerSignal = pyqtSignal(str, int)
 
     def __init__(self, parent=None):
         super(NetClient, self).__init__()
@@ -174,6 +177,12 @@ class NetClient(QMainWindow):
                 if msg is not None:
                     print("recv msgid:{0}".format(msg[0]))
                     self.ShowMsgSignal.emit(str(msg[0]), msg[1])
+                    if str(msg[0]) == '7000':
+                        msgDict = json.loads(msg[1])
+                        ip = msgDict['gwHostname']
+                        port = int(msgDict['gwPort'])
+                        self.ConnServerSignal.emit(ip, port)
+                        pass
                 pass
             except Exception as e:
                 pass
