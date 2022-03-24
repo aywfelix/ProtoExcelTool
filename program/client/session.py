@@ -59,11 +59,13 @@ class Session(object):
                     break
                 msg_len = self.dataPack.dataLen(self.recv_data)
                 if len(self.recv_data) < msg_len:
+                    print("recv_data_len<msg_len, recv data len=", len(self.recv_data))
+                    print("msg_len==", msg_len)
                     break
                 msg_id, msg_content = self.dataPack.dataUnpack2(self.recv_data)
                 # 将获取的返回消息放到队列里用于界面显示
                 self.queue.put((msg_id, msg_content))
-                self.recv_data = self.recv_data[msg_len:]
+                self.recv_data = self.recv_data[msg_len+4:]
                 pass
 
         except Exception as e:
@@ -104,6 +106,7 @@ class Session(object):
                     callback = key.data
                     callback(key.fileobj, mask)
             except Exception as e:
+                print("recv thread error, ", e)
                 pass
 
         

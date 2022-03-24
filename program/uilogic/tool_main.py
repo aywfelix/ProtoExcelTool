@@ -148,7 +148,10 @@ class ProtoMainUI(QMainWindow):
             return
         _, _, msgID = curText.strip().split(':')
         reqData = self.client.getReqHistory(msgID)
-        self.ui.tEtReq.setText(reqData)
+        if reqData:
+            self.ui.tEtReq.setText(reqData)
+        else:
+            self.ui.tEtReq.setText('')
         pass
 
     def showProtoTest(self):
@@ -646,6 +649,7 @@ class ProtoMainUI(QMainWindow):
             msgText = "消息ID: " + msgID + "\n"
             msgText = msgText + "消息内容:\n" + msgContent + "\n"
         else:
+            msgText += "==========================================================\n"
             msgText = msgText + "消息ID: " + msgID + "\n"
             msgText = msgText + "消息内容:\n" + msgContent + "\n"
         self.ui.tEtResp.setText(msgText)

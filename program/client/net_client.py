@@ -58,7 +58,10 @@ class NetClient(QMainWindow):
         pass
 
     def getReqHistory(self, msgID):
-        return self.recordReq[str(msgID)]
+        if msgID in self.recordReq.keys():
+            return self.recordReq[msgID]
+        else:
+            return None
     
     def connect(self, ip, port):
         if self.session.conn_server(ip, port):
@@ -102,7 +105,8 @@ class NetClient(QMainWindow):
                 print("send msg({0}) error".format(msgID))
 
             # 记录发送消息
-            self.recordReq[nMsgID] = content
+            self.recordReq[msgID] = content
+            #print('send msg:{0}, content:{1}'.format(msgID, content))
             pass
         except Exception as e:
             print("send msg failed, ", e)
