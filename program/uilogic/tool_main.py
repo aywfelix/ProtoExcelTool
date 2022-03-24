@@ -511,10 +511,6 @@ class ProtoMainUI(QMainWindow):
 
     # 协议测试处理逻辑
     def connServer(self):
-        if not self.client.webVerifyLogin():
-            print("login error")
-            return
-
         connHost = self.ui.cBbxServAddr.currentText()
         addr = connHost.split(':')
         result = self.client.connect(addr[0], int(addr[1]))

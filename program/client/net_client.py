@@ -43,11 +43,6 @@ class NetClient(QMainWindow):
         self.recordReq = {}
         self.reqHistoryPath = "../extra/tmp/request.json"
         self.loadReqHistory()
-
-        # 开启一个线程用于显示服务器返回消息
-        self.showRespInfoThrd = threading.Thread(target=self.startRespShow)
-        self.showRespInfoThrd.start()     
-        self.connClose = False   
         pass
 
     def loadReqHistory(self):
@@ -68,41 +63,49 @@ class NetClient(QMainWindow):
     def connect(self, ip, port):
         if self.session.conn_server(ip, port):
             print("conn server({0}:{1}) ok".format(ip, port))
+            self.startRespShowThrd()
             return True
         return False
         
     def disconnect(self):
         try:
             self.session.close()
-            self.connClose = True
+            self.isDisconn = True
             self.showRespInfoThrd.join()
         except Exception as e:
             pass
         pass
     
     def sendMsg(self, msgID, msgClass, msgName, content):
-        msgProto = self.dataPack.getMsgProto(msgClass, msgName)
-        if not msgProto:
-            return
-        if not content:
-            content = self.recordReq[msgID]
-        
-        request = json_format.Parse(content, msgProto)
+        try:
+            msgProto = self.dataPack.getMsgProto(msgClass, msgName)
+            if not msgProto:
+                return
+            if not content:
+                content = self.recordReq[msgID]
+            
+            request = json_format.Parse(content, msgProto)
 
-        nMsgID = int(msgID)
-        # 登录验证消息特殊处理
-        if nMsgID == 7056:
-            request.token = self.user.token
-        # 打包发送消息
-        msg = self.dataPack.dataPack2(nMsgID, request)
-        if self.session.writeData(msg):
-            print("send msg({0}) ok".format(msgID))
-        else:
-            print("send msg({0}) error".format(msgID))
+            nMsgID = int(msgID)
+            # 登录验证消息特殊处理
+            if nMsgID == 7056:
+                if not self.webVerifyLogin():
+                    print("client login game error")
+                    return
+                else:
+                    request.token = self.user.token
+            # 打包发送消息
+            msg = self.dataPack.dataPack2(nMsgID, request)
+            if self.session.writeData(msg):
+                print("send msg({0}) ok".format(msgID))
+            else:
+                print("send msg({0}) error".format(msgID))
 
-        # 记录发送消息
-        self.recordReq[nMsgID] = content
-        pass
+            # 记录发送消息
+            self.recordReq[nMsgID] = content
+            pass
+        except Exception as e:
+            print("send msg failed, ", e)
     
 
     # 记录发送历史
@@ -150,12 +153,18 @@ class NetClient(QMainWindow):
 
         return False
 
+    def startRespShowThrd(self):
+        # 开启一个线程用于显示服务器返回消息
+        self.isDisconn = False   
+        self.showRespInfoThrd = threading.Thread(target=self.startRespShow)
+        self.showRespInfoThrd.start()            
+        pass
 
     def startRespShow(self):
         # 从session的返回消息队列里拿出数据并显示到界面上
         while True:
             try:
-                if self.connClose:
+                if self.isDisconn:
                     return
                 msg = self.session.queue.get(timeout = 1) # 1秒以后没有就抛出异常
                 if msg is not None:
