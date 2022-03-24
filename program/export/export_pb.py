@@ -17,19 +17,70 @@ from tool_define import *
 from setting_xml import *
 from proto_xml import *
 
+#############################################################################
+proto_header = 'syntax = "proto3";'
+#############################################################################
+
 @Singleton
 class ExportPb(object):
     def __init__(self):
         self.settingXml = ToolSettingXml()
+        self.protoXml = ToolProtoXml()
         self.pythonPbPath = "../extra/pb/python"
         pass
 
-    def exportPb(self):
+    # 导出最新proto文件
+    def exportProtoFile(self):
         try:
-            # 导出最新proto文件
-            protoXml = ToolProtoXml()
-            protoXml.exportProtoFile()
-            
+            self.protoXml.readProtocolXml()
+            # 根据xml信息生产proto文件
+            modules = self.protoXml.getModules()
+            protocols = self.protoXml.getProtocols()
+            for dirName, dirData in modules.items():
+                # 添加引用
+                protoMsgs = proto_header+"\n"
+                protoMsgs += dirData.package +"\n\n"
+                protocolDict = protocols[dirName]
+                # if not protocolDict: continue
+                for _, protoData in protocolDict.items():
+                    # 注释
+                    protoDesc = ""
+                    descList = protoData.desc.split("\n")
+                    for desc in descList:
+                        protoDesc += "// "+desc+"\n"
+                    protoMsgs += protoDesc
+                    # 添加消息
+                    protoMsgs += "message " + protoData.name + "{\n"
+
+                    protoContent = ""
+                    contentList = protoData.content.split("\n")
+                    for content in contentList:
+                        protoContent += "   " + content+"\n"
+                    protoContent +="}\n\n"
+
+                    protoMsgs += protoContent   
+                    pass
+                
+                # 导出命名
+                moduleName = dirData.dirName.split(" ")[1]
+                # 获取导出proto路径
+                settingXml = ToolSettingXml()
+                toolConfig = settingXml.getTool()
+                print("save proto path=", toolConfig['proto'])
+                protoFilePath = toolConfig['proto'] +"/"+moduleName+".proto"
+                print("export proto file=", protoFilePath)
+                with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
+                    f.write(protoMsgs)
+                    f.flush()
+                    pass                
+                pass
+        except Exception as e:
+            print(e)
+
+
+    def exportProtoBuffer(self):
+        try:
+            self.exportProtoFile()
             # 根据配置选项导出不同pb
             tmpls = self.settingXml.getTmplsByType(TmplType.PROTO)
             if not tmpls:

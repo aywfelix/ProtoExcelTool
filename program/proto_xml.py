@@ -18,9 +18,7 @@ import xml.dom.minidom as xmlDom
 from sympy import N
 from tool_define import *
 from setting_xml import *
-#############################################################################
-proto_header = 'syntax = "proto3";'
-#############################################################################
+
 
 @Singleton
 class ToolProtoXml(object):
@@ -193,48 +191,3 @@ class ToolProtoXml(object):
 
         return self.dynamicMsg[protoId]   
 
-    def exportProtoFile(self):
-        try:
-            self.readProtocolXml()
-                
-            # 根据xml信息生产proto文件
-            protoMsgs = proto_header+"\n"
-
-            for dirName, dirData in self.modules.items():
-                # 添加引用
-                protoMsgs += dirData.package +"\n\n"
-                protocolDict = self.protocols[dirName]
-                for _, protoData in protocolDict.items():
-                    # 注释
-                    protoDesc = ""
-                    descList = protoData.desc.split("\n")
-                    for desc in descList:
-                        protoDesc += "// "+desc+"\n"
-                    protoMsgs += protoDesc
-                    # 添加消息
-                    protoMsgs += "message " + protoData.name + "{\n"
-
-                    protoContent = ""
-                    contentList = protoData.content.split("\n")
-                    for content in contentList:
-                        protoContent += "   " + content+"\n"
-                    protoContent +="}\n\n"
-
-                    protoMsgs += protoContent   
-                    pass
-                
-                # 导出命名
-                moduleName = dirData.dirName.split(" ")[1]
-                # 获取导出proto路径
-                settingXml = ToolSettingXml()
-                toolConfig = settingXml.getTool()
-                print("save proto path=", toolConfig['proto'])
-                protoFilePath = toolConfig['proto'] +"/"+moduleName+".proto"
-                print("export proto file=", protoFilePath)
-                with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
-                    f.write(protoMsgs)
-                    f.flush()
-                    pass                
-                pass
-        except Exception as e:
-            print(e)

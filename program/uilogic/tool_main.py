@@ -498,7 +498,7 @@ class ProtoMainUI(QMainWindow):
 
     # 导出proto文件    
     def menuExportProtoClicked(self):
-        self.protoXml.exportProtoFile()
+        self.exportPb.exportProtoFile()
         pass
 
     # 程序界面退出
@@ -621,7 +621,7 @@ class ProtoMainUI(QMainWindow):
         self.saveEnumXml()
         # 导出协议
         export_pb = ExportPb()
-        export_pb.exportPb()
+        export_pb.exportProtoBuffer()
 
         self.refreshProtoComboBox()
         # 导出枚举
