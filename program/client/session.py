@@ -27,6 +27,8 @@ class Session(object):
 
         self.reactor = selectors.DefaultSelector()
         self.recvThrd = threading.Thread(target=self.startRecv)
+        self.recvThrdStop = False
+        self.recvThrd.start()
         pass
     
     def conn_server(self, ip, port):
@@ -36,8 +38,7 @@ class Session(object):
             self.sock.setblocking(True) 
 
             self.reactor.register(self.sock, selectors.EVENT_READ, self.readData)
-            if not self.recvThrd.is_alive():
-                self.recvThrd.start()      
+                      
             return True   
         except socket.error as e:
             print("connect server error:", e)
@@ -81,6 +82,8 @@ class Session(object):
         pass
     
     def close(self):
+        self.recvThrdStop = True
+        self.recvThrd.join()
         self.reactor.unregister(self.sock)
         self.sock.close()
         self.recv_data = None
@@ -88,7 +91,9 @@ class Session(object):
     def startRecv(self):
         try:
             while True:
-                events = self.reactor.select()
+                if self.recvThrdStop:
+                    return
+                events = self.reactor.select(timeout=1)
                 for key, mask in events:
                     callback = key.data
                     callback(key.fileobj, mask)

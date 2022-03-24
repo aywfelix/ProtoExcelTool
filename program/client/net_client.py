@@ -11,6 +11,7 @@
 '''
 
 # here put the import lib
+from time import sleep
 from client.session import *
 from client.data_pack import *
 from client.user import *
@@ -45,7 +46,8 @@ class NetClient(QMainWindow):
 
         # 开启一个线程用于显示服务器返回消息
         self.showRespInfoThrd = threading.Thread(target=self.startRespShow)
-        self.showRespInfoThrd.start()        
+        self.showRespInfoThrd.start()     
+        self.connClose = False   
         pass
 
     def loadReqHistory(self):
@@ -70,7 +72,12 @@ class NetClient(QMainWindow):
         return False
         
     def disconnect(self):
-        self.session.close()
+        try:
+            self.session.close()
+            self.connClose = True
+            self.showRespInfoThrd.join()
+        except Exception as e:
+            pass
         pass
     
     def sendMsg(self, msgID, msgClass, msgName, content):
@@ -147,11 +154,16 @@ class NetClient(QMainWindow):
     def startRespShow(self):
         # 从session的返回消息队列里拿出数据并显示到界面上
         while True:
-            msg = self.session.queue.get()
-            if msg is not None:
-                print("recv msgid:{0}".format(msg[0]))
-                self.ShowMsgSignal.emit(str(msg[0]), msg[1])
-            pass
+            try:
+                if self.connClose:
+                    return
+                msg = self.session.queue.get(timeout = 1) # 1秒以后没有就抛出异常
+                if msg is not None:
+                    print("recv msgid:{0}".format(msg[0]))
+                    self.ShowMsgSignal.emit(str(msg[0]), msg[1])
+                pass
+            except Exception as e:
+                pass
         pass
 
 

@@ -22,25 +22,40 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QTextEdit" name="tEtProtoContent">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>150</y>
-     <width>411</width>
-     <height>351</height>
+     <x>10</x>
+     <y>170</y>
+     <width>481</width>
+     <height>331</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLineEdit" name="lEtProtoId">
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>10</y>
+     <y>9</y>
      <width>411</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="readOnly">
     <bool>false</bool>
@@ -102,7 +117,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>140</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -115,10 +130,15 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>50</y>
+     <y>49</y>
      <width>411</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QCheckBox" name="cBxProtocol">
