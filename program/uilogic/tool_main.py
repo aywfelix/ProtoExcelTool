@@ -132,13 +132,14 @@ class ProtoMainUI(QMainWindow):
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
         # 刷新协议测试
-        self.refreshProtoComboBox()
+        self.initProtoComboBox()
         self.client.ShowMsgSignal.connect(self.showRespMsg_emit)
         self.client.ConnServerSignal.connect(self.reConnectServer_emit)
         # load enum xml
         self.loadEnums()
 
         # 设置协议测试界面
+        self.ui.cbBxMsgClass.currentIndexChanged[str].connect(self.cbBxMsgClassChanged)
         self.ui.cBbxProto.currentIndexChanged[str].connect(self.cBbxProtoChange)
         self.showProtoTest()
 
@@ -147,7 +148,7 @@ class ProtoMainUI(QMainWindow):
         curText = self.ui.cBbxProto.currentText()
         if not curText:
             return
-        _, _, msgID = curText.strip().split(':')
+        _, msgID = curText.strip().split(':')
         reqData = self.client.getReqHistory(msgID)
         if reqData:
             self.ui.tEtReq.setText(reqData)
@@ -162,6 +163,20 @@ class ProtoMainUI(QMainWindow):
     def cBbxProtoChange(self):
         self.setProtoTestReqData()
         pass
+
+    def cbBxMsgClassChanged(self):
+        curText = self.ui.cbBxMsgClass.currentText()
+        if not curText:
+            return        
+        self.ui.cBbxProto.clear()
+        protocols = self.protoXml.getModuleProtos(curText)
+        for protoId, protoData in protocols.items():
+            if protoData.type != '1': continue
+            msgName = protoData.name
+            self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, protoId))
+
+        pass
+
 
     def loadProtocols(self):
         self.protoXml.readProtocolXml()
@@ -180,13 +195,20 @@ class ProtoMainUI(QMainWindow):
                 dirItem.addChild(protoNode)
         pass
 
-    def refreshProtoComboBox(self):
+    def initProtoComboBox(self):
+        self.ui.cbBxMsgClass.clear()
         self.ui.cBbxProto.clear()
-        dynamicMsg = self.protoXml.getDynamicMsgs()
-        for protoId, msgData in dynamicMsg.items():
-            if msgData.msgType == '1':
-                print('add comcheckbox {0} {1}'.format(protoId, msgData.msgName))
-                self.ui.cBbxProto.addItem("{0}:{1}:{2}".format(msgData.msgClass, msgData.msgName, protoId))
+        isSetMsgProto = False
+        protocols = self.protoXml.getProtocols()
+        for msgClass, protoDatas in protocols.items():
+            #msgClass = moduleName.split(' ')[1]
+            self.ui.cbBxMsgClass.addItem(msgClass)   
+            if not isSetMsgProto:
+                for protoId, protoData in protoDatas.items():
+                    if protoData.type != '1': continue
+                    msgName = protoData.name
+                    self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, protoId))
+                isSetMsgProto = True
         pass
 
 
@@ -632,7 +654,9 @@ class ProtoMainUI(QMainWindow):
 
     def sendProtoMsgClicked(self):
         # 获取当前消息ID
-        msgClass, msgName, msgID = self.ui.cBbxProto.currentText().strip().split(':')
+        curText = self.ui.cbBxMsgClass.currentText().strip()
+        _, msgClass = curText.split(' ')
+        msgName, msgID = self.ui.cBbxProto.currentText().strip().split(':')
         # 获取发送消息内容
         sendContent = self.ui.tEtReq.toPlainText().strip()
         # 调用client 发送消息

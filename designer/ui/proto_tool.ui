@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -468,7 +468,7 @@
      <widget class="QPushButton" name="bTnSendMsg">
       <property name="geometry">
        <rect>
-        <x>700</x>
+        <x>740</x>
         <y>70</y>
         <width>121</width>
         <height>51</height>
@@ -496,9 +496,9 @@
      <widget class="QComboBox" name="cBbxProto">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>560</x>
         <y>80</y>
-        <width>181</width>
+        <width>161</width>
         <height>31</height>
        </rect>
       </property>
@@ -507,48 +507,18 @@
         <string>UserLogin:7056</string>
        </property>
       </item>
-      <item>
-       <property name="text">
-        <string>RoleLogin:7057</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>CreateRole:7150</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>EnterScene:1050</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Move:1150</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>MazeGetGem:8200</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SwitchScene:8101</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>320</x>
         <y>80</y>
         <width>141</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>选择发送协议号：</string>
+       <string>选择发送协议：</string>
       </property>
      </widget>
      <widget class="QPushButton" name="bTnConn">
@@ -621,12 +591,27 @@
        <string>返回消息：</string>
       </property>
      </widget>
+     <widget class="QComboBox" name="cbBxMsgClass">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>81</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>login</string>
+       </property>
+      </item>
+     </widget>
     </widget>
    </widget>
    <widget class="QPushButton" name="bTnExport">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>710</x>
       <y>0</y>
       <width>71</width>
       <height>31</height>
@@ -639,7 +624,7 @@
    <widget class="QPushButton" name="bTnSetting">
     <property name="geometry">
      <rect>
-      <x>780</x>
+      <x>820</x>
       <y>0</y>
       <width>71</width>
       <height>31</height>

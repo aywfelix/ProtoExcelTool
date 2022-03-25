@@ -35,6 +35,11 @@ class ToolProtoXml(object):
     def getProtocols(self):
         return self.protocols
 
+    def getModuleProtos(self, dirname):
+        if not dirname in self.protocols.keys():
+            return None
+        return self.protocols[dirname]
+
     def getModules(self):
         return self.modules
     
