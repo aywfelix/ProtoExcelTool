@@ -477,7 +477,9 @@ class ProtoMainUI(QMainWindow):
         # 保存protocol信息
         self.saveProtoXml()
         # 保存enum信息
+        self.saveEnumXml()
         # 保存配置信息
+        
         pass
 
     def showModifyProtoWindow(self):

@@ -2,18 +2,12 @@
 EnumTable = EnumTable or {}
 local EnumTable = EnumTable
 
--- qqq
+-- 职业
 EnumTable.EmJob = EnumTable.EmJob or {}
 local EmJob = EnumTable.EmJob
-EmJob.ffff = 0  -- xxx
-EmJob.ddd = 1  -- aaa
-
-
--- pppp
-EnumTable.EmHaha = EnumTable.EmHaha or {}
-local EmHaha = EnumTable.EmHaha
-EmHaha.jjj = 0  -- fff
-EmHaha.lll = 1  -- bbb
+EmJob.Warrior = 0  -- 战士
+EmJob.Master = 1  -- 法师
+EmJob.Monk = 2  -- 道士
 
 
 

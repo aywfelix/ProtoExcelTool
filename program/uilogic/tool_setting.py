@@ -179,11 +179,7 @@ class ToolSettingUI(QMainWindow):
             self.tableFormLayout.removeRow(layout)
 
         tmplList.remove(tmplData)        
-        # for index, tmpl in enumerate(tmplList):
-        #     if tmpl.name == name:
-        #         tmplList.pop(index)
-        #     pass        
-        # pass
+
     
     def modifyTmpl(self, oldTmplData, tmplData):
         # 更新缓存模板信息
@@ -192,7 +188,7 @@ class ToolSettingUI(QMainWindow):
             if tmpl.uuid == oldTmplData.uuid:
                 tmplList.remove(tmpl)
                 break
-        # tmplList.remove(oldTmplData)
+
         tmplList.append(tmplData)
         # 刷新界面控件
         qLetName = self.hBoxLayout.itemAt(0).widget()
