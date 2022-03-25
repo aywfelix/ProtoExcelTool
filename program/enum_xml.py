@@ -72,9 +72,9 @@ class ToolEnumXml(object):
             for enumNode in enumNodes:
                 enumName = enumNode.getAttribute("name")
                 enumDesc = enumNode.getAttribute("desc")
-                enumServer = enumNode.getAttribute("isserver")
+                enumType = enumNode.getAttribute("type")
                 
-                enumData = EnumItemData(enumName, enumDesc, StrToBool(enumServer))
+                enumData = EnumItemData(enumName, enumDesc, enumType)
                 self.enumDatas[enumName] = enumData
 
                 for fieldNode in enumNode.childNodes:
@@ -105,7 +105,7 @@ class ToolEnumXml(object):
                 # 设置属性
                 enumNode.setAttribute("name", enumData.name)
                 enumNode.setAttribute("desc", enumData.desc)
-                enumNode.setAttribute("isserver", str(enumData.isserver))
+                enumNode.setAttribute("type", enumData.type)
                 # 创建EnumNode子节点field节点
                 enumFields = enumData.fields
                 for field in enumFields:

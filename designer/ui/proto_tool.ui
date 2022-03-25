@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -271,9 +271,9 @@
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>30</y>
+         <y>50</y>
          <width>431</width>
-         <height>20</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="readOnly">
@@ -284,7 +284,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>30</y>
+         <y>50</y>
          <width>71</width>
          <height>21</height>
         </rect>
@@ -297,9 +297,9 @@
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>70</y>
+         <y>90</y>
          <width>431</width>
-         <height>20</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="readOnly">
@@ -310,7 +310,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>70</y>
+         <y>90</y>
          <width>71</width>
          <height>21</height>
         </rect>
@@ -323,7 +323,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>110</y>
+         <y>130</y>
          <width>71</width>
          <height>21</height>
         </rect>
@@ -335,8 +335,8 @@
       <widget class="QPushButton" name="bTnEnumModify">
        <property name="geometry">
         <rect>
-         <x>290</x>
-         <y>630</y>
+         <x>250</x>
+         <y>640</y>
          <width>75</width>
          <height>23</height>
         </rect>
@@ -345,24 +345,11 @@
         <string>修改</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="cBxEnum">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>630</y>
-         <width>121</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>仅导出服务器</string>
-       </property>
-      </widget>
       <widget class="QTableWidget" name="tBvEnum">
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>110</y>
+         <y>130</y>
          <width>431</width>
          <height>491</height>
         </rect>
@@ -409,6 +396,58 @@
          <string>说明</string>
         </property>
        </column>
+      </widget>
+      <widget class="QRadioButton" name="rBtnCom">
+       <property name="geometry">
+        <rect>
+         <x>418</x>
+         <y>20</y>
+         <width>101</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>共用</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="rBtnServer">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>20</y>
+         <width>89</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>服务器</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>枚举类型：</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="rBtnClient">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>20</y>
+         <width>89</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>客户端</string>
+       </property>
       </widget>
      </widget>
      <widget class="QTreeWidget" name="tRvEnum">

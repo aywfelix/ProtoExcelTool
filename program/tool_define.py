@@ -100,11 +100,11 @@ class EnumField:
         pass
 
 class EnumItemData:
-    def __init__(self, name, desc, isserver=False):
+    def __init__(self, name, desc, enumType=1):
         self.name = name
         self.desc = desc
         self.fields = []
-        self.isserver = isserver
+        self.type = enumType
         pass
 
 

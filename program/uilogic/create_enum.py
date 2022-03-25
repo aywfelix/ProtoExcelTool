@@ -56,11 +56,14 @@ class CreateEnumUI(QMainWindow):
             QMessageBox.critical(self, "错误", "枚举名称已存在")
             return
         enumDesc = self.ui.lEtEnumDesc.text().strip()
-        enumServer = False
-        if self.ui.cBxEnum.isChecked():
-            enumServer = True
-            pass
-        enumData = EnumItemData(enumName, enumDesc, enumServer)
+        enumType = '1'
+        if self.ui.rBtnServer.isChecked():
+            enumType = '1'
+        if self.ui.rBtnClient.isChecked():
+            enumType = '2'
+        if self.ui.rBtnCom.isChecked():
+            enumType = '3'
+        enumData = EnumItemData(enumName, enumDesc, enumType)
         rows = self.ui.tBvEnum.rowCount()
         for row in range(0, rows):
             index = self.ui.tBvEnum.item(row, 0)

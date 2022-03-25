@@ -467,10 +467,12 @@ class ProtoMainUI(QMainWindow):
             return
         self.ui.lEtEnumName.setText(enumData.name)
         self.ui.lEtEnumDesc.setText(enumData.desc)
-        if enumData.isserver:
-            self.ui.cBxEnum.setChecked(True)
-        else:
-            self.ui.cBxEnum.setChecked(False)
+        if enumData.type == '1':
+            self.ui.rBtnServer.setChecked(True)
+        if enumData.type == '2':
+            self.ui.rBtnClient.setChecked(True)
+        if enumData.type == '3':
+            self.ui.rBtnCom.setChecked(True)            
         self.fillEnumTableWidgetData(enumData)
         pass
 
