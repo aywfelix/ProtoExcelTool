@@ -51,7 +51,11 @@ class ModifyTmplUI(QMainWindow):
         name = self.ui.lEtTmplName.text()
         lang = self.ui.cBbxLang.currentIndex()
         publish = self.ui.lEtPublishDir.text()
-        tmplData = TmplItemData(name, lang, publish)
+        if self.ui.rBtnServer.isChecked():
+            ttype = '1'
+        if self.ui.rBtnClient.isChecked():
+            ttype = '2'
+        tmplData = TmplItemData(name, lang, publish, ttype)
         self.dialogSignal.emit(self.oldTmplData, tmplData)
         self.close()
         
@@ -60,4 +64,8 @@ class ModifyTmplUI(QMainWindow):
         self.ui.lEtTmplName.setText(tmplData.name)
         self.ui.cBbxLang.setCurrentIndex(tmplData.lang)
         self.ui.lEtPublishDir.setText(tmplData.publish)
+        if tmplData.ttype == '1':
+            self.ui.rBtnServer.setChecked(True)
+        else:
+            self.ui.rBtnClient.setChecked(True)
         

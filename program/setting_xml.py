@@ -90,7 +90,8 @@ class ToolSettingXml(object):
                    name = node.getAttribute("name")
                    lang = node.getAttribute("lang")
                    publish = node.getAttribute("publish")
-                   tmplData = TmplItemData(name, int(lang), publish)
+                   ttype = node.getAttribute("ttype")
+                   tmplData = TmplItemData(name, int(lang), publish, ttype)
                    self.protocols.append(tmplData)
                    
             # 枚举导出模板配置  
@@ -104,7 +105,8 @@ class ToolSettingXml(object):
                    name = node.getAttribute("name")
                    lang = node.getAttribute("lang")
                    publish = node.getAttribute("publish")
-                   tmplData = TmplItemData(name, int(lang), publish)
+                   ttype = node.getAttribute("ttype")
+                   tmplData = TmplItemData(name, int(lang), publish, ttype)
                    self.enums.append(tmplData)
                    
             # 配置表导出模板配置
@@ -116,7 +118,8 @@ class ToolSettingXml(object):
                    name = node.getAttribute("name")
                    lang = node.getAttribute("lang")
                    publish = node.getAttribute("publish")
-                   tmplData = TmplItemData(name, int(lang), publish)
+                   ttype = node.getAttribute("ttype")
+                   tmplData = TmplItemData(name, int(lang), publish, ttype)
                    self.tables.append(tmplData)
             
         except Exception as e:
@@ -153,6 +156,7 @@ class ToolSettingXml(object):
                 tmplNode.setAttribute("name", tmplData.name)
                 tmplNode.setAttribute("lang", str(tmplData.lang))
                 tmplNode.setAttribute("publish", tmplData.publish)
+                tmplNode.setAttribute("ttype", tmplData.ttype)
                 protocolNode.appendChild(tmplNode)    
                 pass                       
             # 创建enum节点
@@ -163,6 +167,7 @@ class ToolSettingXml(object):
                 tmplNode.setAttribute("name", tmplData.name)
                 tmplNode.setAttribute("lang", str(tmplData.lang))
                 tmplNode.setAttribute("publish", tmplData.publish)
+                tmplNode.setAttribute("ttype", tmplData.ttype)
                 enumNode.appendChild(tmplNode)
                 pass
             # 创建table节点
@@ -173,6 +178,7 @@ class ToolSettingXml(object):
                 tmplNode.setAttribute("name", tmplData.name)
                 tmplNode.setAttribute("lang", str(tmplData.lang))
                 tmplNode.setAttribute("publish", tmplData.publish)
+                tmplNode.setAttribute("ttype", tmplData.ttype)
                 tableNode.appendChild(tmplNode)
                 pass
             

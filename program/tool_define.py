@@ -78,11 +78,12 @@ def create_uuid():
     pass    
     
 class TmplItemData:
-    def __init__(self, tmplName, lang, tmplPublish):
+    def __init__(self, tmplName, lang, tmplPublish, ttype = '1'):
         self.name = tmplName
         self.lang = lang # 代码语言 combobox index
         self.publish = tmplPublish
         self.uuid = create_uuid()
+        self.ttype = ttype
         pass
 
 
