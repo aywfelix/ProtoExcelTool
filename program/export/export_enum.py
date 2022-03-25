@@ -33,7 +33,7 @@ class ExportEnum(object):
             tmpls = self.settingXml.getTmplsByType(TmplType.ENUM)
             if not tmpls:
                 return  
-            enum_str = ''          
+          
             for tmpl in tmpls:
                 if tmpl.lang == ProgramLangType.CPP:
                     # 读取cpp 枚举模板
