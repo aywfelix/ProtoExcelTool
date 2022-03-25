@@ -11,3 +11,44 @@
 '''
 
 # here put the import lib
+from tool_define import *
+from export.enum_cpp import *
+from enum_xml import *
+from setting_xml import *
+
+@Singleton
+class ExportEnum(object):
+    def __init__(self):
+        self.enumXml = ToolEnumXml()
+        self.settingXml = ToolSettingXml()
+        pass
+    
+    def export_enum(self):
+        try:
+            # 读取最新枚举配置信息
+            self.enumXml.readEnumXml()
+            enumDatas = self.enumXml.getDatas()
+            # 根据配置枚举语言导出不同枚举文件
+            # 获取最新配置文件信息
+            tmpls = self.settingXml.getTmplsByType(TmplType.ENUM)
+            if not tmpls:
+                return  
+            enum_str = ''          
+            for tmpl in tmpls:
+                if tmpl.lang == ProgramLangType.CPP:
+                    # 读取cpp 枚举模板
+                    enum_cpp = ExportEnumCpp(tmpl.publish, enumDatas)
+                    enum_cpp.gen()
+                    pass
+                if tmpl.lang == ProgramLangType.CSHARP:
+                    pass
+                if tmpl.lang == ProgramLangType.LUA:
+                    pass
+                if tmpl.lang == ProgramLangType.GO:
+                    pass
+                pass
+            pass
+        except Exception as e:
+            print(e)
+        pass
+

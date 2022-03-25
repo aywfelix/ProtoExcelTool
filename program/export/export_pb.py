@@ -98,15 +98,15 @@ class ExportPb(object):
                         continue
 
                     cmdStr = ""
-                    if config.lang == 0: # cpp
+                    if config.lang == ProgramLangType.CPP: # cpp
                         cmdStr = protocPath + ' --proto_path=' + \
                             protoPath + ' --cpp_out='+config.publish + " "+proto
                         pass
-                    if config.lang == 1: # lua
+                    if config.lang == ProgramLangType.LUA: # lua
                         pass
-                    if config.lang == 2: # go
+                    if config.lang == ProgramLangType.GO: # go
                         pass
-                    if config.lang == 3: # csharp
+                    if config.lang == ProgramLangType.CSHARP: # csharp
                         pass
                     print(cmdStr)
                     subprocess.Popen(cmdStr)

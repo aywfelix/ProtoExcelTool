@@ -12,6 +12,14 @@
 
 # here put the import lib
 
+# 编程语言分类
+class ProgramLangType:
+    CPP = 0
+    LUA = 1
+    GO = 2
+    CSHARP = 3
+    PYTHON = 4
+
 # treeview右键菜单操作
 class TVMenuOpType(object):
     DirCreate = 1
@@ -131,12 +139,7 @@ class EnumItemData:
         self.fields = []
         pass
 
-# 转换表类型
-class TransType:
-    CPP = 0
-    LUA = 1
-    GO = 2
-    CSHARP = 3
+
     
 # 工具常用配置项
 class ToolConfigData:

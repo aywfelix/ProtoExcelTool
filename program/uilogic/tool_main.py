@@ -27,6 +27,7 @@ from tool_define import *
 from proto_xml import *
 from uilogic.tool_setting import *
 from export.export_pb import *
+from export.export_enum import *
 from client.net_client import *
 from uilogic.create_enum import *
 from uilogic.modify_enum import *
@@ -637,15 +638,17 @@ class ProtoMainUI(QMainWindow):
 
     def exportAllClicked(self):
         self.saveProtoXml()
+        self.saveEnumXml()
         # 刷新测试界面选择发送协议
         self.refreshProtoComboBox()    
 
-        self.saveEnumXml()
         # 导出协议
         export_pb = ExportPb()
         export_pb.exportProtoBuffer()
 
         # 导出枚举
+        exprotEnum = ExportEnum()
+        exprotEnum.export_enum()
         pass
     
     def openSettingClicked(self):

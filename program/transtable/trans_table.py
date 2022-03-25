@@ -146,15 +146,15 @@ class TransTable:
             if not exportTmpls:
                 return
             for tmpl in exportTmpls:
-                if tmpl.lang == TransType.CPP:
+                if tmpl.lang == ProgramLangType.CPP:
                     trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
                     trans_cpp.gen(table_name)
                 # 如果配置了导出csharp
-                if tmpl.lang == TransType.CSHARP:
+                if tmpl.lang == ProgramLangType.CSHARP:
                     trans_csharp = TransCsharp(tmpl.publish, field_types, field_descs)
                     trans_csharp.gen(table_name)
                 # 如果配置了导出lua
-                if tmpl.lang == TransType.LUA:
+                if tmpl.lang == ProgramLangType.LUA:
                     trans_lua = TransLua(tmpl.publish)
                     trans_lua.gen(table_name)
             print("transport table ", excel_name, " succ")
