@@ -173,7 +173,7 @@ class ToolProtoXml(object):
                 
                 self.protocols[dirName] = protocolDict
                 
-                # 动态消息生成
+                # # 动态消息生成
                 self.dynamicMsg = {}
                 for dirName, protoDatas in self.protocols.items():
                     msgClass = dirName.split(' ')[1]

@@ -114,42 +114,45 @@ class ToolSettingUI(QMainWindow):
         pass
 
     def addTmplInfo(self, tmplData, tmplType):
-        # 生成界面显示组件-QListWidget
-        hBoxLayout = QtWidgets.QHBoxLayout()
-        # 根据传值生成控件
-        lEtTemplName = QLineEdit()
-        lEtTemplName.setText(tmplData.name)
-        lEtTemplName.setReadOnly(True)
-        lEtTemplName.setFixedWidth(150)
-        lEtTmplLang = QLineEdit()
-        lEtTmplLang.setText(self.tmplLang.getLang(tmplData.lang))
-        lEtTmplLang.setReadOnly(True)
-        lEtTmplLang.setFixedWidth(60)
+        try:
+            # 生成界面显示组件-QListWidget
+            hBoxLayout = QtWidgets.QHBoxLayout()
+            # 根据传值生成控件
+            lEtTemplName = QLineEdit()
+            lEtTemplName.setText(tmplData.name)
+            lEtTemplName.setReadOnly(True)
+            lEtTemplName.setFixedWidth(150)
+            lEtTmplLang = QLineEdit()
+            lEtTmplLang.setText(self.tmplLang.getLang(tmplData.lang))
+            lEtTmplLang.setReadOnly(True)
+            lEtTmplLang.setFixedWidth(60)
 
-        bTnModify = QPushButton()
-        bTnModify.setText("修改")
-        bTnModify.clicked.connect(
-            lambda: self.showModifyTmpl(tmplData, hBoxLayout))
-        bTnModify.setFixedWidth(80)
-        bTnDelete = QPushButton()
-        bTnDelete.setText("删除")
-        bTnDelete.clicked.connect(lambda: self.deleteTmpl(tmplData, hBoxLayout))
-        bTnDelete.setFixedWidth(80)
+            bTnModify = QPushButton()
+            bTnModify.setText("修改")
+            bTnModify.clicked.connect(
+                lambda: self.showModifyTmpl(tmplData, hBoxLayout))
+            bTnModify.setFixedWidth(80)
+            bTnDelete = QPushButton()
+            bTnDelete.setText("删除")
+            bTnDelete.clicked.connect(lambda: self.deleteTmpl(tmplData, hBoxLayout))
+            bTnDelete.setFixedWidth(80)
 
-        hBoxLayout.addWidget(lEtTemplName)
-        hBoxLayout.addStretch(1)
-        hBoxLayout.addWidget(lEtTmplLang)
-        hBoxLayout.addStretch(2)
-        hBoxLayout.addWidget(bTnModify)
-        hBoxLayout.addStretch(1)
-        hBoxLayout.addWidget(bTnDelete)
-        
-        if tmplType == TmplType.PROTO:
-            self.protoFormLayout.addRow(hBoxLayout)
-        if tmplType == TmplType.ENUM:
-            self.enumFormLayout.addRow(hBoxLayout)
-        if tmplType == TmplType.TABLE:
-            self.tableFormLayout.addRow(hBoxLayout)
+            hBoxLayout.addWidget(lEtTemplName)
+            hBoxLayout.addStretch(1)
+            hBoxLayout.addWidget(lEtTmplLang)
+            hBoxLayout.addStretch(2)
+            hBoxLayout.addWidget(bTnModify)
+            hBoxLayout.addStretch(1)
+            hBoxLayout.addWidget(bTnDelete)
+            
+            if tmplType == TmplType.PROTO:
+                self.protoFormLayout.addRow(hBoxLayout)
+            if tmplType == TmplType.ENUM:
+                self.enumFormLayout.addRow(hBoxLayout)
+            if tmplType == TmplType.TABLE:
+                self.tableFormLayout.addRow(hBoxLayout)
+        except Exception as e:
+            print(e)
 
     # 追加模板信息
     def appendTmplInfo(self, tmplData):
@@ -185,7 +188,11 @@ class ToolSettingUI(QMainWindow):
     def modifyTmpl(self, oldTmplData, tmplData):
         # 更新缓存模板信息
         tmplList = self.settingXml.getTmplsByType(self.tmplType)
-        tmplList.remove(oldTmplData)
+        for tmpl in tmplList:
+            if tmpl.uuid == oldTmplData.uuid:
+                tmplList.remove(tmpl)
+                break
+        # tmplList.remove(oldTmplData)
         tmplList.append(tmplData)
         # 刷新界面控件
         qLetName = self.hBoxLayout.itemAt(0).widget()

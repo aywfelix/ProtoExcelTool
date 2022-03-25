@@ -52,12 +52,19 @@ class TmplType:
     PROTO = 1
     ENUM = 2
     TABLE = 3
+
+import time, hashlib
+def create_uuid():
+    m = hashlib.md5(str(time.time()).encode('utf-8'))
+    return m.hexdigest()
+    pass    
     
 class TmplItemData:
     def __init__(self, tmplName, lang, tmplPublish):
         self.name = tmplName
         self.lang = lang # 代码语言 combobox index
         self.publish = tmplPublish
+        self.uuid = create_uuid()
         pass
 
 
@@ -147,3 +154,5 @@ class DynamicMsgData:
         self.msgClass = msgClass
         self.msgName = msgName
         self.msgType = msgType
+
+
