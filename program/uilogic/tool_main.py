@@ -467,6 +467,10 @@ class ProtoMainUI(QMainWindow):
             return
         self.ui.lEtEnumName.setText(enumData.name)
         self.ui.lEtEnumDesc.setText(enumData.desc)
+        if enumData.isserver:
+            self.ui.cBxEnum.setChecked(True)
+        else:
+            self.ui.cBxEnum.setChecked(False)
         self.fillEnumTableWidgetData(enumData)
         pass
 

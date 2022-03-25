@@ -56,7 +56,7 @@ class ToolEnumXml(object):
         try:
             self.enumDatas = {}      
             dataResource = ""
-            with open(self.xmlEnumPath, "r", encoding="gbk") as f:
+            with open(self.xmlEnumPath, "r", encoding="GB2312", errors='ignore') as f:
                 dataResource = f.read()
             if not dataResource:
                 return
@@ -72,7 +72,9 @@ class ToolEnumXml(object):
             for enumNode in enumNodes:
                 enumName = enumNode.getAttribute("name")
                 enumDesc = enumNode.getAttribute("desc")
-                enumData = EnumItemData(enumName, enumDesc)
+                enumServer = enumNode.getAttribute("isserver")
+                
+                enumData = EnumItemData(enumName, enumDesc, StrToBool(enumServer))
                 self.enumDatas[enumName] = enumData
 
                 for fieldNode in enumNode.childNodes:
@@ -103,6 +105,7 @@ class ToolEnumXml(object):
                 # 设置属性
                 enumNode.setAttribute("name", enumData.name)
                 enumNode.setAttribute("desc", enumData.desc)
+                enumNode.setAttribute("isserver", str(enumData.isserver))
                 # 创建EnumNode子节点field节点
                 enumFields = enumData.fields
                 for field in enumFields:
@@ -116,8 +119,8 @@ class ToolEnumXml(object):
                     pass
                 pass
             # 写入protocol配置文件
-            with open(self.xmlEnumPath, "w", encoding="gbk") as f:
-                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="gbk")            
+            with open(self.xmlEnumPath, "w", encoding="GB2312", errors='ignore') as f:
+                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="GB2312")            
         except Exception as e:
             print(e)
 

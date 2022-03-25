@@ -56,7 +56,12 @@ class ModifyEnumUI(QMainWindow):
                 QMessageBox.critical(self, "错误", "枚举名称已存在")
                 return
         enumDesc = self.ui.lEtEnumDesc.text().strip()
-        enumData = EnumItemData(enumName, enumDesc)
+        enumServer = False
+        if self.ui.cBxEnum.isChecked():
+            enumServer = True
+        else:
+            enumServer = False
+        enumData = EnumItemData(enumName, enumDesc, enumServer)
         rows = self.ui.tBvEnum.rowCount()
         for row in range(0, rows):
             indexItem = self.ui.tBvEnum.item(row, 0)
@@ -110,6 +115,10 @@ class ModifyEnumUI(QMainWindow):
 
         self.ui.lEtEnumName.setText(enumData.name)
         self.ui.lEtEnumDesc.setText(enumData.desc)
+        if enumData.isserver:
+            self.ui.cBxEnum.setChecked(True)
+        else:
+            self.ui.cBxEnum.setChecked(False)        
         self.fillEnumTableWidgetData(enumData)
         pass
 

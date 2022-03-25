@@ -25,7 +25,7 @@ class Ui_ModifyTmplForm(object):
         self.label_3.setGeometry(QtCore.QRect(10, 70, 61, 16))
         self.label_3.setObjectName("label_3")
         self.bTnModify = QtWidgets.QPushButton(ModifyTmplForm)
-        self.bTnModify.setGeometry(QtCore.QRect(170, 100, 75, 23))
+        self.bTnModify.setGeometry(QtCore.QRect(190, 100, 75, 23))
         self.bTnModify.setObjectName("bTnModify")
         self.lEtTmplName = QtWidgets.QLineEdit(ModifyTmplForm)
         self.lEtTmplName.setGeometry(QtCore.QRect(80, 10, 281, 20))

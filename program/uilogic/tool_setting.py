@@ -20,6 +20,7 @@ from uilogic.add_tmpl import *
 from uilogic.modify_tmpl import *
 from tool_define import *
 
+
 class ToolSettingUI(QMainWindow):
     def __init__(self, parent=None):
         super(ToolSettingUI, self).__init__()

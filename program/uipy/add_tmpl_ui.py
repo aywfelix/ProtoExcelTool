@@ -25,7 +25,7 @@ class Ui_AddTmplForm(object):
         self.label_3.setGeometry(QtCore.QRect(10, 70, 61, 16))
         self.label_3.setObjectName("label_3")
         self.bTnOk = QtWidgets.QPushButton(AddTmplForm)
-        self.bTnOk.setGeometry(QtCore.QRect(170, 110, 75, 23))
+        self.bTnOk.setGeometry(QtCore.QRect(190, 110, 75, 23))
         self.bTnOk.setObjectName("bTnOk")
         self.lEtTmplName = QtWidgets.QLineEdit(AddTmplForm)
         self.lEtTmplName.setGeometry(QtCore.QRect(80, 10, 281, 20))

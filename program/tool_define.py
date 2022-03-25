@@ -12,6 +12,16 @@
 
 # here put the import lib
 
+def Singleton(cls):
+    _instance = {}
+
+    def _Singleton(*args, **kwargs):
+        if cls not in _instance:
+            _instance[cls] = cls(*args, **kwargs)
+        return _instance[cls]
+
+    return _Singleton
+
 # 编程语言分类
 class ProgramLangType:
     CPP = 0
@@ -81,21 +91,41 @@ class SetPathType:
     PROTO = 2
     TABLE = 3
 
-def Singleton(cls):
-    _instance = {}
 
-    def _Singleton(*args, **kwargs):
-        if cls not in _instance:
-            _instance[cls] = cls(*args, **kwargs)
-        return _instance[cls]
+class EnumField:
+    def __init__(self, index, name, desc):
+        self.index = index
+        self.name = name
+        self.desc = desc
+        pass
 
-    return _Singleton
+class EnumItemData:
+    def __init__(self, name, desc, isserver=False):
+        self.name = name
+        self.desc = desc
+        self.fields = []
+        self.isserver = isserver
+        pass
 
-class ExportPbType:
-    CPP = 0
-    LUA = 1
-    GO = 2
-    CSHARP = 3
+
+    
+# 工具常用配置项
+class ToolConfigData:
+    def __init__(self, protocPath, protoPath, excelPath, serverHosts):
+        self.protocPath = protocPath
+        self.protoPath = protoPath
+        self.excelPath = excelPath
+        self.serverHosts = serverHosts
+
+
+# 动态生成消息
+class DynamicMsgData:
+    def __init__(self, msgId, msgClass, msgName, msgType):
+        self.msgId = msgId
+        self.msgClass = msgClass
+        self.msgName = msgName
+        self.msgType = msgType
+
 
 @Singleton
 class TmplLang:
@@ -125,37 +155,7 @@ class TmplLang:
         if lang == self.csharp:
             return 3
 
-class EnumField:
-    def __init__(self, index, name, desc):
-        self.index = index
-        self.name = name
-        self.desc = desc
-        pass
-
-class EnumItemData:
-    def __init__(self, name, desc):
-        self.name = name
-        self.desc = desc
-        self.fields = []
-        pass
-
-
-    
-# 工具常用配置项
-class ToolConfigData:
-    def __init__(self, protocPath, protoPath, excelPath, serverHosts):
-        self.protocPath = protocPath
-        self.protoPath = protoPath
-        self.excelPath = excelPath
-        self.serverHosts = serverHosts
-
-
-# 动态生成消息
-class DynamicMsgData:
-    def __init__(self, msgId, msgClass, msgName, msgType):
-        self.msgId = msgId
-        self.msgClass = msgClass
-        self.msgName = msgName
-        self.msgType = msgType
-
-
+def StrToBool(str):
+    if not str: return False
+    if str == "True": return True
+    if str == "False": return False
