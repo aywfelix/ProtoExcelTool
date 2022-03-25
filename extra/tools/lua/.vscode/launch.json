@@ -8,7 +8,7 @@
             "type": "lua",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/Activity.lua"
+            "program": "${workspaceFolder}/luaenum.lua"
         }
     ]
 }

@@ -13,12 +13,12 @@
 # here put the import lib
 #############################################################
 enum_item_tmpl = '''
-// %(enum_desc)s
-enum %(enum_name)s{
+// %(item_desc)s
+enum %(item_name)s{
 %(enum_fields)s
 };
 '''
-enum_field_tmpl = '%(enum_field)s = %(enum_index)s, // %(field_desc)s'
+enum_field_tmpl = '%(enum_field)s = %(field_index)s, // %(field_desc)s'
 
 enum_tmpl = '''
 #pragma once
@@ -46,10 +46,10 @@ class ExportEnumCpp(object):
             enum_fields = ''
             enum_item = ''
             for field in enum_data.fields:
-                field_str = enum_field_tmpl % {"enum_field": field.name, "enum_index": int(field.index), "field_desc":field.desc}
+                field_str = enum_field_tmpl % {"enum_field": field.name, "field_index": int(field.index), "field_desc":field.desc}
                 enum_fields += " " * 4 + field_str + '\n'
                 pass
-            enum_item = enum_item_tmpl % {"enum_desc": enum_data.desc, "enum_name":enum_name, "enum_fields":enum_fields}
+            enum_item = enum_item_tmpl % {"item_desc": enum_data.desc, "item_name":enum_name, "enum_fields":enum_fields}
             enum_items += enum_item
         
         gen_str = enum_tmpl % {"enum_items": enum_items}

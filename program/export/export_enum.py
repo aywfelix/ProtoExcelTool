@@ -13,6 +13,7 @@
 # here put the import lib
 from tool_define import *
 from export.enum_cpp import *
+from export.enum_lua import *
 from enum_xml import *
 from setting_xml import *
 
@@ -43,6 +44,8 @@ class ExportEnum(object):
                 if tmpl.lang == ProgramLangType.CSHARP:
                     pass
                 if tmpl.lang == ProgramLangType.LUA:
+                    enum_lua = ExportEnumLua(tmpl.publish, enumDatas)
+                    enum_lua.gen()
                     pass
                 if tmpl.lang == ProgramLangType.GO:
                     pass
