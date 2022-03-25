@@ -128,11 +128,13 @@ class ProtoMainUI(QMainWindow):
         self.enumXml = ToolEnumXml()
         # 初始化settingXml 对象
         self.exportPb = ExportPb()
+        # 初始化导出配置表对象
+        self.transTable = TransTable()
 
         # load protocol xml 初始化treeViewItems
         self.loadProtocols()
         # 刷新协议测试
-        self.initProtoComboBox()
+        self.refreshProtoComboBox()
         self.client.ShowMsgSignal.connect(self.showRespMsg_emit)
         self.client.ConnServerSignal.connect(self.reConnectServer_emit)
         # load enum xml
@@ -195,13 +197,12 @@ class ProtoMainUI(QMainWindow):
                 dirItem.addChild(protoNode)
         pass
 
-    def initProtoComboBox(self):
+    def refreshProtoComboBox(self):
         self.ui.cbBxMsgClass.clear()
         self.ui.cBbxProto.clear()
         isSetMsgProto = False
         protocols = self.protoXml.getProtocols()
         for msgClass, protoDatas in protocols.items():
-            #msgClass = moduleName.split(' ')[1]
             self.ui.cbBxMsgClass.addItem(msgClass)   
             if not isSetMsgProto:
                 for protoId, protoData in protoDatas.items():
@@ -512,6 +513,7 @@ class ProtoMainUI(QMainWindow):
     
     # 导出配置表    
     def menuExportExcelClicked(self):
+        self.transTable.transTables()
         pass
 
     # 导出proto文件    
@@ -635,16 +637,15 @@ class ProtoMainUI(QMainWindow):
 
     def exportAllClicked(self):
         self.saveProtoXml()
+        # 刷新测试界面选择发送协议
+        self.refreshProtoComboBox()    
+
         self.saveEnumXml()
         # 导出协议
         export_pb = ExportPb()
         export_pb.exportProtoBuffer()
 
-        self.refreshProtoComboBox()
         # 导出枚举
-        # 导出配置表
-        trans_table = TransTable()
-        trans_table.transTables()
         pass
     
     def openSettingClicked(self):

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AddTmplForm(object):
     def setupUi(self, AddTmplForm):
         AddTmplForm.setObjectName("AddTmplForm")
-        AddTmplForm.resize(453, 110)
+        AddTmplForm.resize(453, 141)
         self.label = QtWidgets.QLabel(AddTmplForm)
         self.label.setGeometry(QtCore.QRect(10, 10, 61, 16))
         self.label.setObjectName("label")
