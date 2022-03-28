@@ -518,6 +518,7 @@ class ProtoMainUI(QMainWindow):
 
     # 导出pb文件    
     def menuExportPbClicked(self):
+        self.exportPb.exportProtoBuffer()
         pass
     
     # 导出配置表    
