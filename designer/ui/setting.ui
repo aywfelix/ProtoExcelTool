@@ -165,8 +165,13 @@
        <x>20</x>
        <y>270</y>
        <width>341</width>
-       <height>71</height>
+       <height>91</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">

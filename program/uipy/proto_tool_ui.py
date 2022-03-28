@@ -169,6 +169,7 @@ class Ui_ProtoWindow(object):
         self.cBbxServAddr.setGeometry(QtCore.QRect(90, 80, 191, 31))
         self.cBbxServAddr.setObjectName("cBbxServAddr")
         self.cBbxServAddr.addItem("")
+        self.cBbxServAddr.addItem("")
         self.cBbxProto = QtWidgets.QComboBox(self.tab_3)
         self.cBbxProto.setGeometry(QtCore.QRect(560, 80, 161, 31))
         self.cBbxProto.setObjectName("cBbxProto")
@@ -238,7 +239,7 @@ class Ui_ProtoWindow(object):
         self.menubar.addAction(self.menuExport.menuAction())
 
         self.retranslateUi(ProtoWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(ProtoWindow)
 
     def retranslateUi(self, ProtoWindow):
@@ -272,6 +273,7 @@ class Ui_ProtoWindow(object):
         self.label_9.setText(_translate("ProtoWindow", "服务器地址："))
         self.bTnSendMsg.setText(_translate("ProtoWindow", "发送消息"))
         self.cBbxServAddr.setItemText(0, _translate("ProtoWindow", "192.168.50.251:10300"))
+        self.cBbxServAddr.setItemText(1, _translate("ProtoWindow", "192.168.50.250:10300"))
         self.cBbxProto.setItemText(0, _translate("ProtoWindow", "UserLogin:7056"))
         self.label_12.setText(_translate("ProtoWindow", "选择发送协议："))
         self.bTnConn.setText(_translate("ProtoWindow", "连接到服务器"))

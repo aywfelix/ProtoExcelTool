@@ -132,3 +132,9 @@ try:
     k = int("100")
 except ValueError as e:
     print(e)
+
+ipre = re.compile("^((?:(2[0-4]\d)|(25[0-5])|([01]?\d\d?))\.){3}(?:(2[0-4]\d)|(255[0-5])|([01]?\d\d?))$")
+if ipre.match('127.0.0.1'):
+    print("true")
+else:
+    print('xxxx')

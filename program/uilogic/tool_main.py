@@ -42,7 +42,9 @@ class ProtoMainUI(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('../designer/icons/Icon_.ico'))
         self.setFixedSize(self.width(), self.height())
 
+        #tabWidget 
         self.ui.tabWidget.setCurrentIndex(0)
+        self.ui.tabWidget.currentChanged['int'].connect(self.tabWidgetChanged)
         # treeView 设置
         self.ui.tRvProtocol.setStyle(QStyleFactory.create('windows'))
         self.ui.tRvProtocol.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -128,8 +130,10 @@ class ProtoMainUI(QMainWindow):
         # 初始化ToolEnumXml对象
         self.enumXml = ToolEnumXml()
         # 初始化settingXml 对象
-        self.exportPb = ExportPb()
+        self.settingXml = ToolSettingXml()
+
         # 初始化导出配置表对象
+        self.exportPb = ExportPb()
         self.transTable = TransTable()
 
         # load protocol xml 初始化treeViewItems
@@ -146,6 +150,11 @@ class ProtoMainUI(QMainWindow):
         self.ui.cBbxProto.currentIndexChanged[str].connect(self.cBbxProtoChange)
         self.showProtoTest()
 
+    def tabWidgetChanged(self, index):
+        print('tab index==', index)
+        if index == 2:
+            self.refreshConnHosts()
+            self.refreshProtoComboBox()
     
     def setProtoTestReqData(self):
         curText = self.ui.cBbxProto.currentText()
@@ -196,6 +205,13 @@ class ProtoMainUI(QMainWindow):
             for _, protoData in protocols[dirName].items():
                 protoNode = self.createProto(protoData)
                 dirItem.addChild(protoNode)
+        pass
+
+    def refreshConnHosts(self):
+        self.ui.cBbxServAddr.clear()
+        ipList = self.settingXml.getTool()['hosts']
+        for ip in ipList:
+            self.ui.cBbxServAddr.addItem(ip)   
         pass
 
     def refreshProtoComboBox(self):
@@ -649,7 +665,7 @@ class ProtoMainUI(QMainWindow):
         self.saveProtoXml()
         self.saveEnumXml()
         # 刷新测试界面选择发送协议
-        self.refreshProtoComboBox()    
+        #self.refreshProtoComboBox()    
 
         # 导出协议
         export_pb = ExportPb()

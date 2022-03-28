@@ -113,7 +113,7 @@ class EnumItemData:
     
 # 工具常用配置项
 class ToolConfigData:
-    def __init__(self, protocPath, protoPath, excelPath, jsonPath, serverHosts):
+    def __init__(self, protocPath, protoPath, excelPath, jsonPath, serverHosts = []):
         self.protocPath = protocPath
         self.protoPath = protoPath
         self.excelPath = excelPath
@@ -162,3 +162,15 @@ def StrToBool(str):
     if not str: return False
     if str == "True": return True
     if str == "False": return False
+
+import re
+def VarifyHost(ip, port):
+    if not ip: return False
+    if not isinstance(ip, str): return False
+    if not str.isdigit(port): return False
+    if int(port) > 65535: return False
+    ipre = re.compile("^((?:(2[0-4]\d)|(25[0-5])|([01]?\d\d?))\.){3}(?:(2[0-4]\d)|(255[0-5])|([01]?\d\d?))$")
+    if ipre.match(ip):
+        return True
+
+    return False

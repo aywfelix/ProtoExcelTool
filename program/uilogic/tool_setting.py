@@ -72,6 +72,17 @@ class ToolSettingUI(QMainWindow):
             self.ui.lEtProtoPath.setText(toolInfos['proto'])
         if toolInfos['excel']:    
             self.ui.lEtTablePath.setText(toolInfos['excel'])
+        if toolInfos['tbjson']:
+            self.ui.lEtJsonPath.setText(toolInfos['tbjson'])
+        if toolInfos['hosts']:
+            ipList = ''
+            for ip in toolInfos['hosts']:
+                if not ipList:
+                    ipList += ip
+                else:
+                    ipList += "\n" + ip
+            self.ui.tEtIPList.setText(ipList)
+                
         
         # 读取配置显示所有配置模板信息
         protocolTmpls, enumTmpls, tableTmpls = self.settingXml.getTmpls()
@@ -86,14 +97,23 @@ class ToolSettingUI(QMainWindow):
 
     # 配置窗口关闭保存所有配置信息    
     def closeEvent(self, event):
-        protocPath = self.ui.lEtProtocPath.text().strip()
-        protoPath = self.ui.lEtProtoPath.text().strip()
-        excelPath = self.ui.lEtTablePath.text().strip()
-        jsonPath = self.ui.lEtJsonPath.text().strip()
-        serverHosts = self.ui.tEtIPList.toPlainText()
-        toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, jsonPath, serverHosts)
-        self.settingXml.updateTool(toolConfigData)
-        self.settingXml.writeSettingXml()        
+        try:
+            protocPath = self.ui.lEtProtocPath.text().strip()
+            protoPath = self.ui.lEtProtoPath.text().strip()
+            excelPath = self.ui.lEtTablePath.text().strip()
+            jsonPath = self.ui.lEtJsonPath.text().strip()
+            ipListText = self.ui.tEtIPList.toPlainText()
+            serverHosts = ipListText.split('\n')
+            for host in serverHosts:
+                ip, port = host.split(':')
+                if not VarifyHost(ip, port):
+                    serverHosts = []
+                    break
+            toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, jsonPath, serverHosts)
+            self.settingXml.updateTool(toolConfigData)
+            self.settingXml.writeSettingXml()        
+        except Exception as e:
+            print(e)
 
     def setDirPath(self, openType):
         # 打开文件对话框

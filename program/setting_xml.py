@@ -21,7 +21,7 @@ class ToolSettingXml(object):
     def __init__(self):
         self.xmlSettingPath = "./config/setting.config"
 
-        self.tools = {'protoc':'', 'proto':'', 'excel':'', 'tbjson':''}
+        self.tools = {'protoc':'', 'proto':'', 'excel':'', 'tbjson':'', 'hosts':[]}
         self.protocols = []  # TmplItemData
         self.enums = []
         self.tables = []
@@ -57,6 +57,7 @@ class ToolSettingXml(object):
         self.tools['proto'] = configData.protoPath
         self.tools['excel'] = configData.excelPath
         self.tools['tbjson'] = configData.jsonPath
+        self.tools['hosts'] = configData.serverHosts
         pass
 
     # 读取全部配置信息    
@@ -80,6 +81,18 @@ class ToolSettingXml(object):
             self.tools['proto'] = protoNode.getAttribute("path")
             self.tools['excel'] = excelNode.getAttribute("path")
             self.tools['tbjson'] = tbJsonNode.getAttribute("path")
+
+            self.tools['hosts'] = []
+            hostsNode = rootNode.getElementsByTagName("hosts")
+            for hostNode in hostsNode:
+                ipNodes = hostNode.getElementsByTagName("ip")
+                if not ipNodes:
+                    continue
+                for hostNode in ipNodes:
+                    host = hostNode.getAttribute("host")
+                    self.tools['hosts'].append(host)
+                    pass
+                pass
             # 协议模板配置
             self.protocols = []
             protocolNodes = rootNode.getElementsByTagName("protocol")
@@ -143,14 +156,23 @@ class ToolSettingXml(object):
             protoNode = domTree.createElement("proto")
             excelNode = domTree.createElement("excel")
             tbJsonNode = domTree.createElement("tbjson")
+            hostsNode = domTree.createElement("hosts")
             protocNode.setAttribute("path", self.tools['protoc'])
             protoNode.setAttribute("path", self.tools['proto'])
             excelNode.setAttribute("path", self.tools['excel'])
             tbJsonNode.setAttribute("path", self.tools['tbjson'])
+            
             toolNode.appendChild(protocNode)
             toolNode.appendChild(protoNode)
             toolNode.appendChild(excelNode)
             toolNode.appendChild(tbJsonNode)
+            toolNode.appendChild(hostsNode)
+            # 创建ip节点
+            for host in self.tools['hosts']:
+                ipNode = domTree.createElement("ip")
+                ipNode.setAttribute("host", host)
+                hostsNode.appendChild(ipNode)
+
             # 创建protocol节点
             protocolNode = domTree.createElement("protocol")
             settingNode.appendChild(protocolNode) 
