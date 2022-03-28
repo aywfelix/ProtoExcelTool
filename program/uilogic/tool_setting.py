@@ -36,6 +36,7 @@ class ToolSettingUI(QMainWindow):
         self.ui.bTnProtoc.clicked.connect(lambda: self.setDirPath(SetPathType.PROTOC))
         self.ui.bTnProto.clicked.connect(lambda: self.setDirPath(SetPathType.PROTO))
         self.ui.bTnTable.clicked.connect(lambda: self.setDirPath(SetPathType.TABLE))
+        self.ui.bTnTbJson.clicked.connect(lambda: self.setDirPath(SetPathType.TbJson))
         # 添加模板操作
         self.ui.bTnProtoAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.PROTO))
         self.ui.bTnEnumAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.ENUM))
@@ -88,8 +89,9 @@ class ToolSettingUI(QMainWindow):
         protocPath = self.ui.lEtProtocPath.text().strip()
         protoPath = self.ui.lEtProtoPath.text().strip()
         excelPath = self.ui.lEtTablePath.text().strip()
+        jsonPath = self.ui.lEtJsonPath.text().strip()
         serverHosts = self.ui.tEtIPList.toPlainText()
-        toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, serverHosts)
+        toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, jsonPath, serverHosts)
         self.settingXml.updateTool(toolConfigData)
         self.settingXml.writeSettingXml()        
 
@@ -105,6 +107,8 @@ class ToolSettingUI(QMainWindow):
             self.ui.lEtProtoPath.setText(dirPath)
         if openType == SetPathType.TABLE:
             self.ui.lEtTablePath.setText(dirPath)
+        if openType == SetPathType.TbJson:
+            self.ui.lEtJsonPath.setText(dirPath)            
         pass
 
     def showAddTmpl(self, tmplType):

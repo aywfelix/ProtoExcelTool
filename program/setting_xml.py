@@ -21,7 +21,7 @@ class ToolSettingXml(object):
     def __init__(self):
         self.xmlSettingPath = "./config/setting.config"
 
-        self.tools = {'protoc':'', 'proto':'', 'excel':''}
+        self.tools = {'protoc':'', 'proto':'', 'excel':'', 'tbjson':''}
         self.protocols = []  # TmplItemData
         self.enums = []
         self.tables = []
@@ -56,7 +56,7 @@ class ToolSettingXml(object):
         self.tools['protoc'] = configData.protocPath
         self.tools['proto'] = configData.protoPath
         self.tools['excel'] = configData.excelPath
-        
+        self.tools['tbjson'] = configData.jsonPath
         pass
 
     # 读取全部配置信息    
@@ -75,10 +75,11 @@ class ToolSettingXml(object):
             protocNode = rootNode.getElementsByTagName("protoc")[0]
             protoNode = rootNode.getElementsByTagName("proto")[0]
             excelNode = rootNode.getElementsByTagName("excel")[0]
+            tbJsonNode = rootNode.getElementsByTagName("tbjson")[0]
             self.tools['protoc'] = protocNode.getAttribute("path")
             self.tools['proto'] = protoNode.getAttribute("path")
             self.tools['excel'] = excelNode.getAttribute("path")
-            
+            self.tools['tbjson'] = tbJsonNode.getAttribute("path")
             # 协议模板配置
             self.protocols = []
             protocolNodes = rootNode.getElementsByTagName("protocol")
@@ -141,12 +142,15 @@ class ToolSettingXml(object):
             protocNode = domTree.createElement("protoc")
             protoNode = domTree.createElement("proto")
             excelNode = domTree.createElement("excel")
+            tbJsonNode = domTree.createElement("tbjson")
             protocNode.setAttribute("path", self.tools['protoc'])
             protoNode.setAttribute("path", self.tools['proto'])
             excelNode.setAttribute("path", self.tools['excel'])
+            tbJsonNode.setAttribute("path", self.tools['tbjson'])
             toolNode.appendChild(protocNode)
             toolNode.appendChild(protoNode)
             toolNode.appendChild(excelNode)
+            toolNode.appendChild(tbJsonNode)
             # 创建protocol节点
             protocolNode = domTree.createElement("protocol")
             settingNode.appendChild(protocolNode) 
