@@ -103,6 +103,8 @@ class ExportPb(object):
                             protoPath + ' --cpp_out='+config.publish + " "+proto
                         pass
                     if config.lang == ProgramLangType.LUA: # lua
+                        cmdStr = protocPath + ' --proto_path=' + \
+                            protoPath + ' -o '+config.publish+"/"+proto[:-6]+".pb" + " "+proto
                         pass
                     if config.lang == ProgramLangType.GO: # go
                         pass
