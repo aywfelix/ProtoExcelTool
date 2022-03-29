@@ -16,23 +16,6 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
-constexpr RoleItem::RoleItem(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : role_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , role_id_(0)
-  , avatar_(0)
-  , sex_(0)
-  , create_time_(0u)
-  , last_login_time_(0u){}
-struct RoleItemDefaultTypeInternal {
-  constexpr RoleItemDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~RoleItemDefaultTypeInternal() {}
-  union {
-    RoleItem _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT RoleItemDefaultTypeInternal _RoleItem_default_instance_;
 constexpr RoleLoginReq::RoleLoginReq(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : accout_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -285,23 +268,28 @@ struct VisibleObjEnterRoleNotifyDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT VisibleObjEnterRoleNotifyDefaultTypeInternal _VisibleObjEnterRoleNotify_default_instance_;
+constexpr RoleItem::RoleItem(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : role_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , role_id_(0)
+  , avatar_(0)
+  , sex_(0)
+  , create_time_(0u)
+  , last_login_time_(0u){}
+struct RoleItemDefaultTypeInternal {
+  constexpr RoleItemDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~RoleItemDefaultTypeInternal() {}
+  union {
+    RoleItem _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT RoleItemDefaultTypeInternal _RoleItem_default_instance_;
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_login_2eproto[13];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_login_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_login_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_login_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::RoleItem, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::RoleItem, role_id_),
-  PROTOBUF_FIELD_OFFSET(::RoleItem, role_name_),
-  PROTOBUF_FIELD_OFFSET(::RoleItem, avatar_),
-  PROTOBUF_FIELD_OFFSET(::RoleItem, sex_),
-  PROTOBUF_FIELD_OFFSET(::RoleItem, create_time_),
-  PROTOBUF_FIELD_OFFSET(::RoleItem, last_login_time_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::RoleLoginReq, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -494,25 +482,36 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_login_2eproto::offsets[] PROTO
   PROTOBUF_FIELD_OFFSET(::VisibleObjEnterRoleNotify, rotation_x_),
   PROTOBUF_FIELD_OFFSET(::VisibleObjEnterRoleNotify, rotation_y_),
   PROTOBUF_FIELD_OFFSET(::VisibleObjEnterRoleNotify, rotation_z_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::RoleItem, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::RoleItem, role_id_),
+  PROTOBUF_FIELD_OFFSET(::RoleItem, role_name_),
+  PROTOBUF_FIELD_OFFSET(::RoleItem, avatar_),
+  PROTOBUF_FIELD_OFFSET(::RoleItem, sex_),
+  PROTOBUF_FIELD_OFFSET(::RoleItem, create_time_),
+  PROTOBUF_FIELD_OFFSET(::RoleItem, last_login_time_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::RoleItem)},
-  { 12, -1, -1, sizeof(::RoleLoginReq)},
-  { 21, -1, -1, sizeof(::RoleLoginAck)},
-  { 38, -1, -1, sizeof(::CreateRoleReq)},
-  { 53, -1, -1, sizeof(::CreateRoleAck)},
-  { 65, -1, -1, sizeof(::UserEnterSceneReq)},
-  { 83, -1, -1, sizeof(::UserEnterSceneAck)},
-  { 90, -1, -1, sizeof(::RoleListNotify)},
-  { 102, -1, -1, sizeof(::EnterSceneNotify)},
-  { 118, -1, -1, sizeof(::LeaveSceneNotify)},
-  { 125, -1, -1, sizeof(::ObjMoveNotify)},
-  { 153, -1, -1, sizeof(::ObjMoveReq)},
-  { 177, -1, -1, sizeof(::VisibleObjEnterRoleNotify)},
+  { 0, -1, -1, sizeof(::RoleLoginReq)},
+  { 9, -1, -1, sizeof(::RoleLoginAck)},
+  { 26, -1, -1, sizeof(::CreateRoleReq)},
+  { 41, -1, -1, sizeof(::CreateRoleAck)},
+  { 53, -1, -1, sizeof(::UserEnterSceneReq)},
+  { 71, -1, -1, sizeof(::UserEnterSceneAck)},
+  { 78, -1, -1, sizeof(::RoleListNotify)},
+  { 90, -1, -1, sizeof(::EnterSceneNotify)},
+  { 106, -1, -1, sizeof(::LeaveSceneNotify)},
+  { 113, -1, -1, sizeof(::ObjMoveNotify)},
+  { 141, -1, -1, sizeof(::ObjMoveReq)},
+  { 165, -1, -1, sizeof(::VisibleObjEnterRoleNotify)},
+  { 192, -1, -1, sizeof(::RoleItem)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_RoleItem_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_RoleLoginReq_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_RoleLoginAck_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_CreateRoleReq_default_instance_),
@@ -525,84 +524,85 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ObjMoveNotify_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_ObjMoveReq_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_VisibleObjEnterRoleNotify_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_RoleItem_default_instance_),
 };
 
 const char descriptor_table_protodef_login_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013login.proto\"y\n\010RoleItem\022\017\n\007role_id\030\001 \001"
-  "(\005\022\021\n\trole_name\030\002 \001(\t\022\016\n\006avatar\030\003 \001(\005\022\013\n"
-  "\003sex\030\004 \001(\005\022\023\n\013create_time\030\005 \001(\r\022\027\n\017last_"
-  "login_time\030\006 \001(\r\"B\n\014RoleLoginReq\022\016\n\006acco"
-  "ut\030\001 \001(\t\022\017\n\007role_id\030\002 \001(\005\022\021\n\trole_name\030\003"
-  " \001(\t\"\335\001\n\014RoleLoginAck\022\016\n\006accout\030\001 \001(\t\022\017\n"
-  "\007role_id\030\002 \001(\005\022\021\n\trole_name\030\003 \001(\t\022\020\n\010sce"
-  "ne_id\030\004 \001(\005\022\025\n\rlast_scene_id\030\005 \001(\005\022\023\n\013gw"
-  "_hostname\030\006 \001(\t\022\017\n\007gw_port\030\007 \001(\005\022\020\n\010gs_i"
-  "ndex\030\010 \001(\005\022\023\n\013server_time\030\t \001(\003\022\023\n\013sessi"
-  "on_key\030\n \001(\t\022\016\n\006result\030\013 \001(\005\"\261\001\n\rCreateR"
-  "oleReq\022\021\n\trole_name\030\001 \001(\t\022\022\n\nlogin_time\030"
-  "\002 \001(\r\022\021\n\tlogin_str\030\003 \001(\t\022\016\n\006server\030\004 \001(\r"
-  "\022\023\n\013anti_wallow\030\005 \001(\r\022\016\n\006avatar\030\006 \001(\r\022\013\n"
-  "\003sex\030\007 \001(\r\022\021\n\tplat_name\030\010 \001(\t\022\021\n\tuser_uu"
-  "id\030\t \001(\t\"\213\002\n\rCreateRoleAck\022\017\n\007errCode\030\001 "
-  "\001(\005\022\017\n\007role_id\030\002 \001(\r\022\021\n\trole_name\030\003 \001(\t\022"
-  "\016\n\006avatar\030\004 \001(\r\022\013\n\003sex\030\005 \001(\r\022\023\n\013create_t"
-  "ime\030\006 \001(\005\"\222\001\n\010RET_TYPE\022\024\n\020RESULT_TYPE_SU"
-  "CC\020\000\022\030\n\024RESULT_TYPE_NO_SPACE\020\001\022\032\n\026RESULT"
-  "_TYPE_EXIST_NAME\020\002\022\034\n\030RESULT_TYPE_NAME_I"
-  "NVALID\020\003\022\034\n\030RESULT_TYPE_SERVER_LIMIT\020\004\"\360"
-  "\001\n\021UserEnterSceneReq\022\020\n\010scene_id\030\001 \001(\005\022\021"
-  "\n\tscene_key\030\002 \001(\005\022\025\n\rlast_scene_id\030\003 \001(\005"
-  "\022\017\n\007role_id\030\004 \001(\005\022\021\n\trole_name\030\005 \001(\t\022\014\n\004"
-  "time\030\006 \001(\005\022\020\n\010is_login\030\007 \001(\r\022\021\n\treserved"
-  "1\030\010 \001(\r\022\016\n\006server\030\t \001(\005\022\013\n\003key\030\n \001(\t\022\021\n\t"
-  "user_uuid\030\013 \001(\t\022\030\n\020invitationstatus\030\014 \001("
-  "\005\"$\n\021UserEnterSceneAck\022\017\n\007errCode\030\001 \001(\005\""
-  "\227\003\n\016RoleListNotify\022\017\n\007errCode\030\001 \001(\005\022\r\n\005c"
-  "ount\030\002 \001(\005\022\021\n\tuser_uuid\030\003 \001(\t\022\016\n\006wallet\030"
-  "\004 \001(\t\022\030\n\020invitationstatus\030\005 \001(\005\022\033\n\010roleI"
-  "tem\030\006 \003(\0132\t.RoleItem\"\212\002\n\014LoginAckCode\022\024\n"
-  "\020LOGIN_RESULT_SUC\020\000\022\024\n\017LOGIN_NO_THREAD\020\314"
-  "\010\022\027\n\022LOGIN_SERVER_ERROR\020\316\010\022\027\n\022LOGIN_RESU"
-  "LT_EXIST\020\317\010\022\032\n\025LOGIN_SCENE_NOT_EXIST\020\320\010\022"
-  "\034\n\027LOGIN_RESULT_NO_GATEWAY\020\321\010\022\031\n\024LOGIN_R"
-  "ESULT_NO_ROLE\020\322\010\022\026\n\021LOGIN_THREAD_BUSY\020\323\010"
-  "\022\027\n\022LOGIN_LOGIN_FORBID\020\324\010\022\026\n\021LOGIN_ANTI_"
-  "WALLOW\020\325\010\"\262\001\n\020EnterSceneNotify\022\017\n\007scenei"
-  "d\030\001 \001(\005\022\016\n\006obj_id\030\002 \001(\005\022\021\n\topen_line\030\003 \001"
-  "(\005\022\r\n\005pos_x\030\004 \001(\002\022\r\n\005pos_y\030\005 \001(\002\022\n\n\002hp\030\006"
-  " \001(\005\022\016\n\006max_hp\030\007 \001(\005\022\021\n\tscene_key\030\010 \001(\005\022"
-  "\016\n\006height\030\t \001(\002\022\r\n\005pos_z\030\n \001(\002\"#\n\020LeaveS"
-  "ceneNotify\022\017\n\007sceneid\030\001 \001(\005\"\272\003\n\rObjMoveN"
-  "otify\022\013\n\003dir\030\001 \001(\002\022\017\n\007speed_x\030\002 \001(\002\022\017\n\007s"
-  "peed_y\030\003 \001(\002\022\017\n\007speed_z\030\004 \001(\002\022\r\n\005pos_x\030\005"
-  " \001(\002\022\r\n\005pos_y\030\006 \001(\002\022\r\n\005pos_z\030\007 \001(\002\022\022\n\nro"
-  "tation_x\030\010 \001(\002\022\022\n\nrotation_y\030\t \001(\002\022\022\n\nro"
-  "tation_z\030\n \001(\002\022\020\n\010reserved\030\013 \001(\005\022\016\n\006obj_"
-  "id\030\014 \001(\005\022\020\n\010distance\030\r \001(\002\022\021\n\tmove_mode\030"
-  "\016 \001(\r\022\020\n\010reserve2\030\017 \001(\r\022\016\n\006height\030\020 \001(\002\022"
-  "\026\n\016acceleration_x\030\021 \001(\002\022\026\n\016acceleration_"
-  "y\030\022 \001(\002\022\026\n\016acceleration_z\030\023 \001(\002\022\031\n\021contr"
-  "olRotation_x\030\024 \001(\002\022\031\n\021controlRotation_y\030"
-  "\025 \001(\002\022\031\n\021controlRotation_z\030\026 \001(\002\"\360\002\n\nObj"
-  "MoveReq\022\013\n\003dir\030\001 \001(\002\022\017\n\007speed_x\030\002 \001(\002\022\017\n"
-  "\007speed_y\030\003 \001(\002\022\017\n\007speed_z\030\004 \001(\002\022\r\n\005pos_x"
-  "\030\005 \001(\002\022\r\n\005pos_y\030\006 \001(\002\022\r\n\005pos_z\030\007 \001(\002\022\022\n\n"
-  "rotation_x\030\010 \001(\002\022\022\n\nrotation_y\030\t \001(\002\022\022\n\n"
-  "rotation_z\030\n \001(\002\022\020\n\010distance\030\013 \001(\002\022\016\n\006he"
-  "ight\030\014 \001(\002\022\026\n\016acceleration_x\030\r \001(\002\022\026\n\016ac"
-  "celeration_y\030\016 \001(\002\022\026\n\016acceleration_z\030\017 \001"
-  "(\002\022\031\n\021controlRotation_x\030\020 \001(\002\022\031\n\021control"
-  "Rotation_y\030\021 \001(\002\022\031\n\021controlRotation_z\030\022 "
-  "\001(\002\"\203\003\n\031VisibleObjEnterRoleNotify\022\013\n\003dir"
-  "\030\001 \001(\002\022\027\n\017move_mode_param\030\002 \001(\r\022\023\n\013role_"
-  "status\030\003 \001(\r\022\016\n\006obj_id\030\004 \001(\r\022\017\n\007role_id\030"
-  "\005 \001(\005\022\021\n\trole_name\030\006 \001(\t\022\n\n\002hp\030\007 \001(\005\022\016\n\006"
-  "max_hp\030\010 \001(\005\022\r\n\005level\030\t \001(\r\022\013\n\003sex\030\n \001(\r"
-  "\022\r\n\005speed\030\013 \001(\r\022\r\n\005pos_x\030\014 \001(\002\022\r\n\005pos_y\030"
-  "\r \001(\002\022\020\n\010distance\030\016 \001(\002\022\022\n\nname_color\030\017 "
-  "\001(\r\022\021\n\tmove_mode\030\020 \001(\r\022\016\n\006avatar\030\021 \001(\r\022\r"
-  "\n\005pos_z\030\022 \001(\002\022\022\n\nrotation_x\030\023 \001(\002\022\022\n\nrot"
-  "ation_y\030\024 \001(\002\022\022\n\nrotation_z\030\025 \001(\002b\006proto"
+  "\n\013login.proto\"B\n\014RoleLoginReq\022\016\n\006accout\030"
+  "\001 \001(\t\022\017\n\007role_id\030\002 \001(\005\022\021\n\trole_name\030\003 \001("
+  "\t\"\335\001\n\014RoleLoginAck\022\016\n\006accout\030\001 \001(\t\022\017\n\007ro"
+  "le_id\030\002 \001(\005\022\021\n\trole_name\030\003 \001(\t\022\020\n\010scene_"
+  "id\030\004 \001(\005\022\025\n\rlast_scene_id\030\005 \001(\005\022\023\n\013gw_ho"
+  "stname\030\006 \001(\t\022\017\n\007gw_port\030\007 \001(\005\022\020\n\010gs_inde"
+  "x\030\010 \001(\005\022\023\n\013server_time\030\t \001(\003\022\023\n\013session_"
+  "key\030\n \001(\t\022\016\n\006result\030\013 \001(\005\"\261\001\n\rCreateRole"
+  "Req\022\021\n\trole_name\030\001 \001(\t\022\022\n\nlogin_time\030\002 \001"
+  "(\r\022\021\n\tlogin_str\030\003 \001(\t\022\016\n\006server\030\004 \001(\r\022\023\n"
+  "\013anti_wallow\030\005 \001(\r\022\016\n\006avatar\030\006 \001(\r\022\013\n\003se"
+  "x\030\007 \001(\r\022\021\n\tplat_name\030\010 \001(\t\022\021\n\tuser_uuid\030"
+  "\t \001(\t\"\213\002\n\rCreateRoleAck\022\017\n\007errCode\030\001 \001(\005"
+  "\022\017\n\007role_id\030\002 \001(\r\022\021\n\trole_name\030\003 \001(\t\022\016\n\006"
+  "avatar\030\004 \001(\r\022\013\n\003sex\030\005 \001(\r\022\023\n\013create_time"
+  "\030\006 \001(\005\"\222\001\n\010RET_TYPE\022\024\n\020RESULT_TYPE_SUCC\020"
+  "\000\022\030\n\024RESULT_TYPE_NO_SPACE\020\001\022\032\n\026RESULT_TY"
+  "PE_EXIST_NAME\020\002\022\034\n\030RESULT_TYPE_NAME_INVA"
+  "LID\020\003\022\034\n\030RESULT_TYPE_SERVER_LIMIT\020\004\"\360\001\n\021"
+  "UserEnterSceneReq\022\020\n\010scene_id\030\001 \001(\005\022\021\n\ts"
+  "cene_key\030\002 \001(\005\022\025\n\rlast_scene_id\030\003 \001(\005\022\017\n"
+  "\007role_id\030\004 \001(\005\022\021\n\trole_name\030\005 \001(\t\022\014\n\004tim"
+  "e\030\006 \001(\005\022\020\n\010is_login\030\007 \001(\r\022\021\n\treserved1\030\010"
+  " \001(\r\022\016\n\006server\030\t \001(\005\022\013\n\003key\030\n \001(\t\022\021\n\tuse"
+  "r_uuid\030\013 \001(\t\022\030\n\020invitationstatus\030\014 \001(\005\"$"
+  "\n\021UserEnterSceneAck\022\017\n\007errCode\030\001 \001(\005\"\227\003\n"
+  "\016RoleListNotify\022\017\n\007errCode\030\001 \001(\005\022\r\n\005coun"
+  "t\030\002 \001(\005\022\021\n\tuser_uuid\030\003 \001(\t\022\016\n\006wallet\030\004 \001"
+  "(\t\022\030\n\020invitationstatus\030\005 \001(\005\022\033\n\010roleItem"
+  "\030\006 \003(\0132\t.RoleItem\"\212\002\n\014LoginAckCode\022\024\n\020LO"
+  "GIN_RESULT_SUC\020\000\022\024\n\017LOGIN_NO_THREAD\020\314\010\022\027"
+  "\n\022LOGIN_SERVER_ERROR\020\316\010\022\027\n\022LOGIN_RESULT_"
+  "EXIST\020\317\010\022\032\n\025LOGIN_SCENE_NOT_EXIST\020\320\010\022\034\n\027"
+  "LOGIN_RESULT_NO_GATEWAY\020\321\010\022\031\n\024LOGIN_RESU"
+  "LT_NO_ROLE\020\322\010\022\026\n\021LOGIN_THREAD_BUSY\020\323\010\022\027\n"
+  "\022LOGIN_LOGIN_FORBID\020\324\010\022\026\n\021LOGIN_ANTI_WAL"
+  "LOW\020\325\010\"\262\001\n\020EnterSceneNotify\022\017\n\007sceneid\030\001"
+  " \001(\005\022\016\n\006obj_id\030\002 \001(\005\022\021\n\topen_line\030\003 \001(\005\022"
+  "\r\n\005pos_x\030\004 \001(\002\022\r\n\005pos_y\030\005 \001(\002\022\n\n\002hp\030\006 \001("
+  "\005\022\016\n\006max_hp\030\007 \001(\005\022\021\n\tscene_key\030\010 \001(\005\022\016\n\006"
+  "height\030\t \001(\002\022\r\n\005pos_z\030\n \001(\002\"#\n\020LeaveScen"
+  "eNotify\022\017\n\007sceneid\030\001 \001(\005\"\272\003\n\rObjMoveNoti"
+  "fy\022\013\n\003dir\030\001 \001(\002\022\017\n\007speed_x\030\002 \001(\002\022\017\n\007spee"
+  "d_y\030\003 \001(\002\022\017\n\007speed_z\030\004 \001(\002\022\r\n\005pos_x\030\005 \001("
+  "\002\022\r\n\005pos_y\030\006 \001(\002\022\r\n\005pos_z\030\007 \001(\002\022\022\n\nrotat"
+  "ion_x\030\010 \001(\002\022\022\n\nrotation_y\030\t \001(\002\022\022\n\nrotat"
+  "ion_z\030\n \001(\002\022\020\n\010reserved\030\013 \001(\005\022\016\n\006obj_id\030"
+  "\014 \001(\005\022\020\n\010distance\030\r \001(\002\022\021\n\tmove_mode\030\016 \001"
+  "(\r\022\020\n\010reserve2\030\017 \001(\r\022\016\n\006height\030\020 \001(\002\022\026\n\016"
+  "acceleration_x\030\021 \001(\002\022\026\n\016acceleration_y\030\022"
+  " \001(\002\022\026\n\016acceleration_z\030\023 \001(\002\022\031\n\021controlR"
+  "otation_x\030\024 \001(\002\022\031\n\021controlRotation_y\030\025 \001"
+  "(\002\022\031\n\021controlRotation_z\030\026 \001(\002\"\360\002\n\nObjMov"
+  "eReq\022\013\n\003dir\030\001 \001(\002\022\017\n\007speed_x\030\002 \001(\002\022\017\n\007sp"
+  "eed_y\030\003 \001(\002\022\017\n\007speed_z\030\004 \001(\002\022\r\n\005pos_x\030\005 "
+  "\001(\002\022\r\n\005pos_y\030\006 \001(\002\022\r\n\005pos_z\030\007 \001(\002\022\022\n\nrot"
+  "ation_x\030\010 \001(\002\022\022\n\nrotation_y\030\t \001(\002\022\022\n\nrot"
+  "ation_z\030\n \001(\002\022\020\n\010distance\030\013 \001(\002\022\016\n\006heigh"
+  "t\030\014 \001(\002\022\026\n\016acceleration_x\030\r \001(\002\022\026\n\016accel"
+  "eration_y\030\016 \001(\002\022\026\n\016acceleration_z\030\017 \001(\002\022"
+  "\031\n\021controlRotation_x\030\020 \001(\002\022\031\n\021controlRot"
+  "ation_y\030\021 \001(\002\022\031\n\021controlRotation_z\030\022 \001(\002"
+  "\"\203\003\n\031VisibleObjEnterRoleNotify\022\013\n\003dir\030\001 "
+  "\001(\002\022\027\n\017move_mode_param\030\002 \001(\r\022\023\n\013role_sta"
+  "tus\030\003 \001(\r\022\016\n\006obj_id\030\004 \001(\r\022\017\n\007role_id\030\005 \001"
+  "(\005\022\021\n\trole_name\030\006 \001(\t\022\n\n\002hp\030\007 \001(\005\022\016\n\006max"
+  "_hp\030\010 \001(\005\022\r\n\005level\030\t \001(\r\022\013\n\003sex\030\n \001(\r\022\r\n"
+  "\005speed\030\013 \001(\r\022\r\n\005pos_x\030\014 \001(\002\022\r\n\005pos_y\030\r \001"
+  "(\002\022\020\n\010distance\030\016 \001(\002\022\022\n\nname_color\030\017 \001(\r"
+  "\022\021\n\tmove_mode\030\020 \001(\r\022\016\n\006avatar\030\021 \001(\r\022\r\n\005p"
+  "os_z\030\022 \001(\002\022\022\n\nrotation_x\030\023 \001(\002\022\022\n\nrotati"
+  "on_y\030\024 \001(\002\022\022\n\nrotation_z\030\025 \001(\002\"y\n\010RoleIt"
+  "em\022\017\n\007role_id\030\001 \001(\005\022\021\n\trole_name\030\002 \001(\t\022\016"
+  "\n\006avatar\030\003 \001(\005\022\013\n\003sex\030\004 \001(\005\022\023\n\013create_ti"
+  "me\030\005 \001(\r\022\027\n\017last_login_time\030\006 \001(\rb\006proto"
   "3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_login_2eproto_once;
@@ -682,329 +682,6 @@ constexpr RoleListNotify_LoginAckCode RoleListNotify::LoginAckCode_MIN;
 constexpr RoleListNotify_LoginAckCode RoleListNotify::LoginAckCode_MAX;
 constexpr int RoleListNotify::LoginAckCode_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
-
-// ===================================================================
-
-class RoleItem::_Internal {
- public:
-};
-
-RoleItem::RoleItem(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
-  // @@protoc_insertion_point(arena_constructor:RoleItem)
-}
-RoleItem::RoleItem(const RoleItem& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  role_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_role_name().empty()) {
-    role_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_role_name(), 
-      GetArenaForAllocation());
-  }
-  ::memcpy(&role_id_, &from.role_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&last_login_time_) -
-    reinterpret_cast<char*>(&role_id_)) + sizeof(last_login_time_));
-  // @@protoc_insertion_point(copy_constructor:RoleItem)
-}
-
-void RoleItem::SharedCtor() {
-role_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&role_id_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&last_login_time_) -
-    reinterpret_cast<char*>(&role_id_)) + sizeof(last_login_time_));
-}
-
-RoleItem::~RoleItem() {
-  // @@protoc_insertion_point(destructor:RoleItem)
-  if (GetArenaForAllocation() != nullptr) return;
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-inline void RoleItem::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  role_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void RoleItem::ArenaDtor(void* object) {
-  RoleItem* _this = reinterpret_cast< RoleItem* >(object);
-  (void)_this;
-}
-void RoleItem::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void RoleItem::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void RoleItem::Clear() {
-// @@protoc_insertion_point(message_clear_start:RoleItem)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  role_name_.ClearToEmpty();
-  ::memset(&role_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&last_login_time_) -
-      reinterpret_cast<char*>(&role_id_)) + sizeof(last_login_time_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RoleItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 role_id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string role_name = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_role_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "RoleItem.role_name"));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 avatar = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          avatar_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 sex = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          sex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 create_time = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          create_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 last_login_time = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          last_login_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* RoleItem::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:RoleItem)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 role_id = 1;
-  if (this->_internal_role_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_role_id(), target);
-  }
-
-  // string role_name = 2;
-  if (!this->_internal_role_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_role_name().data(), static_cast<int>(this->_internal_role_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "RoleItem.role_name");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_role_name(), target);
-  }
-
-  // int32 avatar = 3;
-  if (this->_internal_avatar() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_avatar(), target);
-  }
-
-  // int32 sex = 4;
-  if (this->_internal_sex() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_sex(), target);
-  }
-
-  // uint32 create_time = 5;
-  if (this->_internal_create_time() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_create_time(), target);
-  }
-
-  // uint32 last_login_time = 6;
-  if (this->_internal_last_login_time() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(6, this->_internal_last_login_time(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:RoleItem)
-  return target;
-}
-
-size_t RoleItem::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:RoleItem)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string role_name = 2;
-  if (!this->_internal_role_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_role_name());
-  }
-
-  // int32 role_id = 1;
-  if (this->_internal_role_id() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_role_id());
-  }
-
-  // int32 avatar = 3;
-  if (this->_internal_avatar() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_avatar());
-  }
-
-  // int32 sex = 4;
-  if (this->_internal_sex() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_sex());
-  }
-
-  // uint32 create_time = 5;
-  if (this->_internal_create_time() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_create_time());
-  }
-
-  // uint32 last_login_time = 6;
-  if (this->_internal_last_login_time() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_last_login_time());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RoleItem::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RoleItem::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RoleItem::GetClassData() const { return &_class_data_; }
-
-void RoleItem::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RoleItem *>(to)->MergeFrom(
-      static_cast<const RoleItem &>(from));
-}
-
-
-void RoleItem::MergeFrom(const RoleItem& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:RoleItem)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_role_name().empty()) {
-    _internal_set_role_name(from._internal_role_name());
-  }
-  if (from._internal_role_id() != 0) {
-    _internal_set_role_id(from._internal_role_id());
-  }
-  if (from._internal_avatar() != 0) {
-    _internal_set_avatar(from._internal_avatar());
-  }
-  if (from._internal_sex() != 0) {
-    _internal_set_sex(from._internal_sex());
-  }
-  if (from._internal_create_time() != 0) {
-    _internal_set_create_time(from._internal_create_time());
-  }
-  if (from._internal_last_login_time() != 0) {
-    _internal_set_last_login_time(from._internal_last_login_time());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void RoleItem::CopyFrom(const RoleItem& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:RoleItem)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RoleItem::IsInitialized() const {
-  return true;
-}
-
-void RoleItem::InternalSwap(RoleItem* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &role_name_, lhs_arena,
-      &other->role_name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RoleItem, last_login_time_)
-      + sizeof(RoleItem::last_login_time_)
-      - PROTOBUF_FIELD_OFFSET(RoleItem, role_id_)>(
-          reinterpret_cast<char*>(&role_id_),
-          reinterpret_cast<char*>(&other->role_id_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RoleItem::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[0]);
-}
 
 // ===================================================================
 
@@ -1269,7 +946,7 @@ void RoleLoginReq::InternalSwap(RoleLoginReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RoleLoginReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[1]);
+      file_level_metadata_login_2eproto[0]);
 }
 
 // ===================================================================
@@ -1765,7 +1442,7 @@ void RoleLoginAck::InternalSwap(RoleLoginAck* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RoleLoginAck::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[2]);
+      file_level_metadata_login_2eproto[1]);
 }
 
 // ===================================================================
@@ -2217,7 +1894,7 @@ void CreateRoleReq::InternalSwap(CreateRoleReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateRoleReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[3]);
+      file_level_metadata_login_2eproto[2]);
 }
 
 // ===================================================================
@@ -2540,7 +2217,7 @@ void CreateRoleAck::InternalSwap(CreateRoleAck* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateRoleAck::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[4]);
+      file_level_metadata_login_2eproto[3]);
 }
 
 // ===================================================================
@@ -3037,7 +2714,7 @@ void UserEnterSceneReq::InternalSwap(UserEnterSceneReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserEnterSceneReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[5]);
+      file_level_metadata_login_2eproto[4]);
 }
 
 // ===================================================================
@@ -3215,7 +2892,7 @@ void UserEnterSceneAck::InternalSwap(UserEnterSceneAck* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserEnterSceneAck::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[6]);
+      file_level_metadata_login_2eproto[5]);
 }
 
 // ===================================================================
@@ -3570,7 +3247,7 @@ void RoleListNotify::InternalSwap(RoleListNotify* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RoleListNotify::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[7]);
+      file_level_metadata_login_2eproto[6]);
 }
 
 // ===================================================================
@@ -3958,7 +3635,7 @@ void EnterSceneNotify::InternalSwap(EnterSceneNotify* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata EnterSceneNotify::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[8]);
+      file_level_metadata_login_2eproto[7]);
 }
 
 // ===================================================================
@@ -4136,7 +3813,7 @@ void LeaveSceneNotify::InternalSwap(LeaveSceneNotify* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LeaveSceneNotify::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[9]);
+      file_level_metadata_login_2eproto[8]);
 }
 
 // ===================================================================
@@ -4788,7 +4465,7 @@ void ObjMoveNotify::InternalSwap(ObjMoveNotify* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ObjMoveNotify::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[10]);
+      file_level_metadata_login_2eproto[9]);
 }
 
 // ===================================================================
@@ -5352,7 +5029,7 @@ void ObjMoveReq::InternalSwap(ObjMoveReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ObjMoveReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
-      file_level_metadata_login_2eproto[11]);
+      file_level_metadata_login_2eproto[10]);
 }
 
 // ===================================================================
@@ -6009,14 +5686,334 @@ void VisibleObjEnterRoleNotify::InternalSwap(VisibleObjEnterRoleNotify* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata VisibleObjEnterRoleNotify::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
+      file_level_metadata_login_2eproto[11]);
+}
+
+// ===================================================================
+
+class RoleItem::_Internal {
+ public:
+};
+
+RoleItem::RoleItem(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:RoleItem)
+}
+RoleItem::RoleItem(const RoleItem& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  role_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_role_name().empty()) {
+    role_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_role_name(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&role_id_, &from.role_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&last_login_time_) -
+    reinterpret_cast<char*>(&role_id_)) + sizeof(last_login_time_));
+  // @@protoc_insertion_point(copy_constructor:RoleItem)
+}
+
+void RoleItem::SharedCtor() {
+role_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&role_id_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&last_login_time_) -
+    reinterpret_cast<char*>(&role_id_)) + sizeof(last_login_time_));
+}
+
+RoleItem::~RoleItem() {
+  // @@protoc_insertion_point(destructor:RoleItem)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void RoleItem::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  role_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void RoleItem::ArenaDtor(void* object) {
+  RoleItem* _this = reinterpret_cast< RoleItem* >(object);
+  (void)_this;
+}
+void RoleItem::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void RoleItem::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void RoleItem::Clear() {
+// @@protoc_insertion_point(message_clear_start:RoleItem)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  role_name_.ClearToEmpty();
+  ::memset(&role_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&last_login_time_) -
+      reinterpret_cast<char*>(&role_id_)) + sizeof(last_login_time_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* RoleItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 role_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          role_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string role_name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_role_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "RoleItem.role_name"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 avatar = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          avatar_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 sex = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          sex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 create_time = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          create_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 last_login_time = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          last_login_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* RoleItem::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:RoleItem)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 role_id = 1;
+  if (this->_internal_role_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_role_id(), target);
+  }
+
+  // string role_name = 2;
+  if (!this->_internal_role_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_role_name().data(), static_cast<int>(this->_internal_role_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "RoleItem.role_name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_role_name(), target);
+  }
+
+  // int32 avatar = 3;
+  if (this->_internal_avatar() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_avatar(), target);
+  }
+
+  // int32 sex = 4;
+  if (this->_internal_sex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_sex(), target);
+  }
+
+  // uint32 create_time = 5;
+  if (this->_internal_create_time() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_create_time(), target);
+  }
+
+  // uint32 last_login_time = 6;
+  if (this->_internal_last_login_time() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(6, this->_internal_last_login_time(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:RoleItem)
+  return target;
+}
+
+size_t RoleItem::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:RoleItem)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string role_name = 2;
+  if (!this->_internal_role_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_role_name());
+  }
+
+  // int32 role_id = 1;
+  if (this->_internal_role_id() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_role_id());
+  }
+
+  // int32 avatar = 3;
+  if (this->_internal_avatar() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_avatar());
+  }
+
+  // int32 sex = 4;
+  if (this->_internal_sex() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_sex());
+  }
+
+  // uint32 create_time = 5;
+  if (this->_internal_create_time() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_create_time());
+  }
+
+  // uint32 last_login_time = 6;
+  if (this->_internal_last_login_time() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_last_login_time());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RoleItem::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    RoleItem::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RoleItem::GetClassData() const { return &_class_data_; }
+
+void RoleItem::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RoleItem *>(to)->MergeFrom(
+      static_cast<const RoleItem &>(from));
+}
+
+
+void RoleItem::MergeFrom(const RoleItem& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:RoleItem)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_role_name().empty()) {
+    _internal_set_role_name(from._internal_role_name());
+  }
+  if (from._internal_role_id() != 0) {
+    _internal_set_role_id(from._internal_role_id());
+  }
+  if (from._internal_avatar() != 0) {
+    _internal_set_avatar(from._internal_avatar());
+  }
+  if (from._internal_sex() != 0) {
+    _internal_set_sex(from._internal_sex());
+  }
+  if (from._internal_create_time() != 0) {
+    _internal_set_create_time(from._internal_create_time());
+  }
+  if (from._internal_last_login_time() != 0) {
+    _internal_set_last_login_time(from._internal_last_login_time());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RoleItem::CopyFrom(const RoleItem& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:RoleItem)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RoleItem::IsInitialized() const {
+  return true;
+}
+
+void RoleItem::InternalSwap(RoleItem* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &role_name_, lhs_arena,
+      &other->role_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RoleItem, last_login_time_)
+      + sizeof(RoleItem::last_login_time_)
+      - PROTOBUF_FIELD_OFFSET(RoleItem, role_id_)>(
+          reinterpret_cast<char*>(&role_id_),
+          reinterpret_cast<char*>(&other->role_id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RoleItem::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_login_2eproto_getter, &descriptor_table_login_2eproto_once,
       file_level_metadata_login_2eproto[12]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::RoleItem* Arena::CreateMaybeMessage< ::RoleItem >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::RoleItem >(arena);
-}
 template<> PROTOBUF_NOINLINE ::RoleLoginReq* Arena::CreateMaybeMessage< ::RoleLoginReq >(Arena* arena) {
   return Arena::CreateMessageInternal< ::RoleLoginReq >(arena);
 }
@@ -6052,6 +6049,9 @@ template<> PROTOBUF_NOINLINE ::ObjMoveReq* Arena::CreateMaybeMessage< ::ObjMoveR
 }
 template<> PROTOBUF_NOINLINE ::VisibleObjEnterRoleNotify* Arena::CreateMaybeMessage< ::VisibleObjEnterRoleNotify >(Arena* arena) {
   return Arena::CreateMessageInternal< ::VisibleObjEnterRoleNotify >(arena);
+}
+template<> PROTOBUF_NOINLINE ::RoleItem* Arena::CreateMaybeMessage< ::RoleItem >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::RoleItem >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

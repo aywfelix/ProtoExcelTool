@@ -56,7 +56,7 @@ class CreateProtoUI(QMainWindow):
         protocols = self.protoXml.protocols
         for _, protocolDict in protocols.items():
             for _, protoData in protocolDict.items():
-                if protoData.id == protoId:
+                if protoData.id !='' and protoData.id == protoId:
                     QMessageBox.warning(self, "警告", "此协议编号已经存在")
                     return
                 if protoData.name == protoName:
