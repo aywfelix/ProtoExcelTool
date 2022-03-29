@@ -49,7 +49,7 @@ class ModifyEnumUI(QMainWindow):
         # 检查枚举名字是否重复
         enumName = self.ui.lEtEnumName.text().strip()
         if not enumName:
-            return
+            return         
         if enumName != self.enumName:
             if self.enumXml.isExistEnumName(enumName):
                 QMessageBox.critical(self, "错误", "枚举名称已存在")

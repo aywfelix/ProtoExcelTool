@@ -41,9 +41,20 @@ class CreateEnumUI(QMainWindow):
         self.enumXml = ToolEnumXml()
         self.insertEmptyRow()
         # 添加关联事件
+        self.ui.lEtEnumName.editingFinished.connect(self.changeEnumName)
         self.ui.bTnEnumCreate.clicked.connect(self.createEnum)
         self.ui.tBvEnum.cellChanged.connect(self.cellChanged)
         pass
+
+    def changeEnumName(self):
+        enumName = self.ui.lEtEnumName.text().strip()
+        if not enumName:
+            return
+        if 'Em' not in enumName:
+            enumName = 'Em'+enumName
+        self.ui.lEtEnumName.setText(enumName)
+        pass
+
     
     def createEnum(self):
         # 检查枚举名字是否重复
