@@ -24,13 +24,16 @@ from setting_xml import *
 class ToolProtoXml(object):
     def __init__(self):
         # self.modules = {['dirname']=data, ...}
-        # self.protocols = {['dirname']={['protoId']=data, ...}, ...}
+        # self.protocols = {['dirname']={['uuid']=data, ...}, ...}
         self.xmlProtoPath = "./config/protocols.config"
         self.modules = {}
         self.protocols = {}
         #用于动态生成消息
         self.dynamicMsg = {}
         pass
+
+    def getModules(self):
+        return self.modules
     
     def getProtocols(self):
         return self.protocols
@@ -40,8 +43,6 @@ class ToolProtoXml(object):
             return None
         return self.protocols[dirname]
 
-    def getModules(self):
-        return self.modules
     
     def getDirData(self, dirName):
         if not self.modules:
@@ -50,37 +51,25 @@ class ToolProtoXml(object):
             return None
         return self.modules[dirName]
     
-    def getProtoNameById(self, msgId):
-        for dirName, protoDatas in self.protocols:
-            for protoId, protoData in protoDatas:
-                if protoId == msgId:
-                    return protoData.name
-        pass
-
-    def getProtoData(self, dirName, protoId):
-        if dirName not in self.protocols.keys():
-            return None
-        if protoId not in self.protocols[dirName].keys():
-            return None
-        return self.protocols[dirName][protoId] 
-
     def addProtocol(self, dirName, protoData):
         if dirName not in self.protocols.keys():
             self.protocols[dirName] = {}
         
-        self.protocols[dirName][protoData.id] = protoData
+        self.protocols[dirName][protoData.uuid] = protoData
         pass
 
-    def delProtocol(self, dirName, protoId):
+    def delProtocol(self, dirName, uuid):
         if dirName not in self.protocols.keys():
             return
-        self.protocols[dirName].pop(protoId)
+        if not uuid in self.protocols[dirName].keys():
+            return
+        self.protocols[dirName].pop(uuid)
     
     def delProtocolByUUID(self, uuid):
         for dirName, protocol in self.protocols.items():
-            for protoId, protoData in protocol.items():
-                if protoData.uuid == uuid:
-                    self.protocols[dirName].pop(protoData.id)
+            for proto_uuid, _ in protocol.items():
+                if proto_uuid == uuid:
+                    self.protocols[dirName].pop(uuid)
                     break
         pass
     
@@ -174,8 +163,9 @@ class ToolProtoXml(object):
                     content = protocolNode.getAttribute("content")
                     content = content.replace("&#xD;", "\r").replace("&#xA;", "\n")              
                     protoData = TVItemProtoData(id, name, desc, content, type)
-                    protocolDict[id] = protoData
-
+                    proto_uuid = protoData.uuid
+                    protocolDict[proto_uuid] = protoData
+                    print(proto_uuid)
                     #print('-------', protoData.name)
                     pass
                 

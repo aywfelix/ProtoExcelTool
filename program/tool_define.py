@@ -22,10 +22,10 @@ def Singleton(cls):
 
     return _Singleton
 
-import time, hashlib
+
+import uuid
 def create_uuid():
-    m = hashlib.md5(str(time.time()).encode('utf-8'))
-    return m.hexdigest()
+    return uuid.uuid1().hex
     pass   
 
 # 编程语言分类

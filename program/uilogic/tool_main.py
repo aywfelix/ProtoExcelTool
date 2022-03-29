@@ -182,10 +182,11 @@ class ProtoMainUI(QMainWindow):
             return        
         self.ui.cBbxProto.clear()
         protocols = self.protoXml.getModuleProtos(curText)
-        for protoId, protoData in protocols.items():
+        for _, protoData in protocols.items():
             if protoData.type != '1': continue
             msgName = protoData.name
-            self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, protoId))
+            msgId = protoData.id
+            self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, msgId))
 
         pass
 
@@ -222,10 +223,11 @@ class ProtoMainUI(QMainWindow):
         for msgClass, protoDatas in protocols.items():
             self.ui.cbBxMsgClass.addItem(msgClass)   
             if not isSetMsgProto:
-                for protoId, protoData in protoDatas.items():
+                for _, protoData in protoDatas.items():
                     if protoData.type != '1': continue
                     msgName = protoData.name
-                    self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, protoId))
+                    msgId = protoData.id
+                    self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, msgId))
                 isSetMsgProto = True
         pass
 
@@ -269,7 +271,7 @@ class ProtoMainUI(QMainWindow):
                 protoData = self.protoCurItem.data(0, Qt.UserRole)
                 parent.removeChild(self.protoCurItem)
                 self.protoCurItem = None
-                self.protoXml.delProtocol(parent.text(0), protoData.id)
+                self.protoXml.delProtocol(parent.text(0), protoData.uuid)
                 self.saveProtoXml()
             pass
         if op == TVMenuOpType.DirCreate:
