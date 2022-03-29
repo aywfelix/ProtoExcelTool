@@ -41,7 +41,6 @@ class ModifyEnumUI(QMainWindow):
         self.parent = parent
         self.enumXml = ToolEnumXml()
         self.enumName = None
-        self.maxIndex = 0
         # 添加关联事件
         self.ui.bTnEnumModify.clicked.connect(self.modifyEnum)
         pass
@@ -93,7 +92,6 @@ class ModifyEnumUI(QMainWindow):
             pass
         rows = self.ui.tBvEnum.rowCount()
         if rows == 0:
-            self.maxIndex = 0
             self.insertEmptyRow()
         pass
 
@@ -134,8 +132,7 @@ class ModifyEnumUI(QMainWindow):
             # 索引
             indexItem = QTableWidgetItem()
             indexItem.setText(field.index)
-            if int(field.index) > self.maxIndex:
-                self.maxIndex = int(field.index)
+
             self.ui.tBvEnum.setItem(row, 0, indexItem)
             nameItem = QTableWidgetItem()
             nameItem.setText(field.name)
@@ -146,15 +143,22 @@ class ModifyEnumUI(QMainWindow):
             row = row+1
             pass
         pass
+        # 删除修改enumData
+        self.enumXml.delData(enumData.name)
         self.insertEmptyRow()
         # 插入空行
         self.ui.tBvEnum.cellChanged.connect(self.cellChanged)
 
     def insertEmptyRow(self):
-        self.maxIndex = self.maxIndex + 1
         rows = self.ui.tBvEnum.rowCount()
+        maxIndex = 0
+        if rows > 0:
+            tmpItem = self.ui.tBvEnum.item(rows-1, 0)
+            maxIndex = int(tmpItem.text().strip())
+            maxIndex = maxIndex + 1
+        
         self.ui.tBvEnum.insertRow(rows)
         indexItem = QTableWidgetItem()
-        indexItem.setText(str(self.maxIndex))
+        indexItem.setText(str(maxIndex))
         self.ui.tBvEnum.setItem(rows, 0, indexItem)
         pass

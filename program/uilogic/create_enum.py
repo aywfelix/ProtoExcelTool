@@ -39,7 +39,6 @@ class CreateEnumUI(QMainWindow):
         
         self.parent = parent
         self.enumXml = ToolEnumXml()
-        self.maxIndex = 0
         self.insertEmptyRow()
         # 添加关联事件
         self.ui.bTnEnumCreate.clicked.connect(self.createEnum)
@@ -50,7 +49,6 @@ class CreateEnumUI(QMainWindow):
         # 检查枚举名字是否重复
         enumName = self.ui.lEtEnumName.text().strip()
         if not enumName:
-            self.close()
             return
         if self.enumXml.isExistEnumName(enumName):
             QMessageBox.critical(self, "错误", "枚举名称已存在")
@@ -88,7 +86,6 @@ class CreateEnumUI(QMainWindow):
             pass
         rows = self.ui.tBvEnum.rowCount()
         if rows == 0:
-            self.maxIndex = 0
             self.insertEmptyRow()
         pass
     
@@ -106,11 +103,16 @@ class CreateEnumUI(QMainWindow):
   
     def insertEmptyRow(self):
         rows = self.ui.tBvEnum.rowCount()
+        maxIndex = 0
+        if rows > 0:
+            tmpItem = self.ui.tBvEnum.item(rows-1, 0)
+            maxIndex = int(tmpItem.text().strip())
+            maxIndex = maxIndex + 1
+        
         self.ui.tBvEnum.insertRow(rows)
         indexItem = QTableWidgetItem()
-        indexItem.setText(str(self.maxIndex))
+        indexItem.setText(str(maxIndex))
         self.ui.tBvEnum.setItem(rows, 0, indexItem)
-        self.maxIndex = self.maxIndex + 1
     pass
 
     
