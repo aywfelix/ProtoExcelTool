@@ -33,6 +33,8 @@ class ModifyProtoUI(QMainWindow):
         self.oldData = None
 
         self.ui.bTnProtoModify.clicked.connect(self.modifyProto)
+        self.ui.lEtProtoName.editingFinished.connect(self.changeProtoName)
+        self.ui.rBtnReq.toggled.connect(self.changeRadioButton)
         pass
 
 
@@ -85,4 +87,36 @@ class ModifyProtoUI(QMainWindow):
         if data.type == '4':
             self.ui.rBtnCom.setChecked(True)
         pass
+
+
+    def getOriginProtoName(self):
+        protoName = self.ui.lEtProtoName.text().strip()
+        if 'Req' in protoName:
+            return protoName[:-3]
+        if 'Ack' in protoName:
+            return protoName[:-3]
+        if 'Notify' in protoName:
+            return protoName[:-6]
+        return protoName
+
+    def fixProtoName(self):
+        protoName = self.getOriginProtoName()
+        if self.ui.rBtnReq.isChecked():
+            protoName += "Req"
+        if self.ui.rBtnNotify.isChecked():
+            protoName += "Notify"
+        if self.ui.rBtnAck.isChecked():
+            protoName += "Ack"
+
+        self.ui.lEtProtoName.setText(protoName)
+
+
+    def changeProtoName(self):
+        self.fixProtoName()
+        pass
+
+    def changeRadioButton(self):
+        self.fixProtoName()   
+        pass
+
         
