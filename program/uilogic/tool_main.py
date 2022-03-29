@@ -176,7 +176,7 @@ class ProtoMainUI(QMainWindow):
         self.setProtoTestReqData()
         pass
 
-    def cbBxMsgClassChanged(self):
+    def cbBxProtoRefresh(self):
         curText = self.ui.cbBxMsgClass.currentText()
         if not curText:
             return        
@@ -187,9 +187,10 @@ class ProtoMainUI(QMainWindow):
             msgName = protoData.name
             msgId = protoData.id
             self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, msgId))
-
         pass
 
+    def cbBxMsgClassChanged(self):
+        self.cbBxProtoRefresh()
 
     def loadProtocols(self):
         self.protoXml.readProtocolXml()
@@ -218,17 +219,11 @@ class ProtoMainUI(QMainWindow):
     def refreshProtoComboBox(self):
         self.ui.cbBxMsgClass.clear()
         self.ui.cBbxProto.clear()
-        isSetMsgProto = False
+
         protocols = self.protoXml.getProtocols()
-        for msgClass, protoDatas in protocols.items():
-            self.ui.cbBxMsgClass.addItem(msgClass)   
-            if not isSetMsgProto:
-                for _, protoData in protoDatas.items():
-                    if protoData.type != '1': continue
-                    msgName = protoData.name
-                    msgId = protoData.id
-                    self.ui.cBbxProto.addItem("{0}:{1}".format(msgName, msgId))
-                isSetMsgProto = True
+        for msgClass, _ in protocols.items():
+            self.ui.cbBxMsgClass.addItem(msgClass)
+        self.cbBxProtoRefresh()
         pass
 
 

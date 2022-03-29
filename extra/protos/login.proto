@@ -201,3 +201,12 @@ message RoleItem{
    uint32 last_login_time  = 6;
 }
 
+// µÇÂ¼ÓÎÏ·
+message LoginMsgReq{
+   string name = 1; 
+   string token = 2;
+   string uuid = 3;
+   string wallet = 4;
+   int32 invitationstatus = 5;
+}
+

@@ -175,10 +175,11 @@ class ToolProtoXml(object):
                 self.dynamicMsg = {}
                 for dirName, protoDatas in self.protocols.items():
                     msgClass = dirName.split(' ')[1]
-                    for protoId, protoData in protoDatas.items():
+                    for _, protoData in protoDatas.items():
+                        msgId = protoData.id
                         msgName = protoData.name
                         msgType = protoData.type
-                        self.dynamicMsg[protoId] = DynamicMsgData(protoId, msgClass, msgName, msgType)
+                        self.dynamicMsg[msgId] = DynamicMsgData(msgId, msgClass, msgName, msgType)
                     pass                
         except Exception as e:
             print(e)

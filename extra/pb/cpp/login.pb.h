@@ -47,7 +47,7 @@ struct TableStruct_login_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[13]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[14]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -66,6 +66,9 @@ extern EnterSceneNotifyDefaultTypeInternal _EnterSceneNotify_default_instance_;
 class LeaveSceneNotify;
 struct LeaveSceneNotifyDefaultTypeInternal;
 extern LeaveSceneNotifyDefaultTypeInternal _LeaveSceneNotify_default_instance_;
+class LoginMsgReq;
+struct LoginMsgReqDefaultTypeInternal;
+extern LoginMsgReqDefaultTypeInternal _LoginMsgReq_default_instance_;
 class ObjMoveNotify;
 struct ObjMoveNotifyDefaultTypeInternal;
 extern ObjMoveNotifyDefaultTypeInternal _ObjMoveNotify_default_instance_;
@@ -98,6 +101,7 @@ template<> ::CreateRoleAck* Arena::CreateMaybeMessage<::CreateRoleAck>(Arena*);
 template<> ::CreateRoleReq* Arena::CreateMaybeMessage<::CreateRoleReq>(Arena*);
 template<> ::EnterSceneNotify* Arena::CreateMaybeMessage<::EnterSceneNotify>(Arena*);
 template<> ::LeaveSceneNotify* Arena::CreateMaybeMessage<::LeaveSceneNotify>(Arena*);
+template<> ::LoginMsgReq* Arena::CreateMaybeMessage<::LoginMsgReq>(Arena*);
 template<> ::ObjMoveNotify* Arena::CreateMaybeMessage<::ObjMoveNotify>(Arena*);
 template<> ::ObjMoveReq* Arena::CreateMaybeMessage<::ObjMoveReq>(Arena*);
 template<> ::RoleItem* Arena::CreateMaybeMessage<::RoleItem>(Arena*);
@@ -3453,6 +3457,213 @@ class RoleItem final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_login_2eproto;
 };
+// -------------------------------------------------------------------
+
+class LoginMsgReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:LoginMsgReq) */ {
+ public:
+  inline LoginMsgReq() : LoginMsgReq(nullptr) {}
+  ~LoginMsgReq() override;
+  explicit constexpr LoginMsgReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LoginMsgReq(const LoginMsgReq& from);
+  LoginMsgReq(LoginMsgReq&& from) noexcept
+    : LoginMsgReq() {
+    *this = ::std::move(from);
+  }
+
+  inline LoginMsgReq& operator=(const LoginMsgReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LoginMsgReq& operator=(LoginMsgReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LoginMsgReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LoginMsgReq* internal_default_instance() {
+    return reinterpret_cast<const LoginMsgReq*>(
+               &_LoginMsgReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(LoginMsgReq& a, LoginMsgReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LoginMsgReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LoginMsgReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline LoginMsgReq* New() const final {
+    return new LoginMsgReq();
+  }
+
+  LoginMsgReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<LoginMsgReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const LoginMsgReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const LoginMsgReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LoginMsgReq* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "LoginMsgReq";
+  }
+  protected:
+  explicit LoginMsgReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kTokenFieldNumber = 2,
+    kUuidFieldNumber = 3,
+    kWalletFieldNumber = 4,
+    kInvitationstatusFieldNumber = 5,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string token = 2;
+  void clear_token();
+  const std::string& token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_token();
+  PROTOBUF_MUST_USE_RESULT std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
+  // string uuid = 3;
+  void clear_uuid();
+  const std::string& uuid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_uuid();
+  PROTOBUF_MUST_USE_RESULT std::string* release_uuid();
+  void set_allocated_uuid(std::string* uuid);
+  private:
+  const std::string& _internal_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_uuid(const std::string& value);
+  std::string* _internal_mutable_uuid();
+  public:
+
+  // string wallet = 4;
+  void clear_wallet();
+  const std::string& wallet() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_wallet(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_wallet();
+  PROTOBUF_MUST_USE_RESULT std::string* release_wallet();
+  void set_allocated_wallet(std::string* wallet);
+  private:
+  const std::string& _internal_wallet() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_wallet(const std::string& value);
+  std::string* _internal_mutable_wallet();
+  public:
+
+  // int32 invitationstatus = 5;
+  void clear_invitationstatus();
+  ::PROTOBUF_NAMESPACE_ID::int32 invitationstatus() const;
+  void set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_invitationstatus() const;
+  void _internal_set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:LoginMsgReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uuid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wallet_;
+  ::PROTOBUF_NAMESPACE_ID::int32 invitationstatus_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_login_2eproto;
+};
 // ===================================================================
 
 
@@ -6520,9 +6731,219 @@ inline void RoleItem::set_last_login_time(::PROTOBUF_NAMESPACE_ID::uint32 value)
   // @@protoc_insertion_point(field_set:RoleItem.last_login_time)
 }
 
+// -------------------------------------------------------------------
+
+// LoginMsgReq
+
+// string name = 1;
+inline void LoginMsgReq::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& LoginMsgReq::name() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginMsgReq::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.name)
+}
+inline std::string* LoginMsgReq::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.name)
+  return _s;
+}
+inline const std::string& LoginMsgReq::_internal_name() const {
+  return name_.Get();
+}
+inline void LoginMsgReq::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::release_name() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginMsgReq::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.name)
+}
+
+// string token = 2;
+inline void LoginMsgReq::clear_token() {
+  token_.ClearToEmpty();
+}
+inline const std::string& LoginMsgReq::token() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.token)
+  return _internal_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginMsgReq::set_token(ArgT0&& arg0, ArgT... args) {
+ 
+ token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.token)
+}
+inline std::string* LoginMsgReq::mutable_token() {
+  std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.token)
+  return _s;
+}
+inline const std::string& LoginMsgReq::_internal_token() const {
+  return token_.Get();
+}
+inline void LoginMsgReq::_internal_set_token(const std::string& value) {
+  
+  token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::_internal_mutable_token() {
+  
+  return token_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::release_token() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.token)
+  return token_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginMsgReq::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  token_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.token)
+}
+
+// string uuid = 3;
+inline void LoginMsgReq::clear_uuid() {
+  uuid_.ClearToEmpty();
+}
+inline const std::string& LoginMsgReq::uuid() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.uuid)
+  return _internal_uuid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginMsgReq::set_uuid(ArgT0&& arg0, ArgT... args) {
+ 
+ uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.uuid)
+}
+inline std::string* LoginMsgReq::mutable_uuid() {
+  std::string* _s = _internal_mutable_uuid();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.uuid)
+  return _s;
+}
+inline const std::string& LoginMsgReq::_internal_uuid() const {
+  return uuid_.Get();
+}
+inline void LoginMsgReq::_internal_set_uuid(const std::string& value) {
+  
+  uuid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::_internal_mutable_uuid() {
+  
+  return uuid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::release_uuid() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.uuid)
+  return uuid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginMsgReq::set_allocated_uuid(std::string* uuid) {
+  if (uuid != nullptr) {
+    
+  } else {
+    
+  }
+  uuid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uuid,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.uuid)
+}
+
+// string wallet = 4;
+inline void LoginMsgReq::clear_wallet() {
+  wallet_.ClearToEmpty();
+}
+inline const std::string& LoginMsgReq::wallet() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.wallet)
+  return _internal_wallet();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginMsgReq::set_wallet(ArgT0&& arg0, ArgT... args) {
+ 
+ wallet_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:LoginMsgReq.wallet)
+}
+inline std::string* LoginMsgReq::mutable_wallet() {
+  std::string* _s = _internal_mutable_wallet();
+  // @@protoc_insertion_point(field_mutable:LoginMsgReq.wallet)
+  return _s;
+}
+inline const std::string& LoginMsgReq::_internal_wallet() const {
+  return wallet_.Get();
+}
+inline void LoginMsgReq::_internal_set_wallet(const std::string& value) {
+  
+  wallet_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::_internal_mutable_wallet() {
+  
+  return wallet_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginMsgReq::release_wallet() {
+  // @@protoc_insertion_point(field_release:LoginMsgReq.wallet)
+  return wallet_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginMsgReq::set_allocated_wallet(std::string* wallet) {
+  if (wallet != nullptr) {
+    
+  } else {
+    
+  }
+  wallet_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), wallet,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:LoginMsgReq.wallet)
+}
+
+// int32 invitationstatus = 5;
+inline void LoginMsgReq::clear_invitationstatus() {
+  invitationstatus_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LoginMsgReq::_internal_invitationstatus() const {
+  return invitationstatus_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LoginMsgReq::invitationstatus() const {
+  // @@protoc_insertion_point(field_get:LoginMsgReq.invitationstatus)
+  return _internal_invitationstatus();
+}
+inline void LoginMsgReq::_internal_set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  invitationstatus_ = value;
+}
+inline void LoginMsgReq::set_invitationstatus(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_invitationstatus(value);
+  // @@protoc_insertion_point(field_set:LoginMsgReq.invitationstatus)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

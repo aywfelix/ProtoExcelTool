@@ -57,7 +57,7 @@ class ModifyProtoUI(QMainWindow):
         protocols = self.proto_xml.protocols
         for _, protocolDict in protocols.items():
             for _, protoData in protocolDict.items():
-                if self.oldData.id != protoId and protoData.id == protoId:
+                if protoData.id !='' and self.oldData.id != protoId and protoData.id == protoId:
                     QMessageBox.warning(self, "警告", "此协议编号已经存在")
                     return
                 if self.oldData.name != protoName and protoData.name == protoName:
