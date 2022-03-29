@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0blogin.proto\"b\n\x0bLoginMsgReq\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x0c\n\x04uuid\x18\x03 \x01(\t\x12\x0e\n\x06wallet\x18\x04 \x01(\t\x12\x18\n\x10invitationstatus\x18\x05 \x01(\x05\"y\n\x08RoleItem\x12\x0f\n\x07role_id\x18\x01 \x01(\x05\x12\x11\n\trole_name\x18\x02 \x01(\t\x12\x0e\n\x06\x61vatar\x18\x03 \x01(\x05\x12\x0b\n\x03sex\x18\x04 \x01(\x05\x12\x13\n\x0b\x63reate_time\x18\x05 \x01(\r\x12\x17\n\x0flast_login_time\x18\x06 \x01(\r\"B\n\x0cRoleLoginReq\x12\x0e\n\x06\x61\x63\x63out\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\x05\x12\x11\n\trole_name\x18\x03 \x01(\t\"\xdd\x01\n\x0cRoleLoginAck\x12\x0e\n\x06\x61\x63\x63out\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\x05\x12\x11\n\trole_name\x18\x03 \x01(\t\x12\x10\n\x08scene_id\x18\x04 \x01(\x05\x12\x15\n\rlast_scene_id\x18\x05 \x01(\x05\x12\x13\n\x0bgw_hostname\x18\x06 \x01(\t\x12\x0f\n\x07gw_port\x18\x07 \x01(\x05\x12\x10\n\x08gs_index\x18\x08 \x01(\x05\x12\x13\n\x0bserver_time\x18\t \x01(\x03\x12\x13\n\x0bsession_key\x18\n \x01(\t\x12\x0e\n\x06result\x18\x0b \x01(\x05\"\xb1\x01\n\rCreateRoleReq\x12\x11\n\trole_name\x18\x01 \x01(\t\x12\x12\n\nlogin_time\x18\x02 \x01(\r\x12\x11\n\tlogin_str\x18\x03 \x01(\t\x12\x0e\n\x06server\x18\x04 \x01(\r\x12\x13\n\x0b\x61nti_wallow\x18\x05 \x01(\r\x12\x0e\n\x06\x61vatar\x18\x06 \x01(\r\x12\x0b\n\x03sex\x18\x07 \x01(\r\x12\x11\n\tplat_name\x18\x08 \x01(\t\x12\x11\n\tuser_uuid\x18\t \x01(\t\"\x8b\x02\n\rCreateRoleAck\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\x0f\n\x07role_id\x18\x02 \x01(\r\x12\x11\n\trole_name\x18\x03 \x01(\t\x12\x0e\n\x06\x61vatar\x18\x04 \x01(\r\x12\x0b\n\x03sex\x18\x05 \x01(\r\x12\x13\n\x0b\x63reate_time\x18\x06 \x01(\x05\"\x92\x01\n\x08RET_TYPE\x12\x14\n\x10RESULT_TYPE_SUCC\x10\x00\x12\x18\n\x14RESULT_TYPE_NO_SPACE\x10\x01\x12\x1a\n\x16RESULT_TYPE_EXIST_NAME\x10\x02\x12\x1c\n\x18RESULT_TYPE_NAME_INVALID\x10\x03\x12\x1c\n\x18RESULT_TYPE_SERVER_LIMIT\x10\x04\"\xf0\x01\n\x11UserEnterSceneReq\x12\x10\n\x08scene_id\x18\x01 \x01(\x05\x12\x11\n\tscene_key\x18\x02 \x01(\x05\x12\x15\n\rlast_scene_id\x18\x03 \x01(\x05\x12\x0f\n\x07role_id\x18\x04 \x01(\x05\x12\x11\n\trole_name\x18\x05 \x01(\t\x12\x0c\n\x04time\x18\x06 \x01(\x05\x12\x10\n\x08is_login\x18\x07 \x01(\r\x12\x11\n\treserved1\x18\x08 \x01(\r\x12\x0e\n\x06server\x18\t \x01(\x05\x12\x0b\n\x03key\x18\n \x01(\t\x12\x11\n\tuser_uuid\x18\x0b \x01(\t\x12\x18\n\x10invitationstatus\x18\x0c \x01(\x05\"$\n\x11UserEnterSceneAck\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\"\x97\x03\n\x0eRoleListNotify\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\x12\x11\n\tuser_uuid\x18\x03 \x01(\t\x12\x0e\n\x06wallet\x18\x04 \x01(\t\x12\x18\n\x10invitationstatus\x18\x05 \x01(\x05\x12\x1b\n\x08roleItem\x18\x06 \x03(\x0b\x32\t.RoleItem\"\x8a\x02\n\x0cLoginAckCode\x12\x14\n\x10LOGIN_RESULT_SUC\x10\x00\x12\x14\n\x0fLOGIN_NO_THREAD\x10\xcc\x08\x12\x17\n\x12LOGIN_SERVER_ERROR\x10\xce\x08\x12\x17\n\x12LOGIN_RESULT_EXIST\x10\xcf\x08\x12\x1a\n\x15LOGIN_SCENE_NOT_EXIST\x10\xd0\x08\x12\x1c\n\x17LOGIN_RESULT_NO_GATEWAY\x10\xd1\x08\x12\x19\n\x14LOGIN_RESULT_NO_ROLE\x10\xd2\x08\x12\x16\n\x11LOGIN_THREAD_BUSY\x10\xd3\x08\x12\x17\n\x12LOGIN_LOGIN_FORBID\x10\xd4\x08\x12\x16\n\x11LOGIN_ANTI_WALLOW\x10\xd5\x08\"\xb2\x01\n\x10\x45nterSceneNotify\x12\x0f\n\x07sceneid\x18\x01 \x01(\x05\x12\x0e\n\x06obj_id\x18\x02 \x01(\x05\x12\x11\n\topen_line\x18\x03 \x01(\x05\x12\r\n\x05pos_x\x18\x04 \x01(\x02\x12\r\n\x05pos_y\x18\x05 \x01(\x02\x12\n\n\x02hp\x18\x06 \x01(\x05\x12\x0e\n\x06max_hp\x18\x07 \x01(\x05\x12\x11\n\tscene_key\x18\x08 \x01(\x05\x12\x0e\n\x06height\x18\t \x01(\x02\x12\r\n\x05pos_z\x18\n \x01(\x02\"#\n\x10LeaveSceneNotify\x12\x0f\n\x07sceneid\x18\x01 \x01(\x05\"\xba\x03\n\rObjMoveNotify\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x0f\n\x07speed_x\x18\x02 \x01(\x02\x12\x0f\n\x07speed_y\x18\x03 \x01(\x02\x12\x0f\n\x07speed_z\x18\x04 \x01(\x02\x12\r\n\x05pos_x\x18\x05 \x01(\x02\x12\r\n\x05pos_y\x18\x06 \x01(\x02\x12\r\n\x05pos_z\x18\x07 \x01(\x02\x12\x12\n\nrotation_x\x18\x08 \x01(\x02\x12\x12\n\nrotation_y\x18\t \x01(\x02\x12\x12\n\nrotation_z\x18\n \x01(\x02\x12\x10\n\x08reserved\x18\x0b \x01(\x05\x12\x0e\n\x06obj_id\x18\x0c \x01(\x05\x12\x10\n\x08\x64istance\x18\r \x01(\x02\x12\x11\n\tmove_mode\x18\x0e \x01(\r\x12\x10\n\x08reserve2\x18\x0f \x01(\r\x12\x0e\n\x06height\x18\x10 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_x\x18\x11 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_y\x18\x12 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_z\x18\x13 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_x\x18\x14 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_y\x18\x15 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_z\x18\x16 \x01(\x02\"\xf0\x02\n\nObjMoveReq\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x0f\n\x07speed_x\x18\x02 \x01(\x02\x12\x0f\n\x07speed_y\x18\x03 \x01(\x02\x12\x0f\n\x07speed_z\x18\x04 \x01(\x02\x12\r\n\x05pos_x\x18\x05 \x01(\x02\x12\r\n\x05pos_y\x18\x06 \x01(\x02\x12\r\n\x05pos_z\x18\x07 \x01(\x02\x12\x12\n\nrotation_x\x18\x08 \x01(\x02\x12\x12\n\nrotation_y\x18\t \x01(\x02\x12\x12\n\nrotation_z\x18\n \x01(\x02\x12\x10\n\x08\x64istance\x18\x0b \x01(\x02\x12\x0e\n\x06height\x18\x0c \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_x\x18\r \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_y\x18\x0e \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_z\x18\x0f \x01(\x02\x12\x19\n\x11\x63ontrolRotation_x\x18\x10 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_y\x18\x11 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_z\x18\x12 \x01(\x02\"\x83\x03\n\x19VisibleObjEnterRoleNotify\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x17\n\x0fmove_mode_param\x18\x02 \x01(\r\x12\x13\n\x0brole_status\x18\x03 \x01(\r\x12\x0e\n\x06obj_id\x18\x04 \x01(\r\x12\x0f\n\x07role_id\x18\x05 \x01(\x05\x12\x11\n\trole_name\x18\x06 \x01(\t\x12\n\n\x02hp\x18\x07 \x01(\x05\x12\x0e\n\x06max_hp\x18\x08 \x01(\x05\x12\r\n\x05level\x18\t \x01(\r\x12\x0b\n\x03sex\x18\n \x01(\r\x12\r\n\x05speed\x18\x0b \x01(\r\x12\r\n\x05pos_x\x18\x0c \x01(\x02\x12\r\n\x05pos_y\x18\r \x01(\x02\x12\x10\n\x08\x64istance\x18\x0e \x01(\x02\x12\x12\n\nname_color\x18\x0f \x01(\r\x12\x11\n\tmove_mode\x18\x10 \x01(\r\x12\x0e\n\x06\x61vatar\x18\x11 \x01(\r\x12\r\n\x05pos_z\x18\x12 \x01(\x02\x12\x12\n\nrotation_x\x18\x13 \x01(\x02\x12\x12\n\nrotation_y\x18\x14 \x01(\x02\x12\x12\n\nrotation_z\x18\x15 \x01(\x02\"9\n\x15VisibleObjLeaveNotify\x12\x0e\n\x06obj_id\x18\x01 \x01(\r\x12\x10\n\x08reserved\x18\x02 \x01(\rb\x06proto3'
+  serialized_pb=b'\n\x0blogin.proto\"y\n\x08RoleItem\x12\x0f\n\x07role_id\x18\x01 \x01(\x05\x12\x11\n\trole_name\x18\x02 \x01(\t\x12\x0e\n\x06\x61vatar\x18\x03 \x01(\x05\x12\x0b\n\x03sex\x18\x04 \x01(\x05\x12\x13\n\x0b\x63reate_time\x18\x05 \x01(\r\x12\x17\n\x0flast_login_time\x18\x06 \x01(\r\"B\n\x0cRoleLoginReq\x12\x0e\n\x06\x61\x63\x63out\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\x05\x12\x11\n\trole_name\x18\x03 \x01(\t\"\xdd\x01\n\x0cRoleLoginAck\x12\x0e\n\x06\x61\x63\x63out\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\x05\x12\x11\n\trole_name\x18\x03 \x01(\t\x12\x10\n\x08scene_id\x18\x04 \x01(\x05\x12\x15\n\rlast_scene_id\x18\x05 \x01(\x05\x12\x13\n\x0bgw_hostname\x18\x06 \x01(\t\x12\x0f\n\x07gw_port\x18\x07 \x01(\x05\x12\x10\n\x08gs_index\x18\x08 \x01(\x05\x12\x13\n\x0bserver_time\x18\t \x01(\x03\x12\x13\n\x0bsession_key\x18\n \x01(\t\x12\x0e\n\x06result\x18\x0b \x01(\x05\"\xb1\x01\n\rCreateRoleReq\x12\x11\n\trole_name\x18\x01 \x01(\t\x12\x12\n\nlogin_time\x18\x02 \x01(\r\x12\x11\n\tlogin_str\x18\x03 \x01(\t\x12\x0e\n\x06server\x18\x04 \x01(\r\x12\x13\n\x0b\x61nti_wallow\x18\x05 \x01(\r\x12\x0e\n\x06\x61vatar\x18\x06 \x01(\r\x12\x0b\n\x03sex\x18\x07 \x01(\r\x12\x11\n\tplat_name\x18\x08 \x01(\t\x12\x11\n\tuser_uuid\x18\t \x01(\t\"\x8b\x02\n\rCreateRoleAck\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\x0f\n\x07role_id\x18\x02 \x01(\r\x12\x11\n\trole_name\x18\x03 \x01(\t\x12\x0e\n\x06\x61vatar\x18\x04 \x01(\r\x12\x0b\n\x03sex\x18\x05 \x01(\r\x12\x13\n\x0b\x63reate_time\x18\x06 \x01(\x05\"\x92\x01\n\x08RET_TYPE\x12\x14\n\x10RESULT_TYPE_SUCC\x10\x00\x12\x18\n\x14RESULT_TYPE_NO_SPACE\x10\x01\x12\x1a\n\x16RESULT_TYPE_EXIST_NAME\x10\x02\x12\x1c\n\x18RESULT_TYPE_NAME_INVALID\x10\x03\x12\x1c\n\x18RESULT_TYPE_SERVER_LIMIT\x10\x04\"\xf0\x01\n\x11UserEnterSceneReq\x12\x10\n\x08scene_id\x18\x01 \x01(\x05\x12\x11\n\tscene_key\x18\x02 \x01(\x05\x12\x15\n\rlast_scene_id\x18\x03 \x01(\x05\x12\x0f\n\x07role_id\x18\x04 \x01(\x05\x12\x11\n\trole_name\x18\x05 \x01(\t\x12\x0c\n\x04time\x18\x06 \x01(\x05\x12\x10\n\x08is_login\x18\x07 \x01(\r\x12\x11\n\treserved1\x18\x08 \x01(\r\x12\x0e\n\x06server\x18\t \x01(\x05\x12\x0b\n\x03key\x18\n \x01(\t\x12\x11\n\tuser_uuid\x18\x0b \x01(\t\x12\x18\n\x10invitationstatus\x18\x0c \x01(\x05\"$\n\x11UserEnterSceneAck\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\"\x97\x03\n\x0eRoleListNotify\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\x12\x11\n\tuser_uuid\x18\x03 \x01(\t\x12\x0e\n\x06wallet\x18\x04 \x01(\t\x12\x18\n\x10invitationstatus\x18\x05 \x01(\x05\x12\x1b\n\x08roleItem\x18\x06 \x03(\x0b\x32\t.RoleItem\"\x8a\x02\n\x0cLoginAckCode\x12\x14\n\x10LOGIN_RESULT_SUC\x10\x00\x12\x14\n\x0fLOGIN_NO_THREAD\x10\xcc\x08\x12\x17\n\x12LOGIN_SERVER_ERROR\x10\xce\x08\x12\x17\n\x12LOGIN_RESULT_EXIST\x10\xcf\x08\x12\x1a\n\x15LOGIN_SCENE_NOT_EXIST\x10\xd0\x08\x12\x1c\n\x17LOGIN_RESULT_NO_GATEWAY\x10\xd1\x08\x12\x19\n\x14LOGIN_RESULT_NO_ROLE\x10\xd2\x08\x12\x16\n\x11LOGIN_THREAD_BUSY\x10\xd3\x08\x12\x17\n\x12LOGIN_LOGIN_FORBID\x10\xd4\x08\x12\x16\n\x11LOGIN_ANTI_WALLOW\x10\xd5\x08\"\xb2\x01\n\x10\x45nterSceneNotify\x12\x0f\n\x07sceneid\x18\x01 \x01(\x05\x12\x0e\n\x06obj_id\x18\x02 \x01(\x05\x12\x11\n\topen_line\x18\x03 \x01(\x05\x12\r\n\x05pos_x\x18\x04 \x01(\x02\x12\r\n\x05pos_y\x18\x05 \x01(\x02\x12\n\n\x02hp\x18\x06 \x01(\x05\x12\x0e\n\x06max_hp\x18\x07 \x01(\x05\x12\x11\n\tscene_key\x18\x08 \x01(\x05\x12\x0e\n\x06height\x18\t \x01(\x02\x12\r\n\x05pos_z\x18\n \x01(\x02\"#\n\x10LeaveSceneNotify\x12\x0f\n\x07sceneid\x18\x01 \x01(\x05\"\xba\x03\n\rObjMoveNotify\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x0f\n\x07speed_x\x18\x02 \x01(\x02\x12\x0f\n\x07speed_y\x18\x03 \x01(\x02\x12\x0f\n\x07speed_z\x18\x04 \x01(\x02\x12\r\n\x05pos_x\x18\x05 \x01(\x02\x12\r\n\x05pos_y\x18\x06 \x01(\x02\x12\r\n\x05pos_z\x18\x07 \x01(\x02\x12\x12\n\nrotation_x\x18\x08 \x01(\x02\x12\x12\n\nrotation_y\x18\t \x01(\x02\x12\x12\n\nrotation_z\x18\n \x01(\x02\x12\x10\n\x08reserved\x18\x0b \x01(\x05\x12\x0e\n\x06obj_id\x18\x0c \x01(\x05\x12\x10\n\x08\x64istance\x18\r \x01(\x02\x12\x11\n\tmove_mode\x18\x0e \x01(\r\x12\x10\n\x08reserve2\x18\x0f \x01(\r\x12\x0e\n\x06height\x18\x10 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_x\x18\x11 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_y\x18\x12 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_z\x18\x13 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_x\x18\x14 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_y\x18\x15 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_z\x18\x16 \x01(\x02\"\xf0\x02\n\nObjMoveReq\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x0f\n\x07speed_x\x18\x02 \x01(\x02\x12\x0f\n\x07speed_y\x18\x03 \x01(\x02\x12\x0f\n\x07speed_z\x18\x04 \x01(\x02\x12\r\n\x05pos_x\x18\x05 \x01(\x02\x12\r\n\x05pos_y\x18\x06 \x01(\x02\x12\r\n\x05pos_z\x18\x07 \x01(\x02\x12\x12\n\nrotation_x\x18\x08 \x01(\x02\x12\x12\n\nrotation_y\x18\t \x01(\x02\x12\x12\n\nrotation_z\x18\n \x01(\x02\x12\x10\n\x08\x64istance\x18\x0b \x01(\x02\x12\x0e\n\x06height\x18\x0c \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_x\x18\r \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_y\x18\x0e \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_z\x18\x0f \x01(\x02\x12\x19\n\x11\x63ontrolRotation_x\x18\x10 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_y\x18\x11 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_z\x18\x12 \x01(\x02\"\x83\x03\n\x19VisibleObjEnterRoleNotify\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x17\n\x0fmove_mode_param\x18\x02 \x01(\r\x12\x13\n\x0brole_status\x18\x03 \x01(\r\x12\x0e\n\x06obj_id\x18\x04 \x01(\r\x12\x0f\n\x07role_id\x18\x05 \x01(\x05\x12\x11\n\trole_name\x18\x06 \x01(\t\x12\n\n\x02hp\x18\x07 \x01(\x05\x12\x0e\n\x06max_hp\x18\x08 \x01(\x05\x12\r\n\x05level\x18\t \x01(\r\x12\x0b\n\x03sex\x18\n \x01(\r\x12\r\n\x05speed\x18\x0b \x01(\r\x12\r\n\x05pos_x\x18\x0c \x01(\x02\x12\r\n\x05pos_y\x18\r \x01(\x02\x12\x10\n\x08\x64istance\x18\x0e \x01(\x02\x12\x12\n\nname_color\x18\x0f \x01(\r\x12\x11\n\tmove_mode\x18\x10 \x01(\r\x12\x0e\n\x06\x61vatar\x18\x11 \x01(\r\x12\r\n\x05pos_z\x18\x12 \x01(\x02\x12\x12\n\nrotation_x\x18\x13 \x01(\x02\x12\x12\n\nrotation_y\x18\x14 \x01(\x02\x12\x12\n\nrotation_z\x18\x15 \x01(\x02\x62\x06proto3'
 )
 
 
@@ -59,8 +59,8 @@ _CREATEROLEACK_RET_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=832,
-  serialized_end=978,
+  serialized_start=732,
+  serialized_end=878,
 )
 _sym_db.RegisterEnumDescriptor(_CREATEROLEACK_RET_TYPE)
 
@@ -124,70 +124,10 @@ _ROLELISTNOTIFY_LOGINACKCODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1403,
-  serialized_end=1669,
+  serialized_start=1303,
+  serialized_end=1569,
 )
 _sym_db.RegisterEnumDescriptor(_ROLELISTNOTIFY_LOGINACKCODE)
-
-
-_LOGINMSGREQ = _descriptor.Descriptor(
-  name='LoginMsgReq',
-  full_name='LoginMsgReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='LoginMsgReq.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token', full_name='LoginMsgReq.token', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='uuid', full_name='LoginMsgReq.uuid', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='wallet', full_name='LoginMsgReq.wallet', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='invitationstatus', full_name='LoginMsgReq.invitationstatus', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=15,
-  serialized_end=113,
-)
 
 
 _ROLEITEM = _descriptor.Descriptor(
@@ -252,8 +192,8 @@ _ROLEITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=115,
-  serialized_end=236,
+  serialized_start=15,
+  serialized_end=136,
 )
 
 
@@ -298,8 +238,8 @@ _ROLELOGINREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=238,
-  serialized_end=304,
+  serialized_start=138,
+  serialized_end=204,
 )
 
 
@@ -400,8 +340,8 @@ _ROLELOGINACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=307,
-  serialized_end=528,
+  serialized_start=207,
+  serialized_end=428,
 )
 
 
@@ -488,8 +428,8 @@ _CREATEROLEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=531,
-  serialized_end=708,
+  serialized_start=431,
+  serialized_end=608,
 )
 
 
@@ -556,8 +496,8 @@ _CREATEROLEACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=711,
-  serialized_end=978,
+  serialized_start=611,
+  serialized_end=878,
 )
 
 
@@ -665,8 +605,8 @@ _USERENTERSCENEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=981,
-  serialized_end=1221,
+  serialized_start=881,
+  serialized_end=1121,
 )
 
 
@@ -697,8 +637,8 @@ _USERENTERSCENEACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1223,
-  serialized_end=1259,
+  serialized_start=1123,
+  serialized_end=1159,
 )
 
 
@@ -765,8 +705,8 @@ _ROLELISTNOTIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1262,
-  serialized_end=1669,
+  serialized_start=1162,
+  serialized_end=1569,
 )
 
 
@@ -860,8 +800,8 @@ _ENTERSCENENOTIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1672,
-  serialized_end=1850,
+  serialized_start=1572,
+  serialized_end=1750,
 )
 
 
@@ -892,8 +832,8 @@ _LEAVESCENENOTIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1852,
-  serialized_end=1887,
+  serialized_start=1752,
+  serialized_end=1787,
 )
 
 
@@ -1071,8 +1011,8 @@ _OBJMOVENOTIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1890,
-  serialized_end=2332,
+  serialized_start=1790,
+  serialized_end=2232,
 )
 
 
@@ -1222,8 +1162,8 @@ _OBJMOVEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2335,
-  serialized_end=2703,
+  serialized_start=2235,
+  serialized_end=2603,
 )
 
 
@@ -1394,53 +1334,13 @@ _VISIBLEOBJENTERROLENOTIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2706,
-  serialized_end=3093,
-)
-
-
-_VISIBLEOBJLEAVENOTIFY = _descriptor.Descriptor(
-  name='VisibleObjLeaveNotify',
-  full_name='VisibleObjLeaveNotify',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='obj_id', full_name='VisibleObjLeaveNotify.obj_id', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='reserved', full_name='VisibleObjLeaveNotify.reserved', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3095,
-  serialized_end=3152,
+  serialized_start=2606,
+  serialized_end=2993,
 )
 
 _CREATEROLEACK_RET_TYPE.containing_type = _CREATEROLEACK
 _ROLELISTNOTIFY.fields_by_name['roleItem'].message_type = _ROLEITEM
 _ROLELISTNOTIFY_LOGINACKCODE.containing_type = _ROLELISTNOTIFY
-DESCRIPTOR.message_types_by_name['LoginMsgReq'] = _LOGINMSGREQ
 DESCRIPTOR.message_types_by_name['RoleItem'] = _ROLEITEM
 DESCRIPTOR.message_types_by_name['RoleLoginReq'] = _ROLELOGINREQ
 DESCRIPTOR.message_types_by_name['RoleLoginAck'] = _ROLELOGINACK
@@ -1454,15 +1354,7 @@ DESCRIPTOR.message_types_by_name['LeaveSceneNotify'] = _LEAVESCENENOTIFY
 DESCRIPTOR.message_types_by_name['ObjMoveNotify'] = _OBJMOVENOTIFY
 DESCRIPTOR.message_types_by_name['ObjMoveReq'] = _OBJMOVEREQ
 DESCRIPTOR.message_types_by_name['VisibleObjEnterRoleNotify'] = _VISIBLEOBJENTERROLENOTIFY
-DESCRIPTOR.message_types_by_name['VisibleObjLeaveNotify'] = _VISIBLEOBJLEAVENOTIFY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-LoginMsgReq = _reflection.GeneratedProtocolMessageType('LoginMsgReq', (_message.Message,), {
-  'DESCRIPTOR' : _LOGINMSGREQ,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:LoginMsgReq)
-  })
-_sym_db.RegisterMessage(LoginMsgReq)
 
 RoleItem = _reflection.GeneratedProtocolMessageType('RoleItem', (_message.Message,), {
   'DESCRIPTOR' : _ROLEITEM,
@@ -1554,13 +1446,6 @@ VisibleObjEnterRoleNotify = _reflection.GeneratedProtocolMessageType('VisibleObj
   # @@protoc_insertion_point(class_scope:VisibleObjEnterRoleNotify)
   })
 _sym_db.RegisterMessage(VisibleObjEnterRoleNotify)
-
-VisibleObjLeaveNotify = _reflection.GeneratedProtocolMessageType('VisibleObjLeaveNotify', (_message.Message,), {
-  'DESCRIPTOR' : _VISIBLEOBJLEAVENOTIFY,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:VisibleObjLeaveNotify)
-  })
-_sym_db.RegisterMessage(VisibleObjLeaveNotify)
 
 
 # @@protoc_insertion_point(module_scope)

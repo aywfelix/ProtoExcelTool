@@ -1,15 +1,6 @@
 syntax = "proto3";
 
 
-// 登录到游戏并获取角色列表
-message LoginMsgReq{
-   string name = 1;
-   string token = 2;
-   string uuid = 3;
-   string wallet = 4;
-   int32 invitationstatus = 5;
-}
-
 // 角色信息
 message RoleItem{
    int32 role_id = 1;   
@@ -208,11 +199,5 @@ message VisibleObjEnterRoleNotify{
    float   rotation_x = 19;
    float   rotation_y = 20;
    float    rotation_z = 21;
-}
-
-// 离开视野广播
-message VisibleObjLeaveNotify{
-   uint32 obj_id = 1;
-   uint32 reserved = 2;
 }
 

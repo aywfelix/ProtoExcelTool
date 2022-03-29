@@ -76,6 +76,14 @@ class ToolProtoXml(object):
             return
         self.protocols[dirName].pop(protoId)
     
+    def delProtocolByUUID(self, uuid):
+        for dirName, protocol in self.protocols.items():
+            for protoId, protoData in protocol.items():
+                if protoData.uuid == uuid:
+                    self.protocols[dirName].pop(protoData.id)
+                    break
+        pass
+    
     def addDir(self, dirData):
         if dirData.dirName in self.modules.keys():
             return

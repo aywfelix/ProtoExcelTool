@@ -22,6 +22,12 @@ def Singleton(cls):
 
     return _Singleton
 
+import time, hashlib
+def create_uuid():
+    m = hashlib.md5(str(time.time()).encode('utf-8'))
+    return m.hexdigest()
+    pass   
+
 # 编程语言分类
 class ProgramLangType:
     CPP = 0
@@ -46,36 +52,34 @@ class TVItemType:
     ItemDir = 1
     ItemProto = 2
 
+
+class TVItemDirData:
+    def __init__(self, dirName="", package=""):
+        self.dirName = dirName
+        self.package = package
+        self.uuid = create_uuid()
+        pass
+
+    def __str__(self):
+        return self.dirName+" "+self.package
+
 class TVItemProtoData:
     def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", protoType=1):
         self.id = protoId
         self.name = protoName
         self.desc = protoDesc
         self.content = protoContent
-        self.type = protoType # 1请求消息 2广播消息 3共用消息
+        self.type = protoType # 1请求消息 2回复消息 3广播消息 4共用消息
+        self.uuid = create_uuid()
 
     def __str__(self):
         return self.id+" "+self.name+" "+self.desc+" "+self.content
-
-class TVItemDirData:
-    def __init__(self, dirName="", package=""):
-        self.dirName = dirName
-        self.package = package
-        pass
-
-    def __str__(self):
-        return self.dirName+" "+self.package
 
 class TmplType:
     PROTO = 1
     ENUM = 2
     TABLE = 3
-
-import time, hashlib
-def create_uuid():
-    m = hashlib.md5(str(time.time()).encode('utf-8'))
-    return m.hexdigest()
-    pass    
+ 
     
 class TmplItemData:
     def __init__(self, tmplName, lang, tmplPublish, ttype = '1'):
@@ -108,7 +112,6 @@ class EnumItemData:
         self.fields = []
         self.type = enumType
         pass
-
 
     
 # 工具常用配置项

@@ -28,7 +28,7 @@ class ModifyProtoUI(QMainWindow):
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
         self.parent = parent
-        self.protoXml = ToolProtoXml()
+        self.proto_xml = ToolProtoXml()
 
         self.oldData = None
 
@@ -52,7 +52,7 @@ class ModifyProtoUI(QMainWindow):
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
 
-        protocols = self.protoXml.protocols
+        protocols = self.proto_xml.protocols
         for _, protocolDict in protocols.items():
             for _, protoData in protocolDict.items():
                 if self.oldData.id != protoId and protoData.id == protoId:
@@ -65,6 +65,7 @@ class ModifyProtoUI(QMainWindow):
 
         protoType = self.getProtoType() 
         protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType)
+        self.proto_xml.delProtocolByUUID(self.oldData.uuid)
         self.dialogSignal.emit(protoData)
         self.close()
 
