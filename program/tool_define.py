@@ -169,7 +169,7 @@ def VarifyHost(ip, port):
     if not isinstance(ip, str): return False
     if not str.isdigit(port): return False
     if int(port) > 65535: return False
-    ipre = re.compile("^((?:(2[0-4]\d)|(25[0-5])|([01]?\d\d?))\.){3}(?:(2[0-4]\d)|(255[0-5])|([01]?\d\d?))$")
+    ipre = re.compile('^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$')
     if ipre.match(ip):
         return True
 

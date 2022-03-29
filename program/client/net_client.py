@@ -44,14 +44,14 @@ class NetClient(QMainWindow):
         self.msgDefine = {}
         # self.iniMsgDefine()
         self.recordReq = {}
-        self.reqHistoryPath = "../extra/tmp/request.json"
+        self.req_history_file = "./config/request.json"
         self.loadReqHistory()
         pass
 
     def loadReqHistory(self):
         try:
             content = ""
-            with codecs.open(self.reqHistoryPath, 'r', encoding='GB2312') as f:
+            with codecs.open(self.req_history_file, 'r', encoding='GB2312') as f:
                 content = f.read()
                 pass
 
@@ -118,7 +118,7 @@ class NetClient(QMainWindow):
     # 记录发送历史
     def saveSendHistory(self):
         try:
-            with codecs.open(self.reqHistoryPath, 'w+', encoding='GB2312') as f:
+            with codecs.open(self.req_history_file, 'w+', encoding='GB2312') as f:
                 jsonStr = json.dumps(
                     self.recordReq, indent=4, sort_keys=False, ensure_ascii=False)
                 f.write(jsonStr + '\n')  

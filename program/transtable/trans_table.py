@@ -21,9 +21,9 @@ class TransTable:
         self.settingXml = ToolSettingXml()
         toolConfig = self.settingXml.getTool()
         self.excel_dir = toolConfig['excel']
-        if not self.excel_dir:
-            self.excel_dir = "../extra/excels/"
-        self.json_dir = "../extra/tablejson/"
+        self.json_dir = toolConfig['tbjson']
+        if not self.excel_dir: self.excel_dir = "../extra/excels/"
+        if not self.json_dir: self.json_dir = "../extra/tablejson/"
         pass
     
     def loadExcels(self):
