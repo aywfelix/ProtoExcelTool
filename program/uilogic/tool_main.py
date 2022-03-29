@@ -534,17 +534,24 @@ class ProtoMainUI(QMainWindow):
 
     # 导出pb文件    
     def menuExportPbClicked(self):
+        self.ui.statusbar.showMessage('正在导出协议...')
         self.exportPb.exportProtoBuffer()
+
+        self.ui.statusbar.showMessage('完成导出协议...')
         pass
     
     # 导出配置表    
     def menuExportExcelClicked(self):
+        self.ui.statusbar.showMessage('正在导出配置表...')
         self.transTable.transTables()
+        self.ui.statusbar.showMessage('完成导出配置表...')
         pass
 
     # 导出proto文件    
     def menuExportProtoClicked(self):
+        self.ui.statusbar.showMessage('正在导出proto文件...')
         self.exportPb.exportProtoFile()
+        self.ui.statusbar.showMessage('完成导出proto文件...')
         pass
 
     # 程序界面退出
@@ -662,18 +669,17 @@ class ProtoMainUI(QMainWindow):
         pass
 
     def exportAllClicked(self):
+        self.ui.statusbar.showMessage('正在导出最新协议及枚举值...')
         self.saveProtoXml()
         self.saveEnumXml()
-        # 刷新测试界面选择发送协议
-        #self.refreshProtoComboBox()    
-
         # 导出协议
         export_pb = ExportPb()
         export_pb.exportProtoBuffer()
-
         # 导出枚举
         exprotEnum = ExportEnum()
         exprotEnum.export_enum()
+
+        self.ui.statusbar.showMessage('导出完成...')
         pass
     
     def openSettingClicked(self):
