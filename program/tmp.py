@@ -138,3 +138,7 @@ if ipre.match('127.0.0.1'):
     print("true")
 else:
     print('xxxx')
+
+str1 = '1100#enterscenenotify'
+str2 = '1100'
+print(str1.find(str2)>=0)

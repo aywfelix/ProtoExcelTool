@@ -595,13 +595,15 @@ class ProtoMainUI(QMainWindow):
             for i in range(self.ui.tRvProtocol.topLevelItemCount()):
                 topItem = self.ui.tRvProtocol.topLevelItem(i)
                 isHidden = True
-                if topItem.text(0).lower().find(filter) > 0:
+                if topItem.text(0).lower().find(filter) >= 0:
                     topItem.setExpanded(True)
                     topItem.setHidden(False)
                     isHidden = False
                 for j in range(topItem.childCount()):
                     childItem = topItem.child(j)
-                    if childItem.text(0).lower().find(filter) > 0:
+                    if childItem.text(0).lower().find(filter) >= 0:
+                        topItem.setExpanded(True)
+                        topItem.setHidden(False)
                         childItem.setHidden(False)
                         isHidden = False
                     else:
@@ -625,7 +627,7 @@ class ProtoMainUI(QMainWindow):
             iter = QTreeWidgetItemIterator(self.ui.tRvEnum)
             while iter.value():
                 item = iter.value()
-                if item.text(0).lower().find(filter) > 0:
+                if item.text(0).lower().find(filter) >= 0:
                     item.setExpanded(True)
                     item.setHidden(False)
                     if item.parent():
@@ -704,7 +706,7 @@ class ProtoMainUI(QMainWindow):
             msgText = "消息ID: " + msgID + "\n"
             msgText = msgText + "消息内容:\n" + msgContent + "\n"
         else:
-            msgText += "==========================================================\n"
+            msgText += "===============================================================================\n"
             msgText = msgText + "消息ID: " + msgID + "\n"
             msgText = msgText + "消息内容:\n" + msgContent + "\n"
         self.ui.tEtResp.setText(msgText)
