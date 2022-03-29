@@ -165,7 +165,7 @@ class ToolProtoXml(object):
                     protoData = TVItemProtoData(id, name, desc, content, type)
                     proto_uuid = protoData.uuid
                     protocolDict[proto_uuid] = protoData
-                    print(proto_uuid)
+
                     #print('-------', protoData.name)
                     pass
                 

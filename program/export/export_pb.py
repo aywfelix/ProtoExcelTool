@@ -66,9 +66,9 @@ class ExportPb(object):
                 # 获取导出proto路径
                 settingXml = ToolSettingXml()
                 toolConfig = settingXml.getTool()
-                print("save proto path=", toolConfig['proto'])
+                #print("save proto path=", toolConfig['proto'])
                 protoFilePath = toolConfig['proto'] +"/"+moduleName+".proto"
-                print("export proto file=", protoFilePath)
+                #print("export proto file=", protoFilePath)
                 with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
                     f.write(protoMsgs)
                     f.flush()
