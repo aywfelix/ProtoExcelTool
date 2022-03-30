@@ -36,10 +36,10 @@ from transtable.trans_table import *
 class ProtoMainUI(QMainWindow):
     def __init__(self, parent=None):
         super(ProtoMainUI, self).__init__()
-        self.ui = Ui_ProtoWindow()
+        self.ui = Ui_GameToolWindow()
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
-        self.setWindowIcon(QtGui.QIcon('../designer/icons/Icon_.ico'))
+        self.setWindowIcon(QtGui.QIcon('./images/program.ico'))
         self.setFixedSize(self.width(), self.height())
 
         #tabWidget 
@@ -324,7 +324,7 @@ class ProtoMainUI(QMainWindow):
     def createDirItem(self, dirData):
         topItem = QTreeWidgetItem(TVItemType.ItemDir)
         topItem.setText(0, dirData.dirName)
-        topItem.setIcon(0, QIcon('../designer/icons/folder.ico'))
+        topItem.setIcon(0, QIcon('./images/folder.ico'))
         topItem.setData(0, Qt.UserRole, dirData)
 
         self.ui.tRvProtocol.addTopLevelItem(topItem)
@@ -346,7 +346,7 @@ class ProtoMainUI(QMainWindow):
     def createProto(self, protoData, dirName=None):
         item = QTreeWidgetItem(TVItemType.ItemProto)
         item.setText(0, protoData.id+"#"+protoData.name)
-        item.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
+        item.setIcon(0, QIcon('./images/file.ico'))
         item.setData(0, Qt.UserRole, protoData)
         return item
         pass
@@ -627,7 +627,7 @@ class ProtoMainUI(QMainWindow):
         # 创建treewidget item
         topItem = QTreeWidgetItem()
         topItem.setText(0, enumName)
-        topItem.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
+        topItem.setIcon(0, QIcon('./images/file.ico'))
         self.ui.tRvEnum.addTopLevelItem(topItem)
         pass            
 
@@ -635,7 +635,7 @@ class ProtoMainUI(QMainWindow):
         # 创建treewidget item
         topItem = QTreeWidgetItem()
         topItem.setText(0, enumData.name)
-        topItem.setIcon(0, QIcon('../designer/icons/TextFile.ico'))
+        topItem.setIcon(0, QIcon('./images/file.ico'))
         self.ui.tRvEnum.addTopLevelItem(topItem)
         pass
     

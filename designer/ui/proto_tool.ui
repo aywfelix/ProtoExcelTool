@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProtoWindow</class>
- <widget class="QMainWindow" name="ProtoWindow">
+ <class>GameToolWindow</class>
+ <widget class="QMainWindow" name="GameToolWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>游戏协议工具</string>
+   <string>游戏开发工具</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
