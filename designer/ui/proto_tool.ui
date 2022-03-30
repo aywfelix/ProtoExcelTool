@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>904</width>
-    <height>797</height>
+    <width>896</width>
+    <height>785</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -652,20 +652,40 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="bTnExport">
+   <widget class="QPushButton" name="btnExportPb">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>560</x>
       <y>0</y>
-      <width>71</width>
+      <width>81</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
     <property name="text">
-     <string>发布</string>
+     <string>导出pb协议</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="bTnSetting">
+   <widget class="QPushButton" name="btnSetting">
     <property name="geometry">
      <rect>
       <x>820</x>
@@ -674,8 +694,52 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnExportEnum">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>0</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>导出枚举</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnExportTable">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>0</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>导出配置表</string>
     </property>
    </widget>
   </widget>
@@ -684,21 +748,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>904</width>
+     <width>896</width>
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuExport">
-    <property name="title">
-     <string>导出</string>
-    </property>
-    <addaction name="menuExportPb"/>
-    <addaction name="separator"/>
-    <addaction name="menuExportExcel"/>
-    <addaction name="separator"/>
-    <addaction name="menuExportProto"/>
-   </widget>
-   <addaction name="menuExport"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="menuExportExcel">

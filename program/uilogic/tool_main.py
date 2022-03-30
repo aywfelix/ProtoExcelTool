@@ -77,14 +77,11 @@ class ProtoMainUI(QMainWindow):
         self.ui.bTnProtoModify.clicked.connect(self.modifyProtoClicked)
         # 枚举修改按钮绑定事件
         self.ui.bTnEnumModify.clicked.connect(self.modifyEnumClicked)
-        # 发布按钮
-        self.ui.bTnExport.clicked.connect(self.exportAllClicked)
-        # 设置按钮
-        self.ui.bTnSetting.clicked.connect(self.openSettingClicked)
-        # 菜单事件处理逻辑
-        self.ui.menuExportPb.triggered.connect(self.menuExportPbClicked)
-        self.ui.menuExportExcel.triggered.connect(self.menuExportExcelClicked)
-        self.ui.menuExportProto.triggered.connect(self.menuExportProtoClicked)
+        # 主界面几个常用按钮绑定事件
+        self.ui.btnExportPb.clicked.connect(self.exportPbClicked)
+        self.ui.btnExportEnum.clicked.connect(self.exportEnumClicked)
+        self.ui.btnExportTable.clicked.connect(self.exportTableClicked)
+        self.ui.btnSetting.clicked.connect(self.openSettingClicked)
         # 协议测试
         self.ui.bTnConn.clicked.connect(self.connServerClicked)
         self.ui.bTnDisconn.clicked.connect(self.disConnectClicked)
@@ -529,27 +526,6 @@ class ProtoMainUI(QMainWindow):
         self.showModifyEnumWindow()
         pass
 
-    # 导出pb文件    
-    def menuExportPbClicked(self):
-        self.ui.statusbar.showMessage('正在导出协议...')
-        self.exportPb.exportProtoBuffer()
-
-        self.ui.statusbar.showMessage('完成导出协议...')
-        pass
-    
-    # 导出配置表    
-    def menuExportExcelClicked(self):
-        self.ui.statusbar.showMessage('正在导出配置表...')
-        self.transTable.transTables()
-        self.ui.statusbar.showMessage('完成导出配置表...')
-        pass
-
-    # 导出proto文件    
-    def menuExportProtoClicked(self):
-        self.ui.statusbar.showMessage('正在导出proto文件...')
-        self.exportPb.exportProtoFile()
-        self.ui.statusbar.showMessage('完成导出proto文件...')
-        pass
 
     # 程序界面退出
     def closeEvent(self, event):
@@ -667,19 +643,34 @@ class ProtoMainUI(QMainWindow):
         self.enumXml.writeEnumXml()
         pass
 
-    def exportAllClicked(self):
-        self.ui.statusbar.showMessage('正在导出最新协议及枚举值...')
+    # 导出协议
+    def exportPbClicked(self):
+        self.ui.statusbar.showMessage('正在导出最新协议...')
         self.saveProtoXml()
-        self.saveEnumXml()
-        # 导出协议
         export_pb = ExportPb()
         export_pb.exportProtoBuffer()
-        # 导出枚举
+
+        self.ui.statusbar.showMessage('完成导出协议...')
+        pass
+
+    # 导出枚举
+    def exportEnumClicked(self):
+        self.ui.statusbar.showMessage('正在导出最新枚举...')
+        self.saveEnumXml()
         exprotEnum = ExportEnum()
         exprotEnum.export_enum()
 
-        self.ui.statusbar.showMessage('导出完成...')
+        self.ui.statusbar.showMessage('完成导出枚举...')        
         pass
+
+    # 导出配置表
+    def exportTableClicked(self):
+        self.ui.statusbar.showMessage('正在导出配置表...')
+        transTable = TransTable()
+        transTable.transTables()
+        self.ui.statusbar.showMessage('完成导出配置表...')
+        pass
+
     
     def openSettingClicked(self):
         self.toolSettingUI = ToolSettingUI()
