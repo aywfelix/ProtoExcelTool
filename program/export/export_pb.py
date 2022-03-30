@@ -26,7 +26,6 @@ class ExportPb(object):
     def __init__(self):
         self.settingXml = ToolSettingXml()
         self.protoXml = ToolProtoXml()
-        self.pythonPbPath = "../extra/pb/python"
         pass
 
     # 导出最新proto文件
@@ -111,7 +110,6 @@ class ExportPb(object):
                     if config.lang == ProgramLangType.CSHARP: # csharp
                         pass
                     if config.lang == ProgramLangType.PYTHON: #python
-                        # 默认导出 python pb，用于网络测试
                         cmdStr = protocPath + ' --proto_path=' + \
                             protoPath + ' --python_out='+config.publish + " "+proto
 

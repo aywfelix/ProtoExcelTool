@@ -13,18 +13,33 @@
 # here put the import lib
 import os
 import sys
-sys.path.append("../extra/pb/python")
+
 import importlib
+from setting_xml import *
 
 class ReLoadFiles(object):
     def __init__(self, parent=None):
-        self.defaultDir = "../extra/pb/python"
         self.moduleList = {}
+        pass
+
+    def getPythonPbPath(self):
+        setting_xml = ToolSettingXml()
+        tmpls = setting_xml.getTmplsByType(TmplType.PROTO)
+        if not tmpls:
+            return None
+        for config in tmpls:
+            if config.lang == ProgramLangType.PYTHON: #python
+                return config.publish
+        return None 
         pass
     
     def readLoadModule(self):
         try:
-            for pbfile in os.listdir(self.defaultDir):
+            reload_path = self.getPythonPbPath()
+            if not reload_path: return
+            
+            sys.path.append(reload_path)
+            for pbfile in os.listdir(reload_path):
                 if not pbfile.endswith(".py"):
                     continue
                 shortFile = os.path.splitext(pbfile)[0]
