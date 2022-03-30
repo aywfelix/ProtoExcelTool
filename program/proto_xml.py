@@ -15,7 +15,6 @@ import codecs
 from xml.dom import Node
 import xml.dom.minidom as xmlDom
 
-from sympy import N
 from tool_define import *
 from setting_xml import *
 
