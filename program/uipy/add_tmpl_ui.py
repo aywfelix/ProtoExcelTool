@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AddTmplForm(object):
     def setupUi(self, AddTmplForm):
         AddTmplForm.setObjectName("AddTmplForm")
-        AddTmplForm.resize(453, 174)
+        AddTmplForm.resize(453, 167)
         self.label = QtWidgets.QLabel(AddTmplForm)
         self.label.setGeometry(QtCore.QRect(10, 40, 61, 16))
         self.label.setObjectName("label")
@@ -25,7 +25,7 @@ class Ui_AddTmplForm(object):
         self.label_3.setGeometry(QtCore.QRect(10, 100, 61, 16))
         self.label_3.setObjectName("label_3")
         self.bTnOk = QtWidgets.QPushButton(AddTmplForm)
-        self.bTnOk.setGeometry(QtCore.QRect(180, 140, 75, 23))
+        self.bTnOk.setGeometry(QtCore.QRect(170, 130, 75, 23))
         self.bTnOk.setObjectName("bTnOk")
         self.lEtTmplName = QtWidgets.QLineEdit(AddTmplForm)
         self.lEtTmplName.setGeometry(QtCore.QRect(80, 40, 281, 20))
@@ -33,6 +33,7 @@ class Ui_AddTmplForm(object):
         self.cBbxLang = QtWidgets.QComboBox(AddTmplForm)
         self.cBbxLang.setGeometry(QtCore.QRect(80, 70, 111, 22))
         self.cBbxLang.setObjectName("cBbxLang")
+        self.cBbxLang.addItem("")
         self.cBbxLang.addItem("")
         self.cBbxLang.addItem("")
         self.cBbxLang.addItem("")
@@ -68,6 +69,7 @@ class Ui_AddTmplForm(object):
         self.cBbxLang.setItemText(1, _translate("AddTmplForm", "lua"))
         self.cBbxLang.setItemText(2, _translate("AddTmplForm", "golang"))
         self.cBbxLang.setItemText(3, _translate("AddTmplForm", "csharp"))
+        self.cBbxLang.setItemText(4, _translate("AddTmplForm", "python"))
         self.bTnPublishDir.setText(_translate("AddTmplForm", "选择"))
         self.rBtnServer.setText(_translate("AddTmplForm", "服务器"))
         self.rBtnClient.setText(_translate("AddTmplForm", "客户端"))

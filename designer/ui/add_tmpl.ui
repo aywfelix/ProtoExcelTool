@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>453</width>
-    <height>174</height>
+    <height>167</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,8 +55,8 @@
   <widget class="QPushButton" name="bTnOk">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>140</y>
+     <x>170</x>
+     <y>130</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -102,6 +102,11 @@
    <item>
     <property name="text">
      <string>csharp</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>python</string>
     </property>
    </item>
   </widget>

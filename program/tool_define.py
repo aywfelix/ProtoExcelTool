@@ -140,6 +140,7 @@ class TmplLang:
         self.lua = "lua"
         self.golang = "golang"
         self.csharp = "csharp"
+        self.python = "python"
 
     def getLang(self, index):
         if index == 0:
@@ -150,6 +151,8 @@ class TmplLang:
             return self.golang
         if index == 3:
             return self.csharp
+        if index == 4:
+            return self.python
         
     def getIndex(self, lang):
         if lang == self.cpp:
@@ -160,6 +163,8 @@ class TmplLang:
             return 2
         if lang == self.csharp:
             return 3
+        if lang == self.python:
+            return 4
 
 def StrToBool(str):
     if not str: return False

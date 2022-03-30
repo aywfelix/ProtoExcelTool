@@ -110,13 +110,12 @@ class ExportPb(object):
                         pass
                     if config.lang == ProgramLangType.CSHARP: # csharp
                         pass
-                    print(cmdStr)
-                    subprocess.Popen(cmdStr)
-                    # 默认导出 python pb，用于网络测试
-                    cmdStr = protocPath + ' --proto_path=' + \
-                        protoPath + ' --python_out=../extra/pb/python' + " "+proto                    
-                    print(cmdStr)
-                    subprocess.Popen(cmdStr)
+                    if config.lang == ProgramLangType.PYTHON: #python
+                        # 默认导出 python pb，用于网络测试
+                        cmdStr = protocPath + ' --proto_path=' + \
+                            protoPath + ' --python_out='+config.publish + " "+proto
+
+                    subprocess.Popen(cmdStr, shell=True)
         except Exception as e:
             print("export pb err, ", e)
 
