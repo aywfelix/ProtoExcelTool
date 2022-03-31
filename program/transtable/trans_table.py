@@ -14,6 +14,7 @@ from tool_define import *
 from transtable.trans_cpp import *
 from transtable.trans_csharp import *
 from transtable.trans_lua import *
+from transtable.trans_go import *
 from setting_xml import *
 
 
@@ -59,7 +60,6 @@ class TransTable:
     def fix_row_dict(self, row_values, field_types):
         row_dict = {}
         for data_type in field_types:  # i 代表列
-
             field_type = data_type[0]
             field_id = data_type[1]
             i = data_type[2]
@@ -96,7 +96,7 @@ class TransTable:
                 row_dict[field_id] = list(
                     map(str, row_values[i].split('|')))
 
-        print("=============", row_dict)
+        #print("=============", row_dict)
         return row_dict
 
     def write_json(self, table_name, all_rows):
@@ -165,14 +165,19 @@ class TransTable:
                 if tmpl.lang == ProgramLangType.CPP:
                     trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
                     trans_cpp.gen(table_name)
-                # 如果配置了导出csharp
+
                 if tmpl.lang == ProgramLangType.CSHARP:
                     trans_csharp = TransCsharp(tmpl.publish, field_types, field_descs)
                     trans_csharp.gen(table_name)
-                # 如果配置了导出lua
+
                 if tmpl.lang == ProgramLangType.LUA:
                     trans_lua = TransLua(tmpl.publish)
                     trans_lua.gen(table_name)
+                
+                if tmpl.lang == ProgramLangType.GO:
+                    trans_go = TransGo(tmpl.publish, field_types, field_descs)
+                    trans_go.gen(table_name)
+                    
             print("transport table ", excel_name, " succ")
         except Exception as e:
             print('str(Exception):\t', str(e))
