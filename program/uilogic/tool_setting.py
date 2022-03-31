@@ -31,16 +31,16 @@ class ToolSettingUI(QMainWindow):
 
         # 设置默认为tab索引
         self.ui.tabWidget.setCurrentIndex(0)
-
+        self.ui.tabWidget.currentChanged['int'].connect(self.tabWidgetChanged)
         # 关联事件处理
         self.ui.bTnProtoc.clicked.connect(lambda: self.setDirPath(SetPathType.PROTOC))
         self.ui.bTnProto.clicked.connect(lambda: self.setDirPath(SetPathType.PROTO))
         self.ui.bTnTable.clicked.connect(lambda: self.setDirPath(SetPathType.TABLE))
         self.ui.bTnTbJson.clicked.connect(lambda: self.setDirPath(SetPathType.TbJson))
         # 添加模板操作
-        self.ui.bTnProtoAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.PROTO))
-        self.ui.bTnEnumAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.ENUM))
-        self.ui.bTnTableAddTmpl.clicked.connect(lambda: self.showAddTmpl(TmplType.TABLE))
+        self.ui.bTnProtoAddTmpl.clicked.connect(self.showAddTmpl)
+        self.ui.bTnEnumAddTmpl.clicked.connect(self.showAddTmpl)
+        self.ui.bTnTableAddTmpl.clicked.connect(self.showAddTmpl)
         # 处理配置文件
         self.settingXml = ToolSettingXml()
         # 用于语言索引转换
@@ -60,6 +60,11 @@ class ToolSettingUI(QMainWindow):
         self.settingXml.readSettingXml()
         self.showSettingInfo() 
         pass
+
+    def tabWidgetChanged(self, index):
+        if index == 0:
+            return
+        self.tmplType = index
 
     def showSettingInfo(self):
         # tab1--工具常用配置
@@ -131,8 +136,7 @@ class ToolSettingUI(QMainWindow):
             self.ui.lEtJsonPath.setText(dirPath)            
         pass
 
-    def showAddTmpl(self, tmplType):
-        self.tmplType = tmplType
+    def showAddTmpl(self):
         self.addTmplUI = AddTmplUI(self)
         self.addTmplUI.show()
         self.addTmplUI.dialogSignal.connect(self.appendTmplInfo)
@@ -154,12 +158,9 @@ class ToolSettingUI(QMainWindow):
 
             bTnModify = QPushButton()
             bTnModify.setText("修改")
-            bTnModify.clicked.connect(
-                lambda: self.showModifyTmpl(tmplData, hBoxLayout))
             bTnModify.setFixedWidth(80)
             bTnDelete = QPushButton()
             bTnDelete.setText("删除")
-            bTnDelete.clicked.connect(lambda: self.deleteTmpl(tmplData, hBoxLayout))
             bTnDelete.setFixedWidth(80)
 
             hBoxLayout.addWidget(lEtTemplName)
@@ -176,6 +177,9 @@ class ToolSettingUI(QMainWindow):
                 self.enumFormLayout.addRow(hBoxLayout)
             if tmplType == TmplType.TABLE:
                 self.tableFormLayout.addRow(hBoxLayout)
+
+            bTnModify.clicked.connect(lambda: self.showModifyTmpl(tmplData, hBoxLayout))
+            bTnDelete.clicked.connect(lambda: self.deleteTmpl(tmplData, hBoxLayout))
         except Exception as e:
             print(e)
 
@@ -203,7 +207,10 @@ class ToolSettingUI(QMainWindow):
         if self.tmplType == TmplType.TABLE:
             self.tableFormLayout.removeRow(layout)
 
-        tmplList.remove(tmplData)        
+        for tmpl in tmplList:
+            if tmpl.uuid == tmplData.uuid:
+                tmplList.remove(tmpl)
+                break        
 
     
     def modifyTmpl(self, oldTmplData, tmplData):

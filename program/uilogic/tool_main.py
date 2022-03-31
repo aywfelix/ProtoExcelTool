@@ -51,8 +51,7 @@ class ProtoMainUI(QMainWindow):
         self.ui.tRvProtocol.clicked.connect(self.protoTreeViewClicked)
         # 右键treeView显示菜单
         self.ui.tRvProtocol.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.ui.tRvProtocol.customContextMenuRequested.connect(
-            self.showProtoMenu)
+        self.ui.tRvProtocol.customContextMenuRequested.connect(self.showProtoMenu)
         self.protoMenu = QMenu(self.ui.tRvProtocol)
         self.actionA = self.protoMenu.addAction(u'创建协议')
         self.actionB = self.protoMenu.addAction(u'修改协议')
@@ -148,7 +147,6 @@ class ProtoMainUI(QMainWindow):
         self.showProtoTest()
 
     def tabWidgetChanged(self, index):
-        print('tab index==', index)
         if index == 2:
             self.refreshConnHosts()
             self.refreshProtoComboBox()

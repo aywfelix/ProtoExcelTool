@@ -1,5 +1,7 @@
 # _*_coding:utf-8 _*_
 
+from operator import is_
+from attr import field
 import xlrd
 from xlrd import xldate_as_tuple
 import multiprocessing
@@ -27,6 +29,7 @@ class TransTable:
         if not self.json_dir: 
             self.json_dir = "../extra/tablejson/"
         pass
+
     
     def loadExcels(self):
         files = os.listdir(self.excel_dir)
@@ -39,39 +42,30 @@ class TransTable:
         print(excels, classes_name)
         return excels, classes_name
 
-    def get_all_rows(self, sheet, field_types, field_exports, is_server):
+    def get_all_rows(self, sheet, field_types):
         rows = 5
         rowe = sheet.nrows
         if rowe <= rows:
             return
         all_rows = {}
         while rows < rowe:
-            row_dict = self.fix_row_dict(sheet.row_values(
-                rows), field_types, field_exports, is_server)
+            row_dict = self.fix_row_dict(sheet.row_values(rows), field_types)
             all_rows[row_dict["id"]] = row_dict
             rows = rows+1  
 
         return all_rows      
         pass
 
-    def fix_row_dict(self, row_values, field_types, field_exports, is_server):
+    def fix_row_dict(self, row_values, field_types):
         row_dict = {}
-        for i in range(len(field_types)):  # i 代表列
-            # 过滤导出字段
-            if field_exports[i][1] == '':
-                continue
-            if is_server and field_exports[i][1].find('s') == 0:
-                continue
-            if not is_server and field_exports[i][1].find('c') == 0:
-                continue
+        for data_type in field_types:  # i 代表列
 
-            if row_values[i] is None:
-                row_values[i] = ""
-
-            data_type = field_types[i]
             field_type = data_type[0]
             field_id = data_type[1]
-            #print("row_values====", row_values[i], type(row_values[i]), field_id)
+            i = data_type[2]
+            if row_values[i] is None:
+                row_values[i] = ""
+            #print("row_values====", row_values[j], type(row_values[j]), field_id)
             if "INT" == field_type:
                 row_dict[field_id] = int(row_values[i])
             if "FLOAT" == field_type:
@@ -102,7 +96,7 @@ class TransTable:
                 row_dict[field_id] = list(
                     map(str, row_values[i].split('|')))
 
-        #print("=============", row_dict)
+        print("=============", row_dict)
         return row_dict
 
     def write_json(self, table_name, all_rows):
@@ -111,7 +105,23 @@ class TransTable:
         with codecs.open(json_file, 'w+', encoding='utf-8') as f:
             jsonStr = json.dumps(
                 all_rows, indent=4, sort_keys=False, ensure_ascii=False)
-            f.write(jsonStr + '\n')        
+            f.write(jsonStr + '\n')
+
+    def filter_field_types(self, field_types, field_exports, is_server):
+        new_field_types = []
+        for i in range(len(field_types)):
+            field_type = field_types[i]
+            field_export = field_exports[i]
+
+            if field_export[1] == '': continue
+            if is_server and field_export[1].find('s') == -1: continue
+            if not is_server and field_export[1].find('c') == -1: continue
+            
+            field_type = field_type + (i,)
+            new_field_types.append(field_type)
+                    
+        return new_field_types
+        pass      
 
     def transExcels(self, excel_name, table_name):
         try:
@@ -138,16 +148,20 @@ class TransTable:
                 export_type.append(x)
             field_exports = list(zip(sheet.row_values(2),export_type))
 
-            all_rows = self.get_all_rows(
-                sheet, field_types, field_exports, True)
-            # print(all_rows)
-            # 导出json文件
-            self.write_json(table_name, all_rows)
             # 如果配置了导出cpp
             exportTmpls = self.settingXml.getTmplsByType(TmplType.TABLE)
             if not exportTmpls:
                 return
             for tmpl in exportTmpls:
+                if tmpl.ttype == '1': 
+                    is_server = True 
+                else: 
+                    is_server = False
+                field_types = self.filter_field_types(field_types, field_exports, is_server) #(int, id, 0)已经加上列索引
+                all_rows = self.get_all_rows(sheet, field_types)
+                # 导出json文件
+                self.write_json(table_name, all_rows)
+
                 if tmpl.lang == ProgramLangType.CPP:
                     trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
                     trans_cpp.gen(table_name)
@@ -178,6 +192,7 @@ class TransTable:
         # # gc pool
         # pool.close()
         # pool.join()
+
         for excel in excels:
             class_name = excel.split('_')[0]
             self.transExcels(excel, class_name)
