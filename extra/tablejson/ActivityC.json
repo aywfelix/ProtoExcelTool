@@ -1,22 +1,27 @@
 {
     "1": {
         "id": 1,
+        "tab_id": 1,
         "open_in_week": []
     },
     "2": {
         "id": 2,
+        "tab_id": 2,
         "open_in_week": []
     },
     "3": {
         "id": 3,
+        "tab_id": 3,
         "open_in_week": []
     },
     "4": {
         "id": 4,
+        "tab_id": 4,
         "open_in_week": []
     },
     "101": {
         "id": 101,
+        "tab_id": 1,
         "open_in_week": [
             1,
             2,
@@ -25,6 +30,7 @@
     },
     "102": {
         "id": 102,
+        "tab_id": 1,
         "open_in_week": [
             1,
             4,
@@ -33,6 +39,7 @@
     },
     "103": {
         "id": 103,
+        "tab_id": 1,
         "open_in_week": [
             1,
             6,

@@ -99,9 +99,12 @@ class TransTable:
         #print("=============", row_dict)
         return row_dict
 
-    def write_json(self, table_name, all_rows):
+    def write_json(self, table_name, all_rows, is_server):
         # 写入json
-        json_file = os.path.join(self.json_dir, table_name+'.json')
+        if is_server:
+            json_file = os.path.join(self.json_dir, table_name+'S.json')
+        else:
+            json_file = os.path.join(self.json_dir, table_name+'C.json')
         with codecs.open(json_file, 'w+', encoding='utf-8') as f:
             jsonStr = json.dumps(
                 all_rows, indent=4, sort_keys=False, ensure_ascii=False)
@@ -114,9 +117,9 @@ class TransTable:
             field_export = field_exports[i]
 
             if field_export[1] == '': continue
-            if is_server and field_export[1].find('s') == -1: continue
-            if not is_server and field_export[1].find('c') == -1: continue
-            
+            if is_server and field_export[1].find("s") == -1: continue
+            if not is_server and field_export[1].find("c") == -1: continue
+
             field_type = field_type + (i,)
             new_field_types.append(field_type)
                     
@@ -157,10 +160,10 @@ class TransTable:
                     is_server = True 
                 else: 
                     is_server = False
-                field_types = self.filter_field_types(field_types, field_exports, is_server) #(int, id, 0)已经加上列索引
-                all_rows = self.get_all_rows(sheet, field_types)
+                filter_types = self.filter_field_types(field_types, field_exports, is_server) #(int, id, 0)已经加上列索引
+                all_rows = self.get_all_rows(sheet, filter_types)
                 # 导出json文件
-                self.write_json(table_name, all_rows)
+                self.write_json(table_name, all_rows, is_server)
 
                 if tmpl.lang == ProgramLangType.CPP:
                     trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
