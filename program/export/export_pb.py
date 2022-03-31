@@ -90,12 +90,13 @@ class ExportPb(object):
                 protocPath = protocPath+"protoc.exe"
             else:
                 protocPath = protocPath+"/protoc.exe"
-            protoPath = toolConfig['proto']    
+            protoPath = toolConfig['proto']  
+            if not protoPath: return  
             for config in tmpls:
                 for proto in os.listdir(protoPath):
                     if not proto.endswith(".proto"):
                         continue
-
+                    if not config.publish: continue        
                     cmdStr = ""
                     if config.lang == ProgramLangType.CPP: # cpp
                         cmdStr = protocPath + ' --proto_path=' + \

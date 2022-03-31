@@ -36,6 +36,7 @@ class ExportEnum(object):
                 return  
           
             for tmpl in tmpls:
+                if not tmpl.publish: return
                 if tmpl.lang == ProgramLangType.CPP:
                     # 读取cpp 枚举模板
                     enum_cpp = ExportEnumCpp(tmpl.publish, enumDatas)

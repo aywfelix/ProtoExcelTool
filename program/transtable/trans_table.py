@@ -23,16 +23,11 @@ class TransTable:
         self.excel_dir = toolConfig['excel']
         self.server_json_dir = toolConfig['serverjson']
         self.client_json_dir = toolConfig['clientjson']        
-        if not self.excel_dir: 
-            self.excel_dir = "../extra/excels/"
-        if not self.server_json_dir: 
-            self.server_json_dir = "../extra/tablejson/"
-        if not self.client_json_dir:
-            self.client_json_dir = "../extra/tablejson/"
         pass
 
     
     def loadExcels(self):
+        if not self.excel_dir: return
         files = os.listdir(self.excel_dir)
         excels = [file for file in files if os.path.splitext(file)[
             1] == ".xlsx" and '~' not in file]
@@ -102,8 +97,10 @@ class TransTable:
     def write_json(self, table_name, all_rows, is_server):
         # 写入json
         if is_server:
+            if not self.server_json_dir: return
             json_file = os.path.join(self.server_json_dir, table_name+'.json')
         else:
+            if not self.client_json_dir: return
             json_file = os.path.join(self.client_json_dir, table_name+'.json')
         with codecs.open(json_file, 'w+', encoding='utf-8') as f:
             jsonStr = json.dumps(
