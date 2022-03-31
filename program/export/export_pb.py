@@ -113,7 +113,7 @@ class ExportPb(object):
                         cmdStr = protocPath + ' --proto_path=' + \
                             protoPath + ' --python_out='+config.publish + " "+proto
 
-                    subprocess.Popen(cmdStr, shell=True)
+                    subprocess.Popen(cmdStr, shell=True, cwd=os.getcwd())
         except Exception as e:
             print("export pb err, ", e)
 

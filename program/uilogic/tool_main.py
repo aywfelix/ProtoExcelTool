@@ -558,6 +558,8 @@ class ProtoMainUI(QMainWindow):
         palette.setColor(QtGui.QPalette.ButtonText, QtCore.Qt.black)
         self.ui.bTnConn.setPalette(palette)
         self.ui.bTnConn.setAutoFillBackground(True)
+
+        self.ui.tEtResp.setText('')
         pass
 
     def showSearchProtoItem(self, filter):

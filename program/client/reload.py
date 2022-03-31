@@ -44,7 +44,7 @@ class ReLoadFiles(object):
                     continue
                 shortFile = os.path.splitext(pbfile)[0]
                 module = importlib.import_module(shortFile)
-                #print(shortFile, module)
+                # print(shortFile, module)
                 self.moduleList[shortFile] = module
         except Exception as e:
             print(e)
