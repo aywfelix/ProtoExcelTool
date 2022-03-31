@@ -95,7 +95,8 @@ class SetPathType:
     PROTOC = 1
     PROTO = 2
     TABLE = 3
-    TbJson = 4
+    ServerJson = 4
+    ClientJson = 5
 
 
 class EnumField:
@@ -116,11 +117,12 @@ class EnumItemData:
     
 # 工具常用配置项
 class ToolConfigData:
-    def __init__(self, protocPath, protoPath, excelPath, jsonPath, serverHosts = []):
+    def __init__(self, protocPath, protoPath, excelPath, serverJsonPath, clientJsonPath, serverHosts=[]):
         self.protocPath = protocPath
         self.protoPath = protoPath
         self.excelPath = excelPath
-        self.jsonPath = jsonPath
+        self.serverJsonPath = serverJsonPath
+        self.clientJsonPath = clientJsonPath
         self.serverHosts = serverHosts
 
 

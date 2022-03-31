@@ -1,7 +1,4 @@
 # _*_coding:utf-8 _*_
-
-from operator import is_
-from attr import field
 import xlrd
 from xlrd import xldate_as_tuple
 import multiprocessing
@@ -24,11 +21,14 @@ class TransTable:
         self.settingXml = ToolSettingXml()
         toolConfig = self.settingXml.getTool()
         self.excel_dir = toolConfig['excel']
-        self.json_dir = toolConfig['tbjson']
+        self.server_json_dir = toolConfig['serverjson']
+        self.client_json_dir = toolConfig['clientjson']        
         if not self.excel_dir: 
             self.excel_dir = "../extra/excels/"
-        if not self.json_dir: 
-            self.json_dir = "../extra/tablejson/"
+        if not self.server_json_dir: 
+            self.server_json_dir = "../extra/tablejson/"
+        if not self.client_json_dir:
+            self.client_json_dir = "../extra/tablejson/"
         pass
 
     
@@ -102,9 +102,9 @@ class TransTable:
     def write_json(self, table_name, all_rows, is_server):
         # 写入json
         if is_server:
-            json_file = os.path.join(self.json_dir, table_name+'S.json')
+            json_file = os.path.join(self.server_json_dir, table_name+'.json')
         else:
-            json_file = os.path.join(self.json_dir, table_name+'C.json')
+            json_file = os.path.join(self.client_json_dir, table_name+'.json')
         with codecs.open(json_file, 'w+', encoding='utf-8') as f:
             jsonStr = json.dumps(
                 all_rows, indent=4, sort_keys=False, ensure_ascii=False)
@@ -127,83 +127,82 @@ class TransTable:
         pass      
 
     def transExcels(self, excel_name, table_name):
-        try:
-            excelFile = xlrd.open_workbook(os.path.join(self.excel_dir, excel_name))
-            excelSheetNames = excelFile.sheet_names()
-            sheet = excelFile.sheet_by_name(excelSheetNames[0])
-            if not sheet:
-                return
+        excelFile = xlrd.open_workbook(os.path.join(self.excel_dir, excel_name))
+        excelSheetNames = excelFile.sheet_names()
+        sheet = excelFile.sheet_by_name(excelSheetNames[0])
+        if not sheet:
+            return
 
-            # 字段注释
-            field_desc1 = sheet.row_values(0)
-            field_desc2 = sheet.row_values(1)
-            field_descs = [a+" "+b for a, b in zip(field_desc1, field_desc2)]
+        # 字段注释
+        field_desc1 = sheet.row_values(0)
+        field_desc2 = sheet.row_values(1)
+        field_descs = [a+" "+b for a, b in zip(field_desc1, field_desc2)]
 
-            # 字段类型与字段名称--[(INT,id), (STRING,comment), ...)]
-            data_type = []
-            for x in sheet.row_values(3): # 字段类型
-                data_type.append(x)
-            field_types = list(zip(data_type, sheet.row_values(2)))   # 字段名称
-            # print(fields_type)
-            # 字段导出与字段名称--[(id,cs), (comment,''), (name,s),..)]
-            export_type = []
-            for x in sheet.row_values(4):
-                export_type.append(x)
-            field_exports = list(zip(sheet.row_values(2),export_type))
+        # 字段类型与字段名称--[(INT,id), (STRING,comment), ...)]
+        data_type = []
+        for x in sheet.row_values(3): # 字段类型
+            data_type.append(x)
+        field_types = list(zip(data_type, sheet.row_values(2)))   # 字段名称
+        # print(fields_type)
+        # 字段导出与字段名称--[(id,cs), (comment,''), (name,s),..)]
+        export_type = []
+        for x in sheet.row_values(4):
+            export_type.append(x)
+        field_exports = list(zip(sheet.row_values(2),export_type))
 
-            # 如果配置了导出cpp
-            exportTmpls = self.settingXml.getTmplsByType(TmplType.TABLE)
-            if not exportTmpls:
-                return
-            for tmpl in exportTmpls:
-                if tmpl.ttype == '1': 
-                    is_server = True 
-                else: 
-                    is_server = False
-                filter_types = self.filter_field_types(field_types, field_exports, is_server) #(int, id, 0)已经加上列索引
-                all_rows = self.get_all_rows(sheet, filter_types)
-                # 导出json文件
-                self.write_json(table_name, all_rows, is_server)
+        # 如果配置了导出cpp
+        exportTmpls = self.settingXml.getTmplsByType(TmplType.TABLE)
+        if not exportTmpls:
+            return
+        for tmpl in exportTmpls:
+            if tmpl.ttype == '1': 
+                is_server = True 
+            else: 
+                is_server = False
+            filter_types = self.filter_field_types(field_types, field_exports, is_server) #(int, id, 0)已经加上列索引
+            all_rows = self.get_all_rows(sheet, filter_types)
+            # 导出json文件
+            self.write_json(table_name, all_rows, is_server)
 
-                if tmpl.lang == ProgramLangType.CPP:
-                    trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
-                    trans_cpp.gen(table_name)
+            if tmpl.lang == ProgramLangType.CPP:
+                trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
+                trans_cpp.gen(table_name)
 
-                if tmpl.lang == ProgramLangType.CSHARP:
-                    trans_csharp = TransCsharp(tmpl.publish, field_types, field_descs)
-                    trans_csharp.gen(table_name)
+            if tmpl.lang == ProgramLangType.CSHARP:
+                trans_csharp = TransCsharp(tmpl.publish, field_types, field_descs)
+                trans_csharp.gen(table_name)
 
-                if tmpl.lang == ProgramLangType.LUA:
-                    trans_lua = TransLua(tmpl.publish)
-                    trans_lua.gen(table_name)
+            if tmpl.lang == ProgramLangType.LUA:
+                trans_lua = TransLua(tmpl.publish)
+                trans_lua.gen(table_name)
+            
+            if tmpl.lang == ProgramLangType.GO:
+                trans_go = TransGo(tmpl.publish, field_types, field_descs)
+                trans_go.gen(table_name)
                 
-                if tmpl.lang == ProgramLangType.GO:
-                    trans_go = TransGo(tmpl.publish, field_types, field_descs)
-                    trans_go.gen(table_name)
-                    
-            print("transport table ", excel_name, " succ")
-        except Exception as e:
-            print('str(Exception):\t', str(e))
-            print('traceback.print_exc():', traceback.print_exc())
-        pass
+        print("transport table ", excel_name, " succ")
 
 
     def transTables(self):
-        excels, _ = self.loadExcels()
-        if not excels:
-            return
+        try:
+            excels, _ = self.loadExcels()
+            if not excels:
+                return
 
-        # pool = multiprocessing.Pool(processes=5)
-        # for excel in excels:
-        #     class_name = excel.split('_')[0]
-        #     pool.apply_async(self.transExcels, (excel, class_name))
-        # # gc pool
-        # pool.close()
-        # pool.join()
+            # pool = multiprocessing.Pool(processes=5)
+            # for excel in excels:
+            #     class_name = excel.split('_')[0]
+            #     pool.apply_async(self.transExcels, (excel, class_name))
+            # # gc pool
+            # pool.close()
+            # pool.join()
 
-        for excel in excels:
-            class_name = excel.split('_')[0]
-            self.transExcels(excel, class_name)
+            for excel in excels:
+                class_name = excel.split('_')[0]
+                self.transExcels(excel, class_name)
+        except Exception as e:
+            print('str(Exception):\t', str(e))
+            print('traceback.print_exc():', traceback.print_exc())
     pass
 
 if __name__ == '__main__':

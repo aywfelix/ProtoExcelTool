@@ -28,7 +28,6 @@ class ToolSettingUI(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowOpacity(0.96)
         self.setFixedSize(self.width(), self.height())
-
         # 设置默认为tab索引
         self.ui.tabWidget.setCurrentIndex(0)
         self.ui.tabWidget.currentChanged['int'].connect(self.tabWidgetChanged)
@@ -36,7 +35,10 @@ class ToolSettingUI(QMainWindow):
         self.ui.bTnProtoc.clicked.connect(lambda: self.setDirPath(SetPathType.PROTOC))
         self.ui.bTnProto.clicked.connect(lambda: self.setDirPath(SetPathType.PROTO))
         self.ui.bTnTable.clicked.connect(lambda: self.setDirPath(SetPathType.TABLE))
-        self.ui.bTnTbJson.clicked.connect(lambda: self.setDirPath(SetPathType.TbJson))
+        self.ui.btnServerJson.clicked.connect(lambda: self.setDirPath(SetPathType.ServerJson))
+        self.ui.btnClientJson.clicked.connect(
+            lambda: self.setDirPath(SetPathType.ClientJson))
+
         # 添加模板操作
         self.ui.bTnProtoAddTmpl.clicked.connect(self.showAddTmpl)
         self.ui.bTnEnumAddTmpl.clicked.connect(self.showAddTmpl)
@@ -77,8 +79,10 @@ class ToolSettingUI(QMainWindow):
             self.ui.lEtProtoPath.setText(toolInfos['proto'])
         if toolInfos['excel']:    
             self.ui.lEtTablePath.setText(toolInfos['excel'])
-        if toolInfos['tbjson']:
-            self.ui.lEtJsonPath.setText(toolInfos['tbjson'])
+        if toolInfos['serverjson']:
+            self.ui.letServerJsonPath.setText(toolInfos['serverjson'])
+        if toolInfos['clientjson']:
+            self.ui.letClientJsonPath.setText(toolInfos['clientjson'])
         if toolInfos['hosts']:
             ipList = ''
             for ip in toolInfos['hosts']:
@@ -106,7 +110,8 @@ class ToolSettingUI(QMainWindow):
             protocPath = self.ui.lEtProtocPath.text().strip()
             protoPath = self.ui.lEtProtoPath.text().strip()
             excelPath = self.ui.lEtTablePath.text().strip()
-            jsonPath = self.ui.lEtJsonPath.text().strip()
+            serverJsonPath = self.ui.letServerJsonPath.text().strip()
+            clientJsonPath = self.ui.letClientJsonPath.text().strip()
             ipListText = self.ui.tEtIPList.toPlainText()
             serverHosts = ipListText.split('\n')
             for host in serverHosts:
@@ -114,7 +119,7 @@ class ToolSettingUI(QMainWindow):
                 if not VarifyHost(ip, port):
                     serverHosts = []
                     break
-            toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, jsonPath, serverHosts)
+            toolConfigData = ToolConfigData(protocPath, protoPath, excelPath, serverJsonPath, clientJsonPath, serverHosts)
             self.settingXml.updateTool(toolConfigData)
             self.settingXml.writeSettingXml()        
         except Exception as e:
@@ -132,8 +137,10 @@ class ToolSettingUI(QMainWindow):
             self.ui.lEtProtoPath.setText(dirPath)
         if openType == SetPathType.TABLE:
             self.ui.lEtTablePath.setText(dirPath)
-        if openType == SetPathType.TbJson:
-            self.ui.lEtJsonPath.setText(dirPath)            
+        if openType == SetPathType.ServerJson:
+            self.ui.letServerJsonPath.setText(dirPath)   
+        if openType == SetPathType.ClientJson:
+            self.ui.letClientJsonPath.setText(dirPath)
         pass
 
     def showAddTmpl(self):

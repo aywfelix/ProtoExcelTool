@@ -142,3 +142,15 @@ else:
 str1 = '1100#enterscenenotify'
 str2 = '1100'
 print(str1.find(str2)>=0)
+
+
+class Tmp(object):
+    def __init__(self):
+        self.list = []
+    def getList(self):
+        return self.list
+
+tmp = Tmp()
+li = tmp.getList()
+li.append("aaa")
+print(tmp.list)
