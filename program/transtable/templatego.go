@@ -2,7 +2,7 @@ package Table
 
 import (
 	"encoding/json"
-	io "io/ioutil"
+	"io/ioutil"
 	"fmt"
 )
 
@@ -40,7 +40,7 @@ func (t *activityTable) Table() map[int]*activityRow {
 }
 
 func (t *activityTable) Load() {
-	data, err := io.ReadFile("./Activity.json")
+	data, err := ioutil.ReadFile("./Activity.json")
 	if err != nil {
 		return
 	}

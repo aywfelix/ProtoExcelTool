@@ -1,1 +1,65 @@
-﻿
+﻿package Table
+
+import (
+	"encoding/json"
+	"io/ioutil"
+	"fmt"
+)
+
+type %(low_class_name)sRow struct {
+%(row_fields)s
+}
+
+type %(low_class_name)sTable struct {
+	keys  []int
+	table map[int]*%(low_class_name)sRow
+}
+
+var %(class_name)sTable *%(low_class_name)sTable
+
+func (t *%(low_class_name)sTable) GetRow(id int) *%(low_class_name)sRow {
+	row, ok := t.table[id]
+	if !ok {
+		return nil
+	}
+	return row
+}
+
+func (t *%(low_class_name)sTable) HasRow(id int) bool {
+	_, ok := t.table[id]
+	return ok
+}
+
+func (t *%(low_class_name)sTable) Keys() []int {
+	return t.keys
+}
+
+func (t *%(low_class_name)sTable) Table() map[int]*%(low_class_name)sRow {
+	return t.table
+}
+
+func (t *%(low_class_name)sTable) Load() {
+	data, err := ioutil.ReadFile("./%(class_name)s.json")
+	if err != nil {
+		return
+	}
+	err = json.Unmarshal(data, &t.table)
+	if err != nil {
+		fmt.Println("read table %(class_name)s error, ", err.Error())
+		return
+	}
+	for k, _ := range t.table {
+		t.keys = append(t.keys, k)
+	}
+}
+
+func (t *%(low_class_name)sTable) Reload() {
+	t.keys = make([]int, 0)
+	t.table = make(map[int]*%(low_class_name)sRow)
+	t.Load()
+}
+
+func init() {
+	%(class_name)sTable = new(%(low_class_name)sTable)
+	%(class_name)sTable.Load()
+}

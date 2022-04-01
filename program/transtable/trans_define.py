@@ -35,6 +35,18 @@ data_type_cs = {
     "LS": "List<string>"
 }
 
+data_type_go = {
+    "INT": "int",
+    "FLOAT": "float32",
+    "DOUBLE": "float64",
+    "STRING": "[]rune",
+    "LI": "[]int",
+    "LD": "[]float64",
+    "LF": "[]float32",
+    "LS": "[]byte"
+}
+
+
 data_type_trans = {
     "INT": "asInt()",
     "FLOAT": "asFloat()",
