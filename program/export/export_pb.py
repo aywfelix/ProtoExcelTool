@@ -68,7 +68,7 @@ class ExportPb(object):
                 #print("save proto path=", toolConfig['proto'])
                 protoFilePath = toolConfig['proto'] +"/"+moduleName+".proto"
                 #print("export proto file=", protoFilePath)
-                with codecs.open(protoFilePath, "w", 'GB2312', errors='ignore') as f:
+                with codecs.open(protoFilePath, "w", 'utf-8', errors='ignore') as f:
                     f.write(protoMsgs)
                     f.flush()
                     pass                
@@ -86,35 +86,39 @@ class ExportPb(object):
                 return
             toolConfig = self.settingXml.getTool()
             protocPath = toolConfig['protoc']
-            if protocPath.endswith("/"):
-                protocPath = protocPath+"protoc.exe"
-            else:
-                protocPath = protocPath+"/protoc.exe"
-            protoPath = toolConfig['proto']  
-            if not protoPath: return  
+            if not protocPath.endswith("/"):
+                protocPath = protocPath +"/"
+            
+            protocExeFile = protocPath+"protoc.exe"
+            protocGenGoFile = protocPath+"protoc-gen-go.exe"
+
+            protoDir = toolConfig['proto']  
+            if not protoDir: return  
             for config in tmpls:
-                for proto in os.listdir(protoPath):
+                for proto in os.listdir(protoDir):
                     if not proto.endswith(".proto"):
                         continue
                     if not config.publish: continue        
-                    cmdStr = ""
+                    gen_pb_cmd = ""
                     if config.lang == ProgramLangType.CPP: # cpp
-                        cmdStr = protocPath + ' --proto_path=' + \
-                            protoPath + ' --cpp_out='+config.publish + " "+proto
+                        gen_pb_cmd = protocExeFile + ' --proto_path=' + \
+                            protoDir + ' --cpp_out='+config.publish + " "+proto
                         pass
                     if config.lang == ProgramLangType.LUA: # lua
-                        cmdStr = protocPath + ' --proto_path=' + \
-                            protoPath + ' -o '+config.publish+"/"+proto[:-6]+".pb" + " "+proto
+                        gen_pb_cmd = protocExeFile + ' --proto_path=' + \
+                            protoDir + ' -o '+config.publish+"/"+proto[:-6]+".pb" + " "+proto
                         pass
                     if config.lang == ProgramLangType.GO: # go
+                        gen_pb_cmd = protocExeFile + ' --proto_path=' + \
+                            protoDir + ' --plugin=protoc-gen-go='+ protocGenGoFile + ' --go_out='+config.publish + " "+proto                           
                         pass
                     if config.lang == ProgramLangType.CSHARP: # csharp
                         pass
                     if config.lang == ProgramLangType.PYTHON: #python
-                        cmdStr = protocPath + ' --proto_path=' + \
-                            protoPath + ' --python_out='+config.publish + " "+proto
+                        gen_pb_cmd = protocExeFile + ' --proto_path=' + \
+                            protoDir + ' --python_out='+config.publish + " "+proto
 
-                    subprocess.Popen(cmdStr, shell=True, cwd=os.getcwd())
+                    subprocess.Popen(gen_pb_cmd, shell=True, cwd=os.getcwd())
         except Exception as e:
             print("export pb err, ", e)
 

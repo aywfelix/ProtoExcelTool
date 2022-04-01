@@ -1,14 +1,14 @@
 syntax = "proto3";
 
 
-// ½çÃæÉÏÑ¡ÖĞÄ³¸ö½ÇÉ«½øÈëÓÎÏ·
+// ç•Œé¢ä¸Šé€‰ä¸­æŸä¸ªè§’è‰²è¿›å…¥æ¸¸æˆ
 message RoleLoginReq{
    string accout = 1; 
    int32 role_id = 2;
    string role_name = 3; 
 }
 
-// ½ÇÉ«½øÈëÓÎÏ··µ»ØÏûÏ¢
+// è§’è‰²è¿›å…¥æ¸¸æˆè¿”å›æ¶ˆæ¯
 message RoleLoginAck{
    string accout = 1; 
    int32 role_id = 2;
@@ -23,7 +23,7 @@ message RoleLoginAck{
    int32 result = 11;
 }
 
-// ÇëÇó´´½¨Ä³¸ö½ÇÉ«
+// è¯·æ±‚åˆ›å»ºæŸä¸ªè§’è‰²
 message CreateRoleReq{
    string role_name = 1;
    uint32 login_time = 2;
@@ -36,15 +36,15 @@ message CreateRoleReq{
    string user_uuid = 9;
 }
 
-// ´´½¨½ÇÉ«·µ»Ø
+// åˆ›å»ºè§’è‰²è¿”å›
 message CreateRoleAck{
    enum RET_TYPE
    {
-   RESULT_TYPE_SUCC = 0;// ³É¹¦
-   RESULT_TYPE_NO_SPACE = 1;// ÓµÓĞ½ÇÉ«Ì«¶à£¬Ã»ÓĞ¿Õ¼äÔÙ´´½ÇÉ«
-   RESULT_TYPE_EXIST_NAME = 2; // ÖØÃû
-   RESULT_TYPE_NAME_INVALID = 3; // Ãû×Ö²»ºÏ·¨
-   RESULT_TYPE_SERVER_LIMIT = 4; // ·şÎñÆ÷½ûÖ¹´´½¨½ÇÉ«
+   RESULT_TYPE_SUCC = 0;// æˆåŠŸ
+   RESULT_TYPE_NO_SPACE = 1;// æ‹¥æœ‰è§’è‰²å¤ªå¤šï¼Œæ²¡æœ‰ç©ºé—´å†åˆ›è§’è‰²
+   RESULT_TYPE_EXIST_NAME = 2; // é‡å
+   RESULT_TYPE_NAME_INVALID = 3; // åå­—ä¸åˆæ³•
+   RESULT_TYPE_SERVER_LIMIT = 4; // æœåŠ¡å™¨ç¦æ­¢åˆ›å»ºè§’è‰²
    };
    int32 errCode = 1;
    uint32 role_id = 2;
@@ -54,7 +54,7 @@ message CreateRoleAck{
    int32 create_time = 6;
 }
 
-// Íæ¼Ò½øÈë³¡¾°
+// ç©å®¶è¿›å…¥åœºæ™¯
 message UserEnterSceneReq{
    int32 scene_id = 1;
    int32 scene_key = 2;
@@ -62,7 +62,7 @@ message UserEnterSceneReq{
    int32 role_id = 4;
    string role_name = 5;
    int32 time = 6;
-   uint32 is_login = 7;// µÇÂ½»¹ÊÇ³¡¾°ÇĞ»»
+   uint32 is_login = 7;// ç™»é™†è¿˜æ˜¯åœºæ™¯åˆ‡æ¢
    uint32 reserved1 = 8;
    int32 server = 9;
    string key = 10; 
@@ -70,12 +70,12 @@ message UserEnterSceneReq{
    int32 invitationstatus = 12;
 }
 
-// Íæ¼Ò½øÈë³¡¾°·µ»ØÏûÏ¢
+// ç©å®¶è¿›å…¥åœºæ™¯è¿”å›æ¶ˆæ¯
 message UserEnterSceneAck{
    int32 errCode = 1;
 }
 
-// ·şÎñÆ÷ÍÆËÍ½ÇÉ«ÁĞ±í
+// æœåŠ¡å™¨æ¨é€è§’è‰²åˆ—è¡¨
 message RoleListNotify{
    enum LoginAckCode
    {
@@ -99,7 +99,7 @@ message RoleListNotify{
    repeated RoleItem roleItem= 6;
 }
 
-// ½øÈë³¡¾°¹ã²¥ÏûÏ¢
+// è¿›å…¥åœºæ™¯å¹¿æ’­æ¶ˆæ¯
 message EnterSceneNotify{
    int32 sceneid = 1;
    int32 obj_id = 2;
@@ -113,12 +113,12 @@ message EnterSceneNotify{
    float pos_z = 10; 
 }
 
-// Íæ¼ÒÀë¿ª³¡¾°
+// ç©å®¶ç¦»å¼€åœºæ™¯
 message LeaveSceneNotify{
    int32 sceneid = 1;
 }
 
-// ¹ã²¥ÒÆ¶¯ÏûÏ¢
+// å¹¿æ’­ç§»åŠ¨æ¶ˆæ¯
 message ObjMoveNotify{
    float dir = 1;
    float speed_x = 2;
@@ -144,7 +144,7 @@ message ObjMoveNotify{
    float controlRotation_z = 22;
 }
 
-// Íæ¼ÒÒÆ¶¯ÇëÇó
+// ç©å®¶ç§»åŠ¨è¯·æ±‚
 message ObjMoveReq{
    float dir = 1;
    float speed_x = 2;
@@ -166,7 +166,7 @@ message ObjMoveReq{
    float controlRotation_z = 18;
 }
 
-// ½øÈëÊÓÒ°¹ã²¥
+// è¿›å…¥è§†é‡å¹¿æ’­
 message VisibleObjEnterRoleNotify{
    float dir = 1;
    uint32 move_mode_param = 2;
@@ -191,7 +191,7 @@ message VisibleObjEnterRoleNotify{
    float    rotation_z = 21;
 }
 
-// ½ÇÉ«ĞÅÏ¢
+// è§’è‰²ä¿¡æ¯
 message RoleItem{
    int32 role_id = 1;   
    string role_name = 2;
@@ -201,7 +201,7 @@ message RoleItem{
    uint32 last_login_time  = 6;
 }
 
-// µÇÂ¼ÓÎÏ·
+// ç™»å½•æ¸¸æˆ
 message LoginMsgReq{
    string name = 1; 
    string token = 2;

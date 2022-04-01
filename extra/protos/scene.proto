@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 
-// ½ÇÉ«ÌøÔ¾
+// è§’è‰²è·³è·ƒ
 message RoleJumpReq{
    float dir = 1;
    int32 pos_x = 2;
@@ -9,7 +9,7 @@ message RoleJumpReq{
    float height = 4;
 }
 
-// ½ÇÉ«ÌøÔ¾·µ»Ø
+// è§’è‰²è·³è·ƒè¿”å›
 message RoleJumpAck{
    int32 obj_id = 1;
    float dir = 2;
@@ -18,7 +18,7 @@ message RoleJumpAck{
    float height = 5;
 }
 
-// ½ÇÉ«ÖØÉú
+// è§’è‰²é‡ç”Ÿ
 message RoleReAliveNotify{
    int32 obj_id = 1; 
    float pos_x = 2;
@@ -26,88 +26,88 @@ message RoleReAliveNotify{
    float pos_z = 4; 
 }
 
-// ÁÄÌìÆµµÀÇëÇó
+// èŠå¤©é¢‘é“è¯·æ±‚
 message ChannelChatReq{
    int32 content_type = 1;   //CHAT_CONTENT_TYPE_TEXT,CHAT_CONTENT_TYPE_AUDIO,
-   int32 from_type = 2; // ·¢ËÍÀàĞÍ 
-   int32 channel_type = 3;// 0£ºÊÀ½ç£¬1£ºÕóÓª£¬2£º³¡¾°£¬3£º×é¶Ó£¬4£ºÏÉÃË 
-   string content = 4;  // ÏûÏ¢ÄÚÈİ
+   int32 from_type = 2; // å‘é€ç±»å‹ 
+   int32 channel_type = 3;// 0ï¼šä¸–ç•Œï¼Œ1ï¼šé˜µè¥ï¼Œ2ï¼šåœºæ™¯ï¼Œ3ï¼šç»„é˜Ÿï¼Œ4ï¼šä»™ç›Ÿ 
+   string content = 4;  // æ¶ˆæ¯å†…å®¹
 }
 
-// ÆµµÀÇëÇó·µ»Ø
+// é¢‘é“è¯·æ±‚è¿”å›
 message ChannelChatAck{
    int32 from_uid = 1; 
    string username = 2; 
    int32 sex = 3;
    int32 content_type = 4;  
    int32 channel_type = 5;
-   int32 from_type = 6; // ·¢ËÍÀàĞÍ 
-   string content = 7;  // ÏûÏ¢ÄÚÈİ
+   int32 from_type = 6; // å‘é€ç±»å‹ 
+   string content = 7;  // æ¶ˆæ¯å†…å®¹
 }
 
-// »î¶¯×¼±¸
+// æ´»åŠ¨å‡†å¤‡
 message ActivityReadyNotify{
    int32 activityId = 1;
    int32 count_down = 2;
-   int32 switch_type = 3; // ³¡¾°ÇĞ»»ÀàĞÍ1±¾µØ 2Ìø×ªÔ¶¶Ë¸ù¾İip,portÁ¬½Ó
+   int32 switch_type = 3; // åœºæ™¯åˆ‡æ¢ç±»å‹1æœ¬åœ° 2è·³è½¬è¿œç«¯æ ¹æ®ip,portè¿æ¥
 }
 
-// »î¶¯¿ªÊ¼
+// æ´»åŠ¨å¼€å§‹
 message ActivityStartNotify{
    int32 activityId = 1;
-   int32 switch_type = 2; // ³¡¾°ÇĞ»»ÀàĞÍ1±¾µØ 2Ìø×ªÔ¶¶Ë¸ù¾İip,portÁ¬½Ó 
+   int32 switch_type = 2; // åœºæ™¯åˆ‡æ¢ç±»å‹1æœ¬åœ° 2è·³è½¬è¿œç«¯æ ¹æ®ip,portè¿æ¥ 
    string Ip = 3;
    int32 port = 4;
-   int32  maze_seed = 5; // ÃÔ¹¬ÖÖ×Ó
-   float   town_pos_x = 6; // ³öÉúµãx
-   float  town_pos_y = 7; // ³öÉúµãy
-   float   town_pos_z = 8; // ³öÉúµãZ
+   int32  maze_seed = 5; // è¿·å®«ç§å­
+   float   town_pos_x = 6; // å‡ºç”Ÿç‚¹x
+   float  town_pos_y = 7; // å‡ºç”Ÿç‚¹y
+   float   town_pos_z = 8; // å‡ºç”Ÿç‚¹Z
 }
 
-// ¼ÓÈë»î¶¯ÇëÇó
+// åŠ å…¥æ´»åŠ¨è¯·æ±‚
 message JoinActivityReq{
    int32 activityId = 1;
-   int32 join_status = 2;  // 1 --  ²Î¼Ó   2---ÍË³ö 
+   int32 join_status = 2;  // 1 --  å‚åŠ    2---é€€å‡º 
 }
 
-// ¼ÓÈë»î¶¯ÇëÇó·µ»Ø
+// åŠ å…¥æ´»åŠ¨è¯·æ±‚è¿”å›
 message JoinActivityAck{
    int32 activityId = 1;
-   int32 errocode = 2;  // 0-- ³É¹¦   > 0 ---Ê§°Ü 
+   int32 errocode = 2;  // 0-- æˆåŠŸ   > 0 ---å¤±è´¥ 
 }
 
-// ÃÔ¹¬»ñÈ¡±¦Ê¯ÇëÇó
+// è¿·å®«è·å–å®çŸ³è¯·æ±‚
 message MazeGetGemReq{
    
 }
 
-// µØ¿é³õÊ¼»¯ĞÅÏ¢
+// åœ°å—åˆå§‹åŒ–ä¿¡æ¯
 message AreaInitNotify{
    int32    errCode = 1;
    int32    count = 2;   
    repeated AreaItem areaItem= 3;
 }
 
-// µØ¿éĞÅÏ¢
+// åœ°å—ä¿¡æ¯
 message AreaItem{
    string area_id = 1;
    int32 role_id = 2;         
    string   user_uuid = 3;
 }
 
-// µØ¿é½»Ò×ÍÆËÍ
+// åœ°å—äº¤æ˜“æ¨é€
 message AreaTradeNotify{
    string area_id = 1;
    int32 role_id = 2;    
    string   user_uuid = 3; 
 }
 
-// ÇëÇó»ñÈ¡·şÎñÆ÷Ê±¼ä
+// è¯·æ±‚è·å–æœåŠ¡å™¨æ—¶é—´
 message ServerTimeReq{
    
 }
 
-// ·şÎñÆ÷Ê±¼ä»ñÈ¡·µ»Ø
+// æœåŠ¡å™¨æ—¶é—´è·å–è¿”å›
 message ServerTimeAck{
    int32 server_time = 1;
    int32 server_real_start_time = 2;
@@ -115,12 +115,12 @@ message ServerTimeAck{
    int32 server_real_combine_time = 4;
 }
 
-// ´«ËÍÇëÇó
+// ä¼ é€è¯·æ±‚
 message TransportReq{
    int32 transport_index = 1;
 }
 
-// ÇĞ»»³¡¾°ÇëÇó
+// åˆ‡æ¢åœºæ™¯è¯·æ±‚
 message SwitchSceneReq{
    int32 scene_id = 1;
 }
