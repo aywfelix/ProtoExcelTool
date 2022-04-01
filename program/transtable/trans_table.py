@@ -162,11 +162,11 @@ class TransTable:
             self.write_json(table_name, all_rows, is_server)
 
             if tmpl.lang == ProgramLangType.CPP:
-                trans_cpp = TransCpp(tmpl.publish, field_types, field_descs)
+                trans_cpp = TransCpp(tmpl.publish, filter_types, field_descs)
                 trans_cpp.gen(table_name)
 
             if tmpl.lang == ProgramLangType.CSHARP:
-                trans_csharp = TransCsharp(tmpl.publish, field_types, field_descs)
+                trans_csharp = TransCsharp(tmpl.publish, filter_types, field_descs)
                 trans_csharp.gen(table_name)
 
             if tmpl.lang == ProgramLangType.LUA:
@@ -174,7 +174,7 @@ class TransTable:
                 trans_lua.gen(table_name)
             
             if tmpl.lang == ProgramLangType.GO:
-                trans_go = TransGo(tmpl.publish, field_types, field_descs)
+                trans_go = TransGo(tmpl.publish, filter_types, field_descs)
                 trans_go.gen(table_name)
                 
         print("transport table ", excel_name, " succ")
