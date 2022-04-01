@@ -14,6 +14,7 @@
 from tool_define import *
 from export.enum_cpp import *
 from export.enum_lua import *
+from export.enum_go import *
 from enum_xml import *
 from setting_xml import *
 
@@ -49,6 +50,8 @@ class ExportEnum(object):
                     enum_lua.gen()
                     pass
                 if tmpl.lang == ProgramLangType.GO:
+                    enum_go = ExportEnumGo(tmpl.publish, enumDatas)
+                    enum_go.gen()
                     pass
                 pass
             pass
