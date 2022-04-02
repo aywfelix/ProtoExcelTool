@@ -94,12 +94,12 @@ class NetClient(QMainWindow):
 
             nMsgID = int(msgID)
             # 登录验证消息特殊处理
-            if nMsgID == 7056:
-                if not self.webVerifyLogin():
-                    print("client login game error")
-                    return
-                else:
-                    request.token = self.user.token
+            # if nMsgID == 7056:
+            #     if not self.webVerifyLogin():
+            #         print("client login game error")
+            #         return
+            #     else:
+            #         request.token = self.user.token
             # 打包发送消息
             msg = self.dataPack.dataPack2(nMsgID, request)
             if self.session.writeData(msg):
@@ -177,12 +177,12 @@ class NetClient(QMainWindow):
                 if msg is not None:
                     print("recv msgid:{0}".format(msg[0]))
                     self.ShowMsgSignal.emit(str(msg[0]), msg[1])
-                    if str(msg[0]) == '7000':
-                        msgDict = json.loads(msg[1])
-                        ip = msgDict['gwHostname']
-                        port = int(msgDict['gwPort'])
-                        self.ConnServerSignal.emit(ip, port)
-                        pass
+                    # if str(msg[0]) == '7000':
+                    #     msgDict = json.loads(msg[1])
+                    #     ip = msgDict['gwHostname']
+                    #     port = int(msgDict['gwPort'])
+                    #     self.ConnServerSignal.emit(ip, port)
+                    #     pass
                 pass
             except Exception as e:
                 pass
