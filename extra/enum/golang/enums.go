@@ -12,9 +12,9 @@ const(
 // 场景类型
 type EmScene int
 const(
-     EmScene_新手村 EmScene = 1001, // 普通场景
-     EmScene_桃花岛 EmScene = 1002, // 普通场景
-     EmScene_烈火岛 EmScene = 1003, // 普通场景
+     EmScene_Scene1 EmScene = 1001, // 普通场景
+     EmScene_Scene2 EmScene = 1002, // 普通场景
+     EmScene_Scene3 EmScene = 1003, // 普通场景
     
 )
 

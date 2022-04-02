@@ -13,9 +13,9 @@ EmJob.Monk = 2  -- 道士
 -- 场景类型
 EnumTable.EmScene = EnumTable.EmScene or {}
 local EmScene = EnumTable.EmScene
-EmScene.新手村 = 1001  -- 普通场景
-EmScene.桃花岛 = 1002  -- 普通场景
-EmScene.烈火岛 = 1003  -- 普通场景
+EmScene.Scene1 = 1001  -- 普通场景
+EmScene.Scene2 = 1002  -- 普通场景
+EmScene.Scene3 = 1003  -- 普通场景
 
 
 
