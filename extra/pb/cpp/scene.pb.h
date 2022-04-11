@@ -31,6 +31,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -125,6 +126,46 @@ template<> ::SwitchSceneReq* Arena::CreateMaybeMessage<::SwitchSceneReq>(Arena*)
 template<> ::TransportReq* Arena::CreateMaybeMessage<::TransportReq>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
+enum SceneMsgId : int {
+  MSG_ID = 0,
+  SCENE_ROLEJUMPREQ_REQ = 3101,
+  SCENE_ROLEJUMPACK_ACK = 3102,
+  SCENE_ROLEREALIVENOTIFY_NOTIFY = 1302,
+  SCENE_CHANNELCHATREQ_REQ = 8150,
+  SCENE_CHANNELCHATACK_ACK = 8100,
+  SCENE_ACTIVITYREADYNOTIFY_NOTIFY = 8161,
+  SCENE_ACTIVITYSTARTNOTIFY_NOTIFY = 8162,
+  SCENE_JOINACTIVITYREQ_REQ = 8163,
+  SCENE_JOINACTIVITYACK_ACK = 8164,
+  SCENE_MAZEGETGEMREQ_REQ = 8200,
+  SCENE_AREAINITNOTIFY_NOTIFY = 9100,
+  SCENE_AREATRADENOTIFY_NOTIFY = 9101,
+  SCENE_SERVERTIMEREQ_REQ = 9051,
+  SCENE_SERVERTIMEACK_ACK = 9001,
+  SCENE_TRANSPORTREQ_REQ = 1052,
+  SCENE_SWITCHSCENEREQ_REQ = 8101,
+  SceneMsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  SceneMsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool SceneMsgId_IsValid(int value);
+constexpr SceneMsgId SceneMsgId_MIN = MSG_ID;
+constexpr SceneMsgId SceneMsgId_MAX = SCENE_AREATRADENOTIFY_NOTIFY;
+constexpr int SceneMsgId_ARRAYSIZE = SceneMsgId_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SceneMsgId_descriptor();
+template<typename T>
+inline const std::string& SceneMsgId_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, SceneMsgId>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function SceneMsgId_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    SceneMsgId_descriptor(), enum_t_value);
+}
+inline bool SceneMsgId_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, SceneMsgId* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SceneMsgId>(
+    SceneMsgId_descriptor(), name, value);
+}
 // ===================================================================
 
 class RoleJumpReq final :
@@ -4399,6 +4440,16 @@ inline void SwitchSceneReq::set_scene_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::SceneMsgId> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::SceneMsgId>() {
+  return ::SceneMsgId_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

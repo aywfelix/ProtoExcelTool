@@ -19,6 +19,13 @@ from proto_xml import *
 
 #############################################################################
 proto_header = 'syntax = "proto3";'
+
+proto_enum_tmpl = '''
+enum %(DirName)sMsgId {
+    MSG_ID = 0;    
+%(enum_fields)s
+}
+'''
 #############################################################################
 
 @Singleton
@@ -39,7 +46,25 @@ class ExportPb(object):
                 # 添加引用
                 protoMsgs = proto_header+"\n"
                 protoMsgs += dirData.package +"\n\n"
+
                 protocolDict = protocols[dirName]
+                # 添加消息枚举
+                enum_fields = ""
+                dir_name = dirName.split(" ")[1]
+                for _, protoData in protocolDict.items():
+                    if not protoData.id: continue
+                    enum_field = dir_name.upper()+"_"+protoData.name.upper()
+                    if protoData.type == '1': enum_field += "_REQ"
+                    if protoData.type == '2': enum_field += "_ACK"
+                    if protoData.type == '3': enum_field += "_NOTIFY"
+                    enum_field += " = " + str(protoData.id) + ";\n"
+                    enum_fields += "    "+enum_field
+                    pass
+
+                protoMsgs += proto_enum_tmpl % {
+                    "DirName": dir_name.capitalize(), "enum_fields": enum_fields
+                }
+                
                 # if not protocolDict: continue
                 for _, protoData in protocolDict.items():
                     # 注释

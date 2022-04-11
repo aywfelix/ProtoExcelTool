@@ -258,7 +258,7 @@ struct SwitchSceneReqDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SwitchSceneReqDefaultTypeInternal _SwitchSceneReq_default_instance_;
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_scene_2eproto[17];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_scene_2eproto = nullptr;
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_scene_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_scene_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_scene_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -493,11 +493,24 @@ const char descriptor_table_protodef_scene_2eproto[] PROTOBUF_SECTION_VARIABLE(p
   "open_days\030\003 \001(\005\022 \n\030server_real_combine_t"
   "ime\030\004 \001(\005\"\'\n\014TransportReq\022\027\n\017transport_i"
   "ndex\030\001 \001(\005\"\"\n\016SwitchSceneReq\022\020\n\010scene_id"
-  "\030\001 \001(\005b\006proto3"
+  "\030\001 \001(\005*\234\004\n\nSceneMsgId\022\n\n\006MSG_ID\020\000\022\032\n\025SCE"
+  "NE_ROLEJUMPREQ_REQ\020\235\030\022\032\n\025SCENE_ROLEJUMPA"
+  "CK_ACK\020\236\030\022#\n\036SCENE_ROLEREALIVENOTIFY_NOT"
+  "IFY\020\226\n\022\035\n\030SCENE_CHANNELCHATREQ_REQ\020\326\?\022\035\n"
+  "\030SCENE_CHANNELCHATACK_ACK\020\244\?\022%\n SCENE_AC"
+  "TIVITYREADYNOTIFY_NOTIFY\020\341\?\022%\n SCENE_ACT"
+  "IVITYSTARTNOTIFY_NOTIFY\020\342\?\022\036\n\031SCENE_JOIN"
+  "ACTIVITYREQ_REQ\020\343\?\022\036\n\031SCENE_JOINACTIVITY"
+  "ACK_ACK\020\344\?\022\034\n\027SCENE_MAZEGETGEMREQ_REQ\020\210@"
+  "\022 \n\033SCENE_AREAINITNOTIFY_NOTIFY\020\214G\022!\n\034SC"
+  "ENE_AREATRADENOTIFY_NOTIFY\020\215G\022\034\n\027SCENE_S"
+  "ERVERTIMEREQ_REQ\020\333F\022\034\n\027SCENE_SERVERTIMEA"
+  "CK_ACK\020\251F\022\033\n\026SCENE_TRANSPORTREQ_REQ\020\234\010\022\035"
+  "\n\030SCENE_SWITCHSCENEREQ_REQ\020\245\?b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_scene_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_scene_2eproto = {
-  false, false, 1334, descriptor_table_protodef_scene_2eproto, "scene.proto", 
+  false, false, 1877, descriptor_table_protodef_scene_2eproto, "scene.proto", 
   &descriptor_table_scene_2eproto_once, nullptr, 0, 17,
   schemas, file_default_instances, TableStruct_scene_2eproto::offsets,
   file_level_metadata_scene_2eproto, file_level_enum_descriptors_scene_2eproto, file_level_service_descriptors_scene_2eproto,
@@ -508,6 +521,35 @@ PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
 
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_scene_2eproto(&descriptor_table_scene_2eproto);
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SceneMsgId_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_scene_2eproto);
+  return file_level_enum_descriptors_scene_2eproto[0];
+}
+bool SceneMsgId_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1052:
+    case 1302:
+    case 3101:
+    case 3102:
+    case 8100:
+    case 8101:
+    case 8150:
+    case 8161:
+    case 8162:
+    case 8163:
+    case 8164:
+    case 8200:
+    case 9001:
+    case 9051:
+    case 9100:
+    case 9101:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 

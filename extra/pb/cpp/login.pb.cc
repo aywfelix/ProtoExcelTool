@@ -302,7 +302,7 @@ struct LoginMsgReqDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LoginMsgReqDefaultTypeInternal _LoginMsgReq_default_instance_;
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_login_2eproto[14];
-static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_login_2eproto[2];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_login_2eproto[3];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_login_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_login_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -634,11 +634,22 @@ const char descriptor_table_protodef_login_2eproto[] PROTOBUF_SECTION_VARIABLE(p
   "me\030\005 \001(\r\022\027\n\017last_login_time\030\006 \001(\r\"b\n\013Log"
   "inMsgReq\022\014\n\004name\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\022\014\n"
   "\004uuid\030\003 \001(\t\022\016\n\006wallet\030\004 \001(\t\022\030\n\020invitatio"
-  "nstatus\030\005 \001(\005b\006proto3"
+  "nstatus\030\005 \001(\005*\301\003\n\nLoginMsgId\022\n\n\006MSG_ID\020\000"
+  "\022\033\n\026LOGIN_ROLELOGINREQ_REQ\020\2217\022\033\n\026LOGIN_R"
+  "OLELOGINACK_ACK\020\3306\022\034\n\027LOGIN_CREATEROLERE"
+  "Q_REQ\020\3567\022\034\n\027LOGIN_CREATEROLEACK_ACK\020\2747\022 "
+  "\n\033LOGIN_USERENTERSCENEREQ_REQ\020\232\010\022 \n\033LOGI"
+  "N_USERENTERSCENEACK_ACK\020\350\007\022 \n\033LOGIN_ROLE"
+  "LISTNOTIFY_NOTIFY\020\3316\022\"\n\035LOGIN_ENTERSCENE"
+  "NOTIFY_NOTIFY\020\314\010\022\"\n\035LOGIN_LEAVESCENENOTI"
+  "FY_NOTIFY\020\315\010\022\037\n\032LOGIN_OBJMOVENOTIFY_NOTI"
+  "FY\020\320\010\022\031\n\024LOGIN_OBJMOVEREQ_REQ\020\376\010\022+\n&LOGI"
+  "N_VISIBLEOBJENTERROLENOTIFY_NOTIFY\020\316\010\022\032\n"
+  "\025LOGIN_LOGINMSGREQ_REQ\020\2207b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_login_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_login_2eproto = {
-  false, false, 3101, descriptor_table_protodef_login_2eproto, "login.proto", 
+  false, false, 3553, descriptor_table_protodef_login_2eproto, "login.proto", 
   &descriptor_table_login_2eproto_once, nullptr, 0, 14,
   schemas, file_default_instances, TableStruct_login_2eproto::offsets,
   file_level_metadata_login_2eproto, file_level_enum_descriptors_login_2eproto, file_level_service_descriptors_login_2eproto,
@@ -713,6 +724,32 @@ constexpr RoleListNotify_LoginAckCode RoleListNotify::LoginAckCode_MIN;
 constexpr RoleListNotify_LoginAckCode RoleListNotify::LoginAckCode_MAX;
 constexpr int RoleListNotify::LoginAckCode_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LoginMsgId_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_login_2eproto);
+  return file_level_enum_descriptors_login_2eproto[2];
+}
+bool LoginMsgId_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1000:
+    case 1050:
+    case 1100:
+    case 1101:
+    case 1102:
+    case 1104:
+    case 1150:
+    case 7000:
+    case 7001:
+    case 7056:
+    case 7057:
+    case 7100:
+    case 7150:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 

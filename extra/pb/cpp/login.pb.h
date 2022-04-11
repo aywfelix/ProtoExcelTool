@@ -174,6 +174,43 @@ inline bool RoleListNotify_LoginAckCode_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RoleListNotify_LoginAckCode>(
     RoleListNotify_LoginAckCode_descriptor(), name, value);
 }
+enum LoginMsgId : int {
+  MSG_ID = 0,
+  LOGIN_ROLELOGINREQ_REQ = 7057,
+  LOGIN_ROLELOGINACK_ACK = 7000,
+  LOGIN_CREATEROLEREQ_REQ = 7150,
+  LOGIN_CREATEROLEACK_ACK = 7100,
+  LOGIN_USERENTERSCENEREQ_REQ = 1050,
+  LOGIN_USERENTERSCENEACK_ACK = 1000,
+  LOGIN_ROLELISTNOTIFY_NOTIFY = 7001,
+  LOGIN_ENTERSCENENOTIFY_NOTIFY = 1100,
+  LOGIN_LEAVESCENENOTIFY_NOTIFY = 1101,
+  LOGIN_OBJMOVENOTIFY_NOTIFY = 1104,
+  LOGIN_OBJMOVEREQ_REQ = 1150,
+  LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY = 1102,
+  LOGIN_LOGINMSGREQ_REQ = 7056,
+  LoginMsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  LoginMsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool LoginMsgId_IsValid(int value);
+constexpr LoginMsgId LoginMsgId_MIN = MSG_ID;
+constexpr LoginMsgId LoginMsgId_MAX = LOGIN_CREATEROLEREQ_REQ;
+constexpr int LoginMsgId_ARRAYSIZE = LoginMsgId_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LoginMsgId_descriptor();
+template<typename T>
+inline const std::string& LoginMsgId_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, LoginMsgId>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function LoginMsgId_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    LoginMsgId_descriptor(), enum_t_value);
+}
+inline bool LoginMsgId_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, LoginMsgId* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<LoginMsgId>(
+    LoginMsgId_descriptor(), name, value);
+}
 // ===================================================================
 
 class RoleLoginReq final :
@@ -6983,6 +7020,11 @@ template <> struct is_proto_enum< ::RoleListNotify_LoginAckCode> : ::std::true_t
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::RoleListNotify_LoginAckCode>() {
   return ::RoleListNotify_LoginAckCode_descriptor();
+}
+template <> struct is_proto_enum< ::LoginMsgId> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::LoginMsgId>() {
+  return ::LoginMsgId_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
