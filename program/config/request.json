@@ -1,5 +1,6 @@
 {
     "7056": "{\n    \"name\": \"boge88\",\n    \"token\":\"token\",\n    \"uuid\":\"1484870370150178818\",\n    \"wallet\":\"0x928867E8505A99174DD7a84197edf2B279A62Fb3\",\n    \"invitationstatus\":1\n}",
     "7057": "{\n\"accout\":\"boge88\",\n\"role_id\":501,\n\"role_name\":\"ttwwwwert\"\n}",
-    "1050": "{\n\"role_id\":501,\n\"scene_id\":2100,\n\"role_name\":\"ttwwwwert\",\n\"server\":1,\n\"is_login\":1\n}"
+    "1050": "{\n\"role_id\":501,\n\"scene_id\":2100,\n\"role_name\":\"ttwwwwert\",\n\"server\":1,\n\"is_login\":1\n}",
+    "1101": "{\n\"account\":\"lailai\",\n\"password\":\"123123\"\n}"
 }

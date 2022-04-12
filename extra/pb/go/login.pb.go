@@ -23,54 +23,27 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type LoginMsgId int32
 
 const (
-	LoginMsgId_MSG_ID                                 LoginMsgId = 0
-	LoginMsgId_LOGIN_ROLELOGINREQ_REQ                 LoginMsgId = 7057
-	LoginMsgId_LOGIN_ROLELOGINACK_ACK                 LoginMsgId = 7000
-	LoginMsgId_LOGIN_CREATEROLEREQ_REQ                LoginMsgId = 7150
-	LoginMsgId_LOGIN_CREATEROLEACK_ACK                LoginMsgId = 7100
-	LoginMsgId_LOGIN_USERENTERSCENEREQ_REQ            LoginMsgId = 1050
-	LoginMsgId_LOGIN_USERENTERSCENEACK_ACK            LoginMsgId = 1000
-	LoginMsgId_LOGIN_ROLELISTNOTIFY_NOTIFY            LoginMsgId = 7001
-	LoginMsgId_LOGIN_ENTERSCENENOTIFY_NOTIFY          LoginMsgId = 1100
-	LoginMsgId_LOGIN_LEAVESCENENOTIFY_NOTIFY          LoginMsgId = 1101
-	LoginMsgId_LOGIN_OBJMOVENOTIFY_NOTIFY             LoginMsgId = 1104
-	LoginMsgId_LOGIN_OBJMOVEREQ_REQ                   LoginMsgId = 1150
-	LoginMsgId_LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY LoginMsgId = 1102
-	LoginMsgId_LOGIN_LOGINMSGREQ_REQ                  LoginMsgId = 7056
+	LoginMsgId_MSG_ID                     LoginMsgId = 0
+	LoginMsgId_LOGIN_LOGINREQ_REQ         LoginMsgId = 1103
+	LoginMsgId_LOGIN_LOGINACK_ACK         LoginMsgId = 1104
+	LoginMsgId_LOGIN_CREATEACCOUNTREQ_REQ LoginMsgId = 1101
+	LoginMsgId_LOGIN_CREATEACCOUNTACK_ACK LoginMsgId = 1102
 )
 
 var LoginMsgId_name = map[int32]string{
 	0:    "MSG_ID",
-	7057: "LOGIN_ROLELOGINREQ_REQ",
-	7000: "LOGIN_ROLELOGINACK_ACK",
-	7150: "LOGIN_CREATEROLEREQ_REQ",
-	7100: "LOGIN_CREATEROLEACK_ACK",
-	1050: "LOGIN_USERENTERSCENEREQ_REQ",
-	1000: "LOGIN_USERENTERSCENEACK_ACK",
-	7001: "LOGIN_ROLELISTNOTIFY_NOTIFY",
-	1100: "LOGIN_ENTERSCENENOTIFY_NOTIFY",
-	1101: "LOGIN_LEAVESCENENOTIFY_NOTIFY",
-	1104: "LOGIN_OBJMOVENOTIFY_NOTIFY",
-	1150: "LOGIN_OBJMOVEREQ_REQ",
-	1102: "LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY",
-	7056: "LOGIN_LOGINMSGREQ_REQ",
+	1103: "LOGIN_LOGINREQ_REQ",
+	1104: "LOGIN_LOGINACK_ACK",
+	1101: "LOGIN_CREATEACCOUNTREQ_REQ",
+	1102: "LOGIN_CREATEACCOUNTACK_ACK",
 }
 
 var LoginMsgId_value = map[string]int32{
-	"MSG_ID":                                 0,
-	"LOGIN_ROLELOGINREQ_REQ":                 7057,
-	"LOGIN_ROLELOGINACK_ACK":                 7000,
-	"LOGIN_CREATEROLEREQ_REQ":                7150,
-	"LOGIN_CREATEROLEACK_ACK":                7100,
-	"LOGIN_USERENTERSCENEREQ_REQ":            1050,
-	"LOGIN_USERENTERSCENEACK_ACK":            1000,
-	"LOGIN_ROLELISTNOTIFY_NOTIFY":            7001,
-	"LOGIN_ENTERSCENENOTIFY_NOTIFY":          1100,
-	"LOGIN_LEAVESCENENOTIFY_NOTIFY":          1101,
-	"LOGIN_OBJMOVENOTIFY_NOTIFY":             1104,
-	"LOGIN_OBJMOVEREQ_REQ":                   1150,
-	"LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY": 1102,
-	"LOGIN_LOGINMSGREQ_REQ":                  7056,
+	"MSG_ID":                     0,
+	"LOGIN_LOGINREQ_REQ":         1103,
+	"LOGIN_LOGINACK_ACK":         1104,
+	"LOGIN_CREATEACCOUNTREQ_REQ": 1101,
+	"LOGIN_CREATEACCOUNTACK_ACK": 1102,
 }
 
 func (x LoginMsgId) String() string {
@@ -81,1716 +54,224 @@ func (LoginMsgId) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_67c21677aa7f4e4f, []int{0}
 }
 
-type CreateRoleAck_RET_TYPE int32
-
-const (
-	CreateRoleAck_RESULT_TYPE_SUCC         CreateRoleAck_RET_TYPE = 0
-	CreateRoleAck_RESULT_TYPE_NO_SPACE     CreateRoleAck_RET_TYPE = 1
-	CreateRoleAck_RESULT_TYPE_EXIST_NAME   CreateRoleAck_RET_TYPE = 2
-	CreateRoleAck_RESULT_TYPE_NAME_INVALID CreateRoleAck_RET_TYPE = 3
-	CreateRoleAck_RESULT_TYPE_SERVER_LIMIT CreateRoleAck_RET_TYPE = 4
-)
-
-var CreateRoleAck_RET_TYPE_name = map[int32]string{
-	0: "RESULT_TYPE_SUCC",
-	1: "RESULT_TYPE_NO_SPACE",
-	2: "RESULT_TYPE_EXIST_NAME",
-	3: "RESULT_TYPE_NAME_INVALID",
-	4: "RESULT_TYPE_SERVER_LIMIT",
-}
-
-var CreateRoleAck_RET_TYPE_value = map[string]int32{
-	"RESULT_TYPE_SUCC":         0,
-	"RESULT_TYPE_NO_SPACE":     1,
-	"RESULT_TYPE_EXIST_NAME":   2,
-	"RESULT_TYPE_NAME_INVALID": 3,
-	"RESULT_TYPE_SERVER_LIMIT": 4,
-}
-
-func (x CreateRoleAck_RET_TYPE) String() string {
-	return proto.EnumName(CreateRoleAck_RET_TYPE_name, int32(x))
-}
-
-func (CreateRoleAck_RET_TYPE) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{3, 0}
-}
-
-type RoleListNotify_LoginAckCode int32
-
-const (
-	RoleListNotify_LOGIN_RESULT_SUC        RoleListNotify_LoginAckCode = 0
-	RoleListNotify_LOGIN_NO_THREAD         RoleListNotify_LoginAckCode = 1100
-	RoleListNotify_LOGIN_SERVER_ERROR      RoleListNotify_LoginAckCode = 1102
-	RoleListNotify_LOGIN_RESULT_EXIST      RoleListNotify_LoginAckCode = 1103
-	RoleListNotify_LOGIN_SCENE_NOT_EXIST   RoleListNotify_LoginAckCode = 1104
-	RoleListNotify_LOGIN_RESULT_NO_GATEWAY RoleListNotify_LoginAckCode = 1105
-	RoleListNotify_LOGIN_RESULT_NO_ROLE    RoleListNotify_LoginAckCode = 1106
-	RoleListNotify_LOGIN_THREAD_BUSY       RoleListNotify_LoginAckCode = 1107
-	RoleListNotify_LOGIN_LOGIN_FORBID      RoleListNotify_LoginAckCode = 1108
-	RoleListNotify_LOGIN_ANTI_WALLOW       RoleListNotify_LoginAckCode = 1109
-)
-
-var RoleListNotify_LoginAckCode_name = map[int32]string{
-	0:    "LOGIN_RESULT_SUC",
-	1100: "LOGIN_NO_THREAD",
-	1102: "LOGIN_SERVER_ERROR",
-	1103: "LOGIN_RESULT_EXIST",
-	1104: "LOGIN_SCENE_NOT_EXIST",
-	1105: "LOGIN_RESULT_NO_GATEWAY",
-	1106: "LOGIN_RESULT_NO_ROLE",
-	1107: "LOGIN_THREAD_BUSY",
-	1108: "LOGIN_LOGIN_FORBID",
-	1109: "LOGIN_ANTI_WALLOW",
-}
-
-var RoleListNotify_LoginAckCode_value = map[string]int32{
-	"LOGIN_RESULT_SUC":        0,
-	"LOGIN_NO_THREAD":         1100,
-	"LOGIN_SERVER_ERROR":      1102,
-	"LOGIN_RESULT_EXIST":      1103,
-	"LOGIN_SCENE_NOT_EXIST":   1104,
-	"LOGIN_RESULT_NO_GATEWAY": 1105,
-	"LOGIN_RESULT_NO_ROLE":    1106,
-	"LOGIN_THREAD_BUSY":       1107,
-	"LOGIN_LOGIN_FORBID":      1108,
-	"LOGIN_ANTI_WALLOW":       1109,
-}
-
-func (x RoleListNotify_LoginAckCode) String() string {
-	return proto.EnumName(RoleListNotify_LoginAckCode_name, int32(x))
-}
-
-func (RoleListNotify_LoginAckCode) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{6, 0}
-}
-
-// 界面上选中某个角色进入游戏
-type RoleLoginReq struct {
-	Accout               string   `protobuf:"bytes,1,opt,name=accout,proto3" json:"accout,omitempty"`
-	RoleId               int32    `protobuf:"varint,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	RoleName             string   `protobuf:"bytes,3,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
+// 客户端请求登录到游戏中
+type LoginReq struct {
+	Account              string   `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
+	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RoleLoginReq) Reset()         { *m = RoleLoginReq{} }
-func (m *RoleLoginReq) String() string { return proto.CompactTextString(m) }
-func (*RoleLoginReq) ProtoMessage()    {}
-func (*RoleLoginReq) Descriptor() ([]byte, []int) {
+func (m *LoginReq) Reset()         { *m = LoginReq{} }
+func (m *LoginReq) String() string { return proto.CompactTextString(m) }
+func (*LoginReq) ProtoMessage()    {}
+func (*LoginReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_67c21677aa7f4e4f, []int{0}
 }
 
-func (m *RoleLoginReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RoleLoginReq.Unmarshal(m, b)
+func (m *LoginReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LoginReq.Unmarshal(m, b)
 }
-func (m *RoleLoginReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RoleLoginReq.Marshal(b, m, deterministic)
+func (m *LoginReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LoginReq.Marshal(b, m, deterministic)
 }
-func (m *RoleLoginReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoleLoginReq.Merge(m, src)
+func (m *LoginReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LoginReq.Merge(m, src)
 }
-func (m *RoleLoginReq) XXX_Size() int {
-	return xxx_messageInfo_RoleLoginReq.Size(m)
+func (m *LoginReq) XXX_Size() int {
+	return xxx_messageInfo_LoginReq.Size(m)
 }
-func (m *RoleLoginReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_RoleLoginReq.DiscardUnknown(m)
+func (m *LoginReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_LoginReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RoleLoginReq proto.InternalMessageInfo
+var xxx_messageInfo_LoginReq proto.InternalMessageInfo
 
-func (m *RoleLoginReq) GetAccout() string {
+func (m *LoginReq) GetAccount() string {
 	if m != nil {
-		return m.Accout
+		return m.Account
 	}
 	return ""
 }
 
-func (m *RoleLoginReq) GetRoleId() int32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-func (m *RoleLoginReq) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-// 角色进入游戏返回消息
-type RoleLoginAck struct {
-	Accout               string   `protobuf:"bytes,1,opt,name=accout,proto3" json:"accout,omitempty"`
-	RoleId               int32    `protobuf:"varint,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	RoleName             string   `protobuf:"bytes,3,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	SceneId              int32    `protobuf:"varint,4,opt,name=scene_id,json=sceneId,proto3" json:"scene_id,omitempty"`
-	LastSceneId          int32    `protobuf:"varint,5,opt,name=last_scene_id,json=lastSceneId,proto3" json:"last_scene_id,omitempty"`
-	GwHostname           string   `protobuf:"bytes,6,opt,name=gw_hostname,json=gwHostname,proto3" json:"gw_hostname,omitempty"`
-	GwPort               int32    `protobuf:"varint,7,opt,name=gw_port,json=gwPort,proto3" json:"gw_port,omitempty"`
-	GsIndex              int32    `protobuf:"varint,8,opt,name=gs_index,json=gsIndex,proto3" json:"gs_index,omitempty"`
-	ServerTime           int64    `protobuf:"varint,9,opt,name=server_time,json=serverTime,proto3" json:"server_time,omitempty"`
-	SessionKey           string   `protobuf:"bytes,10,opt,name=session_key,json=sessionKey,proto3" json:"session_key,omitempty"`
-	Result               int32    `protobuf:"varint,11,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RoleLoginAck) Reset()         { *m = RoleLoginAck{} }
-func (m *RoleLoginAck) String() string { return proto.CompactTextString(m) }
-func (*RoleLoginAck) ProtoMessage()    {}
-func (*RoleLoginAck) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{1}
-}
-
-func (m *RoleLoginAck) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RoleLoginAck.Unmarshal(m, b)
-}
-func (m *RoleLoginAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RoleLoginAck.Marshal(b, m, deterministic)
-}
-func (m *RoleLoginAck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoleLoginAck.Merge(m, src)
-}
-func (m *RoleLoginAck) XXX_Size() int {
-	return xxx_messageInfo_RoleLoginAck.Size(m)
-}
-func (m *RoleLoginAck) XXX_DiscardUnknown() {
-	xxx_messageInfo_RoleLoginAck.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RoleLoginAck proto.InternalMessageInfo
-
-func (m *RoleLoginAck) GetAccout() string {
-	if m != nil {
-		return m.Accout
-	}
-	return ""
-}
-
-func (m *RoleLoginAck) GetRoleId() int32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-func (m *RoleLoginAck) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-func (m *RoleLoginAck) GetSceneId() int32 {
-	if m != nil {
-		return m.SceneId
-	}
-	return 0
-}
-
-func (m *RoleLoginAck) GetLastSceneId() int32 {
-	if m != nil {
-		return m.LastSceneId
-	}
-	return 0
-}
-
-func (m *RoleLoginAck) GetGwHostname() string {
-	if m != nil {
-		return m.GwHostname
-	}
-	return ""
-}
-
-func (m *RoleLoginAck) GetGwPort() int32 {
-	if m != nil {
-		return m.GwPort
-	}
-	return 0
-}
-
-func (m *RoleLoginAck) GetGsIndex() int32 {
-	if m != nil {
-		return m.GsIndex
-	}
-	return 0
-}
-
-func (m *RoleLoginAck) GetServerTime() int64 {
-	if m != nil {
-		return m.ServerTime
-	}
-	return 0
-}
-
-func (m *RoleLoginAck) GetSessionKey() string {
-	if m != nil {
-		return m.SessionKey
-	}
-	return ""
-}
-
-func (m *RoleLoginAck) GetResult() int32 {
-	if m != nil {
-		return m.Result
-	}
-	return 0
-}
-
-// 请求创建某个角色
-type CreateRoleReq struct {
-	RoleName             string   `protobuf:"bytes,1,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	LoginTime            uint32   `protobuf:"varint,2,opt,name=login_time,json=loginTime,proto3" json:"login_time,omitempty"`
-	LoginStr             string   `protobuf:"bytes,3,opt,name=login_str,json=loginStr,proto3" json:"login_str,omitempty"`
-	Server               uint32   `protobuf:"varint,4,opt,name=server,proto3" json:"server,omitempty"`
-	AntiWallow           uint32   `protobuf:"varint,5,opt,name=anti_wallow,json=antiWallow,proto3" json:"anti_wallow,omitempty"`
-	Avatar               uint32   `protobuf:"varint,6,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Sex                  uint32   `protobuf:"varint,7,opt,name=sex,proto3" json:"sex,omitempty"`
-	PlatName             string   `protobuf:"bytes,8,opt,name=plat_name,json=platName,proto3" json:"plat_name,omitempty"`
-	UserUuid             string   `protobuf:"bytes,9,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreateRoleReq) Reset()         { *m = CreateRoleReq{} }
-func (m *CreateRoleReq) String() string { return proto.CompactTextString(m) }
-func (*CreateRoleReq) ProtoMessage()    {}
-func (*CreateRoleReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{2}
-}
-
-func (m *CreateRoleReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateRoleReq.Unmarshal(m, b)
-}
-func (m *CreateRoleReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateRoleReq.Marshal(b, m, deterministic)
-}
-func (m *CreateRoleReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRoleReq.Merge(m, src)
-}
-func (m *CreateRoleReq) XXX_Size() int {
-	return xxx_messageInfo_CreateRoleReq.Size(m)
-}
-func (m *CreateRoleReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRoleReq.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateRoleReq proto.InternalMessageInfo
-
-func (m *CreateRoleReq) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-func (m *CreateRoleReq) GetLoginTime() uint32 {
-	if m != nil {
-		return m.LoginTime
-	}
-	return 0
-}
-
-func (m *CreateRoleReq) GetLoginStr() string {
-	if m != nil {
-		return m.LoginStr
-	}
-	return ""
-}
-
-func (m *CreateRoleReq) GetServer() uint32 {
-	if m != nil {
-		return m.Server
-	}
-	return 0
-}
-
-func (m *CreateRoleReq) GetAntiWallow() uint32 {
-	if m != nil {
-		return m.AntiWallow
-	}
-	return 0
-}
-
-func (m *CreateRoleReq) GetAvatar() uint32 {
-	if m != nil {
-		return m.Avatar
-	}
-	return 0
-}
-
-func (m *CreateRoleReq) GetSex() uint32 {
-	if m != nil {
-		return m.Sex
-	}
-	return 0
-}
-
-func (m *CreateRoleReq) GetPlatName() string {
-	if m != nil {
-		return m.PlatName
-	}
-	return ""
-}
-
-func (m *CreateRoleReq) GetUserUuid() string {
-	if m != nil {
-		return m.UserUuid
-	}
-	return ""
-}
-
-// 创建角色返回
-type CreateRoleAck struct {
-	ErrCode              int32    `protobuf:"varint,1,opt,name=errCode,proto3" json:"errCode,omitempty"`
-	RoleId               uint32   `protobuf:"varint,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	RoleName             string   `protobuf:"bytes,3,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	Avatar               uint32   `protobuf:"varint,4,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Sex                  uint32   `protobuf:"varint,5,opt,name=sex,proto3" json:"sex,omitempty"`
-	CreateTime           int32    `protobuf:"varint,6,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreateRoleAck) Reset()         { *m = CreateRoleAck{} }
-func (m *CreateRoleAck) String() string { return proto.CompactTextString(m) }
-func (*CreateRoleAck) ProtoMessage()    {}
-func (*CreateRoleAck) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{3}
-}
-
-func (m *CreateRoleAck) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateRoleAck.Unmarshal(m, b)
-}
-func (m *CreateRoleAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateRoleAck.Marshal(b, m, deterministic)
-}
-func (m *CreateRoleAck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRoleAck.Merge(m, src)
-}
-func (m *CreateRoleAck) XXX_Size() int {
-	return xxx_messageInfo_CreateRoleAck.Size(m)
-}
-func (m *CreateRoleAck) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRoleAck.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateRoleAck proto.InternalMessageInfo
-
-func (m *CreateRoleAck) GetErrCode() int32 {
-	if m != nil {
-		return m.ErrCode
-	}
-	return 0
-}
-
-func (m *CreateRoleAck) GetRoleId() uint32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-func (m *CreateRoleAck) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-func (m *CreateRoleAck) GetAvatar() uint32 {
-	if m != nil {
-		return m.Avatar
-	}
-	return 0
-}
-
-func (m *CreateRoleAck) GetSex() uint32 {
-	if m != nil {
-		return m.Sex
-	}
-	return 0
-}
-
-func (m *CreateRoleAck) GetCreateTime() int32 {
-	if m != nil {
-		return m.CreateTime
-	}
-	return 0
-}
-
-// 玩家进入场景
-type UserEnterSceneReq struct {
-	SceneId              int32    `protobuf:"varint,1,opt,name=scene_id,json=sceneId,proto3" json:"scene_id,omitempty"`
-	SceneKey             int32    `protobuf:"varint,2,opt,name=scene_key,json=sceneKey,proto3" json:"scene_key,omitempty"`
-	LastSceneId          int32    `protobuf:"varint,3,opt,name=last_scene_id,json=lastSceneId,proto3" json:"last_scene_id,omitempty"`
-	RoleId               int32    `protobuf:"varint,4,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	RoleName             string   `protobuf:"bytes,5,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	Time                 int32    `protobuf:"varint,6,opt,name=time,proto3" json:"time,omitempty"`
-	IsLogin              uint32   `protobuf:"varint,7,opt,name=is_login,json=isLogin,proto3" json:"is_login,omitempty"`
-	Reserved1            uint32   `protobuf:"varint,8,opt,name=reserved1,proto3" json:"reserved1,omitempty"`
-	Server               int32    `protobuf:"varint,9,opt,name=server,proto3" json:"server,omitempty"`
-	Key                  string   `protobuf:"bytes,10,opt,name=key,proto3" json:"key,omitempty"`
-	UserUuid             string   `protobuf:"bytes,11,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
-	Invitationstatus     int32    `protobuf:"varint,12,opt,name=invitationstatus,proto3" json:"invitationstatus,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UserEnterSceneReq) Reset()         { *m = UserEnterSceneReq{} }
-func (m *UserEnterSceneReq) String() string { return proto.CompactTextString(m) }
-func (*UserEnterSceneReq) ProtoMessage()    {}
-func (*UserEnterSceneReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{4}
-}
-
-func (m *UserEnterSceneReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserEnterSceneReq.Unmarshal(m, b)
-}
-func (m *UserEnterSceneReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserEnterSceneReq.Marshal(b, m, deterministic)
-}
-func (m *UserEnterSceneReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserEnterSceneReq.Merge(m, src)
-}
-func (m *UserEnterSceneReq) XXX_Size() int {
-	return xxx_messageInfo_UserEnterSceneReq.Size(m)
-}
-func (m *UserEnterSceneReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserEnterSceneReq.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UserEnterSceneReq proto.InternalMessageInfo
-
-func (m *UserEnterSceneReq) GetSceneId() int32 {
-	if m != nil {
-		return m.SceneId
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetSceneKey() int32 {
-	if m != nil {
-		return m.SceneKey
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetLastSceneId() int32 {
-	if m != nil {
-		return m.LastSceneId
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetRoleId() int32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-func (m *UserEnterSceneReq) GetTime() int32 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetIsLogin() uint32 {
-	if m != nil {
-		return m.IsLogin
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetReserved1() uint32 {
-	if m != nil {
-		return m.Reserved1
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetServer() int32 {
-	if m != nil {
-		return m.Server
-	}
-	return 0
-}
-
-func (m *UserEnterSceneReq) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
-}
-
-func (m *UserEnterSceneReq) GetUserUuid() string {
-	if m != nil {
-		return m.UserUuid
-	}
-	return ""
-}
-
-func (m *UserEnterSceneReq) GetInvitationstatus() int32 {
-	if m != nil {
-		return m.Invitationstatus
-	}
-	return 0
-}
-
-// 玩家进入场景返回消息
-type UserEnterSceneAck struct {
-	ErrCode              int32    `protobuf:"varint,1,opt,name=errCode,proto3" json:"errCode,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UserEnterSceneAck) Reset()         { *m = UserEnterSceneAck{} }
-func (m *UserEnterSceneAck) String() string { return proto.CompactTextString(m) }
-func (*UserEnterSceneAck) ProtoMessage()    {}
-func (*UserEnterSceneAck) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{5}
-}
-
-func (m *UserEnterSceneAck) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserEnterSceneAck.Unmarshal(m, b)
-}
-func (m *UserEnterSceneAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserEnterSceneAck.Marshal(b, m, deterministic)
-}
-func (m *UserEnterSceneAck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserEnterSceneAck.Merge(m, src)
-}
-func (m *UserEnterSceneAck) XXX_Size() int {
-	return xxx_messageInfo_UserEnterSceneAck.Size(m)
-}
-func (m *UserEnterSceneAck) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserEnterSceneAck.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UserEnterSceneAck proto.InternalMessageInfo
-
-func (m *UserEnterSceneAck) GetErrCode() int32 {
-	if m != nil {
-		return m.ErrCode
-	}
-	return 0
-}
-
-// 服务器推送角色列表
-type RoleListNotify struct {
-	ErrCode              int32       `protobuf:"varint,1,opt,name=errCode,proto3" json:"errCode,omitempty"`
-	Count                int32       `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	UserUuid             string      `protobuf:"bytes,3,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
-	Wallet               string      `protobuf:"bytes,4,opt,name=wallet,proto3" json:"wallet,omitempty"`
-	Invitationstatus     int32       `protobuf:"varint,5,opt,name=invitationstatus,proto3" json:"invitationstatus,omitempty"`
-	RoleItem             []*RoleItem `protobuf:"bytes,6,rep,name=roleItem,proto3" json:"roleItem,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *RoleListNotify) Reset()         { *m = RoleListNotify{} }
-func (m *RoleListNotify) String() string { return proto.CompactTextString(m) }
-func (*RoleListNotify) ProtoMessage()    {}
-func (*RoleListNotify) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{6}
-}
-
-func (m *RoleListNotify) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RoleListNotify.Unmarshal(m, b)
-}
-func (m *RoleListNotify) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RoleListNotify.Marshal(b, m, deterministic)
-}
-func (m *RoleListNotify) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoleListNotify.Merge(m, src)
-}
-func (m *RoleListNotify) XXX_Size() int {
-	return xxx_messageInfo_RoleListNotify.Size(m)
-}
-func (m *RoleListNotify) XXX_DiscardUnknown() {
-	xxx_messageInfo_RoleListNotify.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RoleListNotify proto.InternalMessageInfo
-
-func (m *RoleListNotify) GetErrCode() int32 {
-	if m != nil {
-		return m.ErrCode
-	}
-	return 0
-}
-
-func (m *RoleListNotify) GetCount() int32 {
-	if m != nil {
-		return m.Count
-	}
-	return 0
-}
-
-func (m *RoleListNotify) GetUserUuid() string {
-	if m != nil {
-		return m.UserUuid
-	}
-	return ""
-}
-
-func (m *RoleListNotify) GetWallet() string {
-	if m != nil {
-		return m.Wallet
-	}
-	return ""
-}
-
-func (m *RoleListNotify) GetInvitationstatus() int32 {
-	if m != nil {
-		return m.Invitationstatus
-	}
-	return 0
-}
-
-func (m *RoleListNotify) GetRoleItem() []*RoleItem {
-	if m != nil {
-		return m.RoleItem
-	}
-	return nil
-}
-
-// 进入场景广播消息
-type EnterSceneNotify struct {
-	Sceneid              int32    `protobuf:"varint,1,opt,name=sceneid,proto3" json:"sceneid,omitempty"`
-	ObjId                int32    `protobuf:"varint,2,opt,name=obj_id,json=objId,proto3" json:"obj_id,omitempty"`
-	OpenLine             int32    `protobuf:"varint,3,opt,name=open_line,json=openLine,proto3" json:"open_line,omitempty"`
-	PosX                 float32  `protobuf:"fixed32,4,opt,name=pos_x,json=posX,proto3" json:"pos_x,omitempty"`
-	PosY                 float32  `protobuf:"fixed32,5,opt,name=pos_y,json=posY,proto3" json:"pos_y,omitempty"`
-	Hp                   int32    `protobuf:"varint,6,opt,name=hp,proto3" json:"hp,omitempty"`
-	MaxHp                int32    `protobuf:"varint,7,opt,name=max_hp,json=maxHp,proto3" json:"max_hp,omitempty"`
-	SceneKey             int32    `protobuf:"varint,8,opt,name=scene_key,json=sceneKey,proto3" json:"scene_key,omitempty"`
-	Height               float32  `protobuf:"fixed32,9,opt,name=height,proto3" json:"height,omitempty"`
-	PosZ                 float32  `protobuf:"fixed32,10,opt,name=pos_z,json=posZ,proto3" json:"pos_z,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *EnterSceneNotify) Reset()         { *m = EnterSceneNotify{} }
-func (m *EnterSceneNotify) String() string { return proto.CompactTextString(m) }
-func (*EnterSceneNotify) ProtoMessage()    {}
-func (*EnterSceneNotify) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{7}
-}
-
-func (m *EnterSceneNotify) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnterSceneNotify.Unmarshal(m, b)
-}
-func (m *EnterSceneNotify) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnterSceneNotify.Marshal(b, m, deterministic)
-}
-func (m *EnterSceneNotify) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnterSceneNotify.Merge(m, src)
-}
-func (m *EnterSceneNotify) XXX_Size() int {
-	return xxx_messageInfo_EnterSceneNotify.Size(m)
-}
-func (m *EnterSceneNotify) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnterSceneNotify.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_EnterSceneNotify proto.InternalMessageInfo
-
-func (m *EnterSceneNotify) GetSceneid() int32 {
-	if m != nil {
-		return m.Sceneid
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetObjId() int32 {
-	if m != nil {
-		return m.ObjId
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetOpenLine() int32 {
-	if m != nil {
-		return m.OpenLine
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetPosX() float32 {
-	if m != nil {
-		return m.PosX
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetPosY() float32 {
-	if m != nil {
-		return m.PosY
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetHp() int32 {
-	if m != nil {
-		return m.Hp
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetMaxHp() int32 {
-	if m != nil {
-		return m.MaxHp
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetSceneKey() int32 {
-	if m != nil {
-		return m.SceneKey
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetHeight() float32 {
-	if m != nil {
-		return m.Height
-	}
-	return 0
-}
-
-func (m *EnterSceneNotify) GetPosZ() float32 {
-	if m != nil {
-		return m.PosZ
-	}
-	return 0
-}
-
-// 玩家离开场景
-type LeaveSceneNotify struct {
-	Sceneid              int32    `protobuf:"varint,1,opt,name=sceneid,proto3" json:"sceneid,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *LeaveSceneNotify) Reset()         { *m = LeaveSceneNotify{} }
-func (m *LeaveSceneNotify) String() string { return proto.CompactTextString(m) }
-func (*LeaveSceneNotify) ProtoMessage()    {}
-func (*LeaveSceneNotify) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{8}
-}
-
-func (m *LeaveSceneNotify) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_LeaveSceneNotify.Unmarshal(m, b)
-}
-func (m *LeaveSceneNotify) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_LeaveSceneNotify.Marshal(b, m, deterministic)
-}
-func (m *LeaveSceneNotify) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LeaveSceneNotify.Merge(m, src)
-}
-func (m *LeaveSceneNotify) XXX_Size() int {
-	return xxx_messageInfo_LeaveSceneNotify.Size(m)
-}
-func (m *LeaveSceneNotify) XXX_DiscardUnknown() {
-	xxx_messageInfo_LeaveSceneNotify.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_LeaveSceneNotify proto.InternalMessageInfo
-
-func (m *LeaveSceneNotify) GetSceneid() int32 {
-	if m != nil {
-		return m.Sceneid
-	}
-	return 0
-}
-
-// 广播移动消息
-type ObjMoveNotify struct {
-	Dir                  float32  `protobuf:"fixed32,1,opt,name=dir,proto3" json:"dir,omitempty"`
-	SpeedX               float32  `protobuf:"fixed32,2,opt,name=speed_x,json=speedX,proto3" json:"speed_x,omitempty"`
-	SpeedY               float32  `protobuf:"fixed32,3,opt,name=speed_y,json=speedY,proto3" json:"speed_y,omitempty"`
-	SpeedZ               float32  `protobuf:"fixed32,4,opt,name=speed_z,json=speedZ,proto3" json:"speed_z,omitempty"`
-	PosX                 float32  `protobuf:"fixed32,5,opt,name=pos_x,json=posX,proto3" json:"pos_x,omitempty"`
-	PosY                 float32  `protobuf:"fixed32,6,opt,name=pos_y,json=posY,proto3" json:"pos_y,omitempty"`
-	PosZ                 float32  `protobuf:"fixed32,7,opt,name=pos_z,json=posZ,proto3" json:"pos_z,omitempty"`
-	RotationX            float32  `protobuf:"fixed32,8,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
-	RotationY            float32  `protobuf:"fixed32,9,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
-	RotationZ            float32  `protobuf:"fixed32,10,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
-	Reserved             int32    `protobuf:"varint,11,opt,name=reserved,proto3" json:"reserved,omitempty"`
-	ObjId                int32    `protobuf:"varint,12,opt,name=obj_id,json=objId,proto3" json:"obj_id,omitempty"`
-	Distance             float32  `protobuf:"fixed32,13,opt,name=distance,proto3" json:"distance,omitempty"`
-	MoveMode             uint32   `protobuf:"varint,14,opt,name=move_mode,json=moveMode,proto3" json:"move_mode,omitempty"`
-	Reserve2             uint32   `protobuf:"varint,15,opt,name=reserve2,proto3" json:"reserve2,omitempty"`
-	Height               float32  `protobuf:"fixed32,16,opt,name=height,proto3" json:"height,omitempty"`
-	AccelerationX        float32  `protobuf:"fixed32,17,opt,name=acceleration_x,json=accelerationX,proto3" json:"acceleration_x,omitempty"`
-	AccelerationY        float32  `protobuf:"fixed32,18,opt,name=acceleration_y,json=accelerationY,proto3" json:"acceleration_y,omitempty"`
-	AccelerationZ        float32  `protobuf:"fixed32,19,opt,name=acceleration_z,json=accelerationZ,proto3" json:"acceleration_z,omitempty"`
-	ControlRotationX     float32  `protobuf:"fixed32,20,opt,name=controlRotation_x,json=controlRotationX,proto3" json:"controlRotation_x,omitempty"`
-	ControlRotationY     float32  `protobuf:"fixed32,21,opt,name=controlRotation_y,json=controlRotationY,proto3" json:"controlRotation_y,omitempty"`
-	ControlRotationZ     float32  `protobuf:"fixed32,22,opt,name=controlRotation_z,json=controlRotationZ,proto3" json:"controlRotation_z,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ObjMoveNotify) Reset()         { *m = ObjMoveNotify{} }
-func (m *ObjMoveNotify) String() string { return proto.CompactTextString(m) }
-func (*ObjMoveNotify) ProtoMessage()    {}
-func (*ObjMoveNotify) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{9}
-}
-
-func (m *ObjMoveNotify) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ObjMoveNotify.Unmarshal(m, b)
-}
-func (m *ObjMoveNotify) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ObjMoveNotify.Marshal(b, m, deterministic)
-}
-func (m *ObjMoveNotify) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ObjMoveNotify.Merge(m, src)
-}
-func (m *ObjMoveNotify) XXX_Size() int {
-	return xxx_messageInfo_ObjMoveNotify.Size(m)
-}
-func (m *ObjMoveNotify) XXX_DiscardUnknown() {
-	xxx_messageInfo_ObjMoveNotify.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ObjMoveNotify proto.InternalMessageInfo
-
-func (m *ObjMoveNotify) GetDir() float32 {
-	if m != nil {
-		return m.Dir
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetSpeedX() float32 {
-	if m != nil {
-		return m.SpeedX
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetSpeedY() float32 {
-	if m != nil {
-		return m.SpeedY
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetSpeedZ() float32 {
-	if m != nil {
-		return m.SpeedZ
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetPosX() float32 {
-	if m != nil {
-		return m.PosX
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetPosY() float32 {
-	if m != nil {
-		return m.PosY
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetPosZ() float32 {
-	if m != nil {
-		return m.PosZ
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetRotationX() float32 {
-	if m != nil {
-		return m.RotationX
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetRotationY() float32 {
-	if m != nil {
-		return m.RotationY
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetRotationZ() float32 {
-	if m != nil {
-		return m.RotationZ
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetReserved() int32 {
-	if m != nil {
-		return m.Reserved
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetObjId() int32 {
-	if m != nil {
-		return m.ObjId
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetDistance() float32 {
-	if m != nil {
-		return m.Distance
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetMoveMode() uint32 {
-	if m != nil {
-		return m.MoveMode
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetReserve2() uint32 {
-	if m != nil {
-		return m.Reserve2
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetHeight() float32 {
-	if m != nil {
-		return m.Height
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetAccelerationX() float32 {
-	if m != nil {
-		return m.AccelerationX
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetAccelerationY() float32 {
-	if m != nil {
-		return m.AccelerationY
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetAccelerationZ() float32 {
-	if m != nil {
-		return m.AccelerationZ
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetControlRotationX() float32 {
-	if m != nil {
-		return m.ControlRotationX
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetControlRotationY() float32 {
-	if m != nil {
-		return m.ControlRotationY
-	}
-	return 0
-}
-
-func (m *ObjMoveNotify) GetControlRotationZ() float32 {
-	if m != nil {
-		return m.ControlRotationZ
-	}
-	return 0
-}
-
-// 玩家移动请求
-type ObjMoveReq struct {
-	Dir                  float32  `protobuf:"fixed32,1,opt,name=dir,proto3" json:"dir,omitempty"`
-	SpeedX               float32  `protobuf:"fixed32,2,opt,name=speed_x,json=speedX,proto3" json:"speed_x,omitempty"`
-	SpeedY               float32  `protobuf:"fixed32,3,opt,name=speed_y,json=speedY,proto3" json:"speed_y,omitempty"`
-	SpeedZ               float32  `protobuf:"fixed32,4,opt,name=speed_z,json=speedZ,proto3" json:"speed_z,omitempty"`
-	PosX                 float32  `protobuf:"fixed32,5,opt,name=pos_x,json=posX,proto3" json:"pos_x,omitempty"`
-	PosY                 float32  `protobuf:"fixed32,6,opt,name=pos_y,json=posY,proto3" json:"pos_y,omitempty"`
-	PosZ                 float32  `protobuf:"fixed32,7,opt,name=pos_z,json=posZ,proto3" json:"pos_z,omitempty"`
-	RotationX            float32  `protobuf:"fixed32,8,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
-	RotationY            float32  `protobuf:"fixed32,9,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
-	RotationZ            float32  `protobuf:"fixed32,10,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
-	Distance             float32  `protobuf:"fixed32,11,opt,name=distance,proto3" json:"distance,omitempty"`
-	Height               float32  `protobuf:"fixed32,12,opt,name=height,proto3" json:"height,omitempty"`
-	AccelerationX        float32  `protobuf:"fixed32,13,opt,name=acceleration_x,json=accelerationX,proto3" json:"acceleration_x,omitempty"`
-	AccelerationY        float32  `protobuf:"fixed32,14,opt,name=acceleration_y,json=accelerationY,proto3" json:"acceleration_y,omitempty"`
-	AccelerationZ        float32  `protobuf:"fixed32,15,opt,name=acceleration_z,json=accelerationZ,proto3" json:"acceleration_z,omitempty"`
-	ControlRotationX     float32  `protobuf:"fixed32,16,opt,name=controlRotation_x,json=controlRotationX,proto3" json:"controlRotation_x,omitempty"`
-	ControlRotationY     float32  `protobuf:"fixed32,17,opt,name=controlRotation_y,json=controlRotationY,proto3" json:"controlRotation_y,omitempty"`
-	ControlRotationZ     float32  `protobuf:"fixed32,18,opt,name=controlRotation_z,json=controlRotationZ,proto3" json:"controlRotation_z,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ObjMoveReq) Reset()         { *m = ObjMoveReq{} }
-func (m *ObjMoveReq) String() string { return proto.CompactTextString(m) }
-func (*ObjMoveReq) ProtoMessage()    {}
-func (*ObjMoveReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{10}
-}
-
-func (m *ObjMoveReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ObjMoveReq.Unmarshal(m, b)
-}
-func (m *ObjMoveReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ObjMoveReq.Marshal(b, m, deterministic)
-}
-func (m *ObjMoveReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ObjMoveReq.Merge(m, src)
-}
-func (m *ObjMoveReq) XXX_Size() int {
-	return xxx_messageInfo_ObjMoveReq.Size(m)
-}
-func (m *ObjMoveReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_ObjMoveReq.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ObjMoveReq proto.InternalMessageInfo
-
-func (m *ObjMoveReq) GetDir() float32 {
-	if m != nil {
-		return m.Dir
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetSpeedX() float32 {
-	if m != nil {
-		return m.SpeedX
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetSpeedY() float32 {
-	if m != nil {
-		return m.SpeedY
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetSpeedZ() float32 {
-	if m != nil {
-		return m.SpeedZ
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetPosX() float32 {
-	if m != nil {
-		return m.PosX
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetPosY() float32 {
-	if m != nil {
-		return m.PosY
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetPosZ() float32 {
-	if m != nil {
-		return m.PosZ
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetRotationX() float32 {
-	if m != nil {
-		return m.RotationX
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetRotationY() float32 {
-	if m != nil {
-		return m.RotationY
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetRotationZ() float32 {
-	if m != nil {
-		return m.RotationZ
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetDistance() float32 {
-	if m != nil {
-		return m.Distance
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetHeight() float32 {
-	if m != nil {
-		return m.Height
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetAccelerationX() float32 {
-	if m != nil {
-		return m.AccelerationX
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetAccelerationY() float32 {
-	if m != nil {
-		return m.AccelerationY
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetAccelerationZ() float32 {
-	if m != nil {
-		return m.AccelerationZ
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetControlRotationX() float32 {
-	if m != nil {
-		return m.ControlRotationX
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetControlRotationY() float32 {
-	if m != nil {
-		return m.ControlRotationY
-	}
-	return 0
-}
-
-func (m *ObjMoveReq) GetControlRotationZ() float32 {
-	if m != nil {
-		return m.ControlRotationZ
-	}
-	return 0
-}
-
-// 进入视野广播
-type VisibleObjEnterRoleNotify struct {
-	Dir                  float32  `protobuf:"fixed32,1,opt,name=dir,proto3" json:"dir,omitempty"`
-	MoveModeParam        uint32   `protobuf:"varint,2,opt,name=move_mode_param,json=moveModeParam,proto3" json:"move_mode_param,omitempty"`
-	RoleStatus           uint32   `protobuf:"varint,3,opt,name=role_status,json=roleStatus,proto3" json:"role_status,omitempty"`
-	ObjId                uint32   `protobuf:"varint,4,opt,name=obj_id,json=objId,proto3" json:"obj_id,omitempty"`
-	RoleId               int32    `protobuf:"varint,5,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	RoleName             string   `protobuf:"bytes,6,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	Hp                   int32    `protobuf:"varint,7,opt,name=hp,proto3" json:"hp,omitempty"`
-	MaxHp                int32    `protobuf:"varint,8,opt,name=max_hp,json=maxHp,proto3" json:"max_hp,omitempty"`
-	Level                uint32   `protobuf:"varint,9,opt,name=level,proto3" json:"level,omitempty"`
-	Sex                  uint32   `protobuf:"varint,10,opt,name=sex,proto3" json:"sex,omitempty"`
-	Speed                uint32   `protobuf:"varint,11,opt,name=speed,proto3" json:"speed,omitempty"`
-	PosX                 float32  `protobuf:"fixed32,12,opt,name=pos_x,json=posX,proto3" json:"pos_x,omitempty"`
-	PosY                 float32  `protobuf:"fixed32,13,opt,name=pos_y,json=posY,proto3" json:"pos_y,omitempty"`
-	Distance             float32  `protobuf:"fixed32,14,opt,name=distance,proto3" json:"distance,omitempty"`
-	NameColor            uint32   `protobuf:"varint,15,opt,name=name_color,json=nameColor,proto3" json:"name_color,omitempty"`
-	MoveMode             uint32   `protobuf:"varint,16,opt,name=move_mode,json=moveMode,proto3" json:"move_mode,omitempty"`
-	Avatar               uint32   `protobuf:"varint,17,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	PosZ                 float32  `protobuf:"fixed32,18,opt,name=pos_z,json=posZ,proto3" json:"pos_z,omitempty"`
-	RotationX            float32  `protobuf:"fixed32,19,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
-	RotationY            float32  `protobuf:"fixed32,20,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
-	RotationZ            float32  `protobuf:"fixed32,21,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *VisibleObjEnterRoleNotify) Reset()         { *m = VisibleObjEnterRoleNotify{} }
-func (m *VisibleObjEnterRoleNotify) String() string { return proto.CompactTextString(m) }
-func (*VisibleObjEnterRoleNotify) ProtoMessage()    {}
-func (*VisibleObjEnterRoleNotify) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{11}
-}
-
-func (m *VisibleObjEnterRoleNotify) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_VisibleObjEnterRoleNotify.Unmarshal(m, b)
-}
-func (m *VisibleObjEnterRoleNotify) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_VisibleObjEnterRoleNotify.Marshal(b, m, deterministic)
-}
-func (m *VisibleObjEnterRoleNotify) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_VisibleObjEnterRoleNotify.Merge(m, src)
-}
-func (m *VisibleObjEnterRoleNotify) XXX_Size() int {
-	return xxx_messageInfo_VisibleObjEnterRoleNotify.Size(m)
-}
-func (m *VisibleObjEnterRoleNotify) XXX_DiscardUnknown() {
-	xxx_messageInfo_VisibleObjEnterRoleNotify.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_VisibleObjEnterRoleNotify proto.InternalMessageInfo
-
-func (m *VisibleObjEnterRoleNotify) GetDir() float32 {
-	if m != nil {
-		return m.Dir
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetMoveModeParam() uint32 {
-	if m != nil {
-		return m.MoveModeParam
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetRoleStatus() uint32 {
-	if m != nil {
-		return m.RoleStatus
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetObjId() uint32 {
-	if m != nil {
-		return m.ObjId
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetRoleId() int32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-func (m *VisibleObjEnterRoleNotify) GetHp() int32 {
-	if m != nil {
-		return m.Hp
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetMaxHp() int32 {
-	if m != nil {
-		return m.MaxHp
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetLevel() uint32 {
-	if m != nil {
-		return m.Level
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetSex() uint32 {
-	if m != nil {
-		return m.Sex
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetSpeed() uint32 {
-	if m != nil {
-		return m.Speed
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetPosX() float32 {
-	if m != nil {
-		return m.PosX
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetPosY() float32 {
-	if m != nil {
-		return m.PosY
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetDistance() float32 {
-	if m != nil {
-		return m.Distance
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetNameColor() uint32 {
-	if m != nil {
-		return m.NameColor
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetMoveMode() uint32 {
-	if m != nil {
-		return m.MoveMode
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetAvatar() uint32 {
-	if m != nil {
-		return m.Avatar
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetPosZ() float32 {
-	if m != nil {
-		return m.PosZ
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetRotationX() float32 {
-	if m != nil {
-		return m.RotationX
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetRotationY() float32 {
-	if m != nil {
-		return m.RotationY
-	}
-	return 0
-}
-
-func (m *VisibleObjEnterRoleNotify) GetRotationZ() float32 {
-	if m != nil {
-		return m.RotationZ
-	}
-	return 0
-}
-
-// 角色信息
-type RoleItem struct {
-	RoleId               int32    `protobuf:"varint,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	RoleName             string   `protobuf:"bytes,2,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	Avatar               int32    `protobuf:"varint,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Sex                  int32    `protobuf:"varint,4,opt,name=sex,proto3" json:"sex,omitempty"`
-	CreateTime           uint32   `protobuf:"varint,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
-	LastLoginTime        uint32   `protobuf:"varint,6,opt,name=last_login_time,json=lastLoginTime,proto3" json:"last_login_time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RoleItem) Reset()         { *m = RoleItem{} }
-func (m *RoleItem) String() string { return proto.CompactTextString(m) }
-func (*RoleItem) ProtoMessage()    {}
-func (*RoleItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{12}
-}
-
-func (m *RoleItem) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RoleItem.Unmarshal(m, b)
-}
-func (m *RoleItem) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RoleItem.Marshal(b, m, deterministic)
-}
-func (m *RoleItem) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoleItem.Merge(m, src)
-}
-func (m *RoleItem) XXX_Size() int {
-	return xxx_messageInfo_RoleItem.Size(m)
-}
-func (m *RoleItem) XXX_DiscardUnknown() {
-	xxx_messageInfo_RoleItem.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RoleItem proto.InternalMessageInfo
-
-func (m *RoleItem) GetRoleId() int32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-func (m *RoleItem) GetRoleName() string {
-	if m != nil {
-		return m.RoleName
-	}
-	return ""
-}
-
-func (m *RoleItem) GetAvatar() int32 {
-	if m != nil {
-		return m.Avatar
-	}
-	return 0
-}
-
-func (m *RoleItem) GetSex() int32 {
-	if m != nil {
-		return m.Sex
-	}
-	return 0
-}
-
-func (m *RoleItem) GetCreateTime() uint32 {
-	if m != nil {
-		return m.CreateTime
-	}
-	return 0
-}
-
-func (m *RoleItem) GetLastLoginTime() uint32 {
-	if m != nil {
-		return m.LastLoginTime
-	}
-	return 0
-}
-
-// 登录游戏
-type LoginMsgReq struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
-	Uuid                 string   `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Wallet               string   `protobuf:"bytes,4,opt,name=wallet,proto3" json:"wallet,omitempty"`
-	Invitationstatus     int32    `protobuf:"varint,5,opt,name=invitationstatus,proto3" json:"invitationstatus,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *LoginMsgReq) Reset()         { *m = LoginMsgReq{} }
-func (m *LoginMsgReq) String() string { return proto.CompactTextString(m) }
-func (*LoginMsgReq) ProtoMessage()    {}
-func (*LoginMsgReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_67c21677aa7f4e4f, []int{13}
-}
-
-func (m *LoginMsgReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_LoginMsgReq.Unmarshal(m, b)
-}
-func (m *LoginMsgReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_LoginMsgReq.Marshal(b, m, deterministic)
-}
-func (m *LoginMsgReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LoginMsgReq.Merge(m, src)
-}
-func (m *LoginMsgReq) XXX_Size() int {
-	return xxx_messageInfo_LoginMsgReq.Size(m)
-}
-func (m *LoginMsgReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_LoginMsgReq.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_LoginMsgReq proto.InternalMessageInfo
-
-func (m *LoginMsgReq) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *LoginMsgReq) GetToken() string {
+func (m *LoginReq) GetToken() string {
 	if m != nil {
 		return m.Token
 	}
 	return ""
 }
 
-func (m *LoginMsgReq) GetUuid() string {
-	if m != nil {
-		return m.Uuid
-	}
-	return ""
+// 服务器返回请求登录信息
+type LoginAck struct {
+	UserId               int32    `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Account              string   `protobuf:"bytes,2,opt,name=account,proto3" json:"account,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *LoginMsgReq) GetWallet() string {
-	if m != nil {
-		return m.Wallet
-	}
-	return ""
+func (m *LoginAck) Reset()         { *m = LoginAck{} }
+func (m *LoginAck) String() string { return proto.CompactTextString(m) }
+func (*LoginAck) ProtoMessage()    {}
+func (*LoginAck) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67c21677aa7f4e4f, []int{1}
 }
 
-func (m *LoginMsgReq) GetInvitationstatus() int32 {
+func (m *LoginAck) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LoginAck.Unmarshal(m, b)
+}
+func (m *LoginAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LoginAck.Marshal(b, m, deterministic)
+}
+func (m *LoginAck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LoginAck.Merge(m, src)
+}
+func (m *LoginAck) XXX_Size() int {
+	return xxx_messageInfo_LoginAck.Size(m)
+}
+func (m *LoginAck) XXX_DiscardUnknown() {
+	xxx_messageInfo_LoginAck.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LoginAck proto.InternalMessageInfo
+
+func (m *LoginAck) GetUserId() int32 {
 	if m != nil {
-		return m.Invitationstatus
+		return m.UserId
 	}
 	return 0
 }
 
+func (m *LoginAck) GetAccount() string {
+	if m != nil {
+		return m.Account
+	}
+	return ""
+}
+
+// 客户端请求创建账号
+type CreateAccountReq struct {
+	Account              string   `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
+	Password             string   `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateAccountReq) Reset()         { *m = CreateAccountReq{} }
+func (m *CreateAccountReq) String() string { return proto.CompactTextString(m) }
+func (*CreateAccountReq) ProtoMessage()    {}
+func (*CreateAccountReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67c21677aa7f4e4f, []int{2}
+}
+
+func (m *CreateAccountReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateAccountReq.Unmarshal(m, b)
+}
+func (m *CreateAccountReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateAccountReq.Marshal(b, m, deterministic)
+}
+func (m *CreateAccountReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateAccountReq.Merge(m, src)
+}
+func (m *CreateAccountReq) XXX_Size() int {
+	return xxx_messageInfo_CreateAccountReq.Size(m)
+}
+func (m *CreateAccountReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateAccountReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateAccountReq proto.InternalMessageInfo
+
+func (m *CreateAccountReq) GetAccount() string {
+	if m != nil {
+		return m.Account
+	}
+	return ""
+}
+
+func (m *CreateAccountReq) GetPassword() string {
+	if m != nil {
+		return m.Password
+	}
+	return ""
+}
+
+// 创建账号返回
+type CreateAccountAck struct {
+	UserId               int32    `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateAccountAck) Reset()         { *m = CreateAccountAck{} }
+func (m *CreateAccountAck) String() string { return proto.CompactTextString(m) }
+func (*CreateAccountAck) ProtoMessage()    {}
+func (*CreateAccountAck) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67c21677aa7f4e4f, []int{3}
+}
+
+func (m *CreateAccountAck) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateAccountAck.Unmarshal(m, b)
+}
+func (m *CreateAccountAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateAccountAck.Marshal(b, m, deterministic)
+}
+func (m *CreateAccountAck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateAccountAck.Merge(m, src)
+}
+func (m *CreateAccountAck) XXX_Size() int {
+	return xxx_messageInfo_CreateAccountAck.Size(m)
+}
+func (m *CreateAccountAck) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateAccountAck.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateAccountAck proto.InternalMessageInfo
+
+func (m *CreateAccountAck) GetUserId() int32 {
+	if m != nil {
+		return m.UserId
+	}
+	return 0
+}
+
+func (m *CreateAccountAck) GetToken() string {
+	if m != nil {
+		return m.Token
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterEnum("LoginMsgId", LoginMsgId_name, LoginMsgId_value)
-	proto.RegisterEnum("CreateRoleAck_RET_TYPE", CreateRoleAck_RET_TYPE_name, CreateRoleAck_RET_TYPE_value)
-	proto.RegisterEnum("RoleListNotify_LoginAckCode", RoleListNotify_LoginAckCode_name, RoleListNotify_LoginAckCode_value)
-	proto.RegisterType((*RoleLoginReq)(nil), "RoleLoginReq")
-	proto.RegisterType((*RoleLoginAck)(nil), "RoleLoginAck")
-	proto.RegisterType((*CreateRoleReq)(nil), "CreateRoleReq")
-	proto.RegisterType((*CreateRoleAck)(nil), "CreateRoleAck")
-	proto.RegisterType((*UserEnterSceneReq)(nil), "UserEnterSceneReq")
-	proto.RegisterType((*UserEnterSceneAck)(nil), "UserEnterSceneAck")
-	proto.RegisterType((*RoleListNotify)(nil), "RoleListNotify")
-	proto.RegisterType((*EnterSceneNotify)(nil), "EnterSceneNotify")
-	proto.RegisterType((*LeaveSceneNotify)(nil), "LeaveSceneNotify")
-	proto.RegisterType((*ObjMoveNotify)(nil), "ObjMoveNotify")
-	proto.RegisterType((*ObjMoveReq)(nil), "ObjMoveReq")
-	proto.RegisterType((*VisibleObjEnterRoleNotify)(nil), "VisibleObjEnterRoleNotify")
-	proto.RegisterType((*RoleItem)(nil), "RoleItem")
-	proto.RegisterType((*LoginMsgReq)(nil), "LoginMsgReq")
+	proto.RegisterType((*LoginReq)(nil), "loginReq")
+	proto.RegisterType((*LoginAck)(nil), "loginAck")
+	proto.RegisterType((*CreateAccountReq)(nil), "CreateAccountReq")
+	proto.RegisterType((*CreateAccountAck)(nil), "CreateAccountAck")
 }
 
 func init() { proto.RegisterFile("login.proto", fileDescriptor_67c21677aa7f4e4f) }
 
 var fileDescriptor_67c21677aa7f4e4f = []byte{
-	// 1740 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x58, 0x49, 0x6f, 0x23, 0xc7,
-	0x15, 0x36, 0xf7, 0xe6, 0xa3, 0x5a, 0xd3, 0xaa, 0xe1, 0x68, 0x7a, 0xa4, 0x19, 0x8c, 0xd0, 0x80,
-	0x8d, 0x81, 0x9d, 0x18, 0x88, 0x03, 0x78, 0xce, 0x14, 0xa7, 0x3d, 0xd3, 0x1e, 0x2e, 0xe3, 0x22,
-	0xb5, 0x50, 0x08, 0x50, 0x68, 0x91, 0x15, 0xaa, 0x35, 0x64, 0x37, 0xd3, 0xdd, 0x94, 0x44, 0xdd,
-	0x73, 0xc9, 0x25, 0xcb, 0x31, 0xe7, 0xfc, 0x83, 0x24, 0xb7, 0x00, 0x41, 0xae, 0x81, 0xe3, 0x38,
-	0x8b, 0x81, 0xe4, 0x07, 0x04, 0xc8, 0x29, 0x7f, 0x20, 0x40, 0x10, 0xd4, 0xd2, 0xec, 0x45, 0xa4,
-	0x22, 0x03, 0xbe, 0xe5, 0x42, 0xf5, 0x5b, 0xaa, 0xea, 0xd5, 0x7b, 0xdf, 0x57, 0xf5, 0x4a, 0x50,
-	0x9b, 0x78, 0x63, 0xc7, 0xfd, 0x70, 0xe6, 0x7b, 0xa1, 0x67, 0x7c, 0x0f, 0x36, 0xb0, 0x37, 0xa1,
-	0x2d, 0xa6, 0xc2, 0xf4, 0x07, 0x68, 0x1b, 0xca, 0xf6, 0x70, 0xe8, 0xcd, 0x43, 0x3d, 0xb7, 0x97,
-	0x7b, 0x56, 0xc5, 0x52, 0x42, 0x0f, 0xa1, 0xe2, 0x7b, 0x13, 0x4a, 0x9c, 0x91, 0x9e, 0xdf, 0xcb,
-	0x3d, 0x2b, 0xe1, 0x32, 0x13, 0xad, 0x11, 0xda, 0x85, 0x2a, 0x37, 0xb8, 0xf6, 0x94, 0xea, 0x05,
-	0x3e, 0x46, 0x61, 0x8a, 0x8e, 0x3d, 0xa5, 0xc6, 0xef, 0xf3, 0x89, 0xe9, 0x1b, 0xc3, 0xb7, 0xdf,
-	0xec, 0xf4, 0xe8, 0x11, 0x28, 0xc1, 0x90, 0xba, 0x7c, 0x58, 0x91, 0x0f, 0xab, 0x70, 0xd9, 0x1a,
-	0x21, 0x03, 0xd4, 0x89, 0x1d, 0x84, 0x64, 0x69, 0x2f, 0x71, 0x7b, 0x8d, 0x29, 0x7b, 0xd2, 0xe7,
-	0x29, 0xd4, 0xc6, 0x97, 0xe4, 0xcc, 0x0b, 0x42, 0x3e, 0x7b, 0x99, 0xcf, 0x0e, 0xe3, 0xcb, 0x57,
-	0x52, 0xc3, 0xa2, 0x1a, 0x5f, 0x92, 0x99, 0xe7, 0x87, 0x7a, 0x45, 0x44, 0x35, 0xbe, 0x7c, 0xe3,
-	0xf9, 0x21, 0x5b, 0x78, 0x1c, 0x10, 0xc7, 0x1d, 0xd1, 0x2b, 0x5d, 0x11, 0x0b, 0x8f, 0x03, 0x8b,
-	0x89, 0x6c, 0xd2, 0x80, 0xfa, 0x17, 0xd4, 0x27, 0xa1, 0x33, 0xa5, 0x7a, 0x75, 0x2f, 0xf7, 0xac,
-	0x80, 0x41, 0xa8, 0xfa, 0xce, 0x94, 0x0a, 0x87, 0x20, 0x70, 0x3c, 0x97, 0xbc, 0xa5, 0x0b, 0x1d,
-	0xc4, 0xaa, 0x52, 0xf5, 0x9a, 0x2e, 0x58, 0x8e, 0x7c, 0x1a, 0xcc, 0x27, 0xa1, 0x5e, 0x93, 0xa9,
-	0xe0, 0x92, 0xf1, 0xc3, 0x3c, 0xa8, 0x4d, 0x9f, 0xda, 0x21, 0x65, 0x29, 0x65, 0xc5, 0x4a, 0x25,
-	0x27, 0x97, 0x49, 0xce, 0x13, 0x00, 0x5e, 0x68, 0x11, 0x07, 0xcb, 0xaa, 0x8a, 0xab, 0x5c, 0xc3,
-	0xc3, 0xd8, 0x05, 0x21, 0x90, 0x20, 0xf4, 0xa3, 0xc4, 0x72, 0x45, 0x2f, 0xf4, 0x59, 0x08, 0x22,
-	0x62, 0x9e, 0x56, 0x15, 0x4b, 0x89, 0xc5, 0x6e, 0xbb, 0xa1, 0x43, 0x2e, 0xed, 0xc9, 0xc4, 0xbb,
-	0xe4, 0x39, 0x55, 0x31, 0x30, 0xd5, 0x11, 0xd7, 0xf0, 0xfa, 0x5e, 0xd8, 0xa1, 0xed, 0xf3, 0x6c,
-	0xaa, 0x58, 0x4a, 0x48, 0x83, 0x42, 0x40, 0xaf, 0x78, 0x16, 0x55, 0xcc, 0x3e, 0xd9, 0xfa, 0xb3,
-	0x89, 0x1d, 0x8a, 0xd8, 0x15, 0xb1, 0x3e, 0x53, 0xf0, 0xd8, 0x77, 0xa1, 0x3a, 0x0f, 0xa8, 0x4f,
-	0xe6, 0x73, 0x67, 0xc4, 0x53, 0x58, 0xc5, 0x0a, 0x53, 0x1c, 0xcc, 0x9d, 0x91, 0xf1, 0xdb, 0x54,
-	0x1e, 0x18, 0xaa, 0x74, 0xa8, 0x50, 0xdf, 0x6f, 0x7a, 0x23, 0x91, 0x85, 0x12, 0x8e, 0xc4, 0x2c,
-	0xae, 0xd4, 0xbb, 0xe1, 0x2a, 0xde, 0x45, 0x71, 0xd5, 0x2e, 0x4a, 0xf1, 0x2e, 0x9e, 0x42, 0x6d,
-	0xc8, 0x43, 0x11, 0x59, 0x2e, 0xf3, 0xd5, 0x41, 0xa8, 0x58, 0x9a, 0x8d, 0x9f, 0xe5, 0x40, 0xc1,
-	0x66, 0x9f, 0xf4, 0x07, 0x6f, 0x4c, 0x54, 0x07, 0x0d, 0x9b, 0xbd, 0x83, 0x96, 0x10, 0x49, 0xef,
-	0xa0, 0xd9, 0xd4, 0xde, 0x41, 0x3a, 0xd4, 0x93, 0xda, 0x4e, 0x97, 0xf4, 0xde, 0x34, 0x9a, 0xa6,
-	0x96, 0x43, 0x3b, 0xb0, 0x9d, 0xb4, 0x98, 0xc7, 0x56, 0xaf, 0x4f, 0x3a, 0x8d, 0xb6, 0xa9, 0xe5,
-	0xd1, 0x63, 0xd0, 0x53, 0xa3, 0x1a, 0x6d, 0x93, 0x58, 0x9d, 0xc3, 0x46, 0xcb, 0x7a, 0xa1, 0x15,
-	0xb2, 0xd6, 0x9e, 0x89, 0x0f, 0x4d, 0x4c, 0x5a, 0x56, 0xdb, 0xea, 0x6b, 0x45, 0xe3, 0x1f, 0x79,
-	0xd8, 0x3a, 0x08, 0xa8, 0x6f, 0xba, 0x21, 0xf5, 0x39, 0x1b, 0x18, 0x9a, 0x92, 0x6c, 0xca, 0xa5,
-	0xd9, 0xb4, 0x0b, 0x55, 0x61, 0x62, 0x88, 0x15, 0x04, 0x15, 0xbe, 0x0c, 0xaf, 0x37, 0xa8, 0x56,
-	0xb8, 0x49, 0xb5, 0x44, 0x1d, 0x8a, 0xeb, 0xf9, 0x5d, 0xca, 0xd4, 0x01, 0x41, 0x31, 0x91, 0x56,
-	0xfe, 0xcd, 0xa2, 0x74, 0x02, 0xc2, 0x91, 0x2a, 0xe1, 0x54, 0x71, 0x02, 0x7e, 0xbe, 0xa0, 0xc7,
-	0x50, 0xf5, 0x29, 0x47, 0xea, 0xe8, 0x3b, 0x1c, 0x52, 0x2a, 0x8e, 0x15, 0x09, 0x4c, 0x57, 0x45,
-	0x04, 0x12, 0xd3, 0x1a, 0x14, 0x62, 0x1e, 0xb2, 0xcf, 0x34, 0xfa, 0x6a, 0x69, 0xf4, 0xa1, 0xf7,
-	0x41, 0x73, 0xdc, 0x0b, 0x27, 0xb4, 0x43, 0xc7, 0x73, 0x83, 0xd0, 0x0e, 0xe7, 0x81, 0xbe, 0xc1,
-	0x27, 0xbc, 0xa1, 0x37, 0xbe, 0x9d, 0x4d, 0xf3, 0xad, 0x60, 0x35, 0xbe, 0x2a, 0xc0, 0x26, 0x3f,
-	0x2d, 0x9d, 0x20, 0xec, 0x78, 0xa1, 0xf3, 0xfd, 0xc5, 0x2d, 0xc8, 0xae, 0x43, 0x69, 0xe8, 0xcd,
-	0xdd, 0x50, 0x96, 0x43, 0x08, 0xe9, 0xd0, 0x0b, 0x99, 0xd0, 0xb7, 0xa1, 0xcc, 0x88, 0x4b, 0x43,
-	0x5e, 0x83, 0x2a, 0x96, 0xd2, 0xca, 0x2d, 0x95, 0x56, 0x6f, 0x09, 0xbd, 0x0b, 0xbc, 0x3c, 0x56,
-	0x48, 0xa7, 0x7a, 0x79, 0xaf, 0xf0, 0xac, 0xf6, 0x51, 0xf5, 0x43, 0x2c, 0x15, 0x78, 0x69, 0x32,
-	0x7e, 0x94, 0x87, 0x8d, 0xe8, 0xd0, 0x97, 0xe1, 0x6a, 0xad, 0xee, 0x4b, 0xab, 0x43, 0x24, 0x2c,
-	0x7b, 0x07, 0x0c, 0xfa, 0x75, 0xb8, 0x27, 0xb4, 0x9d, 0x2e, 0xe9, 0xbf, 0xc2, 0x66, 0xe3, 0x85,
-	0xf6, 0xb9, 0x82, 0x1e, 0x02, 0x12, 0x5a, 0x09, 0x5b, 0x13, 0xe3, 0x2e, 0xd6, 0xbe, 0x48, 0x18,
-	0xe4, 0x24, 0x9c, 0x10, 0xda, 0x1f, 0x15, 0xb4, 0x03, 0x0f, 0xe4, 0x88, 0xa6, 0xd9, 0x61, 0x14,
-	0x8a, 0x6c, 0x5f, 0x2a, 0xe8, 0x31, 0x3c, 0x4c, 0x0d, 0xea, 0x74, 0xc9, 0xcb, 0x46, 0xdf, 0x3c,
-	0x6a, 0x0c, 0xb4, 0x3f, 0x29, 0xe8, 0x11, 0xd4, 0xb3, 0x56, 0xdc, 0x6d, 0x99, 0xda, 0x9f, 0x15,
-	0xb4, 0x0d, 0x5b, 0xc2, 0x24, 0x22, 0x23, 0xfb, 0x07, 0xbd, 0x81, 0xf6, 0x97, 0x44, 0x14, 0xe2,
-	0xf7, 0x93, 0x2e, 0xde, 0xb7, 0x5e, 0x68, 0x7f, 0x4d, 0x0c, 0x68, 0x74, 0xfa, 0x16, 0x39, 0x6a,
-	0xb4, 0x5a, 0xdd, 0x23, 0xed, 0x2b, 0xc5, 0xf8, 0x77, 0x0e, 0xb4, 0x18, 0x03, 0x71, 0x65, 0x39,
-	0x61, 0x32, 0x64, 0x73, 0x46, 0xe8, 0x01, 0x94, 0xbd, 0xd3, 0xf3, 0xf8, 0x2a, 0x2c, 0x79, 0xa7,
-	0xe7, 0x82, 0x29, 0xde, 0x8c, 0xba, 0x64, 0xe2, 0xb8, 0x54, 0x52, 0x4c, 0x61, 0x8a, 0x96, 0xe3,
-	0x52, 0x74, 0x1f, 0x4a, 0x33, 0x2f, 0x20, 0x57, 0xbc, 0xb2, 0x79, 0x5c, 0x9c, 0x79, 0xc1, 0x71,
-	0xa4, 0x5c, 0xf0, 0x62, 0x0a, 0xe5, 0x00, 0x6d, 0x42, 0xfe, 0x6c, 0x26, 0x19, 0x95, 0x3f, 0x9b,
-	0xb1, 0xd5, 0xa6, 0xf6, 0x15, 0x39, 0x9b, 0xc9, 0x2b, 0xae, 0x34, 0xb5, 0xaf, 0x5e, 0xcd, 0xd2,
-	0x8c, 0x57, 0x32, 0x8c, 0xdf, 0x86, 0xf2, 0x19, 0x75, 0xc6, 0x67, 0x21, 0xa7, 0x52, 0x1e, 0x4b,
-	0x29, 0x5a, 0xf0, 0x9a, 0x93, 0x49, 0x2c, 0x78, 0x62, 0x7c, 0x0b, 0xb4, 0x16, 0xb5, 0x2f, 0xe8,
-	0x9d, 0x36, 0x6f, 0xfc, 0xa2, 0x04, 0x6a, 0xf7, 0xf4, 0xbc, 0xed, 0x5d, 0x44, 0xbe, 0x1a, 0x14,
-	0x46, 0x8e, 0xcf, 0xfd, 0xf2, 0x98, 0x7d, 0xb2, 0xc3, 0x24, 0x98, 0x51, 0x3a, 0x22, 0x57, 0x3c,
-	0x43, 0x79, 0x5c, 0xe6, 0xe2, 0x71, 0x6c, 0x58, 0xf0, 0x04, 0x45, 0x86, 0x41, 0x6c, 0xb8, 0x96,
-	0x09, 0x12, 0x86, 0x93, 0x38, 0x6f, 0xa5, 0x55, 0x79, 0x2b, 0x27, 0xf2, 0xb6, 0xdc, 0x5b, 0x25,
-	0xde, 0x1b, 0xbb, 0x63, 0x7d, 0x4f, 0xf0, 0x83, 0x88, 0x4e, 0x20, 0x8f, 0xab, 0x91, 0xe6, 0x38,
-	0x65, 0x5e, 0xc8, 0x5c, 0x2d, 0xcd, 0x83, 0x94, 0x39, 0xca, 0xd9, 0xd2, 0x7c, 0x82, 0x76, 0x40,
-	0x89, 0x4e, 0x2f, 0xd9, 0x09, 0x2c, 0xe5, 0x04, 0x46, 0x36, 0x92, 0x18, 0xd9, 0x01, 0x65, 0xe4,
-	0x04, 0xa1, 0xed, 0x0e, 0xa9, 0xae, 0xf2, 0xf9, 0x96, 0x32, 0xab, 0xe8, 0xd4, 0xbb, 0xa0, 0x64,
-	0xca, 0x0e, 0x93, 0x4d, 0x7e, 0x3a, 0x2a, 0x4c, 0xd1, 0x66, 0xf4, 0x8c, 0xd7, 0xfa, 0x48, 0xbf,
-	0x27, 0x6c, 0x91, 0x9c, 0xa8, 0xb6, 0x96, 0xaa, 0xf6, 0xbb, 0xb0, 0x69, 0x0f, 0x87, 0x74, 0x42,
-	0xfd, 0x28, 0x01, 0x5b, 0xdc, 0xae, 0x26, 0xb5, 0xc7, 0x37, 0xdc, 0x16, 0x3a, 0xba, 0xe9, 0x36,
-	0xb8, 0xe1, 0x76, 0xad, 0xdf, 0xbf, 0xe9, 0x76, 0x82, 0x3e, 0x80, 0xad, 0xa1, 0xe7, 0x86, 0xbe,
-	0x37, 0xc1, 0x71, 0xe2, 0xeb, 0xdc, 0x53, 0xcb, 0x18, 0x8e, 0x57, 0x39, 0x2f, 0xf4, 0x07, 0x2b,
-	0x9d, 0x07, 0xab, 0x9c, 0xaf, 0xf5, 0xed, 0x95, 0xce, 0x27, 0xc6, 0xaf, 0x8b, 0x00, 0x12, 0xa6,
-	0xec, 0xea, 0xfc, 0x7f, 0xc6, 0xe8, 0x12, 0x70, 0xb5, 0x0c, 0xe0, 0x62, 0xdc, 0x6c, 0xfc, 0x0f,
-	0xdc, 0xa8, 0x77, 0xc3, 0xcd, 0xe6, 0xdd, 0x70, 0x73, 0xef, 0xce, 0xb8, 0xd1, 0xbe, 0x0e, 0x6e,
-	0xb6, 0xbe, 0x0e, 0x6e, 0xd0, 0x1a, 0xdc, 0xfc, 0xaa, 0x08, 0x8f, 0x0e, 0x9d, 0xc0, 0x39, 0x9d,
-	0xd0, 0xee, 0xe9, 0x39, 0xbf, 0x14, 0xd8, 0xed, 0xb9, 0xf6, 0xa8, 0x7b, 0x0f, 0xee, 0x2d, 0x49,
-	0x4b, 0x66, 0xb6, 0x6f, 0x4f, 0x65, 0x1f, 0xab, 0x46, 0xd4, 0x7d, 0xc3, 0x94, 0xac, 0x0f, 0xe5,
-	0x6d, 0x94, 0xbc, 0xbd, 0x0b, 0xa2, 0x31, 0x67, 0xaa, 0x9e, 0xb8, 0xb7, 0xe3, 0x03, 0x43, 0xb4,
-	0xb4, 0xf2, 0xc0, 0x48, 0xf4, 0x65, 0xa5, 0xf5, 0x7d, 0x59, 0x39, 0xd3, 0x97, 0x89, 0x3b, 0xa4,
-	0xb2, 0xe2, 0x0e, 0x51, 0x92, 0x77, 0x48, 0x1d, 0x4a, 0x13, 0x7a, 0x41, 0x27, 0x1c, 0x55, 0x2a,
-	0x16, 0x42, 0xd4, 0x44, 0x43, 0xdc, 0x44, 0xd7, 0xa1, 0xc4, 0xa1, 0xce, 0x11, 0xa4, 0x62, 0x21,
-	0xc4, 0xb0, 0xdf, 0x58, 0x05, 0x7b, 0x35, 0x01, 0xfb, 0x24, 0x08, 0x37, 0x33, 0x20, 0x7c, 0x02,
-	0xc0, 0xb6, 0x40, 0x86, 0xde, 0xc4, 0xf3, 0xe5, 0xd1, 0x56, 0x65, 0x9a, 0x26, 0x53, 0xa4, 0x0f,
-	0x45, 0x2d, 0x73, 0x28, 0xc6, 0xcf, 0x80, 0xad, 0xd4, 0x33, 0x60, 0x49, 0x33, 0xb4, 0x96, 0x66,
-	0xf7, 0x6f, 0xa7, 0x59, 0xfd, 0x76, 0x9a, 0x3d, 0xc8, 0xd0, 0xcc, 0xf8, 0x25, 0x7b, 0x45, 0xc8,
-	0xde, 0x2a, 0x59, 0xb3, 0xdc, 0xfa, 0x9a, 0xe5, 0xd7, 0xbe, 0x69, 0x44, 0xef, 0x90, 0x79, 0xd3,
-	0x88, 0xae, 0x7c, 0xd5, 0x9b, 0x46, 0x3e, 0xf2, 0xe2, 0x37, 0x0d, 0x03, 0x25, 0x6f, 0xf8, 0x13,
-	0xcf, 0x4b, 0xf1, 0xda, 0xe3, 0xef, 0x80, 0x56, 0xf4, 0xc4, 0x34, 0x7e, 0x9c, 0x83, 0x1a, 0x97,
-	0xda, 0xc1, 0x98, 0x9d, 0x92, 0x08, 0x8a, 0x89, 0x97, 0x2a, 0xff, 0x66, 0xb5, 0x0f, 0xbd, 0xb7,
-	0xd4, 0x95, 0xf1, 0x0a, 0x81, 0x79, 0x26, 0x3a, 0x58, 0xfe, 0xfd, 0x4d, 0x74, 0xaf, 0xef, 0xff,
-	0xae, 0x00, 0x10, 0x45, 0x64, 0x8d, 0x10, 0x40, 0xb9, 0xdd, 0x7b, 0x49, 0xac, 0x17, 0xda, 0x3b,
-	0x68, 0x17, 0xb6, 0x65, 0x23, 0xd8, 0x6d, 0x99, 0xfc, 0x0b, 0x9b, 0x9f, 0x11, 0x6c, 0x7e, 0xa6,
-	0xfd, 0xf4, 0xf9, 0x0a, 0x63, 0xa3, 0xf9, 0x9a, 0x34, 0x9a, 0xaf, 0xb5, 0xbf, 0x7d, 0x1c, 0x37,
-	0x98, 0x4d, 0x6c, 0x36, 0xfa, 0x26, 0x73, 0x89, 0x86, 0xfe, 0xeb, 0xf9, 0x2a, 0x6b, 0x34, 0xf6,
-	0x37, 0xcf, 0xd1, 0x1e, 0xec, 0x0a, 0xeb, 0x41, 0xcf, 0xc4, 0x66, 0xa7, 0x6f, 0x62, 0xde, 0xc1,
-	0x46, 0xe3, 0x7f, 0xae, 0xac, 0xf3, 0x88, 0xe6, 0xf8, 0x67, 0x25, 0xf6, 0xe0, 0xc1, 0x59, 0xbd,
-	0x7e, 0xa7, 0xdb, 0xb7, 0x3e, 0x19, 0x10, 0xf1, 0x47, 0xfb, 0xfb, 0xc7, 0xc8, 0x80, 0x27, 0xc2,
-	0x23, 0x1e, 0x9f, 0xf6, 0xf9, 0x5c, 0x89, 0x7d, 0x5a, 0x66, 0xe3, 0xd0, 0x5c, 0xe1, 0xf3, 0x07,
-	0x05, 0x3d, 0x85, 0x1d, 0xe1, 0xd3, 0xdd, 0xff, 0xb4, 0xdd, 0x3d, 0xcc, 0x38, 0x7c, 0x99, 0xe8,
-	0xa6, 0xa5, 0x43, 0xb4, 0x8f, 0xff, 0x28, 0xe8, 0x03, 0x78, 0x4f, 0x98, 0x0e, 0xad, 0x9e, 0xb5,
-	0xdf, 0x32, 0xbb, 0xfb, 0x9f, 0xf2, 0x68, 0x58, 0xd0, 0xe9, 0x79, 0xbe, 0x48, 0xf4, 0xf3, 0xfc,
-	0xb7, 0xdd, 0x7b, 0x19, 0x4d, 0xf4, 0x93, 0xe7, 0xa7, 0x65, 0xfe, 0x8f, 0xab, 0xef, 0xfe, 0x37,
-	0x00, 0x00, 0xff, 0xff, 0xe5, 0xbe, 0xc6, 0xcf, 0xc7, 0x12, 0x00, 0x00,
+	// 245 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xce, 0xc9, 0x4f, 0xcf,
+	0xcc, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0xb2, 0xe2, 0xe2, 0x00, 0x73, 0x83, 0x52, 0x0b,
+	0x85, 0x24, 0xb8, 0xd8, 0x13, 0x93, 0x93, 0xf3, 0x4b, 0xf3, 0x4a, 0x24, 0x18, 0x15, 0x18, 0x35,
+	0x38, 0x83, 0x60, 0x5c, 0x21, 0x11, 0x2e, 0xd6, 0x92, 0xfc, 0xec, 0xd4, 0x3c, 0x09, 0x26, 0xb0,
+	0x38, 0x84, 0xa3, 0x64, 0x0b, 0xd5, 0xeb, 0x98, 0x9c, 0x2d, 0x24, 0xce, 0xc5, 0x5e, 0x5a, 0x9c,
+	0x5a, 0x14, 0x9f, 0x99, 0x02, 0xd6, 0xcb, 0x1a, 0xc4, 0x06, 0xe2, 0x7a, 0xa6, 0x20, 0x1b, 0xca,
+	0x84, 0x62, 0xa8, 0x92, 0x07, 0x97, 0x80, 0x73, 0x51, 0x6a, 0x62, 0x49, 0xaa, 0x23, 0x44, 0x00,
+	0xbf, 0x13, 0xa4, 0xb8, 0x38, 0x0a, 0x12, 0x8b, 0x8b, 0xcb, 0xf3, 0x8b, 0x52, 0xa0, 0x06, 0xc1,
+	0xf9, 0x4a, 0x8e, 0x68, 0x26, 0xe1, 0x75, 0x10, 0x56, 0xbf, 0x68, 0xf5, 0x30, 0x72, 0x71, 0xf9,
+	0x80, 0x3c, 0xe3, 0x5b, 0x9c, 0xee, 0x99, 0x22, 0xc4, 0xc5, 0xc5, 0xe6, 0x1b, 0xec, 0x1e, 0xef,
+	0xe9, 0x22, 0xc0, 0x20, 0x24, 0xce, 0x25, 0xe4, 0xe3, 0xef, 0xee, 0xe9, 0x17, 0x0f, 0x26, 0x83,
+	0x5c, 0x03, 0xe3, 0x83, 0x5c, 0x03, 0x05, 0xce, 0x73, 0xa0, 0x49, 0x38, 0x3a, 0x7b, 0xc7, 0x3b,
+	0x3a, 0x7b, 0x0b, 0x5c, 0xe0, 0x10, 0x92, 0xe7, 0x92, 0x82, 0x48, 0x38, 0x07, 0xb9, 0x3a, 0x86,
+	0xb8, 0x3a, 0x3a, 0x3b, 0xfb, 0x87, 0xfa, 0x85, 0xc0, 0x74, 0x9e, 0xc5, 0xa5, 0x00, 0x66, 0xc2,
+	0x39, 0x8e, 0x24, 0x36, 0x70, 0xec, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xa3, 0x61, 0x81,
+	0xa6, 0xac, 0x01, 0x00, 0x00,
 }

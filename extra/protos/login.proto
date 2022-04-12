@@ -4,227 +4,35 @@ syntax = "proto3";
 
 enum LoginMsgId {
     MSG_ID = 0;    
-    LOGIN_ROLELOGINREQ_REQ = 7057;
-    LOGIN_ROLELOGINACK_ACK = 7000;
-    LOGIN_CREATEROLEREQ_REQ = 7150;
-    LOGIN_CREATEROLEACK_ACK = 7100;
-    LOGIN_USERENTERSCENEREQ_REQ = 1050;
-    LOGIN_USERENTERSCENEACK_ACK = 1000;
-    LOGIN_ROLELISTNOTIFY_NOTIFY = 7001;
-    LOGIN_ENTERSCENENOTIFY_NOTIFY = 1100;
-    LOGIN_LEAVESCENENOTIFY_NOTIFY = 1101;
-    LOGIN_OBJMOVENOTIFY_NOTIFY = 1104;
-    LOGIN_OBJMOVEREQ_REQ = 1150;
-    LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY = 1102;
-    LOGIN_LOGINMSGREQ_REQ = 7056;
+    LOGIN_LOGINREQ_REQ = 1103;
+    LOGIN_LOGINACK_ACK = 1104;
+    LOGIN_CREATEACCOUNTREQ_REQ = 1101;
+    LOGIN_CREATEACCOUNTACK_ACK = 1102;
 
 }
-// 界面上选中某个角色进入游戏
-message RoleLoginReq{
-   string accout = 1; 
-   int32 role_id = 2;
-   string role_name = 3; 
-}
-
-// 角色进入游戏返回消息
-message RoleLoginAck{
-   string accout = 1; 
-   int32 role_id = 2;
-   string role_name = 3;
-   int32 scene_id = 4;
-   int32 last_scene_id = 5;
-   string gw_hostname = 6;
-   int32 gw_port = 7;
-   int32 gs_index = 8;
-   int64 server_time = 9;
-   string session_key = 10;
-   int32 result = 11;
-}
-
-// 请求创建某个角色
-message CreateRoleReq{
-   string role_name = 1;
-   uint32 login_time = 2;
-   string login_str = 3;
-   uint32 server = 4;
-   uint32 anti_wallow = 5;
-   uint32 avatar = 6;
-   uint32 sex = 7;
-   string plat_name = 8;
-   string user_uuid = 9;
-}
-
-// 创建角色返回
-message CreateRoleAck{
-   enum RET_TYPE
-   {
-   RESULT_TYPE_SUCC = 0;// 成功
-   RESULT_TYPE_NO_SPACE = 1;// 拥有角色太多，没有空间再创角色
-   RESULT_TYPE_EXIST_NAME = 2; // 重名
-   RESULT_TYPE_NAME_INVALID = 3; // 名字不合法
-   RESULT_TYPE_SERVER_LIMIT = 4; // 服务器禁止创建角色
-   };
-   int32 errCode = 1;
-   uint32 role_id = 2;
-   string role_name = 3;
-   uint32 avatar = 4;
-   uint32 sex = 5;
-   int32 create_time = 6;
-}
-
-// 玩家进入场景
-message UserEnterSceneReq{
-   int32 scene_id = 1;
-   int32 scene_key = 2;
-   int32 last_scene_id = 3;
-   int32 role_id = 4;
-   string role_name = 5;
-   int32 time = 6;
-   uint32 is_login = 7;// 登陆还是场景切换
-   uint32 reserved1 = 8;
-   int32 server = 9;
-   string key = 10; 
-   string user_uuid = 11; 
-   int32 invitationstatus = 12;
-}
-
-// 玩家进入场景返回消息
-message UserEnterSceneAck{
-   int32 errCode = 1;
-}
-
-// 服务器推送角色列表
-message RoleListNotify{
-   enum LoginAckCode
-   {
-    LOGIN_RESULT_SUC = 0;
-    LOGIN_NO_THREAD = 1100;
-    LOGIN_SERVER_ERROR = 1102;
-    LOGIN_RESULT_EXIST = 1103;
-    LOGIN_SCENE_NOT_EXIST = 1104;
-    LOGIN_RESULT_NO_GATEWAY = 1105;
-    LOGIN_RESULT_NO_ROLE = 1106;
-    LOGIN_THREAD_BUSY = 1107;
-    LOGIN_LOGIN_FORBID = 1108;
-    LOGIN_ANTI_WALLOW = 1109;
-   };
+// 客户端请求登录到游戏中
+message loginReq{
+   string account = 1; // 账号
+   string token = 2; // 登录验证token
    
-   int32 errCode = 1;
-   int32 count = 2;
-   string user_uuid = 3;
-   string wallet = 4;
-   int32 invitationstatus = 5;
-   repeated RoleItem roleItem= 6;
 }
 
-// 进入场景广播消息
-message EnterSceneNotify{
-   int32 sceneid = 1;
-   int32 obj_id = 2;
-   int32 open_line = 3;
-   float pos_x = 4;
-   float pos_y = 5;  
-   int32 hp = 6;
-   int32 max_hp = 7;
-   int32 scene_key = 8;
-   float height = 9;
-   float pos_z = 10; 
+// 服务器返回请求登录信息
+message loginAck{
+   int32 user_id = 1; // 用户id服务器自动生成
+   string account=2; // 用户名称
+   
 }
 
-// 玩家离开场景
-message LeaveSceneNotify{
-   int32 sceneid = 1;
+// 客户端请求创建账号
+message CreateAccountReq{
+   string account = 1; //账号
+   string password = 2; // md5之后的密码
 }
 
-// 广播移动消息
-message ObjMoveNotify{
-   float dir = 1;
-   float speed_x = 2;
-   float speed_y = 3;
-   float speed_z = 4;
-   float pos_x = 5;
-   float pos_y = 6;
-   float pos_z = 7;
-   float rotation_x = 8;
-   float rotation_y = 9;
-   float rotation_z = 10; 
-   int32 reserved = 11;
-   int32 obj_id = 12;
-   float distance = 13;
-   uint32 move_mode = 14;
-   uint32 reserve2 = 15;
-   float height = 16;
-   float acceleration_x = 17;
-   float acceleration_y = 18;
-   float acceleration_z = 19;
-   float controlRotation_x = 20;
-   float controlRotation_y = 21;
-   float controlRotation_z = 22;
-}
-
-// 玩家移动请求
-message ObjMoveReq{
-   float dir = 1;
-   float speed_x = 2;
-   float speed_y = 3;
-   float speed_z = 4;
-   float pos_x = 5;
-   float pos_y = 6;
-   float pos_z = 7;
-   float rotation_x = 8;
-   float rotation_y = 9;
-   float rotation_z = 10;
-   float distance = 11;
-   float height = 12; 
-   float acceleration_x = 13;
-   float acceleration_y = 14;
-   float acceleration_z = 15;
-   float controlRotation_x = 16;
-   float controlRotation_y = 17;
-   float controlRotation_z = 18;
-}
-
-// 进入视野广播
-message VisibleObjEnterRoleNotify{
-   float dir = 1;
-   uint32 move_mode_param = 2;
-   uint32 role_status = 3;
-   uint32 obj_id = 4;
-   int32 role_id = 5;
-   string role_name = 6; 
-   int32 hp = 7;
-   int32 max_hp = 8;
-   uint32 level = 9;
-   uint32 sex = 10;
-   uint32 speed = 11;
-   float pos_x = 12;
-   float pos_y = 13;
-   float distance = 14;
-   uint32 name_color = 15;
-   uint32 move_mode = 16;
-   uint32 avatar = 17;
-   float pos_z = 18;
-   float   rotation_x = 19;
-   float   rotation_y = 20;
-   float    rotation_z = 21;
-}
-
-// 角色信息
-message RoleItem{
-   int32 role_id = 1;   
-   string role_name = 2;
-   int32 avatar = 3;
-   int32  sex = 4;   
-   uint32 create_time = 5;
-   uint32 last_login_time  = 6;
-}
-
-// 登录游戏
-message LoginMsgReq{
-   string name = 1; 
-   string token = 2;
-   string uuid = 3;
-   string wallet = 4;
-   int32 invitationstatus = 5;
+// 创建账号返回
+message CreateAccountAck{
+   int32 user_id = 1; // 注册服务器自动生成id
+   string token=2; // 一个登录临时生成的自动串
 }
 

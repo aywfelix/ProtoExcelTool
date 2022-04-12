@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0blogin.proto\"B\n\x0cRoleLoginReq\x12\x0e\n\x06\x61\x63\x63out\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\x05\x12\x11\n\trole_name\x18\x03 \x01(\t\"\xdd\x01\n\x0cRoleLoginAck\x12\x0e\n\x06\x61\x63\x63out\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\x05\x12\x11\n\trole_name\x18\x03 \x01(\t\x12\x10\n\x08scene_id\x18\x04 \x01(\x05\x12\x15\n\rlast_scene_id\x18\x05 \x01(\x05\x12\x13\n\x0bgw_hostname\x18\x06 \x01(\t\x12\x0f\n\x07gw_port\x18\x07 \x01(\x05\x12\x10\n\x08gs_index\x18\x08 \x01(\x05\x12\x13\n\x0bserver_time\x18\t \x01(\x03\x12\x13\n\x0bsession_key\x18\n \x01(\t\x12\x0e\n\x06result\x18\x0b \x01(\x05\"\xb1\x01\n\rCreateRoleReq\x12\x11\n\trole_name\x18\x01 \x01(\t\x12\x12\n\nlogin_time\x18\x02 \x01(\r\x12\x11\n\tlogin_str\x18\x03 \x01(\t\x12\x0e\n\x06server\x18\x04 \x01(\r\x12\x13\n\x0b\x61nti_wallow\x18\x05 \x01(\r\x12\x0e\n\x06\x61vatar\x18\x06 \x01(\r\x12\x0b\n\x03sex\x18\x07 \x01(\r\x12\x11\n\tplat_name\x18\x08 \x01(\t\x12\x11\n\tuser_uuid\x18\t \x01(\t\"\x8b\x02\n\rCreateRoleAck\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\x0f\n\x07role_id\x18\x02 \x01(\r\x12\x11\n\trole_name\x18\x03 \x01(\t\x12\x0e\n\x06\x61vatar\x18\x04 \x01(\r\x12\x0b\n\x03sex\x18\x05 \x01(\r\x12\x13\n\x0b\x63reate_time\x18\x06 \x01(\x05\"\x92\x01\n\x08RET_TYPE\x12\x14\n\x10RESULT_TYPE_SUCC\x10\x00\x12\x18\n\x14RESULT_TYPE_NO_SPACE\x10\x01\x12\x1a\n\x16RESULT_TYPE_EXIST_NAME\x10\x02\x12\x1c\n\x18RESULT_TYPE_NAME_INVALID\x10\x03\x12\x1c\n\x18RESULT_TYPE_SERVER_LIMIT\x10\x04\"\xf0\x01\n\x11UserEnterSceneReq\x12\x10\n\x08scene_id\x18\x01 \x01(\x05\x12\x11\n\tscene_key\x18\x02 \x01(\x05\x12\x15\n\rlast_scene_id\x18\x03 \x01(\x05\x12\x0f\n\x07role_id\x18\x04 \x01(\x05\x12\x11\n\trole_name\x18\x05 \x01(\t\x12\x0c\n\x04time\x18\x06 \x01(\x05\x12\x10\n\x08is_login\x18\x07 \x01(\r\x12\x11\n\treserved1\x18\x08 \x01(\r\x12\x0e\n\x06server\x18\t \x01(\x05\x12\x0b\n\x03key\x18\n \x01(\t\x12\x11\n\tuser_uuid\x18\x0b \x01(\t\x12\x18\n\x10invitationstatus\x18\x0c \x01(\x05\"$\n\x11UserEnterSceneAck\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\"\x97\x03\n\x0eRoleListNotify\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\x05\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\x12\x11\n\tuser_uuid\x18\x03 \x01(\t\x12\x0e\n\x06wallet\x18\x04 \x01(\t\x12\x18\n\x10invitationstatus\x18\x05 \x01(\x05\x12\x1b\n\x08roleItem\x18\x06 \x03(\x0b\x32\t.RoleItem\"\x8a\x02\n\x0cLoginAckCode\x12\x14\n\x10LOGIN_RESULT_SUC\x10\x00\x12\x14\n\x0fLOGIN_NO_THREAD\x10\xcc\x08\x12\x17\n\x12LOGIN_SERVER_ERROR\x10\xce\x08\x12\x17\n\x12LOGIN_RESULT_EXIST\x10\xcf\x08\x12\x1a\n\x15LOGIN_SCENE_NOT_EXIST\x10\xd0\x08\x12\x1c\n\x17LOGIN_RESULT_NO_GATEWAY\x10\xd1\x08\x12\x19\n\x14LOGIN_RESULT_NO_ROLE\x10\xd2\x08\x12\x16\n\x11LOGIN_THREAD_BUSY\x10\xd3\x08\x12\x17\n\x12LOGIN_LOGIN_FORBID\x10\xd4\x08\x12\x16\n\x11LOGIN_ANTI_WALLOW\x10\xd5\x08\"\xb2\x01\n\x10\x45nterSceneNotify\x12\x0f\n\x07sceneid\x18\x01 \x01(\x05\x12\x0e\n\x06obj_id\x18\x02 \x01(\x05\x12\x11\n\topen_line\x18\x03 \x01(\x05\x12\r\n\x05pos_x\x18\x04 \x01(\x02\x12\r\n\x05pos_y\x18\x05 \x01(\x02\x12\n\n\x02hp\x18\x06 \x01(\x05\x12\x0e\n\x06max_hp\x18\x07 \x01(\x05\x12\x11\n\tscene_key\x18\x08 \x01(\x05\x12\x0e\n\x06height\x18\t \x01(\x02\x12\r\n\x05pos_z\x18\n \x01(\x02\"#\n\x10LeaveSceneNotify\x12\x0f\n\x07sceneid\x18\x01 \x01(\x05\"\xba\x03\n\rObjMoveNotify\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x0f\n\x07speed_x\x18\x02 \x01(\x02\x12\x0f\n\x07speed_y\x18\x03 \x01(\x02\x12\x0f\n\x07speed_z\x18\x04 \x01(\x02\x12\r\n\x05pos_x\x18\x05 \x01(\x02\x12\r\n\x05pos_y\x18\x06 \x01(\x02\x12\r\n\x05pos_z\x18\x07 \x01(\x02\x12\x12\n\nrotation_x\x18\x08 \x01(\x02\x12\x12\n\nrotation_y\x18\t \x01(\x02\x12\x12\n\nrotation_z\x18\n \x01(\x02\x12\x10\n\x08reserved\x18\x0b \x01(\x05\x12\x0e\n\x06obj_id\x18\x0c \x01(\x05\x12\x10\n\x08\x64istance\x18\r \x01(\x02\x12\x11\n\tmove_mode\x18\x0e \x01(\r\x12\x10\n\x08reserve2\x18\x0f \x01(\r\x12\x0e\n\x06height\x18\x10 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_x\x18\x11 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_y\x18\x12 \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_z\x18\x13 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_x\x18\x14 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_y\x18\x15 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_z\x18\x16 \x01(\x02\"\xf0\x02\n\nObjMoveReq\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x0f\n\x07speed_x\x18\x02 \x01(\x02\x12\x0f\n\x07speed_y\x18\x03 \x01(\x02\x12\x0f\n\x07speed_z\x18\x04 \x01(\x02\x12\r\n\x05pos_x\x18\x05 \x01(\x02\x12\r\n\x05pos_y\x18\x06 \x01(\x02\x12\r\n\x05pos_z\x18\x07 \x01(\x02\x12\x12\n\nrotation_x\x18\x08 \x01(\x02\x12\x12\n\nrotation_y\x18\t \x01(\x02\x12\x12\n\nrotation_z\x18\n \x01(\x02\x12\x10\n\x08\x64istance\x18\x0b \x01(\x02\x12\x0e\n\x06height\x18\x0c \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_x\x18\r \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_y\x18\x0e \x01(\x02\x12\x16\n\x0e\x61\x63\x63\x65leration_z\x18\x0f \x01(\x02\x12\x19\n\x11\x63ontrolRotation_x\x18\x10 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_y\x18\x11 \x01(\x02\x12\x19\n\x11\x63ontrolRotation_z\x18\x12 \x01(\x02\"\x83\x03\n\x19VisibleObjEnterRoleNotify\x12\x0b\n\x03\x64ir\x18\x01 \x01(\x02\x12\x17\n\x0fmove_mode_param\x18\x02 \x01(\r\x12\x13\n\x0brole_status\x18\x03 \x01(\r\x12\x0e\n\x06obj_id\x18\x04 \x01(\r\x12\x0f\n\x07role_id\x18\x05 \x01(\x05\x12\x11\n\trole_name\x18\x06 \x01(\t\x12\n\n\x02hp\x18\x07 \x01(\x05\x12\x0e\n\x06max_hp\x18\x08 \x01(\x05\x12\r\n\x05level\x18\t \x01(\r\x12\x0b\n\x03sex\x18\n \x01(\r\x12\r\n\x05speed\x18\x0b \x01(\r\x12\r\n\x05pos_x\x18\x0c \x01(\x02\x12\r\n\x05pos_y\x18\r \x01(\x02\x12\x10\n\x08\x64istance\x18\x0e \x01(\x02\x12\x12\n\nname_color\x18\x0f \x01(\r\x12\x11\n\tmove_mode\x18\x10 \x01(\r\x12\x0e\n\x06\x61vatar\x18\x11 \x01(\r\x12\r\n\x05pos_z\x18\x12 \x01(\x02\x12\x12\n\nrotation_x\x18\x13 \x01(\x02\x12\x12\n\nrotation_y\x18\x14 \x01(\x02\x12\x12\n\nrotation_z\x18\x15 \x01(\x02\"y\n\x08RoleItem\x12\x0f\n\x07role_id\x18\x01 \x01(\x05\x12\x11\n\trole_name\x18\x02 \x01(\t\x12\x0e\n\x06\x61vatar\x18\x03 \x01(\x05\x12\x0b\n\x03sex\x18\x04 \x01(\x05\x12\x13\n\x0b\x63reate_time\x18\x05 \x01(\r\x12\x17\n\x0flast_login_time\x18\x06 \x01(\r\"b\n\x0bLoginMsgReq\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x0c\n\x04uuid\x18\x03 \x01(\t\x12\x0e\n\x06wallet\x18\x04 \x01(\t\x12\x18\n\x10invitationstatus\x18\x05 \x01(\x05*\xc1\x03\n\nLoginMsgId\x12\n\n\x06MSG_ID\x10\x00\x12\x1b\n\x16LOGIN_ROLELOGINREQ_REQ\x10\x91\x37\x12\x1b\n\x16LOGIN_ROLELOGINACK_ACK\x10\xd8\x36\x12\x1c\n\x17LOGIN_CREATEROLEREQ_REQ\x10\xee\x37\x12\x1c\n\x17LOGIN_CREATEROLEACK_ACK\x10\xbc\x37\x12 \n\x1bLOGIN_USERENTERSCENEREQ_REQ\x10\x9a\x08\x12 \n\x1bLOGIN_USERENTERSCENEACK_ACK\x10\xe8\x07\x12 \n\x1bLOGIN_ROLELISTNOTIFY_NOTIFY\x10\xd9\x36\x12\"\n\x1dLOGIN_ENTERSCENENOTIFY_NOTIFY\x10\xcc\x08\x12\"\n\x1dLOGIN_LEAVESCENENOTIFY_NOTIFY\x10\xcd\x08\x12\x1f\n\x1aLOGIN_OBJMOVENOTIFY_NOTIFY\x10\xd0\x08\x12\x19\n\x14LOGIN_OBJMOVEREQ_REQ\x10\xfe\x08\x12+\n&LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY\x10\xce\x08\x12\x1a\n\x15LOGIN_LOGINMSGREQ_REQ\x10\x90\x37\x62\x06proto3'
+  serialized_pb=b'\n\x0blogin.proto\"*\n\x08loginReq\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\",\n\x08loginAck\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0f\n\x07\x61\x63\x63ount\x18\x02 \x01(\t\"5\n\x10\x43reateAccountReq\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"2\n\x10\x43reateAccountAck\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\r\n\x05token\x18\x02 \x01(\t*\x8c\x01\n\nLoginMsgId\x12\n\n\x06MSG_ID\x10\x00\x12\x17\n\x12LOGIN_LOGINREQ_REQ\x10\xcf\x08\x12\x17\n\x12LOGIN_LOGINACK_ACK\x10\xd0\x08\x12\x1f\n\x1aLOGIN_CREATEACCOUNTREQ_REQ\x10\xcd\x08\x12\x1f\n\x1aLOGIN_CREATEACCOUNTACK_ACK\x10\xce\x08\x62\x06proto3'
 )
 
 _LOGINMSGID = _descriptor.EnumDescriptor(
@@ -36,226 +36,60 @@ _LOGINMSGID = _descriptor.EnumDescriptor(
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_ROLELOGINREQ_REQ', index=1, number=7057,
+      name='LOGIN_LOGINREQ_REQ', index=1, number=1103,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_ROLELOGINACK_ACK', index=2, number=7000,
+      name='LOGIN_LOGINACK_ACK', index=2, number=1104,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_CREATEROLEREQ_REQ', index=3, number=7150,
+      name='LOGIN_CREATEACCOUNTREQ_REQ', index=3, number=1101,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_CREATEROLEACK_ACK', index=4, number=7100,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_USERENTERSCENEREQ_REQ', index=5, number=1050,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_USERENTERSCENEACK_ACK', index=6, number=1000,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_ROLELISTNOTIFY_NOTIFY', index=7, number=7001,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_ENTERSCENENOTIFY_NOTIFY', index=8, number=1100,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_LEAVESCENENOTIFY_NOTIFY', index=9, number=1101,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_OBJMOVENOTIFY_NOTIFY', index=10, number=1104,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_OBJMOVEREQ_REQ', index=11, number=1150,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY', index=12, number=1102,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_LOGINMSGREQ_REQ', index=13, number=7056,
+      name='LOGIN_CREATEACCOUNTACK_ACK', index=4, number=1102,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3096,
-  serialized_end=3545,
+  serialized_start=213,
+  serialized_end=353,
 )
 _sym_db.RegisterEnumDescriptor(_LOGINMSGID)
 
 LoginMsgId = enum_type_wrapper.EnumTypeWrapper(_LOGINMSGID)
 MSG_ID = 0
-LOGIN_ROLELOGINREQ_REQ = 7057
-LOGIN_ROLELOGINACK_ACK = 7000
-LOGIN_CREATEROLEREQ_REQ = 7150
-LOGIN_CREATEROLEACK_ACK = 7100
-LOGIN_USERENTERSCENEREQ_REQ = 1050
-LOGIN_USERENTERSCENEACK_ACK = 1000
-LOGIN_ROLELISTNOTIFY_NOTIFY = 7001
-LOGIN_ENTERSCENENOTIFY_NOTIFY = 1100
-LOGIN_LEAVESCENENOTIFY_NOTIFY = 1101
-LOGIN_OBJMOVENOTIFY_NOTIFY = 1104
-LOGIN_OBJMOVEREQ_REQ = 1150
-LOGIN_VISIBLEOBJENTERROLENOTIFY_NOTIFY = 1102
-LOGIN_LOGINMSGREQ_REQ = 7056
+LOGIN_LOGINREQ_REQ = 1103
+LOGIN_LOGINACK_ACK = 1104
+LOGIN_CREATEACCOUNTREQ_REQ = 1101
+LOGIN_CREATEACCOUNTACK_ACK = 1102
 
 
-_CREATEROLEACK_RET_TYPE = _descriptor.EnumDescriptor(
-  name='RET_TYPE',
-  full_name='CreateRoleAck.RET_TYPE',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TYPE_SUCC', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TYPE_NO_SPACE', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TYPE_EXIST_NAME', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TYPE_NAME_INVALID', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TYPE_SERVER_LIMIT', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=609,
-  serialized_end=755,
-)
-_sym_db.RegisterEnumDescriptor(_CREATEROLEACK_RET_TYPE)
 
-_ROLELISTNOTIFY_LOGINACKCODE = _descriptor.EnumDescriptor(
-  name='LoginAckCode',
-  full_name='RoleListNotify.LoginAckCode',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_RESULT_SUC', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_NO_THREAD', index=1, number=1100,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_SERVER_ERROR', index=2, number=1102,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_RESULT_EXIST', index=3, number=1103,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_SCENE_NOT_EXIST', index=4, number=1104,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_RESULT_NO_GATEWAY', index=5, number=1105,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_RESULT_NO_ROLE', index=6, number=1106,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_THREAD_BUSY', index=7, number=1107,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_LOGIN_FORBID', index=8, number=1108,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LOGIN_ANTI_WALLOW', index=9, number=1109,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=1180,
-  serialized_end=1446,
-)
-_sym_db.RegisterEnumDescriptor(_ROLELISTNOTIFY_LOGINACKCODE)
-
-
-_ROLELOGINREQ = _descriptor.Descriptor(
-  name='RoleLoginReq',
-  full_name='RoleLoginReq',
+_LOGINREQ = _descriptor.Descriptor(
+  name='loginReq',
+  full_name='loginReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='accout', full_name='RoleLoginReq.accout', index=0,
+      name='account', full_name='loginReq.account', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='role_id', full_name='RoleLoginReq.role_id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='RoleLoginReq.role_name', index=2,
-      number=3, type=9, cpp_type=9, label=1,
+      name='token', full_name='loginReq.token', index=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -273,1156 +107,32 @@ _ROLELOGINREQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=15,
-  serialized_end=81,
+  serialized_end=57,
 )
 
 
-_ROLELOGINACK = _descriptor.Descriptor(
-  name='RoleLoginAck',
-  full_name='RoleLoginAck',
+_LOGINACK = _descriptor.Descriptor(
+  name='loginAck',
+  full_name='loginAck',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='accout', full_name='RoleLoginAck.accout', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_id', full_name='RoleLoginAck.role_id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='RoleLoginAck.role_name', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scene_id', full_name='RoleLoginAck.scene_id', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='last_scene_id', full_name='RoleLoginAck.last_scene_id', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gw_hostname', full_name='RoleLoginAck.gw_hostname', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gw_port', full_name='RoleLoginAck.gw_port', index=6,
-      number=7, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gs_index', full_name='RoleLoginAck.gs_index', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='server_time', full_name='RoleLoginAck.server_time', index=8,
-      number=9, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='session_key', full_name='RoleLoginAck.session_key', index=9,
-      number=10, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='result', full_name='RoleLoginAck.result', index=10,
-      number=11, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=84,
-  serialized_end=305,
-)
-
-
-_CREATEROLEREQ = _descriptor.Descriptor(
-  name='CreateRoleReq',
-  full_name='CreateRoleReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='CreateRoleReq.role_name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='login_time', full_name='CreateRoleReq.login_time', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='login_str', full_name='CreateRoleReq.login_str', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='server', full_name='CreateRoleReq.server', index=3,
-      number=4, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='anti_wallow', full_name='CreateRoleReq.anti_wallow', index=4,
-      number=5, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avatar', full_name='CreateRoleReq.avatar', index=5,
-      number=6, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sex', full_name='CreateRoleReq.sex', index=6,
-      number=7, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='plat_name', full_name='CreateRoleReq.plat_name', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='user_uuid', full_name='CreateRoleReq.user_uuid', index=8,
-      number=9, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=308,
-  serialized_end=485,
-)
-
-
-_CREATEROLEACK = _descriptor.Descriptor(
-  name='CreateRoleAck',
-  full_name='CreateRoleAck',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='errCode', full_name='CreateRoleAck.errCode', index=0,
+      name='user_id', full_name='loginAck.user_id', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='role_id', full_name='CreateRoleAck.role_id', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='CreateRoleAck.role_name', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avatar', full_name='CreateRoleAck.avatar', index=3,
-      number=4, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sex', full_name='CreateRoleAck.sex', index=4,
-      number=5, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='CreateRoleAck.create_time', index=5,
-      number=6, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _CREATEROLEACK_RET_TYPE,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=488,
-  serialized_end=755,
-)
-
-
-_USERENTERSCENEREQ = _descriptor.Descriptor(
-  name='UserEnterSceneReq',
-  full_name='UserEnterSceneReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='scene_id', full_name='UserEnterSceneReq.scene_id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scene_key', full_name='UserEnterSceneReq.scene_key', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='last_scene_id', full_name='UserEnterSceneReq.last_scene_id', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_id', full_name='UserEnterSceneReq.role_id', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='UserEnterSceneReq.role_name', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='time', full_name='UserEnterSceneReq.time', index=5,
-      number=6, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='is_login', full_name='UserEnterSceneReq.is_login', index=6,
-      number=7, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='reserved1', full_name='UserEnterSceneReq.reserved1', index=7,
-      number=8, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='server', full_name='UserEnterSceneReq.server', index=8,
-      number=9, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='key', full_name='UserEnterSceneReq.key', index=9,
-      number=10, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='user_uuid', full_name='UserEnterSceneReq.user_uuid', index=10,
-      number=11, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='invitationstatus', full_name='UserEnterSceneReq.invitationstatus', index=11,
-      number=12, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=758,
-  serialized_end=998,
-)
-
-
-_USERENTERSCENEACK = _descriptor.Descriptor(
-  name='UserEnterSceneAck',
-  full_name='UserEnterSceneAck',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='errCode', full_name='UserEnterSceneAck.errCode', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1000,
-  serialized_end=1036,
-)
-
-
-_ROLELISTNOTIFY = _descriptor.Descriptor(
-  name='RoleListNotify',
-  full_name='RoleListNotify',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='errCode', full_name='RoleListNotify.errCode', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='count', full_name='RoleListNotify.count', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='user_uuid', full_name='RoleListNotify.user_uuid', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='wallet', full_name='RoleListNotify.wallet', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='invitationstatus', full_name='RoleListNotify.invitationstatus', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='roleItem', full_name='RoleListNotify.roleItem', index=5,
-      number=6, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _ROLELISTNOTIFY_LOGINACKCODE,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1039,
-  serialized_end=1446,
-)
-
-
-_ENTERSCENENOTIFY = _descriptor.Descriptor(
-  name='EnterSceneNotify',
-  full_name='EnterSceneNotify',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='sceneid', full_name='EnterSceneNotify.sceneid', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='obj_id', full_name='EnterSceneNotify.obj_id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='open_line', full_name='EnterSceneNotify.open_line', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_x', full_name='EnterSceneNotify.pos_x', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_y', full_name='EnterSceneNotify.pos_y', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='hp', full_name='EnterSceneNotify.hp', index=5,
-      number=6, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='max_hp', full_name='EnterSceneNotify.max_hp', index=6,
-      number=7, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scene_key', full_name='EnterSceneNotify.scene_key', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='height', full_name='EnterSceneNotify.height', index=8,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_z', full_name='EnterSceneNotify.pos_z', index=9,
-      number=10, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1449,
-  serialized_end=1627,
-)
-
-
-_LEAVESCENENOTIFY = _descriptor.Descriptor(
-  name='LeaveSceneNotify',
-  full_name='LeaveSceneNotify',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='sceneid', full_name='LeaveSceneNotify.sceneid', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1629,
-  serialized_end=1664,
-)
-
-
-_OBJMOVENOTIFY = _descriptor.Descriptor(
-  name='ObjMoveNotify',
-  full_name='ObjMoveNotify',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='dir', full_name='ObjMoveNotify.dir', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_x', full_name='ObjMoveNotify.speed_x', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_y', full_name='ObjMoveNotify.speed_y', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_z', full_name='ObjMoveNotify.speed_z', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_x', full_name='ObjMoveNotify.pos_x', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_y', full_name='ObjMoveNotify.pos_y', index=5,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_z', full_name='ObjMoveNotify.pos_z', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_x', full_name='ObjMoveNotify.rotation_x', index=7,
-      number=8, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_y', full_name='ObjMoveNotify.rotation_y', index=8,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_z', full_name='ObjMoveNotify.rotation_z', index=9,
-      number=10, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='reserved', full_name='ObjMoveNotify.reserved', index=10,
-      number=11, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='obj_id', full_name='ObjMoveNotify.obj_id', index=11,
-      number=12, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='ObjMoveNotify.distance', index=12,
-      number=13, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='move_mode', full_name='ObjMoveNotify.move_mode', index=13,
-      number=14, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='reserve2', full_name='ObjMoveNotify.reserve2', index=14,
-      number=15, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='height', full_name='ObjMoveNotify.height', index=15,
-      number=16, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceleration_x', full_name='ObjMoveNotify.acceleration_x', index=16,
-      number=17, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceleration_y', full_name='ObjMoveNotify.acceleration_y', index=17,
-      number=18, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceleration_z', full_name='ObjMoveNotify.acceleration_z', index=18,
-      number=19, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controlRotation_x', full_name='ObjMoveNotify.controlRotation_x', index=19,
-      number=20, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controlRotation_y', full_name='ObjMoveNotify.controlRotation_y', index=20,
-      number=21, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controlRotation_z', full_name='ObjMoveNotify.controlRotation_z', index=21,
-      number=22, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1667,
-  serialized_end=2109,
-)
-
-
-_OBJMOVEREQ = _descriptor.Descriptor(
-  name='ObjMoveReq',
-  full_name='ObjMoveReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='dir', full_name='ObjMoveReq.dir', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_x', full_name='ObjMoveReq.speed_x', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_y', full_name='ObjMoveReq.speed_y', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_z', full_name='ObjMoveReq.speed_z', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_x', full_name='ObjMoveReq.pos_x', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_y', full_name='ObjMoveReq.pos_y', index=5,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_z', full_name='ObjMoveReq.pos_z', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_x', full_name='ObjMoveReq.rotation_x', index=7,
-      number=8, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_y', full_name='ObjMoveReq.rotation_y', index=8,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_z', full_name='ObjMoveReq.rotation_z', index=9,
-      number=10, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='ObjMoveReq.distance', index=10,
-      number=11, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='height', full_name='ObjMoveReq.height', index=11,
-      number=12, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceleration_x', full_name='ObjMoveReq.acceleration_x', index=12,
-      number=13, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceleration_y', full_name='ObjMoveReq.acceleration_y', index=13,
-      number=14, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceleration_z', full_name='ObjMoveReq.acceleration_z', index=14,
-      number=15, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controlRotation_x', full_name='ObjMoveReq.controlRotation_x', index=15,
-      number=16, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controlRotation_y', full_name='ObjMoveReq.controlRotation_y', index=16,
-      number=17, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controlRotation_z', full_name='ObjMoveReq.controlRotation_z', index=17,
-      number=18, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2112,
-  serialized_end=2480,
-)
-
-
-_VISIBLEOBJENTERROLENOTIFY = _descriptor.Descriptor(
-  name='VisibleObjEnterRoleNotify',
-  full_name='VisibleObjEnterRoleNotify',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='dir', full_name='VisibleObjEnterRoleNotify.dir', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='move_mode_param', full_name='VisibleObjEnterRoleNotify.move_mode_param', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_status', full_name='VisibleObjEnterRoleNotify.role_status', index=2,
-      number=3, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='obj_id', full_name='VisibleObjEnterRoleNotify.obj_id', index=3,
-      number=4, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_id', full_name='VisibleObjEnterRoleNotify.role_id', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='VisibleObjEnterRoleNotify.role_name', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='hp', full_name='VisibleObjEnterRoleNotify.hp', index=6,
-      number=7, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='max_hp', full_name='VisibleObjEnterRoleNotify.max_hp', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='level', full_name='VisibleObjEnterRoleNotify.level', index=8,
-      number=9, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sex', full_name='VisibleObjEnterRoleNotify.sex', index=9,
-      number=10, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed', full_name='VisibleObjEnterRoleNotify.speed', index=10,
-      number=11, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_x', full_name='VisibleObjEnterRoleNotify.pos_x', index=11,
-      number=12, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_y', full_name='VisibleObjEnterRoleNotify.pos_y', index=12,
-      number=13, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='VisibleObjEnterRoleNotify.distance', index=13,
-      number=14, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='name_color', full_name='VisibleObjEnterRoleNotify.name_color', index=14,
-      number=15, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='move_mode', full_name='VisibleObjEnterRoleNotify.move_mode', index=15,
-      number=16, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avatar', full_name='VisibleObjEnterRoleNotify.avatar', index=16,
-      number=17, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pos_z', full_name='VisibleObjEnterRoleNotify.pos_z', index=17,
-      number=18, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_x', full_name='VisibleObjEnterRoleNotify.rotation_x', index=18,
-      number=19, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_y', full_name='VisibleObjEnterRoleNotify.rotation_y', index=19,
-      number=20, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation_z', full_name='VisibleObjEnterRoleNotify.rotation_z', index=20,
-      number=21, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2483,
-  serialized_end=2870,
-)
-
-
-_ROLEITEM = _descriptor.Descriptor(
-  name='RoleItem',
-  full_name='RoleItem',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='role_id', full_name='RoleItem.role_id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='role_name', full_name='RoleItem.role_name', index=1,
+      name='account', full_name='loginAck.account', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avatar', full_name='RoleItem.avatar', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sex', full_name='RoleItem.sex', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='RoleItem.create_time', index=4,
-      number=5, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='last_login_time', full_name='RoleItem.last_login_time', index=5,
-      number=6, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1435,51 +145,30 @@ _ROLEITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2872,
-  serialized_end=2993,
+  serialized_start=59,
+  serialized_end=103,
 )
 
 
-_LOGINMSGREQ = _descriptor.Descriptor(
-  name='LoginMsgReq',
-  full_name='LoginMsgReq',
+_CREATEACCOUNTREQ = _descriptor.Descriptor(
+  name='CreateAccountReq',
+  full_name='CreateAccountReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='LoginMsgReq.name', index=0,
+      name='account', full_name='CreateAccountReq.account', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='token', full_name='LoginMsgReq.token', index=1,
+      name='password', full_name='CreateAccountReq.password', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='uuid', full_name='LoginMsgReq.uuid', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='wallet', full_name='LoginMsgReq.wallet', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='invitationstatus', full_name='LoginMsgReq.invitationstatus', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -1495,127 +184,83 @@ _LOGINMSGREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2995,
-  serialized_end=3093,
+  serialized_start=105,
+  serialized_end=158,
 )
 
-_CREATEROLEACK_RET_TYPE.containing_type = _CREATEROLEACK
-_ROLELISTNOTIFY.fields_by_name['roleItem'].message_type = _ROLEITEM
-_ROLELISTNOTIFY_LOGINACKCODE.containing_type = _ROLELISTNOTIFY
-DESCRIPTOR.message_types_by_name['RoleLoginReq'] = _ROLELOGINREQ
-DESCRIPTOR.message_types_by_name['RoleLoginAck'] = _ROLELOGINACK
-DESCRIPTOR.message_types_by_name['CreateRoleReq'] = _CREATEROLEREQ
-DESCRIPTOR.message_types_by_name['CreateRoleAck'] = _CREATEROLEACK
-DESCRIPTOR.message_types_by_name['UserEnterSceneReq'] = _USERENTERSCENEREQ
-DESCRIPTOR.message_types_by_name['UserEnterSceneAck'] = _USERENTERSCENEACK
-DESCRIPTOR.message_types_by_name['RoleListNotify'] = _ROLELISTNOTIFY
-DESCRIPTOR.message_types_by_name['EnterSceneNotify'] = _ENTERSCENENOTIFY
-DESCRIPTOR.message_types_by_name['LeaveSceneNotify'] = _LEAVESCENENOTIFY
-DESCRIPTOR.message_types_by_name['ObjMoveNotify'] = _OBJMOVENOTIFY
-DESCRIPTOR.message_types_by_name['ObjMoveReq'] = _OBJMOVEREQ
-DESCRIPTOR.message_types_by_name['VisibleObjEnterRoleNotify'] = _VISIBLEOBJENTERROLENOTIFY
-DESCRIPTOR.message_types_by_name['RoleItem'] = _ROLEITEM
-DESCRIPTOR.message_types_by_name['LoginMsgReq'] = _LOGINMSGREQ
+
+_CREATEACCOUNTACK = _descriptor.Descriptor(
+  name='CreateAccountAck',
+  full_name='CreateAccountAck',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='CreateAccountAck.user_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='token', full_name='CreateAccountAck.token', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=160,
+  serialized_end=210,
+)
+
+DESCRIPTOR.message_types_by_name['loginReq'] = _LOGINREQ
+DESCRIPTOR.message_types_by_name['loginAck'] = _LOGINACK
+DESCRIPTOR.message_types_by_name['CreateAccountReq'] = _CREATEACCOUNTREQ
+DESCRIPTOR.message_types_by_name['CreateAccountAck'] = _CREATEACCOUNTACK
 DESCRIPTOR.enum_types_by_name['LoginMsgId'] = _LOGINMSGID
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-RoleLoginReq = _reflection.GeneratedProtocolMessageType('RoleLoginReq', (_message.Message,), {
-  'DESCRIPTOR' : _ROLELOGINREQ,
+loginReq = _reflection.GeneratedProtocolMessageType('loginReq', (_message.Message,), {
+  'DESCRIPTOR' : _LOGINREQ,
   '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:RoleLoginReq)
+  # @@protoc_insertion_point(class_scope:loginReq)
   })
-_sym_db.RegisterMessage(RoleLoginReq)
+_sym_db.RegisterMessage(loginReq)
 
-RoleLoginAck = _reflection.GeneratedProtocolMessageType('RoleLoginAck', (_message.Message,), {
-  'DESCRIPTOR' : _ROLELOGINACK,
+loginAck = _reflection.GeneratedProtocolMessageType('loginAck', (_message.Message,), {
+  'DESCRIPTOR' : _LOGINACK,
   '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:RoleLoginAck)
+  # @@protoc_insertion_point(class_scope:loginAck)
   })
-_sym_db.RegisterMessage(RoleLoginAck)
+_sym_db.RegisterMessage(loginAck)
 
-CreateRoleReq = _reflection.GeneratedProtocolMessageType('CreateRoleReq', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEROLEREQ,
+CreateAccountReq = _reflection.GeneratedProtocolMessageType('CreateAccountReq', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEACCOUNTREQ,
   '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:CreateRoleReq)
+  # @@protoc_insertion_point(class_scope:CreateAccountReq)
   })
-_sym_db.RegisterMessage(CreateRoleReq)
+_sym_db.RegisterMessage(CreateAccountReq)
 
-CreateRoleAck = _reflection.GeneratedProtocolMessageType('CreateRoleAck', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEROLEACK,
+CreateAccountAck = _reflection.GeneratedProtocolMessageType('CreateAccountAck', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEACCOUNTACK,
   '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:CreateRoleAck)
+  # @@protoc_insertion_point(class_scope:CreateAccountAck)
   })
-_sym_db.RegisterMessage(CreateRoleAck)
-
-UserEnterSceneReq = _reflection.GeneratedProtocolMessageType('UserEnterSceneReq', (_message.Message,), {
-  'DESCRIPTOR' : _USERENTERSCENEREQ,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:UserEnterSceneReq)
-  })
-_sym_db.RegisterMessage(UserEnterSceneReq)
-
-UserEnterSceneAck = _reflection.GeneratedProtocolMessageType('UserEnterSceneAck', (_message.Message,), {
-  'DESCRIPTOR' : _USERENTERSCENEACK,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:UserEnterSceneAck)
-  })
-_sym_db.RegisterMessage(UserEnterSceneAck)
-
-RoleListNotify = _reflection.GeneratedProtocolMessageType('RoleListNotify', (_message.Message,), {
-  'DESCRIPTOR' : _ROLELISTNOTIFY,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:RoleListNotify)
-  })
-_sym_db.RegisterMessage(RoleListNotify)
-
-EnterSceneNotify = _reflection.GeneratedProtocolMessageType('EnterSceneNotify', (_message.Message,), {
-  'DESCRIPTOR' : _ENTERSCENENOTIFY,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:EnterSceneNotify)
-  })
-_sym_db.RegisterMessage(EnterSceneNotify)
-
-LeaveSceneNotify = _reflection.GeneratedProtocolMessageType('LeaveSceneNotify', (_message.Message,), {
-  'DESCRIPTOR' : _LEAVESCENENOTIFY,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:LeaveSceneNotify)
-  })
-_sym_db.RegisterMessage(LeaveSceneNotify)
-
-ObjMoveNotify = _reflection.GeneratedProtocolMessageType('ObjMoveNotify', (_message.Message,), {
-  'DESCRIPTOR' : _OBJMOVENOTIFY,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:ObjMoveNotify)
-  })
-_sym_db.RegisterMessage(ObjMoveNotify)
-
-ObjMoveReq = _reflection.GeneratedProtocolMessageType('ObjMoveReq', (_message.Message,), {
-  'DESCRIPTOR' : _OBJMOVEREQ,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:ObjMoveReq)
-  })
-_sym_db.RegisterMessage(ObjMoveReq)
-
-VisibleObjEnterRoleNotify = _reflection.GeneratedProtocolMessageType('VisibleObjEnterRoleNotify', (_message.Message,), {
-  'DESCRIPTOR' : _VISIBLEOBJENTERROLENOTIFY,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:VisibleObjEnterRoleNotify)
-  })
-_sym_db.RegisterMessage(VisibleObjEnterRoleNotify)
-
-RoleItem = _reflection.GeneratedProtocolMessageType('RoleItem', (_message.Message,), {
-  'DESCRIPTOR' : _ROLEITEM,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:RoleItem)
-  })
-_sym_db.RegisterMessage(RoleItem)
-
-LoginMsgReq = _reflection.GeneratedProtocolMessageType('LoginMsgReq', (_message.Message,), {
-  'DESCRIPTOR' : _LOGINMSGREQ,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:LoginMsgReq)
-  })
-_sym_db.RegisterMessage(LoginMsgReq)
+_sym_db.RegisterMessage(CreateAccountAck)
 
 
 # @@protoc_insertion_point(module_scope)

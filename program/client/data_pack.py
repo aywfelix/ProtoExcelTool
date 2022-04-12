@@ -44,20 +44,20 @@ class DataPack(object):
         return msg_id, msg_content
         pass
 
-
+    # 包={4字节data长度,4字节消息id,data}
     def dataPack2(self, msg_id, msg_proto):
         msg_pack = None
         msg_content = msg_proto.SerializeToString()
-        msg_len = 4 + len(msg_content)
+        msg_len = len(msg_content)
         msg_pack = struct.pack('i', msg_len)
-        msg_pack = msg_pack + struct.pack('HH', msg_id, 0)
+        msg_pack = msg_pack + struct.pack('i', msg_id)
         msg_pack = msg_pack + msg_content
         return msg_pack
         pass    
     
     def dataUnpack2(self, recv_data):
-        msg_len = struct.unpack('i', recv_data[:4])[0]  # msg_len=len(msg_id)+len(msg_content)
-        msg_id, _ = struct.unpack('HH', recv_data[4:8])
+        msg_len = struct.unpack('i', recv_data[:4])[0]
+        msg_id = struct.unpack('i', recv_data[4:8])[0]
         dynamicData = self.protoXml.getDynamicMsg(str(msg_id))
         if not dynamicData:
             print('dynamicData is null, msgid==', msg_id)
