@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+
+
+enum GameMsgId {
+    MSG_ID = 0;    
+    GAME_ENTERGAMEREQ_REQ = 2001;
+    GAME_ENTERGAMEACK_ACK = 2002;
+
+}
+// 客户端请求进入游戏
+message EnterGameReq{
+   int64 UserId = 1;
+   int32 RoleId = 2;
+   
+}
+
+// 
+message EnterGameAck{
+   
+}
+

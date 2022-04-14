@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+
+
+enum ChatMsgId {
+    MSG_ID = 0;    
+
+}

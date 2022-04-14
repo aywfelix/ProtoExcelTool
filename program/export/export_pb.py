@@ -16,6 +16,7 @@ import os
 from tool_define import *
 from setting_xml import *
 from proto_xml import *
+from logger import *
 
 #############################################################################
 proto_header = 'syntax = "proto3";'
@@ -99,7 +100,7 @@ class ExportPb(object):
                     pass                
                 pass
         except Exception as e:
-            print(e)
+            Logger.WriteLog(e)
 
 
     def exportProtoBuffer(self):
@@ -143,9 +144,16 @@ class ExportPb(object):
                         gen_pb_cmd = protocExeFile + ' --proto_path=' + \
                             protoDir + ' --python_out='+config.publish + " "+proto
 
-                    subprocess.Popen(gen_pb_cmd, shell=True, cwd=os.getcwd())
+                    p = subprocess.Popen(gen_pb_cmd, shell=True, cwd=os.getcwd(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                    outlines = ""
+                    while p.poll() is None:
+                        line = p.stdout.readline().decode("utf-8")
+                        if not line: continue
+                        outlines = outlines + "\n" + line
+                    if outlines:
+                        Logger.WriteLog(outlines)
         except Exception as e:
-            print("export pb err, ", e)
+            Logger.WriteLog("export pb err, {0}".format(e))
 
    
 

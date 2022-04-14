@@ -17,7 +17,7 @@ import xml.dom.minidom as xmlDom
 
 from tool_define import *
 from setting_xml import *
-
+from logger import *
 
 @Singleton
 class ToolProtoXml(object):
@@ -121,6 +121,7 @@ class ToolProtoXml(object):
                 domTree.writexml(f, indent=' ', addindent='\t',
                                  newl='\n', encoding="GB2312")
         except Exception as e:
+            Logger.WriteLog("writeProtocolXml err, {0}".format(str(e)))
             print(e)
 
 
@@ -181,6 +182,7 @@ class ToolProtoXml(object):
                         self.dynamicMsg[msgId] = DynamicMsgData(msgId, msgClass, msgName, msgType)
                     pass                
         except Exception as e:
+            Logger.WriteLog("readProtocolXml err, {0}".format(str(e)))
             print(e)
 
     def getDynamicMsgs(self):

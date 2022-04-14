@@ -13,7 +13,7 @@ from transtable.trans_csharp import *
 from transtable.trans_lua import *
 from transtable.trans_go import *
 from setting_xml import *
-
+from logger import *
 
 @Singleton
 class TransTable:
@@ -198,6 +198,8 @@ class TransTable:
                 class_name = excel.split('_')[0]
                 self.transExcels(excel, class_name)
         except Exception as e:
+            Logger.WriteLog("transTables err, {0}".format(str(e)))
+            Logger.WriteLog("transTables err, {0}".format(traceback.print_exc()))
             print('str(Exception):\t', str(e))
             print('traceback.print_exc():', traceback.print_exc())
     pass

@@ -15,7 +15,7 @@ import codecs
 import os
 import xml.dom.minidom as xmlDom
 from tool_define import *
-
+from logger import *
 
 @Singleton
 class ToolSettingXml(object):
@@ -143,6 +143,7 @@ class ToolSettingXml(object):
                     self.tables.append(tmplData)
 
         except Exception as e:
+            Logger.WriteLog("readSettingXml err, {0}".format(str(e)))
             print(e)
         pass
 
@@ -222,6 +223,7 @@ class ToolSettingXml(object):
                 f.write(self.toPrettyXml(domTree.toxml()))
 
         except Exception as e:
+            Logger.WriteLog("writeSettingXml err, {0}".format(str(e)))
             print(e)
         pass
 

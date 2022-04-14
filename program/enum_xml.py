@@ -17,6 +17,7 @@ import os
 import xml.dom.minidom as xmlDom
 from xml.dom import Node
 from tool_define import *
+from logger import *
 
 @Singleton
 class ToolEnumXml(object):
@@ -86,6 +87,7 @@ class ToolEnumXml(object):
                     fieldData = EnumField(index, name, desc)
                     enumData.fields.append(fieldData)
         except Exception as e:
+            Logger.WriteLog("readEnumXml err, {0}".format(str(e)))
             print(e)
         pass
 
@@ -122,6 +124,7 @@ class ToolEnumXml(object):
             with open(self.xmlEnumPath, "w", encoding="GB2312", errors='ignore') as f:
                 domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="GB2312")            
         except Exception as e:
+            Logger.WriteLog("writeEnumXml err, {0}".format(str(e)))
             print(e)
 
         pass
