@@ -12,7 +12,7 @@
 
 # here put the import lib
 ######################################################################################
-enum_field_tmpl = ' %(item_name)s_%(enum_field)s %(item_name)s = %(field_index)s, // %(field_desc)s'
+enum_field_tmpl = ' %(item_name)s_%(enum_field)s %(item_name)s = %(field_index)s // %(field_desc)s'
 enum_tmpl = '''package enums
 %(enum_items)s
 '''
