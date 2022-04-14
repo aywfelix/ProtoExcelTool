@@ -149,7 +149,7 @@ class ExportPb(object):
                     while p.poll() is None:
                         line = p.stdout.readline().decode("utf-8")
                         if not line: continue
-                        outlines = outlines + "\n" + line
+                        outlines = outlines + line
                     if outlines:
                         Logger.WriteLog(outlines)
         except Exception as e:
