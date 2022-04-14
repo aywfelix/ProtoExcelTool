@@ -112,6 +112,7 @@ class NetClient(QMainWindow):
             #print('send msg:{0}, content:{1}'.format(msgID, content))
             pass
         except Exception as e:
+            Logger.WriteLog("send msg failed: {0}".format(str(e)))
             print("send msg failed, ", e)
     
 

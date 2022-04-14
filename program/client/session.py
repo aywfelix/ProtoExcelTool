@@ -16,6 +16,7 @@ import socket
 import queue
 import threading
 from client.data_pack import *
+from logger import *
 
 class Session(object):
     def __init__(self, parent=None):
@@ -40,6 +41,7 @@ class Session(object):
             self.startRecvThrd()
             return True   
         except socket.error as e:
+            Logger.WriteLog("connect server error:{0}".format(str(e)))
             print("connect server error:", e)
         return False
     
@@ -69,6 +71,7 @@ class Session(object):
                 pass
 
         except Exception as e:
+            Logger.WriteLog("readData error:{0}".format(str(e)))
             print(e)
     
     def writeData(self, data):
@@ -106,6 +109,7 @@ class Session(object):
                     callback = key.data
                     callback(key.fileobj, mask)
             except Exception as e:
+                Logger.WriteLog("recv thread error: {0}".format(str(e)))
                 print("recv thread error, ", e)
                 pass
 

@@ -47,6 +47,7 @@ class ReLoadFiles(object):
                 # print(shortFile, module)
                 self.moduleList[shortFile] = module
         except Exception as e:
+            Logger.WriteLog("readLoadModule error, {0}".format(str(e)))
             print(e)
         pass
 
