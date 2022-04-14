@@ -23,7 +23,7 @@ proto_header = 'syntax = "proto3";'
 
 proto_enum_tmpl = '''
 enum %(DirName)sMsgId {
-    MSG_ID = 0;    
+    %(DirName)s_MSG_ID = 0;    
 %(enum_fields)s
 }
 '''
