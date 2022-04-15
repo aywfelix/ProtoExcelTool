@@ -531,6 +531,8 @@ class ProtoMainUI(QMainWindow):
         self.saveToXml()
         # 保存测试历史
         self.client.saveSendHistory()
+        #关闭网络客户端
+        self.disConnectClicked()
         print("program exit")
 
     # 协议测试处理逻辑

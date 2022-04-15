@@ -42,7 +42,6 @@ class NetClient(QMainWindow):
         self.session = Session()
         self.dataPack = DataPack()
         self.msgDefine = {}
-        # self.iniMsgDefine()
         self.recordReq = {}
         self.req_history_file = "./config/request.json"
         self.loadReqHistory()
