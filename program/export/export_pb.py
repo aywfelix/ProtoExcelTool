@@ -46,7 +46,7 @@ class ExportPb(object):
             for dirName, dirData in modules.items():
                 # 添加引用
                 protoMsgs = proto_header+"\n"
-                protoMsgs += dirData.package +"\n\n"
+                protoMsgs += dirData.package +"\n"
 
                 protocolDict = protocols[dirName]
                 # 添加消息枚举
@@ -63,7 +63,7 @@ class ExportPb(object):
                     if protoData.type == '3': 
                         enum_field = dir_name.upper()+"_"+(protoData.name)[:-6].upper()
                         enum_field += "_NOTIFY"
-                    enum_field += " = " + str(protoData.id) + ";\n"
+                    enum_field += " = " + str(protoData.id) + ";"
                     enum_fields += "    "+enum_field
                     pass
 
@@ -101,7 +101,6 @@ class ExportPb(object):
                 #print("export proto file=", protoFilePath)
                 with codecs.open(protoFilePath, "w", 'utf-8', errors='ignore') as f:
                     f.write(protoMsgs)
-                    f.flush()
                     pass                
                 pass
         except Exception as e:
