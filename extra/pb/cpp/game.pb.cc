@@ -72,14 +72,14 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_game_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\ngame.proto\".\n\014EnterGameReq\022\016\n\006UserId\030\001"
-  " \001(\003\022\016\n\006RoleId\030\002 \001(\005\"\016\n\014EnterGameAck*O\n\t"
-  "GameMsgId\022\n\n\006MSG_ID\020\000\022\032\n\025GAME_ENTERGAMER"
-  "EQ_REQ\020\321\017\022\032\n\025GAME_ENTERGAMEACK_ACK\020\322\017b\006p"
-  "roto3"
+  " \001(\003\022\016\n\006RoleId\030\002 \001(\005\"\016\n\014EnterGameAck*N\n\t"
+  "GameMsgId\022\017\n\013Game_MSG_ID\020\000\022\027\n\022GAME_ENTER"
+  "GAME_REQ\020\321\017\022\027\n\022GAME_ENTERGAME_ACK\020\322\017b\006pr"
+  "oto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_2eproto = {
-  false, false, 165, descriptor_table_protodef_game_2eproto, "game.proto", 
+  false, false, 164, descriptor_table_protodef_game_2eproto, "game.proto", 
   &descriptor_table_game_2eproto_once, nullptr, 0, 2,
   schemas, file_default_instances, TableStruct_game_2eproto::offsets,
   file_level_metadata_game_2eproto, file_level_enum_descriptors_game_2eproto, file_level_service_descriptors_game_2eproto,

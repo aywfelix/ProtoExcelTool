@@ -23,12 +23,12 @@ static constexpr ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema* schemas = n
 static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_chat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nchat.proto*\027\n\tChatMsgId\022\n\n\006MSG_ID\020\000b\006p"
-  "roto3"
+  "\n\nchat.proto*\034\n\tChatMsgId\022\017\n\013Chat_MSG_ID"
+  "\020\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_chat_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_chat_2eproto = {
-  false, false, 45, descriptor_table_protodef_chat_2eproto, "chat.proto", 
+  false, false, 50, descriptor_table_protodef_chat_2eproto, "chat.proto", 
   &descriptor_table_chat_2eproto_once, nullptr, 0, 0,
   schemas, file_default_instances, TableStruct_chat_2eproto::offsets,
   nullptr, file_level_enum_descriptors_chat_2eproto, file_level_service_descriptors_chat_2eproto,

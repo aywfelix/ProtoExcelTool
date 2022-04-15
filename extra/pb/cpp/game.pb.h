@@ -67,15 +67,15 @@ template<> ::EnterGameReq* Arena::CreateMaybeMessage<::EnterGameReq>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 enum GameMsgId : int {
-  MSG_ID = 0,
-  GAME_ENTERGAMEREQ_REQ = 2001,
-  GAME_ENTERGAMEACK_ACK = 2002,
+  Game_MSG_ID = 0,
+  GAME_ENTERGAME_REQ = 2001,
+  GAME_ENTERGAME_ACK = 2002,
   GameMsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   GameMsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool GameMsgId_IsValid(int value);
-constexpr GameMsgId GameMsgId_MIN = MSG_ID;
-constexpr GameMsgId GameMsgId_MAX = GAME_ENTERGAMEACK_ACK;
+constexpr GameMsgId GameMsgId_MIN = Game_MSG_ID;
+constexpr GameMsgId GameMsgId_MAX = GAME_ENTERGAME_ACK;
 constexpr int GameMsgId_ARRAYSIZE = GameMsgId_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GameMsgId_descriptor();

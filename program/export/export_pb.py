@@ -54,10 +54,15 @@ class ExportPb(object):
                 dir_name = dirName.split(" ")[1]
                 for _, protoData in protocolDict.items():
                     if not protoData.id: continue
-                    enum_field = dir_name.upper()+"_"+protoData.name.upper()
-                    if protoData.type == '1': enum_field += "_REQ"
-                    if protoData.type == '2': enum_field += "_ACK"
-                    if protoData.type == '3': enum_field += "_NOTIFY"
+                    if protoData.type == '1': 
+                        enum_field = dir_name.upper()+"_"+(protoData.name)[:-3].upper()
+                        enum_field += "_REQ"
+                    if protoData.type == '2': 
+                        enum_field = dir_name.upper()+"_"+(protoData.name)[:-3].upper()
+                        enum_field += "_ACK"
+                    if protoData.type == '3': 
+                        enum_field = dir_name.upper()+"_"+(protoData.name)[:-6].upper()
+                        enum_field += "_NOTIFY"
                     enum_field += " = " + str(protoData.id) + ";\n"
                     enum_fields += "    "+enum_field
                     pass

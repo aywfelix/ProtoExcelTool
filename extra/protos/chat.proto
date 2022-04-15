@@ -3,6 +3,6 @@ syntax = "proto3";
 
 
 enum ChatMsgId {
-    MSG_ID = 0;    
+    Chat_MSG_ID = 0;    
 
 }

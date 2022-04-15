@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ngame.proto\".\n\x0c\x45nterGameReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\x12\x0e\n\x06RoleId\x18\x02 \x01(\x05\"\x0e\n\x0c\x45nterGameAck*O\n\tGameMsgId\x12\n\n\x06MSG_ID\x10\x00\x12\x1a\n\x15GAME_ENTERGAMEREQ_REQ\x10\xd1\x0f\x12\x1a\n\x15GAME_ENTERGAMEACK_ACK\x10\xd2\x0f\x62\x06proto3'
+  serialized_pb=b'\n\ngame.proto\".\n\x0c\x45nterGameReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\x12\x0e\n\x06RoleId\x18\x02 \x01(\x05\"\x0e\n\x0c\x45nterGameAck*N\n\tGameMsgId\x12\x0f\n\x0bGame_MSG_ID\x10\x00\x12\x17\n\x12GAME_ENTERGAME_REQ\x10\xd1\x0f\x12\x17\n\x12GAME_ENTERGAME_ACK\x10\xd2\x0f\x62\x06proto3'
 )
 
 _GAMEMSGID = _descriptor.EnumDescriptor(
@@ -31,17 +31,17 @@ _GAMEMSGID = _descriptor.EnumDescriptor(
   create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='MSG_ID', index=0, number=0,
+      name='Game_MSG_ID', index=0, number=0,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='GAME_ENTERGAMEREQ_REQ', index=1, number=2001,
+      name='GAME_ENTERGAME_REQ', index=1, number=2001,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='GAME_ENTERGAMEACK_ACK', index=2, number=2002,
+      name='GAME_ENTERGAME_ACK', index=2, number=2002,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
@@ -49,14 +49,14 @@ _GAMEMSGID = _descriptor.EnumDescriptor(
   containing_type=None,
   serialized_options=None,
   serialized_start=78,
-  serialized_end=157,
+  serialized_end=156,
 )
 _sym_db.RegisterEnumDescriptor(_GAMEMSGID)
 
 GameMsgId = enum_type_wrapper.EnumTypeWrapper(_GAMEMSGID)
-MSG_ID = 0
-GAME_ENTERGAMEREQ_REQ = 2001
-GAME_ENTERGAMEACK_ACK = 2002
+Game_MSG_ID = 0
+GAME_ENTERGAME_REQ = 2001
+GAME_ENTERGAME_ACK = 2002
 
 
 

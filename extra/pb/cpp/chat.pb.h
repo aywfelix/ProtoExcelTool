@@ -56,13 +56,13 @@ PROTOBUF_NAMESPACE_OPEN
 PROTOBUF_NAMESPACE_CLOSE
 
 enum ChatMsgId : int {
-  MSG_ID = 0,
+  Chat_MSG_ID = 0,
   ChatMsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   ChatMsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ChatMsgId_IsValid(int value);
-constexpr ChatMsgId ChatMsgId_MIN = MSG_ID;
-constexpr ChatMsgId ChatMsgId_MAX = MSG_ID;
+constexpr ChatMsgId ChatMsgId_MIN = Chat_MSG_ID;
+constexpr ChatMsgId ChatMsgId_MAX = Chat_MSG_ID;
 constexpr int ChatMsgId_ARRAYSIZE = ChatMsgId_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ChatMsgId_descriptor();

@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nchat.proto*\x17\n\tChatMsgId\x12\n\n\x06MSG_ID\x10\x00\x62\x06proto3'
+  serialized_pb=b'\n\nchat.proto*\x1c\n\tChatMsgId\x12\x0f\n\x0b\x43hat_MSG_ID\x10\x00\x62\x06proto3'
 )
 
 _CHATMSGID = _descriptor.EnumDescriptor(
@@ -31,7 +31,7 @@ _CHATMSGID = _descriptor.EnumDescriptor(
   create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='MSG_ID', index=0, number=0,
+      name='Chat_MSG_ID', index=0, number=0,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
@@ -39,12 +39,12 @@ _CHATMSGID = _descriptor.EnumDescriptor(
   containing_type=None,
   serialized_options=None,
   serialized_start=14,
-  serialized_end=37,
+  serialized_end=42,
 )
 _sym_db.RegisterEnumDescriptor(_CHATMSGID)
 
 ChatMsgId = enum_type_wrapper.EnumTypeWrapper(_CHATMSGID)
-MSG_ID = 0
+Chat_MSG_ID = 0
 
 
 DESCRIPTOR.enum_types_by_name['ChatMsgId'] = _CHATMSGID

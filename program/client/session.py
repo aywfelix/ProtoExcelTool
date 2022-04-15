@@ -71,7 +71,7 @@ class Session(object):
                 pass
 
         except Exception as e:
-            Logger.WriteLog("readData error:{0}".format(str(e)))
+            #Logger.WriteLog("readData error:{0}".format(str(e)))
             print(e)
     
     def writeData(self, data):
