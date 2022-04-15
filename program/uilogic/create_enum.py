@@ -50,8 +50,8 @@ class CreateEnumUI(QMainWindow):
         enumName = self.ui.lEtEnumName.text().strip()
         if not enumName:
             return
-        if 'Em' not in enumName:
-            enumName = 'Em'+enumName
+        # if 'Em' not in enumName:
+        #     enumName = 'Em'+enumName
         self.ui.lEtEnumName.setText(enumName)
         pass
 
