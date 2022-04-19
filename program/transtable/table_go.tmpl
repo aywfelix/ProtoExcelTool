@@ -1,4 +1,4 @@
-﻿package Table
+﻿package table
 
 import (
 	"encoding/json"
@@ -41,11 +41,12 @@ func (t *%(low_class_name)sTable) Table() map[int]*%(low_class_name)sRow {
 func (t *%(low_class_name)sTable) Load() {
 	data, err := ioutil.ReadFile("./%(class_name)s.json")
 	if err != nil {
+		fmt.Println("read table %(class_name)s error, ", err.Error())
 		return
 	}
 	err = json.Unmarshal(data, &t.table)
 	if err != nil {
-		fmt.Println("read table %(class_name)s error, ", err.Error())
+		fmt.Println("json parse table %(class_name)s error, ", err.Error())
 		return
 	}
 	for k, _ := range t.table {
