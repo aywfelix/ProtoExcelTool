@@ -4,7 +4,7 @@ import codecs
 from tool_define import *
 from transtable.trans_define import *
 
-@Singleton
+
 class TransLua:
     def __init__(self, lua_dir):
         self.lua_dir = lua_dir
@@ -19,7 +19,7 @@ class TransLua:
         s = s % {"class_name": table_name}
 
         lua_file = os.path.join(self.lua_dir, table_name+'.lua')
-        with codecs.open(lua_file, "w", "GB2312") as f:
+        with codecs.open(lua_file, "w", "utf-8", errors='ignore') as f:
             f.write(s)
             f.flush()
             pass

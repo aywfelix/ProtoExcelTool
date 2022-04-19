@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0blogin.proto\"8\n\x08LoginAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\x12\x1b\n\x08RoleList\x18\x02 \x03(\x0b\x32\t.RoleInfo\"5\n\x10\x43reateAccountReq\x12\x0f\n\x07\x41\x63\x63ount\x18\x01 \x01(\t\x12\x10\n\x08Password\x18\x02 \x01(\t\"A\n\rCreateRoleReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\x12\x0e\n\x06RoleId\x18\x02 \x01(\x05\x12\x10\n\x08RoleName\x18\x03 \x01(\t\" \n\rCreateRoleAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\"!\n\x10\x43reateAccountAck\x12\r\n\x05Token\x18\x01 \x01(\t\"\x1f\n\rSelectRoleReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\" \n\rSelectRoleAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\"\x1f\n\rDeleteRoleReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\" \n\rDeleteRoleAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\"T\n\x08RoleInfo\x12\x0e\n\x06UserId\x18\x01 \x01(\x05\x12\x13\n\x0bRoleImageId\x18\x02 \x01(\x05\x12\x10\n\x08RoleName\x18\x03 \x01(\t\x12\x11\n\tRoleLevel\x18\x04 \x01(\x05\",\n\x08LoginReq\x12\r\n\x05Token\x18\x01 \x01(\t\x12\x11\n\tAccountId\x18\x02 \x01(\x03*\xa8\x02\n\nLoginMsgId\x12\x10\n\x0cLogin_MSG_ID\x10\x00\x12\x14\n\x0fLOGIN_LOGIN_ACK\x10\xd0\x08\x12\x1c\n\x17LOGIN_CREATEACCOUNT_REQ\x10\xcd\x08\x12\x19\n\x14LOGIN_CREATEROLE_REQ\x10\xd1\x08\x12\x19\n\x14LOGIN_CREATEROLE_ACK\x10\xd2\x08\x12\x1c\n\x17LOGIN_CREATEACCOUNT_ACK\x10\xce\x08\x12\x19\n\x14LOGIN_SELECTROLE_REQ\x10\xd3\x08\x12\x19\n\x14LOGIN_SELECTROLE_ACK\x10\xd4\x08\x12\x19\n\x14LOGIN_DELETEROLE_REQ\x10\xd5\x08\x12\x19\n\x14LOGIN_DELETEROLE_ACK\x10\xd6\x08\x12\x14\n\x0fLOGIN_LOGIN_REQ\x10\xcf\x08\x62\x06proto3'
+  serialized_pb=b'\n\x0blogin.proto\"5\n\x10\x43reateAccountReq\x12\x0f\n\x07\x41\x63\x63ount\x18\x01 \x01(\t\x12\x10\n\x08Password\x18\x02 \x01(\t\"\x1f\n\rSelectRoleReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\" \n\rSelectRoleAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\"\x1f\n\rDeleteRoleReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\" \n\rDeleteRoleAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\";\n\x0bLoginAppAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\x12\x1b\n\x08RoleList\x18\x02 \x03(\x0b\x32\t.RoleInfo\"4\n\x10\x43reateAccountAck\x12\r\n\x05Token\x18\x01 \x01(\t\x12\x11\n\tAccountId\x18\x02 \x01(\x03\"/\n\x0bLoginAppReq\x12\r\n\x05Token\x18\x01 \x01(\t\x12\x11\n\tAccountId\x18\x02 \x01(\x03\"H\n\rCreateRoleReq\x12\x11\n\tAccountId\x18\x01 \x01(\x03\x12\x12\n\nRoleConfId\x18\x02 \x01(\x05\x12\x10\n\x08RoleName\x18\x03 \x01(\t\"0\n\rCreateRoleAck\x12\x0f\n\x07\x45rrCode\x18\x01 \x01(\x05\x12\x0e\n\x06UserId\x18\x02 \x01(\x03\"T\n\x08RoleInfo\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\x12\x13\n\x0bRoleImageId\x18\x02 \x01(\x05\x12\x10\n\x08RoleName\x18\x03 \x01(\t\x12\x11\n\tRoleLevel\x18\x04 \x01(\x05*\xae\x02\n\nLoginMsgId\x12\x10\n\x0cLogin_MSG_ID\x10\x00\x12\x1c\n\x17LOGIN_CREATEACCOUNT_REQ\x10\xcd\x08\x12\x19\n\x14LOGIN_SELECTROLE_REQ\x10\xd3\x08\x12\x19\n\x14LOGIN_SELECTROLE_ACK\x10\xd4\x08\x12\x19\n\x14LOGIN_DELETEROLE_REQ\x10\xd5\x08\x12\x19\n\x14LOGIN_DELETEROLE_ACK\x10\xd6\x08\x12\x17\n\x12LOGIN_LOGINAPP_ACK\x10\xd0\x08\x12\x1c\n\x17LOGIN_CREATEACCOUNT_ACK\x10\xce\x08\x12\x17\n\x12LOGIN_LOGINAPP_REQ\x10\xcf\x08\x12\x19\n\x14LOGIN_CREATEROLE_REQ\x10\xd1\x08\x12\x19\n\x14LOGIN_CREATEROLE_ACK\x10\xd2\x08\x62\x06proto3'
 )
 
 _LOGINMSGID = _descriptor.EnumDescriptor(
@@ -36,115 +36,76 @@ _LOGINMSGID = _descriptor.EnumDescriptor(
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_LOGIN_ACK', index=1, number=1104,
+      name='LOGIN_CREATEACCOUNT_REQ', index=1, number=1101,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_CREATEACCOUNT_REQ', index=2, number=1101,
+      name='LOGIN_SELECTROLE_REQ', index=2, number=1107,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_CREATEROLE_REQ', index=3, number=1105,
+      name='LOGIN_SELECTROLE_ACK', index=3, number=1108,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_CREATEROLE_ACK', index=4, number=1106,
+      name='LOGIN_DELETEROLE_REQ', index=4, number=1109,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_CREATEACCOUNT_ACK', index=5, number=1102,
+      name='LOGIN_DELETEROLE_ACK', index=5, number=1110,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_SELECTROLE_REQ', index=6, number=1107,
+      name='LOGIN_LOGINAPP_ACK', index=6, number=1104,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_SELECTROLE_ACK', index=7, number=1108,
+      name='LOGIN_CREATEACCOUNT_ACK', index=7, number=1102,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_DELETEROLE_REQ', index=8, number=1109,
+      name='LOGIN_LOGINAPP_REQ', index=8, number=1103,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_DELETEROLE_ACK', index=9, number=1110,
+      name='LOGIN_CREATEROLE_REQ', index=9, number=1105,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='LOGIN_LOGIN_REQ', index=10, number=1103,
+      name='LOGIN_CREATEROLE_ACK', index=10, number=1106,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=531,
-  serialized_end=827,
+  serialized_start=579,
+  serialized_end=881,
 )
 _sym_db.RegisterEnumDescriptor(_LOGINMSGID)
 
 LoginMsgId = enum_type_wrapper.EnumTypeWrapper(_LOGINMSGID)
 Login_MSG_ID = 0
-LOGIN_LOGIN_ACK = 1104
 LOGIN_CREATEACCOUNT_REQ = 1101
-LOGIN_CREATEROLE_REQ = 1105
-LOGIN_CREATEROLE_ACK = 1106
-LOGIN_CREATEACCOUNT_ACK = 1102
 LOGIN_SELECTROLE_REQ = 1107
 LOGIN_SELECTROLE_ACK = 1108
 LOGIN_DELETEROLE_REQ = 1109
 LOGIN_DELETEROLE_ACK = 1110
-LOGIN_LOGIN_REQ = 1103
+LOGIN_LOGINAPP_ACK = 1104
+LOGIN_CREATEACCOUNT_ACK = 1102
+LOGIN_LOGINAPP_REQ = 1103
+LOGIN_CREATEROLE_REQ = 1105
+LOGIN_CREATEROLE_ACK = 1106
 
-
-
-_LOGINACK = _descriptor.Descriptor(
-  name='LoginAck',
-  full_name='LoginAck',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='ErrCode', full_name='LoginAck.ErrCode', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='RoleList', full_name='LoginAck.RoleList', index=1,
-      number=2, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=15,
-  serialized_end=71,
-)
 
 
 _CREATEACCOUNTREQ = _descriptor.Descriptor(
@@ -181,118 +142,8 @@ _CREATEACCOUNTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=73,
-  serialized_end=126,
-)
-
-
-_CREATEROLEREQ = _descriptor.Descriptor(
-  name='CreateRoleReq',
-  full_name='CreateRoleReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='UserId', full_name='CreateRoleReq.UserId', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='RoleId', full_name='CreateRoleReq.RoleId', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='RoleName', full_name='CreateRoleReq.RoleName', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=128,
-  serialized_end=193,
-)
-
-
-_CREATEROLEACK = _descriptor.Descriptor(
-  name='CreateRoleAck',
-  full_name='CreateRoleAck',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='ErrCode', full_name='CreateRoleAck.ErrCode', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=195,
-  serialized_end=227,
-)
-
-
-_CREATEACCOUNTACK = _descriptor.Descriptor(
-  name='CreateAccountAck',
-  full_name='CreateAccountAck',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='Token', full_name='CreateAccountAck.Token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=229,
-  serialized_end=262,
+  serialized_start=15,
+  serialized_end=68,
 )
 
 
@@ -323,8 +174,8 @@ _SELECTROLEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=264,
-  serialized_end=295,
+  serialized_start=70,
+  serialized_end=101,
 )
 
 
@@ -355,8 +206,8 @@ _SELECTROLEACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=297,
-  serialized_end=329,
+  serialized_start=103,
+  serialized_end=135,
 )
 
 
@@ -387,8 +238,8 @@ _DELETEROLEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=331,
-  serialized_end=362,
+  serialized_start=137,
+  serialized_end=168,
 )
 
 
@@ -419,8 +270,210 @@ _DELETEROLEACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=364,
-  serialized_end=396,
+  serialized_start=170,
+  serialized_end=202,
+)
+
+
+_LOGINAPPACK = _descriptor.Descriptor(
+  name='LoginAppAck',
+  full_name='LoginAppAck',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ErrCode', full_name='LoginAppAck.ErrCode', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='RoleList', full_name='LoginAppAck.RoleList', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=204,
+  serialized_end=263,
+)
+
+
+_CREATEACCOUNTACK = _descriptor.Descriptor(
+  name='CreateAccountAck',
+  full_name='CreateAccountAck',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Token', full_name='CreateAccountAck.Token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='AccountId', full_name='CreateAccountAck.AccountId', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=265,
+  serialized_end=317,
+)
+
+
+_LOGINAPPREQ = _descriptor.Descriptor(
+  name='LoginAppReq',
+  full_name='LoginAppReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Token', full_name='LoginAppReq.Token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='AccountId', full_name='LoginAppReq.AccountId', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=319,
+  serialized_end=366,
+)
+
+
+_CREATEROLEREQ = _descriptor.Descriptor(
+  name='CreateRoleReq',
+  full_name='CreateRoleReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='AccountId', full_name='CreateRoleReq.AccountId', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='RoleConfId', full_name='CreateRoleReq.RoleConfId', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='RoleName', full_name='CreateRoleReq.RoleName', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=368,
+  serialized_end=440,
+)
+
+
+_CREATEROLEACK = _descriptor.Descriptor(
+  name='CreateRoleAck',
+  full_name='CreateRoleAck',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ErrCode', full_name='CreateRoleAck.ErrCode', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='UserId', full_name='CreateRoleAck.UserId', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=442,
+  serialized_end=490,
 )
 
 
@@ -434,7 +487,7 @@ _ROLEINFO = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='UserId', full_name='RoleInfo.UserId', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -472,70 +525,24 @@ _ROLEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=398,
-  serialized_end=482,
+  serialized_start=492,
+  serialized_end=576,
 )
 
-
-_LOGINREQ = _descriptor.Descriptor(
-  name='LoginReq',
-  full_name='LoginReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='Token', full_name='LoginReq.Token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='AccountId', full_name='LoginReq.AccountId', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=484,
-  serialized_end=528,
-)
-
-_LOGINACK.fields_by_name['RoleList'].message_type = _ROLEINFO
-DESCRIPTOR.message_types_by_name['LoginAck'] = _LOGINACK
+_LOGINAPPACK.fields_by_name['RoleList'].message_type = _ROLEINFO
 DESCRIPTOR.message_types_by_name['CreateAccountReq'] = _CREATEACCOUNTREQ
-DESCRIPTOR.message_types_by_name['CreateRoleReq'] = _CREATEROLEREQ
-DESCRIPTOR.message_types_by_name['CreateRoleAck'] = _CREATEROLEACK
-DESCRIPTOR.message_types_by_name['CreateAccountAck'] = _CREATEACCOUNTACK
 DESCRIPTOR.message_types_by_name['SelectRoleReq'] = _SELECTROLEREQ
 DESCRIPTOR.message_types_by_name['SelectRoleAck'] = _SELECTROLEACK
 DESCRIPTOR.message_types_by_name['DeleteRoleReq'] = _DELETEROLEREQ
 DESCRIPTOR.message_types_by_name['DeleteRoleAck'] = _DELETEROLEACK
+DESCRIPTOR.message_types_by_name['LoginAppAck'] = _LOGINAPPACK
+DESCRIPTOR.message_types_by_name['CreateAccountAck'] = _CREATEACCOUNTACK
+DESCRIPTOR.message_types_by_name['LoginAppReq'] = _LOGINAPPREQ
+DESCRIPTOR.message_types_by_name['CreateRoleReq'] = _CREATEROLEREQ
+DESCRIPTOR.message_types_by_name['CreateRoleAck'] = _CREATEROLEACK
 DESCRIPTOR.message_types_by_name['RoleInfo'] = _ROLEINFO
-DESCRIPTOR.message_types_by_name['LoginReq'] = _LOGINREQ
 DESCRIPTOR.enum_types_by_name['LoginMsgId'] = _LOGINMSGID
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-LoginAck = _reflection.GeneratedProtocolMessageType('LoginAck', (_message.Message,), {
-  'DESCRIPTOR' : _LOGINACK,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:LoginAck)
-  })
-_sym_db.RegisterMessage(LoginAck)
 
 CreateAccountReq = _reflection.GeneratedProtocolMessageType('CreateAccountReq', (_message.Message,), {
   'DESCRIPTOR' : _CREATEACCOUNTREQ,
@@ -543,27 +550,6 @@ CreateAccountReq = _reflection.GeneratedProtocolMessageType('CreateAccountReq', 
   # @@protoc_insertion_point(class_scope:CreateAccountReq)
   })
 _sym_db.RegisterMessage(CreateAccountReq)
-
-CreateRoleReq = _reflection.GeneratedProtocolMessageType('CreateRoleReq', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEROLEREQ,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:CreateRoleReq)
-  })
-_sym_db.RegisterMessage(CreateRoleReq)
-
-CreateRoleAck = _reflection.GeneratedProtocolMessageType('CreateRoleAck', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEROLEACK,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:CreateRoleAck)
-  })
-_sym_db.RegisterMessage(CreateRoleAck)
-
-CreateAccountAck = _reflection.GeneratedProtocolMessageType('CreateAccountAck', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEACCOUNTACK,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:CreateAccountAck)
-  })
-_sym_db.RegisterMessage(CreateAccountAck)
 
 SelectRoleReq = _reflection.GeneratedProtocolMessageType('SelectRoleReq', (_message.Message,), {
   'DESCRIPTOR' : _SELECTROLEREQ,
@@ -593,19 +579,47 @@ DeleteRoleAck = _reflection.GeneratedProtocolMessageType('DeleteRoleAck', (_mess
   })
 _sym_db.RegisterMessage(DeleteRoleAck)
 
+LoginAppAck = _reflection.GeneratedProtocolMessageType('LoginAppAck', (_message.Message,), {
+  'DESCRIPTOR' : _LOGINAPPACK,
+  '__module__' : 'login_pb2'
+  # @@protoc_insertion_point(class_scope:LoginAppAck)
+  })
+_sym_db.RegisterMessage(LoginAppAck)
+
+CreateAccountAck = _reflection.GeneratedProtocolMessageType('CreateAccountAck', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEACCOUNTACK,
+  '__module__' : 'login_pb2'
+  # @@protoc_insertion_point(class_scope:CreateAccountAck)
+  })
+_sym_db.RegisterMessage(CreateAccountAck)
+
+LoginAppReq = _reflection.GeneratedProtocolMessageType('LoginAppReq', (_message.Message,), {
+  'DESCRIPTOR' : _LOGINAPPREQ,
+  '__module__' : 'login_pb2'
+  # @@protoc_insertion_point(class_scope:LoginAppReq)
+  })
+_sym_db.RegisterMessage(LoginAppReq)
+
+CreateRoleReq = _reflection.GeneratedProtocolMessageType('CreateRoleReq', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEROLEREQ,
+  '__module__' : 'login_pb2'
+  # @@protoc_insertion_point(class_scope:CreateRoleReq)
+  })
+_sym_db.RegisterMessage(CreateRoleReq)
+
+CreateRoleAck = _reflection.GeneratedProtocolMessageType('CreateRoleAck', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEROLEACK,
+  '__module__' : 'login_pb2'
+  # @@protoc_insertion_point(class_scope:CreateRoleAck)
+  })
+_sym_db.RegisterMessage(CreateRoleAck)
+
 RoleInfo = _reflection.GeneratedProtocolMessageType('RoleInfo', (_message.Message,), {
   'DESCRIPTOR' : _ROLEINFO,
   '__module__' : 'login_pb2'
   # @@protoc_insertion_point(class_scope:RoleInfo)
   })
 _sym_db.RegisterMessage(RoleInfo)
-
-LoginReq = _reflection.GeneratedProtocolMessageType('LoginReq', (_message.Message,), {
-  'DESCRIPTOR' : _LOGINREQ,
-  '__module__' : 'login_pb2'
-  # @@protoc_insertion_point(class_scope:LoginReq)
-  })
-_sym_db.RegisterMessage(LoginReq)
 
 
 # @@protoc_insertion_point(module_scope)

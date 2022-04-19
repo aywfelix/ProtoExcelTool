@@ -24,20 +24,20 @@ type GameMsgId int32
 
 const (
 	GameMsgId_Game_MSG_ID        GameMsgId = 0
-	GameMsgId_GAME_ENTERGAME_REQ GameMsgId = 2001
 	GameMsgId_GAME_ENTERGAME_ACK GameMsgId = 2002
+	GameMsgId_GAME_ENTERGAME_REQ GameMsgId = 2001
 )
 
 var GameMsgId_name = map[int32]string{
 	0:    "Game_MSG_ID",
-	2001: "GAME_ENTERGAME_REQ",
 	2002: "GAME_ENTERGAME_ACK",
+	2001: "GAME_ENTERGAME_REQ",
 }
 
 var GameMsgId_value = map[string]int32{
 	"Game_MSG_ID":        0,
-	"GAME_ENTERGAME_REQ": 2001,
 	"GAME_ENTERGAME_ACK": 2002,
+	"GAME_ENTERGAME_REQ": 2001,
 }
 
 func (x GameMsgId) String() string {
@@ -48,10 +48,41 @@ func (GameMsgId) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_38fc58335341d769, []int{0}
 }
 
+//
+type EnterGameAck struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *EnterGameAck) Reset()         { *m = EnterGameAck{} }
+func (m *EnterGameAck) String() string { return proto.CompactTextString(m) }
+func (*EnterGameAck) ProtoMessage()    {}
+func (*EnterGameAck) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38fc58335341d769, []int{0}
+}
+
+func (m *EnterGameAck) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EnterGameAck.Unmarshal(m, b)
+}
+func (m *EnterGameAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EnterGameAck.Marshal(b, m, deterministic)
+}
+func (m *EnterGameAck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EnterGameAck.Merge(m, src)
+}
+func (m *EnterGameAck) XXX_Size() int {
+	return xxx_messageInfo_EnterGameAck.Size(m)
+}
+func (m *EnterGameAck) XXX_DiscardUnknown() {
+	xxx_messageInfo_EnterGameAck.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EnterGameAck proto.InternalMessageInfo
+
 // 客户端请求进入游戏
 type EnterGameReq struct {
 	UserId               int64    `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
-	RoleId               int32    `protobuf:"varint,2,opt,name=RoleId,proto3" json:"RoleId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -61,7 +92,7 @@ func (m *EnterGameReq) Reset()         { *m = EnterGameReq{} }
 func (m *EnterGameReq) String() string { return proto.CompactTextString(m) }
 func (*EnterGameReq) ProtoMessage()    {}
 func (*EnterGameReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38fc58335341d769, []int{0}
+	return fileDescriptor_38fc58335341d769, []int{1}
 }
 
 func (m *EnterGameReq) XXX_Unmarshal(b []byte) error {
@@ -89,63 +120,23 @@ func (m *EnterGameReq) GetUserId() int64 {
 	return 0
 }
 
-func (m *EnterGameReq) GetRoleId() int32 {
-	if m != nil {
-		return m.RoleId
-	}
-	return 0
-}
-
-//
-type EnterGameAck struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *EnterGameAck) Reset()         { *m = EnterGameAck{} }
-func (m *EnterGameAck) String() string { return proto.CompactTextString(m) }
-func (*EnterGameAck) ProtoMessage()    {}
-func (*EnterGameAck) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38fc58335341d769, []int{1}
-}
-
-func (m *EnterGameAck) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnterGameAck.Unmarshal(m, b)
-}
-func (m *EnterGameAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnterGameAck.Marshal(b, m, deterministic)
-}
-func (m *EnterGameAck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnterGameAck.Merge(m, src)
-}
-func (m *EnterGameAck) XXX_Size() int {
-	return xxx_messageInfo_EnterGameAck.Size(m)
-}
-func (m *EnterGameAck) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnterGameAck.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_EnterGameAck proto.InternalMessageInfo
-
 func init() {
 	proto.RegisterEnum("GameMsgId", GameMsgId_name, GameMsgId_value)
-	proto.RegisterType((*EnterGameReq)(nil), "EnterGameReq")
 	proto.RegisterType((*EnterGameAck)(nil), "EnterGameAck")
+	proto.RegisterType((*EnterGameReq)(nil), "EnterGameReq")
 }
 
 func init() { proto.RegisterFile("game.proto", fileDescriptor_38fc58335341d769) }
 
 var fileDescriptor_38fc58335341d769 = []byte{
-	// 155 bytes of a gzipped FileDescriptorProto
+	// 139 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4a, 0x4f, 0xcc, 0x4d,
-	0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0xb2, 0xe3, 0xe2, 0x71, 0xcd, 0x2b, 0x49, 0x2d, 0x72,
-	0x4f, 0xcc, 0x4d, 0x0d, 0x4a, 0x2d, 0x14, 0x12, 0xe3, 0x62, 0x0b, 0x2d, 0x4e, 0x2d, 0xf2, 0x4c,
-	0x91, 0x60, 0x54, 0x60, 0xd4, 0x60, 0x0e, 0x82, 0xf2, 0x40, 0xe2, 0x41, 0xf9, 0x39, 0xa9, 0x9e,
-	0x29, 0x12, 0x4c, 0x0a, 0x8c, 0x1a, 0xac, 0x41, 0x50, 0x9e, 0x12, 0x1f, 0x92, 0x7e, 0xc7, 0xe4,
-	0x6c, 0x2d, 0x3f, 0x2e, 0x4e, 0x10, 0xd3, 0xb7, 0x38, 0xdd, 0x33, 0x45, 0x88, 0x9f, 0x8b, 0x1b,
-	0xc4, 0x89, 0xf7, 0x0d, 0x76, 0x8f, 0xf7, 0x74, 0x11, 0x60, 0x10, 0x12, 0xe7, 0x12, 0x72, 0x77,
-	0xf4, 0x75, 0x8d, 0x77, 0xf5, 0x0b, 0x71, 0x0d, 0x02, 0xb3, 0x82, 0x5c, 0x03, 0x05, 0x2e, 0xf2,
-	0x63, 0x91, 0x70, 0x74, 0xf6, 0x16, 0xb8, 0xc4, 0x9f, 0xc4, 0x06, 0x76, 0xa6, 0x31, 0x20, 0x00,
-	0x00, 0xff, 0xff, 0x48, 0x41, 0xb8, 0x2c, 0xb4, 0x00, 0x00, 0x00,
+	0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0xe2, 0xe3, 0xe2, 0x71, 0xcd, 0x2b, 0x49, 0x2d, 0x72,
+	0x4f, 0xcc, 0x4d, 0x75, 0x4c, 0xce, 0x56, 0x52, 0x43, 0xe2, 0x07, 0xa5, 0x16, 0x0a, 0x89, 0x71,
+	0xb1, 0x85, 0x16, 0xa7, 0x16, 0x79, 0xa6, 0x48, 0x30, 0x2a, 0x30, 0x6a, 0x30, 0x07, 0x41, 0x79,
+	0x5a, 0x7e, 0x5c, 0x9c, 0x20, 0x25, 0xbe, 0xc5, 0xe9, 0x9e, 0x29, 0x42, 0xfc, 0x5c, 0xdc, 0x20,
+	0x4e, 0xbc, 0x6f, 0xb0, 0x7b, 0xbc, 0xa7, 0x8b, 0x00, 0x83, 0x90, 0x38, 0x97, 0x90, 0xbb, 0xa3,
+	0xaf, 0x6b, 0xbc, 0xab, 0x5f, 0x88, 0x6b, 0x10, 0x98, 0xe5, 0xe8, 0xec, 0x2d, 0x70, 0x89, 0x1f,
+	0x8b, 0x44, 0x90, 0x6b, 0xa0, 0xc0, 0x45, 0xfe, 0x24, 0x36, 0xb0, 0x73, 0x8c, 0x01, 0x01, 0x00,
+	0x00, 0xff, 0xff, 0x9f, 0xac, 0xeb, 0xdb, 0x9c, 0x00, 0x00, 0x00,
 }

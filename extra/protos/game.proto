@@ -4,19 +4,19 @@ syntax = "proto3";
 
 enum GameMsgId {
     Game_MSG_ID = 0;    
-    GAME_ENTERGAME_REQ = 2001;
     GAME_ENTERGAME_ACK = 2002;
+    GAME_ENTERGAME_REQ = 2001;
 
 }
-// 客户端请求进入游戏
-message EnterGameReq{
-   int64 UserId = 1;
-   int32 RoleId = 2;
+// 
+message EnterGameAck{
    
 }
 
-// 
-message EnterGameAck{
+// 客户端请求进入游戏
+message EnterGameReq{
+   int64 UserId = 1;
+   
    
 }
 

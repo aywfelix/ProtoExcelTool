@@ -34,7 +34,7 @@ class TransCsharp:
         s = s % {"class_name": table_name, "row_fields": row_fields}
 
         cs_file = os.path.join(self.csharp_dir, table_name+'.cs')
-        with codecs.open(cs_file, "w", "GB2312") as f:
+        with codecs.open(cs_file, "w", "utf-8", errors='ignore') as f:
             f.write(s)
             f.flush()
             pass

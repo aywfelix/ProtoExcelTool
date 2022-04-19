@@ -17,7 +17,6 @@ from tool_define import *
 from transtable.trans_define import *
 
 
-@Singleton
 class TransGo:
     def __init__(self, go_dir, field_types, field_descs):
         self.go_dir = go_dir
@@ -51,7 +50,7 @@ class TransGo:
                  "row_fields": row_fields}
 
         go_file = os.path.join(self.go_dir, table_name+'.go')
-        with codecs.open(go_file, "w", "GB2312", errors='ignore') as f:
+        with codecs.open(go_file, "w", "utf-8", errors='ignore') as f:
             f.write(s)
             f.flush()
             pass

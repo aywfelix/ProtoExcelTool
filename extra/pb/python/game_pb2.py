@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ngame.proto\".\n\x0c\x45nterGameReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03\x12\x0e\n\x06RoleId\x18\x02 \x01(\x05\"\x0e\n\x0c\x45nterGameAck*N\n\tGameMsgId\x12\x0f\n\x0bGame_MSG_ID\x10\x00\x12\x17\n\x12GAME_ENTERGAME_REQ\x10\xd1\x0f\x12\x17\n\x12GAME_ENTERGAME_ACK\x10\xd2\x0f\x62\x06proto3'
+  serialized_pb=b'\n\ngame.proto\"\x0e\n\x0c\x45nterGameAck\"\x1e\n\x0c\x45nterGameReq\x12\x0e\n\x06UserId\x18\x01 \x01(\x03*N\n\tGameMsgId\x12\x0f\n\x0bGame_MSG_ID\x10\x00\x12\x17\n\x12GAME_ENTERGAME_ACK\x10\xd2\x0f\x12\x17\n\x12GAME_ENTERGAME_REQ\x10\xd1\x0f\x62\x06proto3'
 )
 
 _GAMEMSGID = _descriptor.EnumDescriptor(
@@ -36,67 +36,28 @@ _GAMEMSGID = _descriptor.EnumDescriptor(
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='GAME_ENTERGAME_REQ', index=1, number=2001,
+      name='GAME_ENTERGAME_ACK', index=1, number=2002,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='GAME_ENTERGAME_ACK', index=2, number=2002,
+      name='GAME_ENTERGAME_REQ', index=2, number=2001,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=78,
-  serialized_end=156,
+  serialized_start=62,
+  serialized_end=140,
 )
 _sym_db.RegisterEnumDescriptor(_GAMEMSGID)
 
 GameMsgId = enum_type_wrapper.EnumTypeWrapper(_GAMEMSGID)
 Game_MSG_ID = 0
-GAME_ENTERGAME_REQ = 2001
 GAME_ENTERGAME_ACK = 2002
+GAME_ENTERGAME_REQ = 2001
 
-
-
-_ENTERGAMEREQ = _descriptor.Descriptor(
-  name='EnterGameReq',
-  full_name='EnterGameReq',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='UserId', full_name='EnterGameReq.UserId', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='RoleId', full_name='EnterGameReq.RoleId', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=14,
-  serialized_end=60,
-)
 
 
 _ENTERGAMEACK = _descriptor.Descriptor(
@@ -119,21 +80,46 @@ _ENTERGAMEACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=62,
-  serialized_end=76,
+  serialized_start=14,
+  serialized_end=28,
 )
 
-DESCRIPTOR.message_types_by_name['EnterGameReq'] = _ENTERGAMEREQ
+
+_ENTERGAMEREQ = _descriptor.Descriptor(
+  name='EnterGameReq',
+  full_name='EnterGameReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='UserId', full_name='EnterGameReq.UserId', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=30,
+  serialized_end=60,
+)
+
 DESCRIPTOR.message_types_by_name['EnterGameAck'] = _ENTERGAMEACK
+DESCRIPTOR.message_types_by_name['EnterGameReq'] = _ENTERGAMEREQ
 DESCRIPTOR.enum_types_by_name['GameMsgId'] = _GAMEMSGID
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-EnterGameReq = _reflection.GeneratedProtocolMessageType('EnterGameReq', (_message.Message,), {
-  'DESCRIPTOR' : _ENTERGAMEREQ,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:EnterGameReq)
-  })
-_sym_db.RegisterMessage(EnterGameReq)
 
 EnterGameAck = _reflection.GeneratedProtocolMessageType('EnterGameAck', (_message.Message,), {
   'DESCRIPTOR' : _ENTERGAMEACK,
@@ -141,6 +127,13 @@ EnterGameAck = _reflection.GeneratedProtocolMessageType('EnterGameAck', (_messag
   # @@protoc_insertion_point(class_scope:EnterGameAck)
   })
 _sym_db.RegisterMessage(EnterGameAck)
+
+EnterGameReq = _reflection.GeneratedProtocolMessageType('EnterGameReq', (_message.Message,), {
+  'DESCRIPTOR' : _ENTERGAMEREQ,
+  '__module__' : 'game_pb2'
+  # @@protoc_insertion_point(class_scope:EnterGameReq)
+  })
+_sym_db.RegisterMessage(EnterGameReq)
 
 
 # @@protoc_insertion_point(module_scope)

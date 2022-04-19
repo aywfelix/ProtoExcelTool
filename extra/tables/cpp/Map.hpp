@@ -9,31 +9,35 @@
 #include "JsonConfig.h"
 #include "LogUtil.h"
 
-class ActivityRow
+class MapRow
 {
 public:
-	int id;                                           // 主键id 活动id
-	int tab_id;                                       // 注释 
-	std::vector<int> open_in_week;                    // 标签编号 活动所属标签
+	int id;                                           // 主键id 地图默认id
+	int map_length;                                   // 名字 
+	int map_width;                                    // 地图资源路径 
+	float pos_x;                                      // 长度 
+	float pos_z;                                      // 宽度 
+	float pos_y;                                      // 默认出生点x 
+	float pos_v;                                      // 默认出生点z 
 	
 };
 
-class ActivityTable
+class MapTable
 {
-	typedef std::shared_ptr<ActivityRow> ptr_row_type;
+	typedef std::shared_ptr<MapRow> ptr_row_type;
 	typedef std::unordered_map<int, ptr_row_type> map_table_type;
 	typedef std::vector<int> vec_type;	
 private:
 	vec_type m_keys;
 	map_table_type	m_table;
 public:
-	static ActivityTable* Instance()
+	static MapTable* Instance()
 	{
-		static ActivityTable instance;
+		static MapTable instance;
 		return &instance;
 	}
 
-	const ActivityRow* GetRow(int key)
+	const MapRow* GetRow(int key)
 	{
 		map_table_type::iterator it = m_table.find(key);
 		if (it == m_table.end())
@@ -60,12 +64,12 @@ public:
 
 	bool Load()
 	{
-		return LoadJson("Activity.json");
+		return LoadJson("Map.json");
 	}
 
 	bool ReLoad()
 	{
-		return ReLoadJson("Activity.json");
+		return ReLoadJson("Map.json");
 	}
 
 	bool LoadJson(const std::string& jsonFile)
@@ -73,7 +77,7 @@ public:
 		std::string loadfile = std::string(TABLE_PATH).append(jsonFile.c_str());
 		if (!g_pConfig->Load(loadfile.c_str()))
 		{
-			CLOG_ERR << "load table Activity error" << CLOG_END;
+			CLOG_ERR << "load table Map error" << CLOG_END;
 			return false;
 		}
 
@@ -82,24 +86,22 @@ public:
 			try
 			{
 				auto& r = (*it);
-				ptr_row_type pRow(new ActivityRow);
-				ActivityRow& row = *pRow;
+				ptr_row_type pRow(new MapRow);
+				MapRow& row = *pRow;
                 row.id = r["id"].asInt();
-                row.tab_id = r["tab_id"].asInt();
+                row.map_length = r["map_length"].asInt();
+                row.map_width = r["map_width"].asInt();
+                row.pos_x = r["pos_x"].asFloat();
+                row.pos_z = r["pos_z"].asFloat();
+                row.pos_y = r["pos_y"].asFloat();
+                row.pos_v = r["pos_v"].asFloat();
 
-                auto end_open_in_week = r["open_in_week"].end();
-				auto begin_open_in_week = r["open_in_week"].end();
-				for (auto it = begin_open_in_week; it != end_open_in_week; ++it)
-				{
-					row.open_in_week.emplace_back(it->asInt());
-				}
-            
 				m_table.emplace(row.id, pRow);
 				m_keys.emplace_back(row.id);
 			}
 			catch (std::exception const& e)
 			{
-				CLOG_ERR << "read table Activity error," << e.what() << ":" << (*it)["id"].asInt() << CLOG_END;
+				CLOG_ERR << "read table Map error," << e.what() << ":" << (*it)["id"].asInt() << CLOG_END;
 				return false;
 			}
 		}

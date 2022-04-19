@@ -1,4 +1,4 @@
-package Table
+ï»¿package Table
 
 import (
 	"encoding/json"
@@ -7,9 +7,9 @@ import (
 )
 
 type activityRow struct {
-	Id int                                            // Ö÷¼üid »î¶¯id
-	Tab_id int                                        // ×¢ÊÍ 
-	Open_in_week []int                                // ±êÇ©±àºÅ »î¶¯ËùÊô±êÇ©
+	Id int                                            // ä¸»é”®id æ´»åŠ¨id
+	Tab_id int                                        // æ³¨é‡Š 
+	Open_in_week []int                                // æ ‡ç­¾ç¼–å· æ´»åŠ¨æ‰€å±æ ‡ç­¾
 	
 }
 

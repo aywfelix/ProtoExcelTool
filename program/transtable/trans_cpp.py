@@ -17,7 +17,7 @@ vector_tmpl = '''
             '''
 #############################################################################################
 
-@Singleton
+
 class TransCpp:
     def __init__(self, cpp_dir, field_types, field_descs):
         self.cpp_dir = cpp_dir
@@ -67,7 +67,7 @@ class TransCpp:
                  "row_fields": row_fields, "json_logic": json_logic}
 
         cpp_file = os.path.join(self.cpp_dir, table_name+'.hpp')
-        with codecs.open(cpp_file, "w", "GB2312") as f:
+        with codecs.open(cpp_file, "w", "utf-8", errors='ignore') as f:
             f.write(s)
             f.flush()
             pass
