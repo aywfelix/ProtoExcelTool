@@ -1,4 +1,4 @@
-﻿package Table
+﻿package table
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-type mapRow struct {
+type MapRow struct {
 	Id int                                            // 主键id 地图默认id
 	Map_length int                                    // 名字 
 	Map_width int                                     // 地图资源路径 
@@ -19,12 +19,12 @@ type mapRow struct {
 
 type mapTable struct {
 	keys  []int
-	table map[int]*mapRow
+	table map[int]*MapRow
 }
 
 var MapTable *mapTable
 
-func (t *mapTable) GetRow(id int) *mapRow {
+func (t *mapTable) GetRow(id int) *MapRow {
 	row, ok := t.table[id]
 	if !ok {
 		return nil
@@ -41,18 +41,19 @@ func (t *mapTable) Keys() []int {
 	return t.keys
 }
 
-func (t *mapTable) Table() map[int]*mapRow {
+func (t *mapTable) Table() map[int]*MapRow {
 	return t.table
 }
 
 func (t *mapTable) Load() {
 	data, err := ioutil.ReadFile("./Map.json")
 	if err != nil {
+		fmt.Println("read table Map error, ", err.Error())
 		return
 	}
 	err = json.Unmarshal(data, &t.table)
 	if err != nil {
-		fmt.Println("read table Map error, ", err.Error())
+		fmt.Println("json parse table Map error, ", err.Error())
 		return
 	}
 	for k, _ := range t.table {
@@ -62,7 +63,7 @@ func (t *mapTable) Load() {
 
 func (t *mapTable) Reload() {
 	t.keys = make([]int, 0)
-	t.table = make(map[int]*mapRow)
+	t.table = make(map[int]*MapRow)
 	t.Load()
 }
 

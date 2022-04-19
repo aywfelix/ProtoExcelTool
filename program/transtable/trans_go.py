@@ -47,6 +47,7 @@ class TransGo:
             return
         s = s % {"class_name": table_name,
                  "low_class_name": table_name[0].lower()+table_name[1:],
+                 "high_class_name":table_name.capitalize(),
                  "row_fields": row_fields}
 
         go_file = os.path.join(self.go_dir, table_name+'.go')
