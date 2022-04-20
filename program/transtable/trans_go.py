@@ -28,11 +28,16 @@ class TransGo:
         tmp_field = ""
         for i in range(len(self.field_types)):
             field_type = self.field_types[i]
-            tmp_field = field_type[1].capitalize() + " " + data_type_go[field_type[0]]
+            field_name = field_type[1]
+            if '_' in field_name:
+                names = field_name.split('_')
+                tmp_field = names[0].capitalize()+names[1].capitalize() + " " + data_type_go[field_type[0]]
+            else:
+                tmp_field = field_name.capitalize() + " " + data_type_go[field_type[0]]
             strlen = 50
             self.field_descs[i] = self.field_descs[i].replace("\n", " ")
             row_fields += (tmp_field + " " *
-                                (strlen-len(tmp_field)) + "// "+self.field_descs[i])
+                                (strlen-len(tmp_field)) + " // "+self.field_descs[i])
             row_fields += "\n\t"
         return row_fields
 

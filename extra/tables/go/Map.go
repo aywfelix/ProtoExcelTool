@@ -7,13 +7,13 @@ import (
 )
 
 type MapRow struct {
-	Id int                                            // 主键id 地图默认id
-	Map_length int                                    // 名字 
-	Map_width int                                     // 地图资源路径 
-	Pos_x float32                                     // 长度 
-	Pos_z float32                                     // 宽度 
-	Pos_y float32                                     // 默认出生点x 
-	Pos_v float32                                     // 默认出生点z 
+	Id int                                             // 主键id 地图默认id
+	MapLength int                                      // 名字 
+	MapWidth int                                       // 地图资源路径 
+	PosX float32                                       // 长度 
+	PosZ float32                                       // 宽度 
+	PosY float32                                       // 默认出生点x 
+	PosV float32                                       // 默认出生点z 
 	
 }
 

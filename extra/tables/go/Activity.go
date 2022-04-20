@@ -7,9 +7,9 @@ import (
 )
 
 type ActivityRow struct {
-	Id int                                            // 主键id 活动id
-	Tab_id int                                        // 注释 
-	Open_in_week []int                                // 标签编号 活动所属标签
+	Id int                                             // 主键id 活动id
+	TabId int                                          // 注释 
+	OpenIn []int                                       // 标签编号 活动所属标签
 	
 }
 
