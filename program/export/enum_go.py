@@ -57,7 +57,7 @@ class ExportEnumGo(object):
 
         # 将生成内容写入文件中
         go_file = os.path.join(self.go_dir, 'enums.go')
-        with codecs.open(go_file, "w", "GB2312") as f:
+        with codecs.open(go_file, "w", "utf-8") as f:
             f.write(gen_str)
             f.flush()
             pass

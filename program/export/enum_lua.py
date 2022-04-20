@@ -59,7 +59,7 @@ class ExportEnumLua(object):
 
         # 将生成内容写入文件中
         lua_file = os.path.join(self.lua_dir, 'Enums.lua')
-        with codecs.open(lua_file, "w", "GB2312") as f:
+        with codecs.open(lua_file, "w", "utf-8") as f:
             f.write(gen_str)
             f.flush()
             pass
