@@ -21,7 +21,7 @@ from proto_xml import *
 
 class ModifyProtoDirUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(str, str)
+    dialogSignal = pyqtSignal(TVItemDirData)
 
     def __init__(self, parent=None):
         super(ModifyProtoDirUI, self).__init__()

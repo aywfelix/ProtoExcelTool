@@ -3,6 +3,7 @@
     "7057": "{\n\"accout\":\"boge88\",\n\"role_id\":501,\n\"role_name\":\"ttwwwwert\"\n}",
     "1050": "{\n\"role_id\":501,\n\"scene_id\":2100,\n\"role_name\":\"ttwwwwert\",\n\"server\":1,\n\"is_login\":1\n}",
     "1101": "{\n\"Account\":\"lailai\",\n\"Password\":\"123123\"\n}",
-    "1103": "{\n    \"Token\": \"806bb67e11f0ca0248e5952cdf074035\",\n    \"AccountId\":1514784128384368640\n}",
-    "1105": "{\n\"AccountId\":1514889674282237952,\n\"RoleConfId\":1,\n\"RoleName\":\"test\"\n}"
+    "1103": "{\n    \"Token\": \"a7410b260a55da8efaaa10931768a7b7\",\n    \"AccountId\":1516708833538342912\n}",
+    "1105": "{\n\"AccountId\":1516708833538342912,\n\"RoleConfId\":1,\n\"RoleName\":\"test1\"\n}",
+    "1107": "{\n\"RoleId\":1514889836169789440\n}"
 }
