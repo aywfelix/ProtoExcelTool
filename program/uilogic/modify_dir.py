@@ -36,6 +36,8 @@ class ModifyProtoDirUI(QMainWindow):
         # 清空输入框信息
         self.ui.tEtImport.installEventFilter(self)
         self.ui.bTnClearImport.clicked.connect(self.clearEditText)
+
+        self.oldDirName = None
         pass
 
     def checkDirName(self, dirName):
@@ -47,12 +49,14 @@ class ModifyProtoDirUI(QMainWindow):
             QMessageBox.critical(self, "错误", "目录名格为1-4数字+空格+字母名")
             self.ui.lEtProtoDirName.setText("")
          # 直接判断目录名是否重复
-        if self.protoXml.getDirData(dirName):
+        if self.oldDirName!=dirName and self.protoXml.getDirData(dirName):
             QMessageBox.critical(self, "错误", "目录名已存在")
             self.ui.lEtProtoDirName.setText("") 
         pass
 
     def fillDirData(self, dirData):
+        self.oldDirName = dirData.dirName
+
         self.ui.lEtProtoDirName.setText(dirData.dirName)
         self.ui.tEtImport.setText(dirData.package)
         pass
