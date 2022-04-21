@@ -79,6 +79,12 @@ class ToolProtoXml(object):
         self.protocols[dirData.dirName] = {}
         pass
 
+    def modDir(self, dirData):
+        if dirData.dirName not in self.modules.keys():
+            return
+        self.modules[dirData.dirName] = dirData
+        pass
+
     def delDir(self, dirName):
         if dirName not in self.modules.keys():
             return

@@ -338,6 +338,7 @@ class ProtoMainUI(QMainWindow):
     def modifyDir_emit(self, dirData):
         self.protoCurItem.setText(0, dirData.dirName)
         self.protoCurItem.setData(0, Qt.UserRole, dirData)
+        self.protoXml.modDir(dirData)
         self.saveToXml()
         pass
 
