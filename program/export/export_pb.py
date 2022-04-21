@@ -65,7 +65,7 @@ class ExportPb(object):
                         enum_field += "_NOTIFY"
                     enum_field += " = " + str(protoData.id) + ";"
                     if enum_fields == "":
-                        enum_fields = enum_field
+                        enum_fields += "    "+enum_field
                     else:
                         enum_fields += "\n    "+enum_field
                     pass
