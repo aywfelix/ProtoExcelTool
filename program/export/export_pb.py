@@ -64,7 +64,10 @@ class ExportPb(object):
                         enum_field = dir_name.upper()+"_"+(protoData.name)[:-6].upper()
                         enum_field += "_NOTIFY"
                     enum_field += " = " + str(protoData.id) + ";"
-                    enum_fields += "    "+enum_field
+                    if enum_fields == "":
+                        enum_fields = enum_field
+                    else:
+                        enum_fields += "\n    "+enum_field
                     pass
 
                 protoMsgs += proto_enum_tmpl % {
