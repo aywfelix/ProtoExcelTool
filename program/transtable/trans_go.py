@@ -34,7 +34,8 @@ class TransGo:
                 tmp_field = names[0].capitalize()+names[1].capitalize() + " " + data_type_go[field_type[0]]
             else:
                 tmp_field = field_name.capitalize() + " " + data_type_go[field_type[0]]
-            tmp_field += "  " + "`json:"+field_name+"`" 
+            # tmp_field += "  " + "`json:"+'"'+field_name+'"'+"`"
+            tmp_field += "  " + '`json:"{0}"`'.format(field_name)
             strlen = 50
             self.field_descs[i] = self.field_descs[i].replace("\n", " ")
             row_fields += (tmp_field + " " *
