@@ -1,22 +1,18 @@
 syntax = "proto3";
-
-
+import "common.proto";
 
 enum GameMsgId {
     Game_MSG_ID = 0;    
-    GAME_ENTERGAME_ACK = 2002;
-    GAME_ENTERGAME_REQ = 2001;
-
+    GAME_TEST_REQ = 2001;
+    GAME_TEST_ACK = 2002;
 }
+// ffff
+message TestReq{
+   int32 age = 1;
+}
+
 // 
-message EnterGameAck{
-   
-}
-
-// 客户端请求进入游戏
-message EnterGameReq{
-   int64 UserId = 1;
-   
+message TestAck{
    
 }
 

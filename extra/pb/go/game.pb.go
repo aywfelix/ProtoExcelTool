@@ -23,21 +23,21 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type GameMsgId int32
 
 const (
-	GameMsgId_Game_MSG_ID        GameMsgId = 0
-	GameMsgId_GAME_ENTERGAME_ACK GameMsgId = 2002
-	GameMsgId_GAME_ENTERGAME_REQ GameMsgId = 2001
+	GameMsgId_Game_MSG_ID   GameMsgId = 0
+	GameMsgId_GAME_TEST_REQ GameMsgId = 2001
+	GameMsgId_GAME_TEST_ACK GameMsgId = 2002
 )
 
 var GameMsgId_name = map[int32]string{
 	0:    "Game_MSG_ID",
-	2002: "GAME_ENTERGAME_ACK",
-	2001: "GAME_ENTERGAME_REQ",
+	2001: "GAME_TEST_REQ",
+	2002: "GAME_TEST_ACK",
 }
 
 var GameMsgId_value = map[string]int32{
-	"Game_MSG_ID":        0,
-	"GAME_ENTERGAME_ACK": 2002,
-	"GAME_ENTERGAME_REQ": 2001,
+	"Game_MSG_ID":   0,
+	"GAME_TEST_REQ": 2001,
+	"GAME_TEST_ACK": 2002,
 }
 
 func (x GameMsgId) String() string {
@@ -48,95 +48,95 @@ func (GameMsgId) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_38fc58335341d769, []int{0}
 }
 
-//
-type EnterGameAck struct {
+// ffff
+type TestReq struct {
+	Age                  int32    `protobuf:"varint,1,opt,name=age,proto3" json:"age,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EnterGameAck) Reset()         { *m = EnterGameAck{} }
-func (m *EnterGameAck) String() string { return proto.CompactTextString(m) }
-func (*EnterGameAck) ProtoMessage()    {}
-func (*EnterGameAck) Descriptor() ([]byte, []int) {
+func (m *TestReq) Reset()         { *m = TestReq{} }
+func (m *TestReq) String() string { return proto.CompactTextString(m) }
+func (*TestReq) ProtoMessage()    {}
+func (*TestReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_38fc58335341d769, []int{0}
 }
 
-func (m *EnterGameAck) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnterGameAck.Unmarshal(m, b)
+func (m *TestReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TestReq.Unmarshal(m, b)
 }
-func (m *EnterGameAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnterGameAck.Marshal(b, m, deterministic)
+func (m *TestReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TestReq.Marshal(b, m, deterministic)
 }
-func (m *EnterGameAck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnterGameAck.Merge(m, src)
+func (m *TestReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TestReq.Merge(m, src)
 }
-func (m *EnterGameAck) XXX_Size() int {
-	return xxx_messageInfo_EnterGameAck.Size(m)
+func (m *TestReq) XXX_Size() int {
+	return xxx_messageInfo_TestReq.Size(m)
 }
-func (m *EnterGameAck) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnterGameAck.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_EnterGameAck proto.InternalMessageInfo
-
-// 客户端请求进入游戏
-type EnterGameReq struct {
-	UserId               int64    `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+func (m *TestReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_TestReq.DiscardUnknown(m)
 }
 
-func (m *EnterGameReq) Reset()         { *m = EnterGameReq{} }
-func (m *EnterGameReq) String() string { return proto.CompactTextString(m) }
-func (*EnterGameReq) ProtoMessage()    {}
-func (*EnterGameReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38fc58335341d769, []int{1}
-}
+var xxx_messageInfo_TestReq proto.InternalMessageInfo
 
-func (m *EnterGameReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnterGameReq.Unmarshal(m, b)
-}
-func (m *EnterGameReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnterGameReq.Marshal(b, m, deterministic)
-}
-func (m *EnterGameReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnterGameReq.Merge(m, src)
-}
-func (m *EnterGameReq) XXX_Size() int {
-	return xxx_messageInfo_EnterGameReq.Size(m)
-}
-func (m *EnterGameReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnterGameReq.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_EnterGameReq proto.InternalMessageInfo
-
-func (m *EnterGameReq) GetUserId() int64 {
+func (m *TestReq) GetAge() int32 {
 	if m != nil {
-		return m.UserId
+		return m.Age
 	}
 	return 0
 }
 
+//
+type TestAck struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TestAck) Reset()         { *m = TestAck{} }
+func (m *TestAck) String() string { return proto.CompactTextString(m) }
+func (*TestAck) ProtoMessage()    {}
+func (*TestAck) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38fc58335341d769, []int{1}
+}
+
+func (m *TestAck) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TestAck.Unmarshal(m, b)
+}
+func (m *TestAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TestAck.Marshal(b, m, deterministic)
+}
+func (m *TestAck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TestAck.Merge(m, src)
+}
+func (m *TestAck) XXX_Size() int {
+	return xxx_messageInfo_TestAck.Size(m)
+}
+func (m *TestAck) XXX_DiscardUnknown() {
+	xxx_messageInfo_TestAck.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TestAck proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterEnum("GameMsgId", GameMsgId_name, GameMsgId_value)
-	proto.RegisterType((*EnterGameAck)(nil), "EnterGameAck")
-	proto.RegisterType((*EnterGameReq)(nil), "EnterGameReq")
+	proto.RegisterType((*TestReq)(nil), "TestReq")
+	proto.RegisterType((*TestAck)(nil), "TestAck")
 }
 
 func init() { proto.RegisterFile("game.proto", fileDescriptor_38fc58335341d769) }
 
 var fileDescriptor_38fc58335341d769 = []byte{
-	// 139 bytes of a gzipped FileDescriptorProto
+	// 141 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4a, 0x4f, 0xcc, 0x4d,
-	0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0xe2, 0xe3, 0xe2, 0x71, 0xcd, 0x2b, 0x49, 0x2d, 0x72,
-	0x4f, 0xcc, 0x4d, 0x75, 0x4c, 0xce, 0x56, 0x52, 0x43, 0xe2, 0x07, 0xa5, 0x16, 0x0a, 0x89, 0x71,
-	0xb1, 0x85, 0x16, 0xa7, 0x16, 0x79, 0xa6, 0x48, 0x30, 0x2a, 0x30, 0x6a, 0x30, 0x07, 0x41, 0x79,
-	0x5a, 0x7e, 0x5c, 0x9c, 0x20, 0x25, 0xbe, 0xc5, 0xe9, 0x9e, 0x29, 0x42, 0xfc, 0x5c, 0xdc, 0x20,
-	0x4e, 0xbc, 0x6f, 0xb0, 0x7b, 0xbc, 0xa7, 0x8b, 0x00, 0x83, 0x90, 0x38, 0x97, 0x90, 0xbb, 0xa3,
-	0xaf, 0x6b, 0xbc, 0xab, 0x5f, 0x88, 0x6b, 0x10, 0x98, 0xe5, 0xe8, 0xec, 0x2d, 0x70, 0x89, 0x1f,
-	0x8b, 0x44, 0x90, 0x6b, 0xa0, 0xc0, 0x45, 0xfe, 0x24, 0x36, 0xb0, 0x73, 0x8c, 0x01, 0x01, 0x00,
-	0x00, 0xff, 0xff, 0x9f, 0xac, 0xeb, 0xdb, 0x9c, 0x00, 0x00, 0x00,
+	0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x97, 0xe2, 0x49, 0xce, 0xcf, 0xcd, 0xcd, 0xcf, 0x83, 0xf0,
+	0x94, 0xa4, 0xb9, 0xd8, 0x43, 0x52, 0x8b, 0x4b, 0x82, 0x52, 0x0b, 0x85, 0x04, 0xb8, 0x98, 0x13,
+	0xd3, 0x53, 0x25, 0x18, 0x15, 0x18, 0x35, 0x58, 0x83, 0x40, 0x4c, 0x25, 0x4e, 0x88, 0xa4, 0x63,
+	0x72, 0xb6, 0x96, 0x0b, 0x17, 0xa7, 0x7b, 0x62, 0x6e, 0xaa, 0x6f, 0x71, 0xba, 0x67, 0x8a, 0x10,
+	0x3f, 0x17, 0x37, 0x88, 0x13, 0xef, 0x1b, 0xec, 0x1e, 0xef, 0xe9, 0x22, 0xc0, 0x20, 0x24, 0xc4,
+	0xc5, 0xeb, 0xee, 0xe8, 0xeb, 0x1a, 0x1f, 0xe2, 0x1a, 0x1c, 0x12, 0x1f, 0xe4, 0x1a, 0x28, 0x70,
+	0x91, 0x1f, 0x55, 0xcc, 0xd1, 0xd9, 0x5b, 0xe0, 0x12, 0x7f, 0x12, 0x1b, 0xd8, 0x52, 0x63, 0x40,
+	0x00, 0x00, 0x00, 0xff, 0xff, 0x92, 0xcb, 0x1c, 0x4c, 0x90, 0x00, 0x00, 0x00,
 }

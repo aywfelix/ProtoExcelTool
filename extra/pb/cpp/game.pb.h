@@ -33,6 +33,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "common.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_game_2eproto
@@ -55,27 +56,27 @@ struct TableStruct_game_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_2eproto;
-class EnterGameAck;
-struct EnterGameAckDefaultTypeInternal;
-extern EnterGameAckDefaultTypeInternal _EnterGameAck_default_instance_;
-class EnterGameReq;
-struct EnterGameReqDefaultTypeInternal;
-extern EnterGameReqDefaultTypeInternal _EnterGameReq_default_instance_;
+class TestAck;
+struct TestAckDefaultTypeInternal;
+extern TestAckDefaultTypeInternal _TestAck_default_instance_;
+class TestReq;
+struct TestReqDefaultTypeInternal;
+extern TestReqDefaultTypeInternal _TestReq_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
-template<> ::EnterGameAck* Arena::CreateMaybeMessage<::EnterGameAck>(Arena*);
-template<> ::EnterGameReq* Arena::CreateMaybeMessage<::EnterGameReq>(Arena*);
+template<> ::TestAck* Arena::CreateMaybeMessage<::TestAck>(Arena*);
+template<> ::TestReq* Arena::CreateMaybeMessage<::TestReq>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 enum GameMsgId : int {
   Game_MSG_ID = 0,
-  GAME_ENTERGAME_ACK = 2002,
-  GAME_ENTERGAME_REQ = 2001,
+  GAME_TEST_REQ = 2001,
+  GAME_TEST_ACK = 2002,
   GameMsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   GameMsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool GameMsgId_IsValid(int value);
 constexpr GameMsgId GameMsgId_MIN = Game_MSG_ID;
-constexpr GameMsgId GameMsgId_MAX = GAME_ENTERGAME_ACK;
+constexpr GameMsgId GameMsgId_MAX = GAME_TEST_ACK;
 constexpr int GameMsgId_ARRAYSIZE = GameMsgId_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GameMsgId_descriptor();
@@ -94,23 +95,24 @@ inline bool GameMsgId_Parse(
 }
 // ===================================================================
 
-class EnterGameAck final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:EnterGameAck) */ {
+class TestReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestReq) */ {
  public:
-  inline EnterGameAck() : EnterGameAck(nullptr) {}
-  explicit constexpr EnterGameAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline TestReq() : TestReq(nullptr) {}
+  ~TestReq() override;
+  explicit constexpr TestReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EnterGameAck(const EnterGameAck& from);
-  EnterGameAck(EnterGameAck&& from) noexcept
-    : EnterGameAck() {
+  TestReq(const TestReq& from);
+  TestReq(TestReq&& from) noexcept
+    : TestReq() {
     *this = ::std::move(from);
   }
 
-  inline EnterGameAck& operator=(const EnterGameAck& from) {
+  inline TestReq& operator=(const TestReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EnterGameAck& operator=(EnterGameAck&& from) noexcept {
+  inline TestReq& operator=(TestReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -133,20 +135,20 @@ class EnterGameAck final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EnterGameAck& default_instance() {
+  static const TestReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EnterGameAck* internal_default_instance() {
-    return reinterpret_cast<const EnterGameAck*>(
-               &_EnterGameAck_default_instance_);
+  static inline const TestReq* internal_default_instance() {
+    return reinterpret_cast<const TestReq*>(
+               &_TestReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(EnterGameAck& a, EnterGameAck& b) {
+  friend void swap(TestReq& a, TestReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(EnterGameAck* other) {
+  inline void Swap(TestReq* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -154,7 +156,7 @@ class EnterGameAck final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EnterGameAck* other) {
+  void UnsafeArenaSwap(TestReq* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -162,133 +164,17 @@ class EnterGameAck final :
 
   // implements Message ----------------------------------------------
 
-  inline EnterGameAck* New() const final {
-    return new EnterGameAck();
+  inline TestReq* New() const final {
+    return new TestReq();
   }
 
-  EnterGameAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<EnterGameAck>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const EnterGameAck& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const EnterGameAck& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "EnterGameAck";
-  }
-  protected:
-  explicit EnterGameAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:EnterGameAck)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_game_2eproto;
-};
-// -------------------------------------------------------------------
-
-class EnterGameReq final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:EnterGameReq) */ {
- public:
-  inline EnterGameReq() : EnterGameReq(nullptr) {}
-  ~EnterGameReq() override;
-  explicit constexpr EnterGameReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  EnterGameReq(const EnterGameReq& from);
-  EnterGameReq(EnterGameReq&& from) noexcept
-    : EnterGameReq() {
-    *this = ::std::move(from);
-  }
-
-  inline EnterGameReq& operator=(const EnterGameReq& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline EnterGameReq& operator=(EnterGameReq&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const EnterGameReq& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const EnterGameReq* internal_default_instance() {
-    return reinterpret_cast<const EnterGameReq*>(
-               &_EnterGameReq_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(EnterGameReq& a, EnterGameReq& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(EnterGameReq* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(EnterGameReq* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline EnterGameReq* New() const final {
-    return new EnterGameReq();
-  }
-
-  EnterGameReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<EnterGameReq>(arena);
+  TestReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestReq>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EnterGameReq& from);
+  void CopyFrom(const TestReq& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const EnterGameReq& from);
+  void MergeFrom(const TestReq& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -305,13 +191,13 @@ class EnterGameReq final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EnterGameReq* other);
+  void InternalSwap(TestReq* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "EnterGameReq";
+    return "TestReq";
   }
   protected:
-  explicit EnterGameReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit TestReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -328,25 +214,140 @@ class EnterGameReq final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserIdFieldNumber = 1,
+    kAgeFieldNumber = 1,
   };
-  // int64 UserId = 1;
-  void clear_userid();
-  ::PROTOBUF_NAMESPACE_ID::int64 userid() const;
-  void set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  // int32 age = 1;
+  void clear_age();
+  ::PROTOBUF_NAMESPACE_ID::int32 age() const;
+  void set_age(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_userid() const;
-  void _internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_age() const;
+  void _internal_set_age(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:EnterGameReq)
+  // @@protoc_insertion_point(class_scope:TestReq)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 userid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 age_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_game_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestAck final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:TestAck) */ {
+ public:
+  inline TestAck() : TestAck(nullptr) {}
+  explicit constexpr TestAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TestAck(const TestAck& from);
+  TestAck(TestAck&& from) noexcept
+    : TestAck() {
+    *this = ::std::move(from);
+  }
+
+  inline TestAck& operator=(const TestAck& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestAck& operator=(TestAck&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TestAck& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TestAck* internal_default_instance() {
+    return reinterpret_cast<const TestAck*>(
+               &_TestAck_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(TestAck& a, TestAck& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestAck* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TestAck* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestAck* New() const final {
+    return new TestAck();
+  }
+
+  TestAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestAck>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const TestAck& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const TestAck& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "TestAck";
+  }
+  protected:
+  explicit TestAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:TestAck)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_2eproto;
 };
@@ -359,31 +360,31 @@ class EnterGameReq final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// EnterGameAck
+// TestReq
+
+// int32 age = 1;
+inline void TestReq::clear_age() {
+  age_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TestReq::_internal_age() const {
+  return age_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TestReq::age() const {
+  // @@protoc_insertion_point(field_get:TestReq.age)
+  return _internal_age();
+}
+inline void TestReq::_internal_set_age(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  age_ = value;
+}
+inline void TestReq::set_age(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_age(value);
+  // @@protoc_insertion_point(field_set:TestReq.age)
+}
 
 // -------------------------------------------------------------------
 
-// EnterGameReq
-
-// int64 UserId = 1;
-inline void EnterGameReq::clear_userid() {
-  userid_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 EnterGameReq::_internal_userid() const {
-  return userid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 EnterGameReq::userid() const {
-  // @@protoc_insertion_point(field_get:EnterGameReq.UserId)
-  return _internal_userid();
-}
-inline void EnterGameReq::_internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  userid_ = value;
-}
-inline void EnterGameReq::set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_userid(value);
-  // @@protoc_insertion_point(field_set:EnterGameReq.UserId)
-}
+// TestAck
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop

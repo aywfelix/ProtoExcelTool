@@ -1,20 +1,18 @@
 syntax = "proto3";
 
 
-
 enum LoginMsgId {
     Login_MSG_ID = 0;    
     LOGIN_CREATEACCOUNT_REQ = 1101;
-    LOGIN_SELECTROLE_REQ = 1107;
     LOGIN_SELECTROLE_ACK = 1108;
-    LOGIN_DELETEROLE_REQ = 1109;
     LOGIN_DELETEROLE_ACK = 1110;
     LOGIN_LOGINAPP_ACK = 1104;
     LOGIN_CREATEACCOUNT_ACK = 1102;
     LOGIN_LOGINAPP_REQ = 1103;
     LOGIN_CREATEROLE_REQ = 1105;
+    LOGIN_SELECTROLE_REQ = 1107;
+    LOGIN_DELETEROLE_REQ = 1109;
     LOGIN_CREATEROLE_ACK = 1106;
-
 }
 // 客户端请求创建账号
 message CreateAccountReq{
@@ -22,19 +20,9 @@ message CreateAccountReq{
    string Password = 2; // md5之后的密码-前端要做一个简单验证
 }
 
-// 角色选择请求
-message SelectRoleReq{
-   int64 UserId = 1; // 选择某个角色进入游戏
-}
-
 // 选择角色返回
 message SelectRoleAck{
    int32 ErrCode = 1; // 只有一个错误返回
-}
-
-// 删除角色
-message DeleteRoleReq{
-   int64 UserId = 1; // 删除角色id
 }
 
 // 删除角色返回
@@ -68,19 +56,30 @@ message CreateRoleReq{
    string RoleName = 3; // 创建角色名字
 }
 
-// 创建角色返回
-message CreateRoleAck{
-   int32 ErrCode = 1; // 如果成功
-   int64 UserId = 2; // 角色唯一id
-   
-}
-
 // 角色信息
 message RoleInfo{
    int64 UserId = 1; // 角色唯一id，服务器端生成的
    int32 RoleImageId = 2; // 角色形象id 一般就是1、2、3、4四种角色
    string RoleName = 3; // 角色名字
    int32 RoleLevel = 4; // 角色等级
+   
+}
+
+// 角色选择请求
+message SelectRoleReq{
+   int64 RoleId = 1; // 选择某个角色进入游戏
+}
+
+// 删除角色
+message DeleteRoleReq{
+   int64 RoleId = 1; // 删除角色id
+}
+
+// 创建角色返回
+message CreateRoleAck{
+   int32 ErrCode = 1; // 如果成功
+   int64 RoleId = 2; // 创建角色的唯一id
+   
    
 }
 

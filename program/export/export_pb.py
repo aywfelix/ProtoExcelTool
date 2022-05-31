@@ -110,7 +110,7 @@ class ExportPb(object):
             Logger.WriteLog(e)
 
 
-    def exportProtoBuffer(self):
+    def exportProtobuf(self):
         try:
             self.exportProtoFile()
             # 根据配置选项导出不同pb

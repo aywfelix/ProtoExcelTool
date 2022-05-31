@@ -651,7 +651,7 @@ class ProtoMainUI(QMainWindow):
         self.ui.statusbar.showMessage('正在导出最新协议...')
         self.saveProtoXml()
         export_pb = ExportPb()
-        export_pb.exportProtoBuffer()
+        export_pb.exportProtobuf()
 
         self.ui.statusbar.showMessage('完成导出协议...')
         pass

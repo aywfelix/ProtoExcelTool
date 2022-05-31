@@ -104,14 +104,14 @@ PROTOBUF_NAMESPACE_CLOSE
 enum LoginMsgId : int {
   Login_MSG_ID = 0,
   LOGIN_CREATEACCOUNT_REQ = 1101,
-  LOGIN_SELECTROLE_REQ = 1107,
   LOGIN_SELECTROLE_ACK = 1108,
-  LOGIN_DELETEROLE_REQ = 1109,
   LOGIN_DELETEROLE_ACK = 1110,
   LOGIN_LOGINAPP_ACK = 1104,
   LOGIN_CREATEACCOUNT_ACK = 1102,
   LOGIN_LOGINAPP_REQ = 1103,
   LOGIN_CREATEROLE_REQ = 1105,
+  LOGIN_SELECTROLE_REQ = 1107,
+  LOGIN_DELETEROLE_REQ = 1109,
   LOGIN_CREATEROLE_ACK = 1106,
   LoginMsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   LoginMsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
@@ -301,149 +301,6 @@ class CreateAccountReq final :
 };
 // -------------------------------------------------------------------
 
-class SelectRoleReq final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:SelectRoleReq) */ {
- public:
-  inline SelectRoleReq() : SelectRoleReq(nullptr) {}
-  ~SelectRoleReq() override;
-  explicit constexpr SelectRoleReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  SelectRoleReq(const SelectRoleReq& from);
-  SelectRoleReq(SelectRoleReq&& from) noexcept
-    : SelectRoleReq() {
-    *this = ::std::move(from);
-  }
-
-  inline SelectRoleReq& operator=(const SelectRoleReq& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SelectRoleReq& operator=(SelectRoleReq&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SelectRoleReq& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SelectRoleReq* internal_default_instance() {
-    return reinterpret_cast<const SelectRoleReq*>(
-               &_SelectRoleReq_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(SelectRoleReq& a, SelectRoleReq& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SelectRoleReq* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SelectRoleReq* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline SelectRoleReq* New() const final {
-    return new SelectRoleReq();
-  }
-
-  SelectRoleReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<SelectRoleReq>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SelectRoleReq& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const SelectRoleReq& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SelectRoleReq* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "SelectRoleReq";
-  }
-  protected:
-  explicit SelectRoleReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUserIdFieldNumber = 1,
-  };
-  // int64 UserId = 1;
-  void clear_userid();
-  ::PROTOBUF_NAMESPACE_ID::int64 userid() const;
-  void set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_userid() const;
-  void _internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:SelectRoleReq)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 userid_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_login_2eproto;
-};
-// -------------------------------------------------------------------
-
 class SelectRoleAck final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:SelectRoleAck) */ {
  public:
@@ -492,7 +349,7 @@ class SelectRoleAck final :
                &_SelectRoleAck_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    1;
 
   friend void swap(SelectRoleAck& a, SelectRoleAck& b) {
     a.Swap(&b);
@@ -587,149 +444,6 @@ class SelectRoleAck final :
 };
 // -------------------------------------------------------------------
 
-class DeleteRoleReq final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:DeleteRoleReq) */ {
- public:
-  inline DeleteRoleReq() : DeleteRoleReq(nullptr) {}
-  ~DeleteRoleReq() override;
-  explicit constexpr DeleteRoleReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DeleteRoleReq(const DeleteRoleReq& from);
-  DeleteRoleReq(DeleteRoleReq&& from) noexcept
-    : DeleteRoleReq() {
-    *this = ::std::move(from);
-  }
-
-  inline DeleteRoleReq& operator=(const DeleteRoleReq& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DeleteRoleReq& operator=(DeleteRoleReq&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DeleteRoleReq& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DeleteRoleReq* internal_default_instance() {
-    return reinterpret_cast<const DeleteRoleReq*>(
-               &_DeleteRoleReq_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(DeleteRoleReq& a, DeleteRoleReq& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DeleteRoleReq* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DeleteRoleReq* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline DeleteRoleReq* New() const final {
-    return new DeleteRoleReq();
-  }
-
-  DeleteRoleReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<DeleteRoleReq>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DeleteRoleReq& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DeleteRoleReq& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DeleteRoleReq* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "DeleteRoleReq";
-  }
-  protected:
-  explicit DeleteRoleReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUserIdFieldNumber = 1,
-  };
-  // int64 UserId = 1;
-  void clear_userid();
-  ::PROTOBUF_NAMESPACE_ID::int64 userid() const;
-  void set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_userid() const;
-  void _internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:DeleteRoleReq)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 userid_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_login_2eproto;
-};
-// -------------------------------------------------------------------
-
 class DeleteRoleAck final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:DeleteRoleAck) */ {
  public:
@@ -778,7 +492,7 @@ class DeleteRoleAck final :
                &_DeleteRoleAck_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
   friend void swap(DeleteRoleAck& a, DeleteRoleAck& b) {
     a.Swap(&b);
@@ -921,7 +635,7 @@ class LoginAppAck final :
                &_LoginAppAck_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    3;
 
   friend void swap(LoginAppAck& a, LoginAppAck& b) {
     a.Swap(&b);
@@ -1084,7 +798,7 @@ class CreateAccountAck final :
                &_CreateAccountAck_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    4;
 
   friend void swap(CreateAccountAck& a, CreateAccountAck& b) {
     a.Swap(&b);
@@ -1243,7 +957,7 @@ class LoginAppReq final :
                &_LoginAppReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    5;
 
   friend void swap(LoginAppReq& a, LoginAppReq& b) {
     a.Swap(&b);
@@ -1402,7 +1116,7 @@ class CreateRoleReq final :
                &_CreateRoleReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    6;
 
   friend void swap(CreateRoleReq& a, CreateRoleReq& b) {
     a.Swap(&b);
@@ -1524,160 +1238,6 @@ class CreateRoleReq final :
 };
 // -------------------------------------------------------------------
 
-class CreateRoleAck final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:CreateRoleAck) */ {
- public:
-  inline CreateRoleAck() : CreateRoleAck(nullptr) {}
-  ~CreateRoleAck() override;
-  explicit constexpr CreateRoleAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CreateRoleAck(const CreateRoleAck& from);
-  CreateRoleAck(CreateRoleAck&& from) noexcept
-    : CreateRoleAck() {
-    *this = ::std::move(from);
-  }
-
-  inline CreateRoleAck& operator=(const CreateRoleAck& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CreateRoleAck& operator=(CreateRoleAck&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CreateRoleAck& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CreateRoleAck* internal_default_instance() {
-    return reinterpret_cast<const CreateRoleAck*>(
-               &_CreateRoleAck_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    9;
-
-  friend void swap(CreateRoleAck& a, CreateRoleAck& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CreateRoleAck* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CreateRoleAck* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline CreateRoleAck* New() const final {
-    return new CreateRoleAck();
-  }
-
-  CreateRoleAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<CreateRoleAck>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CreateRoleAck& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const CreateRoleAck& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CreateRoleAck* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "CreateRoleAck";
-  }
-  protected:
-  explicit CreateRoleAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUserIdFieldNumber = 2,
-    kErrCodeFieldNumber = 1,
-  };
-  // int64 UserId = 2;
-  void clear_userid();
-  ::PROTOBUF_NAMESPACE_ID::int64 userid() const;
-  void set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_userid() const;
-  void _internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // int32 ErrCode = 1;
-  void clear_errcode();
-  ::PROTOBUF_NAMESPACE_ID::int32 errcode() const;
-  void set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_errcode() const;
-  void _internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:CreateRoleAck)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 userid_;
-  ::PROTOBUF_NAMESPACE_ID::int32 errcode_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_login_2eproto;
-};
-// -------------------------------------------------------------------
-
 class RoleInfo final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:RoleInfo) */ {
  public:
@@ -1726,7 +1286,7 @@ class RoleInfo final :
                &_RoleInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    7;
 
   friend void swap(RoleInfo& a, RoleInfo& b) {
     a.Swap(&b);
@@ -1857,6 +1417,446 @@ class RoleInfo final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_login_2eproto;
 };
+// -------------------------------------------------------------------
+
+class SelectRoleReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:SelectRoleReq) */ {
+ public:
+  inline SelectRoleReq() : SelectRoleReq(nullptr) {}
+  ~SelectRoleReq() override;
+  explicit constexpr SelectRoleReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SelectRoleReq(const SelectRoleReq& from);
+  SelectRoleReq(SelectRoleReq&& from) noexcept
+    : SelectRoleReq() {
+    *this = ::std::move(from);
+  }
+
+  inline SelectRoleReq& operator=(const SelectRoleReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SelectRoleReq& operator=(SelectRoleReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SelectRoleReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SelectRoleReq* internal_default_instance() {
+    return reinterpret_cast<const SelectRoleReq*>(
+               &_SelectRoleReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(SelectRoleReq& a, SelectRoleReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SelectRoleReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SelectRoleReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SelectRoleReq* New() const final {
+    return new SelectRoleReq();
+  }
+
+  SelectRoleReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SelectRoleReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SelectRoleReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SelectRoleReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SelectRoleReq* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "SelectRoleReq";
+  }
+  protected:
+  explicit SelectRoleReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRoleIdFieldNumber = 1,
+  };
+  // int64 RoleId = 1;
+  void clear_roleid();
+  ::PROTOBUF_NAMESPACE_ID::int64 roleid() const;
+  void set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_roleid() const;
+  void _internal_set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:SelectRoleReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 roleid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_login_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteRoleReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:DeleteRoleReq) */ {
+ public:
+  inline DeleteRoleReq() : DeleteRoleReq(nullptr) {}
+  ~DeleteRoleReq() override;
+  explicit constexpr DeleteRoleReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteRoleReq(const DeleteRoleReq& from);
+  DeleteRoleReq(DeleteRoleReq&& from) noexcept
+    : DeleteRoleReq() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteRoleReq& operator=(const DeleteRoleReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteRoleReq& operator=(DeleteRoleReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteRoleReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteRoleReq* internal_default_instance() {
+    return reinterpret_cast<const DeleteRoleReq*>(
+               &_DeleteRoleReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(DeleteRoleReq& a, DeleteRoleReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteRoleReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteRoleReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteRoleReq* New() const final {
+    return new DeleteRoleReq();
+  }
+
+  DeleteRoleReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DeleteRoleReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteRoleReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteRoleReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteRoleReq* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "DeleteRoleReq";
+  }
+  protected:
+  explicit DeleteRoleReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRoleIdFieldNumber = 1,
+  };
+  // int64 RoleId = 1;
+  void clear_roleid();
+  ::PROTOBUF_NAMESPACE_ID::int64 roleid() const;
+  void set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_roleid() const;
+  void _internal_set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:DeleteRoleReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 roleid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_login_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateRoleAck final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:CreateRoleAck) */ {
+ public:
+  inline CreateRoleAck() : CreateRoleAck(nullptr) {}
+  ~CreateRoleAck() override;
+  explicit constexpr CreateRoleAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateRoleAck(const CreateRoleAck& from);
+  CreateRoleAck(CreateRoleAck&& from) noexcept
+    : CreateRoleAck() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateRoleAck& operator=(const CreateRoleAck& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateRoleAck& operator=(CreateRoleAck&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateRoleAck& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateRoleAck* internal_default_instance() {
+    return reinterpret_cast<const CreateRoleAck*>(
+               &_CreateRoleAck_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(CreateRoleAck& a, CreateRoleAck& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateRoleAck* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateRoleAck* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CreateRoleAck* New() const final {
+    return new CreateRoleAck();
+  }
+
+  CreateRoleAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CreateRoleAck>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateRoleAck& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateRoleAck& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateRoleAck* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "CreateRoleAck";
+  }
+  protected:
+  explicit CreateRoleAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRoleIdFieldNumber = 2,
+    kErrCodeFieldNumber = 1,
+  };
+  // int64 RoleId = 2;
+  void clear_roleid();
+  ::PROTOBUF_NAMESPACE_ID::int64 roleid() const;
+  void set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_roleid() const;
+  void _internal_set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int32 ErrCode = 1;
+  void clear_errcode();
+  ::PROTOBUF_NAMESPACE_ID::int32 errcode() const;
+  void set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_errcode() const;
+  void _internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:CreateRoleAck)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 roleid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 errcode_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_login_2eproto;
+};
 // ===================================================================
 
 
@@ -1962,30 +1962,6 @@ inline void CreateAccountReq::set_allocated_password(std::string* password) {
 
 // -------------------------------------------------------------------
 
-// SelectRoleReq
-
-// int64 UserId = 1;
-inline void SelectRoleReq::clear_userid() {
-  userid_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 SelectRoleReq::_internal_userid() const {
-  return userid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 SelectRoleReq::userid() const {
-  // @@protoc_insertion_point(field_get:SelectRoleReq.UserId)
-  return _internal_userid();
-}
-inline void SelectRoleReq::_internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  userid_ = value;
-}
-inline void SelectRoleReq::set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_userid(value);
-  // @@protoc_insertion_point(field_set:SelectRoleReq.UserId)
-}
-
-// -------------------------------------------------------------------
-
 // SelectRoleAck
 
 // int32 ErrCode = 1;
@@ -2006,30 +1982,6 @@ inline void SelectRoleAck::_internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 
 inline void SelectRoleAck::set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_errcode(value);
   // @@protoc_insertion_point(field_set:SelectRoleAck.ErrCode)
-}
-
-// -------------------------------------------------------------------
-
-// DeleteRoleReq
-
-// int64 UserId = 1;
-inline void DeleteRoleReq::clear_userid() {
-  userid_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 DeleteRoleReq::_internal_userid() const {
-  return userid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 DeleteRoleReq::userid() const {
-  // @@protoc_insertion_point(field_get:DeleteRoleReq.UserId)
-  return _internal_userid();
-}
-inline void DeleteRoleReq::_internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  userid_ = value;
-}
-inline void DeleteRoleReq::set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_userid(value);
-  // @@protoc_insertion_point(field_set:DeleteRoleReq.UserId)
 }
 
 // -------------------------------------------------------------------
@@ -2352,50 +2304,6 @@ inline void CreateRoleReq::set_allocated_rolename(std::string* rolename) {
 
 // -------------------------------------------------------------------
 
-// CreateRoleAck
-
-// int32 ErrCode = 1;
-inline void CreateRoleAck::clear_errcode() {
-  errcode_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 CreateRoleAck::_internal_errcode() const {
-  return errcode_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 CreateRoleAck::errcode() const {
-  // @@protoc_insertion_point(field_get:CreateRoleAck.ErrCode)
-  return _internal_errcode();
-}
-inline void CreateRoleAck::_internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  errcode_ = value;
-}
-inline void CreateRoleAck::set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_errcode(value);
-  // @@protoc_insertion_point(field_set:CreateRoleAck.ErrCode)
-}
-
-// int64 UserId = 2;
-inline void CreateRoleAck::clear_userid() {
-  userid_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 CreateRoleAck::_internal_userid() const {
-  return userid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 CreateRoleAck::userid() const {
-  // @@protoc_insertion_point(field_get:CreateRoleAck.UserId)
-  return _internal_userid();
-}
-inline void CreateRoleAck::_internal_set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  userid_ = value;
-}
-inline void CreateRoleAck::set_userid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_userid(value);
-  // @@protoc_insertion_point(field_set:CreateRoleAck.UserId)
-}
-
-// -------------------------------------------------------------------
-
 // RoleInfo
 
 // int64 UserId = 1;
@@ -2502,6 +2410,98 @@ inline void RoleInfo::_internal_set_rolelevel(::PROTOBUF_NAMESPACE_ID::int32 val
 inline void RoleInfo::set_rolelevel(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_rolelevel(value);
   // @@protoc_insertion_point(field_set:RoleInfo.RoleLevel)
+}
+
+// -------------------------------------------------------------------
+
+// SelectRoleReq
+
+// int64 RoleId = 1;
+inline void SelectRoleReq::clear_roleid() {
+  roleid_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 SelectRoleReq::_internal_roleid() const {
+  return roleid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 SelectRoleReq::roleid() const {
+  // @@protoc_insertion_point(field_get:SelectRoleReq.RoleId)
+  return _internal_roleid();
+}
+inline void SelectRoleReq::_internal_set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  roleid_ = value;
+}
+inline void SelectRoleReq::set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_roleid(value);
+  // @@protoc_insertion_point(field_set:SelectRoleReq.RoleId)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteRoleReq
+
+// int64 RoleId = 1;
+inline void DeleteRoleReq::clear_roleid() {
+  roleid_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 DeleteRoleReq::_internal_roleid() const {
+  return roleid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 DeleteRoleReq::roleid() const {
+  // @@protoc_insertion_point(field_get:DeleteRoleReq.RoleId)
+  return _internal_roleid();
+}
+inline void DeleteRoleReq::_internal_set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  roleid_ = value;
+}
+inline void DeleteRoleReq::set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_roleid(value);
+  // @@protoc_insertion_point(field_set:DeleteRoleReq.RoleId)
+}
+
+// -------------------------------------------------------------------
+
+// CreateRoleAck
+
+// int32 ErrCode = 1;
+inline void CreateRoleAck::clear_errcode() {
+  errcode_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CreateRoleAck::_internal_errcode() const {
+  return errcode_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CreateRoleAck::errcode() const {
+  // @@protoc_insertion_point(field_get:CreateRoleAck.ErrCode)
+  return _internal_errcode();
+}
+inline void CreateRoleAck::_internal_set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  errcode_ = value;
+}
+inline void CreateRoleAck::set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_errcode(value);
+  // @@protoc_insertion_point(field_set:CreateRoleAck.ErrCode)
+}
+
+// int64 RoleId = 2;
+inline void CreateRoleAck::clear_roleid() {
+  roleid_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateRoleAck::_internal_roleid() const {
+  return roleid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateRoleAck::roleid() const {
+  // @@protoc_insertion_point(field_get:CreateRoleAck.RoleId)
+  return _internal_roleid();
+}
+inline void CreateRoleAck::_internal_set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  roleid_ = value;
+}
+inline void CreateRoleAck::set_roleid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_roleid(value);
+  // @@protoc_insertion_point(field_set:CreateRoleAck.RoleId)
 }
 
 #ifdef __GNUC__

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+
+enum CommonMsgId {
+    Common_MSG_ID = 0;    
+
+}
+// 资产
+message Assets{
+   string path = 1;
+}
+
