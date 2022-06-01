@@ -78,7 +78,9 @@ class DataPack(object):
 
 
     def getMsgProto(self, msgClass, msgName):  # msgClass=login msgName=C2SLoginMsg
-        self.reload.readLoadModule()
+        if not self.reload.readLoadModule():
+            return
+            
         module = self.reload.getModule(msgClass+"_pb2")
         if not module: return None
         if msgName not in module.DESCRIPTOR.message_types_by_name.keys():

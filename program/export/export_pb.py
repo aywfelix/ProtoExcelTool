@@ -104,15 +104,19 @@ class ExportPb(object):
                 #print("export proto file=", protoFilePath)
                 with codecs.open(protoFilePath, "w", 'utf-8', errors='ignore') as f:
                     f.write(protoMsgs)
-                    pass                
-                pass
+                    pass   
+                             
+            return True
         except Exception as e:
             Logger.WriteLog(e)
+            return False
 
 
     def exportProtobuf(self):
         try:
-            self.exportProtoFile()
+            if not self.exportProtoFile():
+                return "export pb failed"
+                
             # 根据配置选项导出不同pb
             tmpls = self.settingXml.getTmplsByType(TmplType.PROTO)
             if not tmpls:
@@ -159,8 +163,13 @@ class ExportPb(object):
                         outlines = outlines + line
                     if outlines:
                         Logger.WriteLog(outlines)
+                        return outlines
+
+            return None    
         except Exception as e:
-            Logger.WriteLog("export pb err, {0}".format(e))
+            logStr = "export pb err, {0}".format(e)
+            Logger.WriteLog(logStr)
+            return logStr
 
    
 

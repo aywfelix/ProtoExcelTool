@@ -53,6 +53,10 @@ class CreateProtoUI(QMainWindow):
         protoDesc = self.ui.tEtProtoDesc.toPlainText()
         protoContent = self.ui.tEtProtoContent.toPlainText()
 
+        if protoId == "":
+            QMessageBox.warning(self, "警告", "未填写协议编号")
+            return 
+
         protocols = self.protoXml.protocols
         for _, protocolDict in protocols.items():
             for _, protoData in protocolDict.items():

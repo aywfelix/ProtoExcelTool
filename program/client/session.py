@@ -63,7 +63,9 @@ class Session(object):
                 if len(self.recv_data) < msg_len:
                     print("recv_data_len<msg_len, recv data len=", len(self.recv_data))
                     print("msg_len==", msg_len)
-                    Logger.WriteLog("recv_data_len<msg_len, recv data len={0}, msg_len={1}".format(len(self.recv_data), msg_len))
+                    logStr = "recv error:recv_data_len<msg_len, recv data len={0}, msg_len={1}".format(len(self.recv_data), msg_len)
+                    Logger.WriteLog(logStr)
+                    self.queue.put((0, logStr))
                     break
                 msg_id, msg_content = self.dataPack.dataUnpack2(self.recv_data)
                 # 将获取的返回消息放到队列里用于界面显示

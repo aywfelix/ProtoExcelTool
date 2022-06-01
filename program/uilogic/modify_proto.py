@@ -30,7 +30,7 @@ class ModifyProtoUI(QMainWindow):
         self.parent = parent
         self.proto_xml = ToolProtoXml()
 
-        self.oldData = None
+        self.protoData = None
 
         self.ui.bTnProtoModify.clicked.connect(self.modifyProto)
         self.ui.lEtProtoName.editingFinished.connect(self.changeProtoName)
@@ -57,22 +57,25 @@ class ModifyProtoUI(QMainWindow):
         protocols = self.proto_xml.protocols
         for _, protocolDict in protocols.items():
             for _, protoData in protocolDict.items():
-                if protoData.id !='' and self.oldData.id != protoId and protoData.id == protoId:
+                if protoData.id !='' and self.protoData.id != protoId and protoData.id == protoId:
                     QMessageBox.warning(self, "警告", "此协议编号已经存在")
                     return
-                if self.oldData.name != protoName and protoData.name == protoName:
+                if self.protoData.name != protoName and protoData.name == protoName:
                     QMessageBox.warning(self, "警告", "此协议名称已经存在")
                     return
             pass
 
-        protoType = self.getProtoType() 
-        protoData = TVItemProtoData(protoId, protoName, protoDesc, protoContent, protoType)
-        self.proto_xml.delProtocolByUUID(self.oldData.uuid)
-        self.dialogSignal.emit(protoData)
+
+        self.protoData.id = protoId
+        self.protoData.name = protoName
+        self.protoData.desc = protoDesc
+        self.protoData.content = protoContent
+
+        self.dialogSignal.emit(self.protoData)
         self.close()
 
     def fillProtoData(self, data):
-        self.oldData = data
+        self.protoData = data
         self.ui.lEtProtoId.setText(data.id)
         self.ui.lEtProtoName.setText(data.name)
         self.ui.tEtProtoDesc.setText(data.desc)

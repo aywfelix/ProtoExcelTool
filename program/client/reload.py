@@ -46,9 +46,12 @@ class ReLoadFiles(object):
                 module = importlib.import_module(shortFile)
                 # print(shortFile, module)
                 self.moduleList[shortFile] = module
+
+            return True
         except Exception as e:
             Logger.WriteLog("readLoadModule error, {0}".format(str(e)))
             print(e)
+            return False
         pass
 
 

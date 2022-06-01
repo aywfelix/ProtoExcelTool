@@ -126,9 +126,11 @@ class ToolProtoXml(object):
             with open(self.xmlProtoPath, "w", encoding="GB2312") as f:
                 domTree.writexml(f, indent=' ', addindent='\t',
                                  newl='\n', encoding="GB2312")
+            return None
         except Exception as e:
-            Logger.WriteLog("writeProtocolXml err, {0}".format(str(e)))
-            print(e)
+            logStr = "writeProtocolXml err, {0}".format(str(e))
+            Logger.WriteLog(logStr)
+            return logStr
 
 
     def readProtocolXml(self):
@@ -143,7 +145,7 @@ class ToolProtoXml(object):
 
             dom = xmlDom.parseString(dataResource)
             if dom == None:
-                print("parse xml err, xml file not exist")
+                Logger.WriteLog("parse xml err, xml file not exist")
                 return
             # 根元素
             domTree = dom.documentElement

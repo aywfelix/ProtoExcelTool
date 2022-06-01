@@ -40,20 +40,26 @@ class CreateProtoDirUI(QMainWindow):
         if len(dirName) == 0 or len(dirName)>20:
             QMessageBox.critical(self, "错误", "目录名不能为空且长度不能超过20")
             self.ui.lEtProtoDirName.setText("")
+            return False
             pass
         if not re.search(r'\d{1,4}\s+[a-z]+', dirName):
             QMessageBox.critical(self, "错误", "目录名格为1-4数字+空格+字母名")
             self.ui.lEtProtoDirName.setText("")
+            return False
          # 直接判断目录名是否重复
         if self.protoXml.getDirData(dirName):
             QMessageBox.critical(self, "错误", "目录名已存在")
             self.ui.lEtProtoDirName.setText("") 
-        pass
+            return False
+
+        return True
     
     def inputDirName(self):
         dirName = self.ui.lEtProtoDirName.text().strip()
         package = self.ui.tEtImport.toPlainText()
-        self.checkDirName(dirName)
+        if not self.checkDirName(dirName):
+            self.close()
+            return
 
         dirData = TVItemDirData(dirName, package)
         self.dialogSignal.emit(dirData)

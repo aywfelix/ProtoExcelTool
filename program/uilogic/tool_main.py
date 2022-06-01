@@ -293,6 +293,9 @@ class ProtoMainUI(QMainWindow):
                 dirName = self.protoCurItem.text(0)
                 self.protoCurItem = None
                 self.protoXml.delDir(dirName)
+                result = self.protoXml.writeProtocolXml()
+                if result is not None:
+                    self.ui.statusbar.showMessage(result)
             pass
 
         if op == TVMenuOpType.EnumCreate:
@@ -486,15 +489,15 @@ class ProtoMainUI(QMainWindow):
         pass
 
     def saveProtoXml(self):
-        self.protoXml.writeProtocolXml()
+        result = self.protoXml.writeProtocolXml()
+        if result is not None:
+            self.ui.statusbar.showMessage(result)
 
     def saveToXml(self):
         # 保存protocol信息
         self.saveProtoXml()
         # 保存enum信息
         self.saveEnumXml()
-        # 保存配置信息
-        
         pass
 
     def showModifyProtoWindow(self):
@@ -651,10 +654,11 @@ class ProtoMainUI(QMainWindow):
         self.ui.statusbar.showMessage('正在导出最新协议...')
         self.saveProtoXml()
         export_pb = ExportPb()
-        export_pb.exportProtobuf()
-
-        self.ui.statusbar.showMessage('完成导出协议...')
-        pass
+        result = export_pb.exportProtobuf()
+        if result == None:
+            self.ui.statusbar.showMessage('完成导出协议...')
+        else:
+            self.ui.statusbar.showMessage(result)
 
     # 导出枚举
     def exportEnumClicked(self):
@@ -692,6 +696,10 @@ class ProtoMainUI(QMainWindow):
         pass
 
     def showRespMsg_emit(self, msgID, msgContent):
+        if "error" in msgContent:
+            self.ui.tEtResp.setText(msgContent+"\n\n")
+            return
+
         msgText = self.ui.tEtResp.toPlainText()
         if msgText == "":
             msgText = "消息ID: " + msgID + "\n"

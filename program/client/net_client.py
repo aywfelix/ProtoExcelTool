@@ -56,6 +56,7 @@ class NetClient(QMainWindow):
 
             self.recordReq = json.loads(content)
         except Exception as e:
+            self.ShowMsgSignal.emit("", "load req history error:{0}".format(str(e)))
             print(e)
         pass
 
@@ -111,8 +112,9 @@ class NetClient(QMainWindow):
             #print('send msg:{0}, content:{1}'.format(msgID, content))
             pass
         except Exception as e:
-            Logger.WriteLog("send msg failed: {0}".format(str(e)))
-            print("send msg failed, ", e)
+            logStr = "send msg error: {0}".format(str(e))
+            Logger.WriteLog()
+            self.ShowMsgSignal.emit("", logStr)
     
 
     # 记录发送历史
@@ -175,8 +177,8 @@ class NetClient(QMainWindow):
                     return
                 msg = self.session.queue.get(timeout = 1) # 1秒以后没有就抛出异常
                 if msg is not None:
-                    print("recv msgid:{0}".format(msg[0]))
                     self.ShowMsgSignal.emit(str(msg[0]), msg[1])
+                    print("recv msgid:{0}".format(msg[0]))
                     # if str(msg[0]) == '7000':
                     #     msgDict = json.loads(msg[1])
                     #     ip = msgDict['gwHostname']
