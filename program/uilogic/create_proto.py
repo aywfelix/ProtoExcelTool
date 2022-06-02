@@ -39,13 +39,13 @@ class CreateProtoUI(QMainWindow):
 
     def getProtoType(self):
         if self.ui.rBtnReq.isChecked():
-            return "1"
+            return ProtocolType.REQ
         if self.ui.rBtnAck.isChecked():
-            return "2"
+            return ProtocolType.ACK
         if self.ui.rBtnNotify.isChecked():
-            return "3"
+            return ProtocolType.NOTIFY
         if self.ui.rBtnCom.isChecked():
-            return "4"
+            return ProtocolType.COMMON
 
     def createProto(self):
         protoId = self.ui.lEtProtoId.text().strip()

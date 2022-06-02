@@ -368,7 +368,7 @@ class ProtoMainUI(QMainWindow):
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
             protoName = protoName[0:-3]+"Ack"
-            protoData = TVItemProtoData(protoId, protoName, "", "", '2')
+            protoData = TVItemProtoData(protoId, protoName, "", "", ProtocolType.ACK)
             item = self.createProto(protoData, dirName)
             self.protoCurItem.addChild(item)
 

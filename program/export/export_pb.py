@@ -54,15 +54,19 @@ class ExportPb(object):
                 dir_name = dirName.split(" ")[1]
                 for _, protoData in protocolDict.items():
                     if not protoData.id: continue
-                    if protoData.type == '1': 
+                    if protoData.type == ProtocolType.REQ: 
                         enum_field = dir_name.upper()+"_"+(protoData.name)[:-3].upper()
                         enum_field += "_REQ"
-                    if protoData.type == '2': 
+                    if protoData.type == ProtocolType.ACK: 
                         enum_field = dir_name.upper()+"_"+(protoData.name)[:-3].upper()
                         enum_field += "_ACK"
-                    if protoData.type == '3': 
+                    if protoData.type == ProtocolType.NOTIFY: 
                         enum_field = dir_name.upper()+"_"+(protoData.name)[:-6].upper()
                         enum_field += "_NOTIFY"
+                    if protoData.type == ProtocolType.COMMON: 
+                        enum_field = dir_name.upper()+"_"+protoData.name.upper()
+                        enum_field += "_COM"
+
                     enum_field += " = " + str(protoData.id) + ";"
                     if enum_fields == "":
                         enum_fields += "    "+enum_field
@@ -70,8 +74,12 @@ class ExportPb(object):
                         enum_fields += "\n    "+enum_field
                     pass
 
+                # protoMsgs += proto_enum_tmpl % {
+                #     "DirName": dir_name.capitalize(), "enum_fields": enum_fields
+                # }
+
                 protoMsgs += proto_enum_tmpl % {
-                    "DirName": dir_name.capitalize(), "enum_fields": enum_fields
+                    "DirName": dir_name.upper(), "enum_fields": enum_fields
                 }
                 
                 # if not protocolDict: continue

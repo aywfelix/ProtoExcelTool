@@ -63,8 +63,14 @@ class TVItemDirData:
     def __str__(self):
         return self.dirName+" "+self.package
 
+class ProtocolType:
+    REQ = "1"
+    ACK = "2"
+    NOTIFY = "3"
+    COMMON = "4"
+
 class TVItemProtoData:
-    def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", protoType=1):
+    def __init__(self, protoId="", protoName="", protoDesc="", protoContent="", protoType=ProtocolType.REQ):
         self.id = protoId
         self.name = protoName
         self.desc = protoDesc
