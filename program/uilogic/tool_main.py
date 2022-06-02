@@ -388,9 +388,6 @@ class ProtoMainUI(QMainWindow):
         self.ui.tEtProtoDesc.setText(protoData.desc)
         self.ui.tEtProtoContent.setText(protoData.content)
 
-        parent = self.protoCurItem.parent()
-
-        self.protoXml.addProtocol(parent.text(0), protoData)
         # 保存更新信息
         self.saveProtoXml()
         

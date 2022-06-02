@@ -79,7 +79,7 @@ class ExportPb(object):
                 # }
 
                 protoMsgs += proto_enum_tmpl % {
-                    "DirName": dir_name.upper(), "enum_fields": enum_fields
+                    "DirName": dir_name.capitalize(), "enum_fields": enum_fields
                 }
                 
                 # if not protocolDict: continue
