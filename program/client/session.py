@@ -7,7 +7,7 @@
 @Version :   1.0
 @Contact :   laijia2008@126.com
 @License :   (C)Copyright 2021-2025, felix&lai
-@Desc    :   用于协议测试连接会话
+@Desc    :   用于协�??测试连接会话
 '''
 
 # here put the import lib
@@ -57,10 +57,10 @@ class Session(object):
             while True:
                 if not self.recv_data:
                     break
-                if len(self.recv_data) < 8:  # msg_len+msg_id = 8
+                if len(self.recv_data) < 12:  # msg_sign+msg_len+msg_id = 12
                     break
                 msg_len = self.dataPack.dataLen(self.recv_data)
-                if len(self.recv_data) < msg_len:
+                if len(self.recv_data) < msg_len+12:
                     print("recv_data_len<msg_len, recv data len=", len(self.recv_data))
                     print("msg_len==", msg_len)
                     logStr = "recv error:recv_data_len<msg_len, recv data len={0}, msg_len={1}".format(len(self.recv_data), msg_len)
@@ -70,7 +70,7 @@ class Session(object):
                 msg_id, msg_content = self.dataPack.dataUnpack2(self.recv_data)
                 # 将获取的返回消息放到队列里用于界面显示
                 self.queue.put((msg_id, msg_content))
-                self.recv_data = self.recv_data[msg_len+4:]
+                self.recv_data = self.recv_data[msg_len+12:]
                 pass
 
         except Exception as e:

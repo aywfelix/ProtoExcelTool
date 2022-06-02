@@ -44,20 +44,23 @@ class DataPack(object):
         return msg_id, msg_content
         pass
 
-    # 包={4字节data长度,4字节消息id,data}
+    # 包={4个字节标识 4字节data长度,4字节消息id,data}
     def dataPack2(self, msg_id, msg_proto):
         msg_pack = None
         msg_content = msg_proto.SerializeToString()
         msg_len = len(msg_content)
-        msg_pack = struct.pack('i', msg_len)
+        msg_pack = "DAWA".encode('utf-8')
+        msg_pack = msg_pack + struct.pack('i', msg_len)
         msg_pack = msg_pack + struct.pack('i', msg_id)
         msg_pack = msg_pack + msg_content
         return msg_pack
         pass    
     
     def dataUnpack2(self, recv_data):
-        msg_len = struct.unpack('i', recv_data[:4])[0]
-        msg_id = struct.unpack('i', recv_data[4:8])[0]
+        msg_sign = recv_data[0:4]
+        print(msg_sign)
+        msg_len = struct.unpack('i', recv_data[4:8])[0]
+        msg_id = struct.unpack('i', recv_data[8:12])[0]
         dynamicData = self.protoXml.getDynamicMsg(str(msg_id))
         if not dynamicData:
             print('dynamicData is null, msgid==', msg_id)
@@ -66,13 +69,13 @@ class DataPack(object):
         msg_proto = self.getMsgProto(dynamicData.msgClass, dynamicData.msgName)
         if not msg_proto:
             return None, None
-        msg_proto.ParseFromString(recv_data[8:])
+        msg_proto.ParseFromString(recv_data[12:])
         return msg_id, json_format.MessageToJson(msg_proto)
         pass 
     
 
     def dataLen(self, recv_data):
-        msg_len = struct.unpack('i', recv_data[:4])[0]
+        msg_len = struct.unpack('i', recv_data[4:8])[0]
         return msg_len
         pass
 
