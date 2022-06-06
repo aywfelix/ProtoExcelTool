@@ -21,7 +21,7 @@ from proto_xml import *
 
 class ModifyProtoDirUI(QMainWindow):
     # 窗体间通信
-    dialogSignal = pyqtSignal(TVItemDirData)
+    dialogSignal = pyqtSignal(str, TVItemDirData)
 
     def __init__(self, parent=None):
         super(ModifyProtoDirUI, self).__init__()
@@ -37,25 +37,28 @@ class ModifyProtoDirUI(QMainWindow):
         self.ui.tEtImport.installEventFilter(self)
         self.ui.bTnClearImport.clicked.connect(self.clearEditText)
 
-        self.oldDirName = None
+        self.dirData = None
         pass
 
     def checkDirName(self, dirName):
         if len(dirName) == 0 or len(dirName)>20:
             QMessageBox.critical(self, "错误", "目录名不能为空且长度不能超过20")
             self.ui.lEtProtoDirName.setText("")
-            pass
+            return False
         if not re.search(r'\d{1,4}\s+[a-z]+', dirName):
             QMessageBox.critical(self, "错误", "目录名格为1-4数字+空格+字母名")
             self.ui.lEtProtoDirName.setText("")
+            return False
          # 直接判断目录名是否重复
-        if self.oldDirName!=dirName and self.protoXml.getDirData(dirName):
+        if self.dirData.dirName!=dirName and self.protoXml.getDirData(dirName):
             QMessageBox.critical(self, "错误", "目录名已存在")
             self.ui.lEtProtoDirName.setText("") 
-        pass
+            return False
+        
+        return True
 
     def fillDirData(self, dirData):
-        self.oldDirName = dirData.dirName
+        self.dirData = dirData
 
         self.ui.lEtProtoDirName.setText(dirData.dirName)
         self.ui.tEtImport.setText(dirData.package)
@@ -64,10 +67,13 @@ class ModifyProtoDirUI(QMainWindow):
     def inputDirName(self):
         dirName = self.ui.lEtProtoDirName.text().strip()
         package = self.ui.tEtImport.toPlainText()
-        self.checkDirName(dirName)
+        if not self.checkDirName(dirName):
+            return
 
-        dirData = TVItemDirData(dirName, package)
-        self.dialogSignal.emit(dirData)
+        oldDirName = self.dirData.dirName
+        self.dirData.dirName = dirName
+        self.dirData.package = package
+        self.dialogSignal.emit(oldDirName, self.dirData)
         self.close()
         
     def clearEditText(self):
