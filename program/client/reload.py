@@ -36,7 +36,8 @@ class ReLoadFiles(object):
     def readLoadModule(self):
         try:
             reload_path = self.getPythonPbPath()
-            if not reload_path: return
+            if not reload_path: 
+                return
             
             sys.path.append(reload_path)
             for pbfile in os.listdir(reload_path):
@@ -61,9 +62,9 @@ class ReLoadFiles(object):
         return self.moduleList[name]
         pass
 
-if __name__ == "__main__":
-    reload = ReLoadFiles()
-    reload.readLoadModule()
-    pass
+# if __name__ == "__main__":
+#     reload = ReLoadFiles()
+#     reload.readLoadModule()
+#     pass
 
 #https://blog.csdn.net/mijichui2153/article/details/111665192

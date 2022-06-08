@@ -113,7 +113,7 @@ class NetClient(QMainWindow):
             pass
         except Exception as e:
             logStr = "send msg error: {0}".format(str(e))
-            Logger.WriteLog()
+            Logger.WriteLog(logStr)
             self.ShowMsgSignal.emit("", logStr)
     
 
