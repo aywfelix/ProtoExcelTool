@@ -158,6 +158,8 @@ class ExportPb(object):
                             protoDir + ' --plugin=protoc-gen-go='+ protocGenGoFile + ' --go_out='+config.publish + " "+proto                           
                         pass
                     if config.lang == ProgramLangType.CSHARP: # csharp
+                        gen_pb_cmd = protocExeFile + ' --proto_path=' + \
+                            protoDir + ' --csharp_out='+config.publish + " "+proto
                         pass
                     if config.lang == ProgramLangType.PYTHON: #python
                         gen_pb_cmd = protocExeFile + ' --proto_path=' + \
