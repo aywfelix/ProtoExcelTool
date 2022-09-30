@@ -22,8 +22,8 @@ from logger import *
 @Singleton
 class ToolProtoXml(object):
     def __init__(self):
-        # self.modules = {['dirname']=data, ...}
-        # self.protocols = {['dirname']={['uuid']=data, ...}, ...}
+        # self.modules = {['dirname']=moduleData, ...}
+        # self.protocols = {['dirname']={['protoId']=protoData, ...}, ...}
         self.xmlProtoPath = "./config/protocols.config"
         self.modules = {}
         self.protocols = {}
@@ -54,23 +54,20 @@ class ToolProtoXml(object):
         if dirName not in self.protocols.keys():
             self.protocols[dirName] = {}
         
-        self.protocols[dirName][protoData.uuid] = protoData
+        self.protocols[dirName][protoData.id] = protoData
         pass
 
-    def delProtocol(self, dirName, uuid):
+    def getProtocol(self, dirName, protoId):
+        if dirName not in self.protocols.keys():
+            self.protocols[dirName] = {}
+        return self.protocols[dirName][protoId]
+
+    def delProtocol(self, dirName, protoId):
         if dirName not in self.protocols.keys():
             return
-        if not uuid in self.protocols[dirName].keys():
+        if not protoId in self.protocols[dirName].keys():
             return
-        self.protocols[dirName].pop(uuid)
-    
-    def delProtocolByUUID(self, uuid):
-        for dirName, protocol in self.protocols.items():
-            for proto_uuid, _ in protocol.items():
-                if proto_uuid == uuid:
-                    self.protocols[dirName].pop(uuid)
-                    break
-        pass
+        self.protocols[dirName].pop(protoId)
     
     def addDir(self, dirData):
         if dirData.dirName in self.modules.keys():
@@ -79,12 +76,12 @@ class ToolProtoXml(object):
         self.protocols[dirData.dirName] = {}
         pass
 
-    def modDir(self, oldDirName, dirData):
-        self.protocols[dirData.dirName] = self.protocols[oldDirName]
-        self.modules[dirData.dirName] = dirData
+    def modDir(self, oldName, newName, dirData):
+        self.protocols[newName] = self.protocols[oldName]
+        self.modules[newName] = dirData
 
-        self.modules.pop(oldDirName)
-        self.protocols.pop(oldDirName)
+        self.modules.pop(oldName)
+        self.protocols.pop(oldName)
         pass
 
     def delDir(self, dirName):
@@ -126,8 +123,7 @@ class ToolProtoXml(object):
                 pass
             # 写入protocol配置文件
             with open(self.xmlProtoPath, "w", encoding="GB2312") as f:
-                domTree.writexml(f, indent=' ', addindent='\t',
-                                 newl='\n', encoding="GB2312")
+                domTree.writexml(f, indent=' ', addindent='\t', newl='\n', encoding="GB2312")
             return None
         except Exception as e:
             logStr = "writeProtocolXml err, {0}".format(str(e))
@@ -173,8 +169,7 @@ class ToolProtoXml(object):
                     content = protocolNode.getAttribute("content")
                     content = content.replace("&#xD;", "\r").replace("&#xA;", "\n")              
                     protoData = TVItemProtoData(id, name, desc, content, type)
-                    proto_uuid = protoData.uuid
-                    protocolDict[proto_uuid] = protoData
+                    protocolDict[id] = protoData
 
                     #print('-------', protoData.name)
                     pass

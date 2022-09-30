@@ -76,7 +76,6 @@ class TVItemProtoData:
         self.desc = protoDesc
         self.content = protoContent
         self.type = protoType # 1请求消息 2回复消息 3广播消息 4共用消息
-        self.uuid = create_uuid()
 
     def __str__(self):
         return self.id+" "+self.name+" "+self.desc+" "+self.content

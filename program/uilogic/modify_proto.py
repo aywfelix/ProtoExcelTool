@@ -12,7 +12,6 @@
 
 # here put the import lib
 from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from uipy.modify_proto_ui import *
 from proto_xml import *

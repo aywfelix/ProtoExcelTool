@@ -11,20 +11,11 @@
 '''
 
 # here put the import lib
-import enum
-import os
-import sys
-import multiprocessing
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
 from uipy.proto_tool_ui import *
 from uilogic.create_dir import *
 from uilogic.modify_dir import *
 from uilogic.create_proto import *
 from uilogic.modify_proto import *
-from tool_define import *
-from proto_xml import *
 from uilogic.tool_setting import *
 from export.export_pb import *
 from export.export_enum import *
@@ -143,8 +134,15 @@ class ProtoMainUI(QMainWindow):
 
         # 设置协议测试界面
         self.ui.cbBxMsgClass.currentIndexChanged[str].connect(self.cbBxMsgClassChanged)
-        self.ui.cBbxProto.currentIndexChanged[str].connect(self.cBbxProtoChange)
+        self.ui.cBbxProto.currentIndexChanged[str].connect(self.cBbxProtoChanged)
         self.showProtoTest()
+
+    def getProtoDataByItem(self):
+        parent = self.protoCurItem.parent()
+        dirName = parent.text(0)
+        protoId = self.protoCurItem.data(0, Qt.UserRole)
+        protoData = self.protoXml.getProtocol(dirName, protoId)
+        return protoData
 
     def tabWidgetChanged(self, index):
         if index == 2:
@@ -167,16 +165,17 @@ class ProtoMainUI(QMainWindow):
         self.setProtoTestReqData()
         pass
 
-    def cBbxProtoChange(self):
+    def cBbxProtoChanged(self):
         self.setProtoTestReqData()
         pass
 
+    # 刷新测试界面协议列表信息
     def cbBxProtoRefresh(self):
         curText = self.ui.cbBxMsgClass.currentText()
         if not curText:
             return        
         self.ui.cBbxProto.clear()
-        protocols = self.protoXml.getModuleProtos(curText)
+        protocols = self.protoXml.getModuleProtos(curText) # 获取模块名称
         for _, protoData in protocols.items():
             if protoData.type != '1': continue
             msgName = protoData.name
@@ -198,9 +197,9 @@ class ProtoMainUI(QMainWindow):
         self.ui.tRvProtocol.clear()
         # 根据配置信息创建item 节点
         for dirName, dirData in modules.items():
-            dirItem = self.createDirItem(dirData)
+            dirItem = self.createDirItem(dirName)
             for _, protoData in protocols[dirName].items():
-                protoNode = self.createProto(protoData)
+                protoNode = self.createProtoItem(protoData.id, protoData.name)
                 dirItem.addChild(protoNode)
         pass
 
@@ -258,11 +257,10 @@ class ProtoMainUI(QMainWindow):
             msgBox.exec_()
             if msgBox.clickedButton() == yes:
                 parent = self.protoCurItem.parent()
-                protoData = self.protoCurItem.data(0, Qt.UserRole)
+                protoId = self.protoCurItem.data(0, Qt.UserRole)
                 parent.removeChild(self.protoCurItem)
+                self.protoXml.delProtocol(parent.text(0), protoId)
                 self.protoCurItem = None
-                self.protoXml.delProtocol(parent.text(0), protoData.uuid)
-                self.saveProtoXml()
             pass
         if op == TVMenuOpType.DirCreate:
             self.createDirUI = CreateProtoDirUI(self)
@@ -273,22 +271,22 @@ class ProtoMainUI(QMainWindow):
             if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemDir:
                 return
             self.modifyDirUI = ModifyProtoDirUI(self)
-            dirData = self.protoCurItem.data(0, Qt.UserRole)
-            self.modifyDirUI.fillDirData(dirData)
-            self.modifyDirUI.show()
-            self.modifyDirUI.dialogSignal.connect(self.modifyDir_emit)
+            dirName = self.protoCurItem.data(0, Qt.UserRole) # 获得模块信息
+            dirData = self.protoXml.getDirData(dirName)
+            if dirData:
+                self.modifyDirUI.fillDirData(dirData)
+                self.modifyDirUI.show()
+                self.modifyDirUI.dialogSignal.connect(self.modifyDir_emit)
             pass
         if op == TVMenuOpType.DirDelete:
             if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemDir:
                 return
-            msgBox = QMessageBox(QMessageBox.Warning, u'提示',
-                                 u'确认删除协议目录? (此操作会删除目录下所有协议)')
+            msgBox = QMessageBox(QMessageBox.Warning, u'提示', u'确认删除协议目录? (此操作会删除目录下所有协议)')
             yes = msgBox.addButton(u'确定', QMessageBox.YesRole)
             no = msgBox.addButton(u'取消', QMessageBox.NoRole)
             msgBox.exec_()
             if msgBox.clickedButton() == yes:
-                index = self.ui.tRvProtocol.indexOfTopLevelItem(
-                    self.protoCurItem)
+                index = self.ui.tRvProtocol.indexOfTopLevelItem(self.protoCurItem)
                 self.ui.tRvProtocol.takeTopLevelItem(index)
                 dirName = self.protoCurItem.text(0)
                 self.protoCurItem = None
@@ -322,11 +320,11 @@ class ProtoMainUI(QMainWindow):
             pass
         pass
 
-    def createDirItem(self, dirData):
+    def createDirItem(self, dirName):
         topItem = QTreeWidgetItem(TVItemType.ItemDir)
-        topItem.setText(0, dirData.dirName)
+        topItem.setText(0, dirName)
         topItem.setIcon(0, QIcon('./images/folder.ico'))
-        topItem.setData(0, Qt.UserRole, dirData)
+        topItem.setData(0, Qt.UserRole, dirName)
 
         self.ui.tRvProtocol.addTopLevelItem(topItem)
         return topItem
@@ -334,63 +332,57 @@ class ProtoMainUI(QMainWindow):
     def createDir_emit(self, dirData):
         if not dirData:
             return
-        self.createDirItem(dirData)
+        self.createDirItem(dirData.dirName)
         self.protoXml.addDir(dirData)
-        self.saveToXml()
 
-    def modifyDir_emit(self, oldDirName, dirData):
-        self.protoCurItem.setText(0, dirData.dirName)
-        self.protoCurItem.setData(0, Qt.UserRole, dirData)
-        self.protoXml.modDir(oldDirName, dirData)
-        self.saveToXml()
+    def modifyDir_emit(self, oldName, dirData):
+        newName = dirData.dirName
+        self.protoCurItem.setText(0, newName)
+        self.protoCurItem.setData(0, Qt.UserRole, newName)
+        self.protoXml.modDir(oldName, newName, dirData)
         pass
 
-    def createProto(self, protoData, dirName=None):
+    def createProtoItem(self, protoId, protoName):
         item = QTreeWidgetItem(TVItemType.ItemProto)
-        item.setText(0, protoData.id+"#"+protoData.name)
+        item.setText(0, protoId+"#"+protoName)
         item.setIcon(0, QIcon('./images/file.ico'))
-        item.setData(0, Qt.UserRole, protoData)
+        item.setData(0, Qt.UserRole, protoId)
         return item
         pass
 
     def createProto_emit(self, protoData):
         if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemDir:
             return
-        dirName = self.protoCurItem.text(0)
-        item = self.createProto(protoData, dirName)
-        self.protoCurItem.addChild(item)
-
-        self.protoXml.addProtocol(self.protoCurItem.text(0), protoData)
-        # 如果是创建请求类型协议，则自动生成返回协议
         protoName = protoData.name
         protoId = protoData.id
 
+        dirName = self.protoCurItem.text(0)
+        item = self.createProtoItem(protoId, protoName)
+        self.protoCurItem.addChild(item)
+
+        self.protoXml.addProtocol(dirName, protoData)
+        # 如果是创建请求类型协议，则自动生成返回协议
         if 'Req' in protoName:
             protoId = str(int(protoId)+1)
             protoName = protoName[0:-3]+"Ack"
             protoData = TVItemProtoData(protoId, protoName, "", "", ProtocolType.ACK)
-            item = self.createProto(protoData, dirName)
+            item = self.createProtoItem(protoId, protoName)
             self.protoCurItem.addChild(item)
 
-            self.protoXml.addProtocol(self.protoCurItem.text(0), protoData)
+            self.protoXml.addProtocol(dirName, protoData)
             pass
-        # 保存更新信息
-        self.saveProtoXml()
 
     def modifyProto_emit(self, protoData):
         if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemProto:
             return
         self.protoCurItem.setText(0, protoData.id+"#"+protoData.name)
-        self.protoCurItem.setData(0, Qt.UserRole, protoData)
+        self.protoCurItem.setData(0, Qt.UserRole, protoData.id)
         # 更新界面显示
         self.ui.lEtProtoId.setText(protoData.id)
         self.ui.lEtProtoName.setText(protoData.name)
         self.ui.tEtProtoDesc.setText(protoData.desc)
         self.ui.tEtProtoContent.setText(protoData.content)
 
-        # 保存更新信息
-        self.saveProtoXml()
-        
     def modifyEnum_emit(self, enumData):
         self.enumCurItem.setText(0, enumData.name)
         # 更新界面显示
@@ -426,7 +418,7 @@ class ProtoMainUI(QMainWindow):
             self.actionC.setEnabled(True)
 
             # 进行界面赋值
-            protoData = self.protoCurItem.data(0, Qt.UserRole)
+            protoData = self.getProtoDataByItem()
             self.ui.lEtProtoId.setText(protoData.id)
             self.ui.lEtProtoName.setText(protoData.name)
             self.ui.tEtProtoDesc.setText(protoData.desc)
@@ -501,8 +493,7 @@ class ProtoMainUI(QMainWindow):
         if self.protoCurItem == None or self.protoCurItem.type() != TVItemType.ItemProto:
             return
         self.modifyProtoUI = ModifyProtoUI(self)
-        protoData = self.protoCurItem.data(0, Qt.UserRole)
-        self.modifyProtoUI.fillProtoData(protoData)
+        self.modifyProtoUI.fillProtoData(self.getProtoDataByItem())
         self.modifyProtoUI.show()
         self.modifyProtoUI.dialogSignal.connect(self.modifyProto_emit)
 

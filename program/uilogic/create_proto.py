@@ -12,7 +12,6 @@
 
 # here put the import lib
 from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from uipy.create_proto_ui import *
 from proto_xml import *
@@ -59,8 +58,8 @@ class CreateProtoUI(QMainWindow):
 
         protocols = self.protoXml.protocols
         for _, protocolDict in protocols.items():
-            for _, protoData in protocolDict.items():
-                if protoData.id !='' and protoData.id == protoId:
+            for id, protoData in protocolDict.items():
+                if id !='' and id == protoId:
                     QMessageBox.warning(self, "警告", "此协议编号已经存在")
                     return
                 if protoData.name == protoName:
